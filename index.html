@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#171722">
-<title>RETRO BLOCKS · Take a little break</title>
+<title>RETRO BLOCKS v1.1 · Take a little break</title>
 <style>
 :root{color-scheme:dark;--bg:#171722;--surface:#20202e;--line:#41404f;--muted:#aba7b9;--white:#f6f0db;--mint:#c8f789;--purple:#af90eb;--pink:#f298af;--board:#11121e;--font:Consolas,"Lucida Console","Courier New",monospace}
 *{box-sizing:border-box}html{min-width:280px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);font-size:14px;min-height:100vh;background-image:radial-gradient(ellipse at 80% 20%,#35304b45,transparent 56%)}button,input{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}button{border-radius:0}button:hover{filter:brightness(1.12)}button:active{transform:translateY(2px)}[hidden]{display:none!important}canvas{display:block}body::after{content:"";pointer-events:none;position:fixed;inset:0;z-index:30;background:repeating-linear-gradient(0deg,transparent,transparent 3px,#0000000e 3px,#0000000e 4px);opacity:.5}body.no-crt::after{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -18,12 +18,19 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 @media(max-width:360px){.page{padding:26px 18px 18px}.mini-tag{display:none}.game-layout{gap:10px}.game-page{padding-left:10px;padding-right:10px}.touch-controls{gap:4px}.touch-controls button{height:46px}.game-event{margin-top:107px}.best-strip{gap:27px}.hero-copy{font-size:16px}}
 .mobile-feedback{display:none}
 @media(max-width:600px){.right-panel .game-event,.right-panel .slow-status{display:none}.mobile-feedback{display:flex;justify-content:space-between;gap:8px;margin:-4px auto 12px;max-width:410px;min-height:12px;font-size:8px;line-height:1.5;letter-spacing:.5px;color:var(--mint)}#mobileSlowStatus{color:#86e3e5}.game-layout{--board-w:min(61vw,calc((100dvh - 278px)/2),300px)}}
+.hero-title{margin-bottom:16px}.hero-title canvas{max-width:410px}.hero-copy{font-size:16px;line-height:1.5}.chinese-copy{margin-bottom:22px}.mode-button{padding:13px 17px;margin-bottom:13px}.mode-button.zen{background:#2d273b;color:#d8c7f2;border-color:#9c84b8;box-shadow:0 4px #52405f}.mode-button.zen .arrow{font-size:28px}.text-actions{margin-top:22px;margin-bottom:24px}.version-tag{font-size:8px;color:#aba0b9;letter-spacing:1px}.rotation-controls{display:flex;justify-content:center;gap:10px;margin:18px auto 0}.rotation-button{display:flex;gap:9px;align-items:center;justify-content:center;min-height:44px;min-width:120px;padding:7px 14px;background:#282332;border:1px solid #62566d;border-bottom:3px solid #62566d;touch-action:manipulation}.rotation-button .symbol{font-size:22px}.rotation-button small{font-size:9px;letter-spacing:1px}.rotation-button kbd{font:inherit;color:#bfa6d9;font-size:11px}.control-legend{margin-top:13px}.danger-badge{font-size:8px;color:#e9b594;letter-spacing:1px;margin-left:9px}.board-frame.danger{border-color:#ca967f;box-shadow:0 0 0 3px #10111b,0 0 16px #ca967f18}.game-page.zen-session .score-value{font-size:22px;color:#b7acc6}.game-page.zen-session .best-value,.game-page.zen-session .level-progress{display:none}.game-page.zen-session .mode-label{color:#c8b2e7}.event-status{color:#c9b0e8;line-height:1.6;font-size:9px;letter-spacing:.4px;margin-top:10px;min-height:16px}.event-status:empty{display:none}.zen-note{color:#c8b2e7;font-size:10px;line-height:2;border-top:1px solid #4c405b;border-bottom:1px solid #4c405b;padding:12px 0}.zen-note b{font-size:12px;letter-spacing:1px;display:block}.zen-note small{color:#a49aad;display:block}.toast.perfect{border-color:var(--mint);box-shadow:4px 4px #4c6240;top:108px;bottom:auto;font-weight:bold;letter-spacing:1px}.combo-rank{color:var(--pink)}.touch-controls{grid-template-columns:repeat(4,minmax(0,1fr))}.touch-controls [data-control="hold"]{grid-column:span 2}.touch-controls [data-control="reverse"],.touch-controls [data-control="rotate"]{color:#ddcaf3;border-color:#8b749d}.mobile-event-status{display:none}.game-layout{--board-w:min(34vw,320px,calc((100dvh - 254px)/2))}
+@media(min-width:1100px) and (min-height:860px){.game-layout{--board-w:min(350px,calc((100dvh - 320px)/2))}}
+@media(max-width:850px) and (min-width:601px){.game-layout{--board-w:min(38vw,320px,calc((100dvh - 242px)/2))}}
+@media(max-width:600px){.rotation-controls{display:none}.touch-controls{margin-top:15px;gap:7px}.touch-controls button{height:48px}.game-layout{--board-w:min(61vw,max(150px,calc((100dvh - 340px)/2)),300px)}.game-page.zen-session .mobile-stats{grid-template-columns:1.4fr 1fr 1fr}.game-page.zen-session .mobile-best{display:none}.mobile-event-status{display:block;margin:0 auto 8px;max-width:410px;font-size:8px;line-height:1.5;color:#c9b0e8;letter-spacing:.4px}.mobile-event-status:empty{display:none}.right-panel .event-status{display:none}.zen-note{font-size:8px;line-height:1.7;padding:8px 0}.zen-note b{font-size:9px;letter-spacing:0}.zen-note small{font-size:8px}.toast.perfect{top:72px}.hero-title canvas{max-width:350px}.danger-badge{margin-left:6px;font-size:7px}.mode-label{letter-spacing:.5px}.mode-button.zen{margin-bottom:17px}}
+@media(pointer:coarse) and (min-width:601px){.rotation-controls{display:none}.game-layout{--board-w:min(35vw,300px,calc((100dvh - 340px)/2))}}
+@media(max-width:600px) and (max-height:650px){.next-list canvas{height:38px}.left-panel{padding-top:164px}.hold-box canvas{height:46px}.left-bottom{margin-top:10px}}
+@media(min-width:601px){.right-panel .score-instrument{margin-bottom:18px}.right-panel .metrics{padding:10px 0;margin:12px 0}.right-panel .next-list canvas{height:clamp(36px,calc(var(--board-w) * .15),48px)}.right-panel .instrument{margin-bottom:14px}.right-panel .game-event{margin-top:12px;min-height:38px}.right-panel .slow-status{margin-top:6px}.right-panel .event-status{margin-top:6px}}
 </style>
 </head>
 <body>
 <header class="topbar">
   <button class="brand" id="brandButton" aria-label="返回主菜单"><span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>RETRO BLOCKS</button>
-  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / EST. 1984-ISH</span><div class="header-actions">
+  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.1</span><div class="header-actions">
   <button id="muteButton" class="icon-button" aria-label="静音" title="静音"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="soundWaves" d="M15 8q5 4 0 8M18 5q8 7 0 14"/></svg></button>
   <button class="icon-button" data-dialog="settingsDialog" aria-label="设置" title="设置"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6M16 9v6M10 15v6"/></svg></button>
   </div></div>
@@ -34,37 +41,40 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   <h1 class="hero-title"><span class="sr-only">RETRO BLOCKS</span><canvas id="titleCanvas" width="490" height="176" aria-hidden="true"></canvas></h1>
   <p class="hero-copy">TAKE A BREAK.<br><span class="faded">CLEAR YOUR MIND.</span><br>CLEAR SOME LINES.</p>
   <p class="chinese-copy">把杂念放一边，让方块各就各位。</p>
-  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">TAKE IT EASY</span><small>慢一点，有道具，也有一次重来的机会。</small></span><span class="arrow">↗</span></button>
+  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">A LITTLE LUCK</span><small>辅助方块、随机惊喜，还有一次续命。</small></span><span class="arrow">↗</span></button>
   <button id="classicStart" class="mode-button secondary"><span><b>CLASSIC MODE</b><small>熟悉的七种方块，纯粹的消行快乐。</small></span><span class="arrow">→</span></button>
+  <button id="zenStart" class="mode-button zen"><span><b>ZEN MODE</b><span class="mini-tag">NO GAME OVER</span><small>恒定慢速，自动清理。想玩多久，就玩多久。</small></span><span class="arrow">∞</span></button>
   <div class="text-actions"><button class="text-button" data-dialog="helpDialog"><span>?</span>HOW TO PLAY</button><button class="text-button" data-dialog="settingsDialog"><span>+</span>SETTINGS</button></div>
   <div class="best-strip"><div><span class="mini-label">CHILL BEST</span><strong id="chillBest">000000</strong></div><div><span class="mini-label">CLASSIC BEST</span><strong id="classicBest">000000</strong></div></div>
   </section><aside class="attract" aria-label="复古方块街机插画"><div class="cabinet"><div class="cabinet-top"><span>01 / THE BREAK ROOM</span><span class="led"></span></div><div class="attract-screen"><span class="attract-badge">NO COINS NEEDED.</span><canvas id="attractCanvas" width="400" height="520"></canvas></div><div class="attract-caption"><span>STACK. CLEAR. EXHALE.</span><span class="tiny-blocks"><i></i><i></i><i></i></span></div></div><p class="desk-note"><span>✦</span> YOUR NEXT BREAK STARTS HERE.</p></aside></div>
-  <footer class="home-footer"><span><span class="footer-blocks">■ ■ ■</span> &nbsp;7 SHAPES. ENDLESS POSSIBILITIES.</span><span>NO ADS · NO RUSH · JUST BLOCKS</span></footer>
+  <footer class="home-footer"><span><span class="footer-blocks">■ ■ ■</span> &nbsp;THREE MODES. YOUR KIND OF BREAK.</span><span>NO ADS · NO RUSH · JUST BLOCKS</span></footer>
 </main>
 <main id="gamePage" class="game-page" hidden>
-  <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
-  <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div></div>
+  <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="danger-badge" id="dangerBadge" hidden>DANGER</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
+  <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div class="mobile-best"><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label" id="mobileLevelLabel">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div></div>
   <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus"></span></div>
+  <div class="mobile-event-status" id="mobileEventStatus"></div>
   <div class="game-layout">
-    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><p class="item-caption" id="itemCaption"><b>POCKET-SIZED MAGIC</b>✹ BOMB BLOCK<br>↔ LINE CLEAR<br>◷ SLOW TIME<br><br>每 15–25 块，一点小惊喜。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>消满一行，腾出空间。<br>每 10 行提升一个等级。</p></div></aside>
+    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>↔ LINE CLEAR<br>◷ SLOW TIME<br><br>辅助方块与低频随机事件。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p></div></aside>
     <div class="board-frame" id="boardFrame"><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
-    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="slowStatus" class="slow-status"></div></aside>
+    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status"></div></aside>
   </div>
-  <div class="touch-controls" aria-label="触屏操作"><button data-control="left" aria-label="向左移动">←</button><button data-control="right" aria-label="向右移动">→</button><button data-control="down" aria-label="加速下降">↓</button><button data-control="rotate" aria-label="顺时针旋转">↻<span class="touch-label">ROTATE</span></button><button data-control="hold" aria-label="暂存方块">⇄<span class="touch-label">HOLD</span></button><button class="drop" data-control="drop" aria-label="直接落下">⇓<span class="touch-label">DROP</span></button></div>
-  <div class="control-legend"><span><kbd>← →</kbd>MOVE</span><span><kbd>↑ / Z</kbd>ROTATE</span><span><kbd>↓</kbd>SOFT DROP</span><span><kbd>SPACE</kbd>DROP</span><span><kbd>C</kbd>HOLD</span><span><kbd>P / ESC</kbd>PAUSE</span></div><p class="game-footnote">TAKE YOUR TIME. THE WORLD CAN WAIT A MINUTE.</p>
+  <div class="rotation-controls" aria-label="旋转按钮"><button class="rotation-button" data-control="reverse" aria-label="逆时针旋转"><span class="symbol">⟲</span><small>CCW</small><kbd>[ / Z</kbd></button><button class="rotation-button" data-control="rotate" aria-label="顺时针旋转"><span class="symbol">⟳</span><small>CW</small><kbd>] / ↑</kbd></button></div>
+  <div class="touch-controls" aria-label="触屏操作"><button data-control="left" aria-label="向左移动">←</button><button data-control="right" aria-label="向右移动">→</button><button data-control="down" aria-label="加速下降">↓</button><button class="drop" data-control="drop" aria-label="直接落下">⇓<span class="touch-label">DROP</span></button><button data-control="hold" aria-label="暂存方块">⇄<span class="touch-label">HOLD</span></button><button data-control="reverse" aria-label="逆时针旋转">⟲<span class="touch-label">CCW</span></button><button data-control="rotate" aria-label="顺时针旋转">⟳<span class="touch-label">CW</span></button></div>
+  <div class="control-legend"><span><kbd>← →</kbd>MOVE</span><span><kbd>[ / ]</kbd>ROTATE</span><span><kbd>↓</kbd>SOFT DROP</span><span><kbd>SPACE</kbd>DROP</span><span><kbd>C</kbd>HOLD</span><span><kbd>P / ESC</kbd>PAUSE</span></div><p class="game-footnote">TAKE YOUR TIME. THE WORLD CAN WAIT A MINUTE.</p>
 </main>
 <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">SETTINGS</h2><button class="icon-button" data-close aria-label="关闭设置">×</button></div><div class="dialog-body">
 <p class="setting-heading">01 / AUDIO</p><label class="setting-row"><span>MUSIC<small>轻量合成背景音乐</small></span><input class="switch" type="checkbox" id="musicOn" checked aria-label="背景音乐开关"></label><div class="volume-row"><input type="range" id="musicVolume" min="0" max="100" value="30" aria-label="背景音乐音量"><output id="musicVolumeValue">30%</output></div>
 <label class="setting-row"><span>SOUND EFFECTS<small>移动、消行与小小的胜利</small></span><input class="switch" type="checkbox" id="sfxOn" checked aria-label="音效开关"></label><div class="volume-row"><input type="range" id="sfxVolume" min="0" max="100" value="50" aria-label="音效音量"><output id="sfxVolumeValue">50%</output></div>
-<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速 · ↑ / Z 旋转<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>音乐会在开始游戏后播放。</p></div></dialog>
-<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY</h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次消除四行就是 TETRIS！</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>↑ / Z</kbd>正向 / 反向旋转</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 提前展示下一块。HOLD 可以留住好牌，每块落地前只能交换一次。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>连续落块都消行可累积 COMBO。连续 TETRIS 或 T-SPIN 消行可获得 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CHILL HAS YOUR BACK</b><span>每 15–25 块自动获得一种惊喜：炸弹方块落地清除周围 3×3、清除底部非空行，或减速 10 秒。首次触顶会自动清理危险区域，给你一次续命。</span></p><p class="dialog-note">切换标签页会自动暂停，回来后手动继续。<br>没有时间限制，慢慢来就好。</p></div></dialog>
+<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>音乐会在开始游戏后播放。</p></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.1</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>连续消行累积 COMBO 和视觉称号。连续 TETRIS 或 T-SPIN 消行获得 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>以标准方块为主，偶尔出现两格、三格、小靴子和极少见的五格长条或单格块。自适应方块池减少重复，温和改善长条匮乏。</span></p><p class="help-point"><span>每 15–25 块获得炸弹、底行消除或 10 秒减速。首次触顶可续命一次。更低频出现 LUCKY WAVE（较易摆放）、TINY BLOCKS（3 个小方块）、LONG BOY（提高长条概率）；事件从已预告队列之后生效。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">切换标签页会自动暂停，回来后手动继续。<br>没有时间限制。</p></div></dialog>
 <div id="toast" class="toast" role="status" hidden></div>
 <script>
 (function (root) {
   'use strict';
 
   const CONFIG = Object.freeze({
-    COLS: 10, ROWS: 20, PREVIEW_COUNT: 3,
+    COLS: 10, ROWS: 20, PREVIEW_COUNT: 4,
     LOCK_DELAY: 450, MAX_LOCK_RESETS: 12,
     DAS: 160, ARR: 45, SOFT_DROP_INTERVAL: 45,
     MAX_DELTA: 100, CLEAR_DURATION: 230, COUNTDOWN_DURATION: 2500,
@@ -73,9 +83,13 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     SLOW_TIME_DURATION: 10000, SLOW_FACTOR: 2.5,
     CLASSIC_GRAVITY: 880, CLASSIC_DECAY: 0.83, CLASSIC_MIN_GRAVITY: 65,
     CHILL_GRAVITY: 1150, CHILL_DECAY: 0.92, CHILL_MIN_GRAVITY: 150,
+    ZEN_GRAVITY: 1400, DANGER_ROW: 5, ZEN_CLEAR_FRACTION: 0.45,
+    ADAPTIVE_BAG_SIZE: 21, ADAPTIVE_HELPERS: 3,
+    EVENT_MIN: 35, EVENT_MAX: 55, SURPRISE_GAP: 6,
+    PERFECT_CLEAR_SCORE: 2000,
     LINES_PER_LEVEL: 10, MAX_PARTICLES: 150, BREAK_TIME: 600000,
     DEFAULT_MUSIC_VOLUME: 0.30, DEFAULT_SFX_VOLUME: 0.50,
-    LINE_SCORES: Object.freeze([0, 100, 300, 500, 800]),
+    LINE_SCORES: Object.freeze([0, 100, 300, 500, 800, 1200]),
     TSPIN_SCORES: Object.freeze([400, 800, 1200, 1600]),
     B2B_MULTIPLIER: 1.5, COMBO_SCORE: 50,
     ITEM_LINE_SCORE: 150, BOMB_CELL_SCORE: 10
@@ -83,8 +97,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 
   const COLORS = Object.freeze({
     I: '#53dbe7', O: '#ffe071', T: '#bb8cf5', S: '#8bdd83',
-    Z: '#fb7585', J: '#74a5ef', L: '#ffa66d'
+    Z: '#fb7585', J: '#74a5ef', L: '#ffa66d',
+    I3: '#82e6c6', I2: '#b5e88b', L3: '#f2c38f', V5: '#caa4df', I5: '#a4daf8', DOT: '#f5cfdf'
   });
+  const STANDARD_TYPES = Object.freeze(['I', 'O', 'T', 'S', 'Z', 'J', 'L']);
+  const AUX_TYPES = Object.freeze(['I3', 'I2', 'L3', 'V5', 'I5', 'DOT']);
+  const EVENT_LABELS = Object.freeze({ lucky: 'LUCKY WAVE', tiny: 'TINY BLOCKS', long: 'LONG BOY' });
   const SHAPES = Object.freeze({
     I: [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]],
     O: [[1, 1], [1, 1]],
@@ -92,7 +110,13 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     S: [[0, 1, 1], [1, 1, 0], [0, 0, 0]],
     Z: [[1, 1, 0], [0, 1, 1], [0, 0, 0]],
     J: [[1, 0, 0], [1, 1, 1], [0, 0, 0]],
-    L: [[0, 0, 1], [1, 1, 1], [0, 0, 0]]
+    L: [[0, 0, 1], [1, 1, 1], [0, 0, 0]],
+    I3: [[0, 1, 0], [0, 1, 0], [0, 1, 0]],
+    I2: [[1, 0], [1, 0]],
+    L3: [[1, 0], [1, 1]],
+    V5: [[1, 0, 0], [1, 0, 0], [1, 1, 1]],
+    I5: [[0,0,1,0,0], [0,0,1,0,0], [0,0,1,0,0], [0,0,1,0,0], [0,0,1,0,0]],
+    DOT: [[1]]
   });
   Object.values(SHAPES).forEach(matrix => {
     matrix.forEach(Object.freeze);
@@ -127,7 +151,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.type = type;
       this.matrix = SHAPES[type].map(row => row.slice());
       this.x = Math.floor((CONFIG.COLS - this.matrix.length) / 2);
-      this.y = type === 'O' ? 0 : -1;
+      this.y = STANDARD_TYPES.includes(type) && type !== 'O' ? -1 : 0;
       this.rotation = 0;
       this.bomb = Boolean(bomb);
     }
@@ -198,6 +222,19 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.grid = retained;
     }
     countCells() { return this.grid.reduce((sum, row) => sum + row.filter(Boolean).length, 0); }
+    terrain() {
+      const heights = Array.from({ length: CONFIG.COLS }, (_, x) => {
+        const y = this.grid.findIndex(row => row[x]); return y < 0 ? 0 : CONFIG.ROWS - y;
+      });
+      let wells = 0, holes = 0;
+      for (let x = 0; x < CONFIG.COLS; x++) {
+        const left = x === 0 ? CONFIG.ROWS : heights[x - 1];
+        const right = x === CONFIG.COLS - 1 ? CONFIG.ROWS : heights[x + 1];
+        if (Math.min(left, right) - heights[x] >= 4) wells++;
+        for (let y = CONFIG.ROWS - heights[x]; y < CONFIG.ROWS; y++) if (!this.grid[y][x]) holes++;
+      }
+      return { height: Math.max(...heights), wells, holes, danger: Math.max(...heights) >= CONFIG.ROWS - CONFIG.DANGER_ROW };
+    }
     bottomNonemptyRow() {
       for (let y = CONFIG.ROWS - 1; y >= 0; y--) if (this.grid[y].some(Boolean)) return y;
       return -1;
@@ -218,7 +255,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     constructor(random = Math.random) { this.random = random; this.items = []; this._fill(CONFIG.PREVIEW_COUNT + 1); }
     _fill(count) {
       while (this.items.length < count) {
-        const bag = Object.keys(SHAPES);
+        const bag = STANDARD_TYPES.slice();
         for (let i = bag.length - 1; i > 0; i--) {
           const j = Math.floor(this.random() * (i + 1));
           [bag[i], bag[j]] = [bag[j], bag[i]];
@@ -230,6 +267,84 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     preview(count = CONFIG.PREVIEW_COUNT) { this._fill(count); return this.items.slice(0, count); }
   }
 
+  // Preview entries are committed once. Only the unexposed remainder of this
+  // finite 21-piece reservoir responds to terrain, droughts, or a temporary event.
+  class AdaptiveBag {
+    constructor(board, random = Math.random) {
+      this.board = board; this.random = random; this.items = []; this.tags = [];
+      this.pool = []; this.history = []; this.ages = Object.fromEntries(Object.keys(SHAPES).map(t => [t, 0]));
+      this.event = null; this.bagsCreated = 0; this._fill(CONFIG.PREVIEW_COUNT);
+    }
+    _pick(entries, weights) {
+      const total = weights.reduce((a, b) => a + b, 0);
+      let value = Math.max(0, Math.min(0.999999999, Number(this.random()) || 0)) * total;
+      for (let i = 0; i < entries.length; i++) { value -= weights[i]; if (value < 0) return entries[i]; }
+      return entries[entries.length - 1];
+    }
+    weight(type, terrain = this.board.terrain()) {
+      let weight = 1;
+      const recent = this.history.lastIndexOf(type);
+      const distance = recent < 0 ? 99 : this.history.length - recent;
+      if (distance === 1) weight *= .14;
+      else if (distance <= 3) weight *= .52;
+      if (['I', 'I3', 'I2'].includes(type)) weight *= 1 + Math.min(.8, Math.max(0, this.ages[type] - 8) * .045);
+      if (['I', 'I3', 'I5'].includes(type) && terrain.wells) weight *= 1.18;
+      if (['I3', 'I2', 'DOT', 'I5'].includes(type) && terrain.danger) weight *= 1.15;
+      if (['I2', 'DOT'].includes(type) && terrain.holes > 5) weight *= 1.08;
+      if (this.event && this.event.toGenerate > 0) {
+        if (this.event.type === 'lucky' && ['I', 'O', 'I3', 'I2', 'L3'].includes(type)) weight *= 1.55;
+        if (this.event.type === 'long' && ['I', 'I3', 'I5'].includes(type)) weight *= 1.9;
+      }
+      return weight;
+    }
+    _refillPool() {
+      const terrain = this.board.terrain();
+      const helpers = CONFIG.ADAPTIVE_HELPERS + (this.random() < (terrain.danger ? .2 : terrain.wells ? .1 : 0) ? 1 : 0);
+      this.pool = [...STANDARD_TYPES, ...STANDARD_TYPES];
+      while (this.pool.length < CONFIG.ADAPTIVE_BAG_SIZE - helpers) {
+        this.pool.push(this._pick(STANDARD_TYPES, STANDARD_TYPES.map(t => this.weight(t, terrain))));
+      }
+      const helperWeights = [1.8, 1.4, 1.1, .45, .065, .04];
+      for (let i = 0; i < helpers; i++) this.pool.push(this._pick(AUX_TYPES, helperWeights.map((w, j) => w * this.weight(AUX_TYPES[j], terrain))));
+      this.bagsCreated++;
+    }
+    _draw() {
+      if (!this.pool.length) this._refillPool();
+      const active = this.event && this.event.toGenerate > 0;
+      let candidates = this.pool.map((_, i) => i);
+      if (active && this.event.type === 'tiny') {
+        const tiny = ['I3', 'I2', 'L3'];
+        candidates = candidates.filter(i => tiny.includes(this.pool[i]));
+        if (!candidates.length) {
+          const replace = this.pool.findIndex(t => STANDARD_TYPES.includes(t));
+          const index = replace < 0 ? 0 : replace;
+          this.pool[index] = this._pick(tiny, tiny.map(t => this.weight(t)));
+          candidates = [index];
+        }
+      }
+      const terrain = this.board.terrain();
+      const index = this._pick(candidates, candidates.map(i => this.weight(this.pool[i], terrain)));
+      const type = this.pool.splice(index, 1)[0];
+      for (const t of Object.keys(this.ages)) this.ages[t]++;
+      this.ages[type] = 0; this.history.push(type); if (this.history.length > 8) this.history.shift();
+      this.items.push(type); this.tags.push(active ? this.event.type : null);
+      if (active) this.event.toGenerate--;
+    }
+    _fill(count) { while (this.items.length < count) this._draw(); }
+    next() {
+      this._fill(1); const type = this.items.shift(), tag = this.tags.shift();
+      if (tag && this.event) { this.event.remaining--; if (!this.event.remaining) this.event = null; }
+      this._fill(CONFIG.PREVIEW_COUNT); return type;
+    }
+    preview(count = CONFIG.PREVIEW_COUNT) { this._fill(count); return this.items.slice(0, count); }
+    startEvent(type) {
+      if (this.event || !EVENT_LABELS[type]) return false;
+      const length = type === 'tiny' ? 3 : 5;
+      this.event = { type, label: EVENT_LABELS[type], remaining: length, toGenerate: length };
+      return true;
+    }
+  }
+
   class Game {
     constructor(onEvent = () => {}) {
       this.onEvent = onEvent;
@@ -239,9 +354,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     _emit(name, payload = {}) { this.onEvent(name, payload); }
     _change() { this._emit('change', { state: this.state }); }
     _reset(mode) {
-      this.mode = mode === 'chill' ? 'chill' : 'classic';
+      this.mode = ['chill', 'zen'].includes(mode) ? mode : 'classic';
       this.board = new Board();
-      this.queue = new Bag();
+      this.queue = this.mode === 'chill' ? new AdaptiveBag(this.board) : new Bag();
       this.piece = null;
       this.holdPiece = null;
       this.canHold = true;
@@ -252,6 +367,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.b2b = false;
       this.slowRemaining = 0;
       this.reviveUsed = false;
+      this.zenClears = 0;
+      this.perfectClears = 0;
+      this._perfectArmed = false;
+      this._eventCountdown = this._newEventCooldown();
+      this._lastSurpriseLock = -CONFIG.SURPRISE_GAP;
+      this._eventBag = [];
       this.clearRows = [];
       this.phaseElapsed = 0;
       this.phaseDuration = 0;
@@ -277,6 +398,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     _newCooldown() {
       return CONFIG.CHILL_ITEM_MIN + Math.floor(Math.random() * (CONFIG.CHILL_ITEM_MAX - CONFIG.CHILL_ITEM_MIN + 1));
     }
+    _newEventCooldown() { return CONFIG.EVENT_MIN + Math.floor(Math.random() * (CONFIG.EVENT_MAX - CONFIG.EVENT_MIN + 1)); }
+    get activeEvent() { return this.mode === 'chill' ? this.queue.event : null; }
+    get danger() { return this.board.terrain().danger; }
     start(mode = this.mode) {
       this._reset(mode);
       this.state = 'COUNTDOWN';
@@ -290,6 +414,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._change();
     }
     get gravityInterval() {
+      if (this.mode === 'zen') return CONFIG.ZEN_GRAVITY;
       const chill = this.mode === 'chill';
       const initial = chill ? CONFIG.CHILL_GRAVITY : CONFIG.CLASSIC_GRAVITY;
       const decay = chill ? CONFIG.CHILL_DECAY : CONFIG.CLASSIC_DECAY;
@@ -351,7 +476,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
     }
     _nextDescriptor() {
+      const before = this.activeEvent;
       const descriptor = { type: this.queue.next(), bomb: this._pendingBomb };
+      if (before && !this.activeEvent) this._emit('eventEnd', { type: before.type });
       this._pendingBomb = false;
       return descriptor;
     }
@@ -394,7 +521,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       direction = direction < 0 ? -1 : 1;
       const rotation = (piece.rotation + direction + 4) % 4;
       const matrix = piece.rotated(direction);
-      const kicks = piece.type === 'O' ? [[0, 0]] : (piece.type === 'I' ? I_KICKS : KICKS)[piece.rotation + '>' + rotation];
+      const kicks = piece.type === 'O' || piece.type === 'DOT' ? [[0, 0]]
+        : STANDARD_TYPES.includes(piece.type) ? (piece.type === 'I' ? I_KICKS : KICKS)[piece.rotation + '>' + rotation]
+        : [[0,0],[-1,0],[1,0],[-2,0],[2,0],[0,1],[-1,1],[1,1],[0,2],[-2,2],[2,2]];
       const grounded = this.board.collides(piece, piece.x, piece.y + 1);
       for (const [dx, up] of kicks) {
         if (this.board.collides(piece, piece.x + dx, piece.y - up, matrix)) continue;
@@ -483,6 +612,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       const piece = this.piece;
       const tspin = this._isTSpin(piece);
       const result = this.board.place(piece);
+      this._perfectArmed = this.board.countCells() > 0;
       this.piece = null;
       this.canHold = true;
       this._emit('lock', { type: piece.type, cells: result.cells, bomb: piece.bomb });
@@ -494,6 +624,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       } else if (this.mode === 'chill') {
         this._normalLocks++;
         this._rewardCountdown--;
+        this._eventCountdown--;
         if (this._rewardCountdown <= 0) this._rewardDue = true;
       }
       this._locking = false;
@@ -512,9 +643,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     _scoreClear(rows, tspin) {
       const count = rows.length;
-      const difficult = count > 0 && (count === 4 || tspin);
+      const difficult = count > 0 && (count >= 4 || tspin);
       const backToBack = difficult && this.b2b;
-      const base = tspin ? CONFIG.TSPIN_SCORES[Math.min(count, 3)] : CONFIG.LINE_SCORES[Math.min(count, 4)];
+      const base = tspin ? CONFIG.TSPIN_SCORES[Math.min(count, 3)] : CONFIG.LINE_SCORES[Math.min(count, 5)];
       if (count > 0) {
         this.combo++;
         this._addScore(base * this.level * (backToBack ? CONFIG.B2B_MULTIPLIER : 1), 'clear');
@@ -527,8 +658,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       this._tetrisStreak = count === 4 ? this._tetrisStreak + 1 : 0;
       if (count || tspin) {
-        const names = ['', 'SINGLE', 'DOUBLE', 'TRIPLE', 'TETRIS!'];
-        const label = tspin ? 'T-SPIN' + (count ? ' ' + names[count] : '!') : names[count];
+        const names = ['', 'SINGLE', 'DOUBLE', 'TRIPLE', 'TETRIS!', 'FIVE LINES!'];
+        const label = tspin ? 'T-SPIN' + (count ? ' ' + names[count] : '!') : (names[count] || count + ' LINES!');
         this._emit('clear', { lines: count, tspin, b2b: backToBack, combo: this.combo, label, rows: rows.slice() });
         if (this._tetrisStreak === 3) this._emit('toast', { text: 'BLOCK MASTER', subtext: 'THREE TETRISES IN A ROW' });
         else if (this.combo === 8) this._emit('toast', { text: 'ON FIRE!', subtext: 'COMBO ×8' });
@@ -537,6 +668,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     _incrementLines(count) {
       this.lines += count;
+      if (this.mode === 'zen') return;
       const nextLevel = 1 + Math.floor(this.lines / CONFIG.LINES_PER_LEVEL);
       if (nextLevel > this.level) {
         this.level = nextLevel;
@@ -551,18 +683,43 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.phaseElapsed = 0;
       this.phaseDuration = 0;
       this.state = 'PLAYING';
+      this._checkPerfectClear();
       if (kind === 'item') this._spawnNext();
       else this._finishTurn();
     }
     _finishTurn() {
       this.state = 'PLAYING';
+      this._checkPerfectClear();
+      if (this.mode === 'zen' && this.danger) { this._topOut(null); return; }
+      let rewarded = false;
       if (this.mode === 'chill' && this._rewardDue) {
         this._rewardDue = false;
         this._rewardCountdown = this._newCooldown();
         this.reward(this._nextReward());
+        rewarded = true;
         if (this.state === 'CLEARING') return;
       }
+      if (this.mode === 'chill' && !rewarded && this._eventCountdown <= 0 && !this.activeEvent && this._rewardCountdown >= CONFIG.SURPRISE_GAP && this._normalLocks - this._lastSurpriseLock >= CONFIG.SURPRISE_GAP) {
+        if (!this._eventBag.length) {
+          this._eventBag = Object.keys(EVENT_LABELS);
+          for (let i = this._eventBag.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [this._eventBag[i], this._eventBag[j]] = [this._eventBag[j], this._eventBag[i]]; }
+        }
+        this.beginEvent(this._eventBag.pop());
+      }
       this._spawnNext();
+    }
+    _checkPerfectClear() {
+      if (!this._perfectArmed || this.board.countCells() !== 0) return false;
+      this._perfectArmed = false; this.perfectClears++;
+      const bonus = CONFIG.PERFECT_CLEAR_SCORE * this.level;
+      this._addScore(bonus, 'perfectClear');
+      this._emit('perfectClear', { bonus, mode: this.mode, count: this.perfectClears });
+      return true;
+    }
+    beginEvent(type) {
+      if (this.mode !== 'chill' || !this.queue.startEvent(type)) return false;
+      this._eventCountdown = this._newEventCooldown(); this._lastSurpriseLock = this._normalLocks;
+      this._emit('eventStart', { ...this.activeEvent }); this._change(); return true;
     }
     _nextReward() {
       if (!this._rewardBag.length) {
@@ -576,6 +733,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     reward(type) {
       if (this.mode !== 'chill' || !['bomb', 'line', 'slow'].includes(type)) return false;
+      this._lastSurpriseLock = this._normalLocks;
       this._emit('reward', { type });
       if (type === 'bomb') {
         this._pendingBomb = true;
@@ -589,12 +747,14 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         if (y < 0) {
           this._emit('toast', { text: 'ALL CLEAR', subtext: '棋盘已经空空如也。' });
         } else {
+          this._perfectArmed = true;
           this._addScore(CONFIG.ITEM_LINE_SCORE * this.level, 'item');
           this._incrementLines(1);
           this._emit('clear', { lines: 1, tspin: false, b2b: false, combo: 0, label: 'LINE SWEEP', rows: [y], item: true });
           if (this.piece) {
             // Public reward injection also remains safe while a piece is active.
             this.board.clearRows([y]);
+            this._checkPerfectClear();
           } else {
             this.clearRows = [y];
             this._clearKind = 'item';
@@ -611,13 +771,13 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.piece = null;
       this.clearRows = [];
       this._clearKind = null;
-      if (this.mode === 'chill' && !this.reviveUsed) {
-        this.reviveUsed = true;
+      if (this.mode === 'zen' || (this.mode === 'chill' && !this.reviveUsed)) {
+        if (this.mode === 'chill') this.reviveUsed = true;
         this._pendingRevivePiece = descriptor;
         this.state = 'EMERGENCY';
         this.phaseElapsed = 0;
         this.phaseDuration = CONFIG.EMERGENCY_DURATION;
-        this._emit('emergency', { duration: this.phaseDuration });
+        this._emit('emergency', { duration: this.phaseDuration, zen: this.mode === 'zen' });
         this._change();
       } else {
         this.state = 'GAME_OVER';
@@ -628,7 +788,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
     }
     _finishEmergency() {
-      const target = Math.ceil(this.board.countCells() * CONFIG.REVIVE_FRACTION);
+      const target = Math.ceil(this.board.countCells() * (this.mode === 'zen' ? CONFIG.ZEN_CLEAR_FRACTION : CONFIG.REVIVE_FRACTION));
       let removed = 0;
       const rows = [];
       for (let y = 0; y < CONFIG.ROWS && removed < target; y++) {
@@ -636,6 +796,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         if (occupied) { rows.push(y); removed += occupied; }
       }
       this.board.clearRows(rows);
+      if (this.mode === 'zen') {
+        for (let attempt = 0; attempt < CONFIG.ROWS && this.danger; attempt++) {
+          const top = this.board.grid.findIndex(row => row.some(Boolean)); if (top < 0) break; this.board.clearRows([top]);
+        }
+        this.zenClears++;
+      }
       const descriptor = this._pendingRevivePiece || this._nextDescriptor();
       this._pendingRevivePiece = null;
       const candidate = new Piece(descriptor.type, descriptor.bomb);
@@ -650,12 +816,14 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._rewardDue = false;
       if (this._rewardCountdown <= 0) this._rewardCountdown = this._newCooldown();
       this.state = 'PLAYING';
+      this._perfectArmed = this.board.countCells() > 0;
       this._spawn(descriptor);
-      this._emit('toast', { text: 'ONE MORE CHANCE', subtext: '深呼吸，继续。' });
+      if (this.mode === 'zen') this._emit('zenClear', { count: this.zenClears });
+      else this._emit('toast', { text: 'ONE MORE CHANCE', subtext: '深呼吸，继续。' });
     }
   }
 
-  root.RetroCore = Object.freeze({ CONFIG, Piece, Board, Bag, Game, COLORS, SHAPES });
+  root.RetroCore = Object.freeze({ CONFIG, Piece, Board, Bag, AdaptiveBag, Game, COLORS, SHAPES, STANDARD_TYPES, AUX_TYPES, EVENT_LABELS });
 })(typeof globalThis !== 'undefined' ? globalThis : window);
 
 (function () {
@@ -767,8 +935,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 
     update(dt, active, mode) {
       this.setActive(active);
-      const nextMode = /chill|relax|\u4f11\u95f2|\u8f7b\u677e/i.test(String(mode || 'classic'))
-        ? 'chill' : 'classic';
+      const modeName = String(mode || 'classic');
+      const nextMode = /zen|\u7985/i.test(modeName) ? 'zen'
+        : /chill|relax|\u4f11\u95f2|\u8f7b\u677e/i.test(modeName) ? 'chill' : 'classic';
       if (nextMode !== this.mode) {
         this.mode = nextMode;
         this.step = 0;
@@ -780,7 +949,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       const now = context.currentTime;
       // A background tab must never catch up by playing a burst of old notes.
       if (this.nextMusicTime < now - 0.15) this.nextMusicTime = now + 0.025;
-      const eighth = 60 / 105 / 2;
+      // Zen keeps the same unhurried tempo regardless of level or field height.
+      const eighth = 60 / (this.mode === 'zen' ? 84 : 105) / 2;
       let budget = 4;
       while (this.nextMusicTime < now + 0.09 && budget-- > 0) {
         this.scheduleMusicStep(this.step, this.nextMusicTime, eighth);
@@ -792,7 +962,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     scheduleMusicStep(step, at, eighth) {
       const bar = Math.floor(step / 8);
       const beat = step % 8;
-      const relaxed = this.mode === 'chill';
+      const zen = this.mode === 'zen';
+      const relaxed = this.mode !== 'classic';
       // An original eight-bar A-minor loop; silence between phrases keeps play calm.
       const chords = [
         [45, 60, 64, 69], [41, 60, 65, 69], [48, 60, 64, 67], [43, 59, 62, 67],
@@ -810,18 +981,20 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       ];
       const chord = chords[bar];
       const note = melodies[bar][beat];
-      if (note !== null) {
-        this.tone(note - (relaxed ? 12 : 0), at, eighth * 1.35,
-          relaxed ? 'sine' : 'square', relaxed ? 0.13 : 0.066, 'music', null, 0.012);
+      if (note !== null && (!zen || beat % 2 === 0)) {
+        this.tone(note - (relaxed ? 12 : 0), at, eighth * (zen ? 1.8 : 1.35),
+          relaxed ? 'sine' : 'square', zen ? 0.105 : relaxed ? 0.13 : 0.066,
+          'music', null, zen ? 0.025 : 0.012);
       }
       if (beat === 0 || beat === 4) {
         this.tone(chord[0] + (beat === 4 ? 12 : 0), at, eighth * 2.8,
-          'triangle', 0.17, 'music', null, 0.016);
+          'triangle', zen ? 0.13 : 0.17, 'music', null, zen ? 0.035 : 0.016);
       }
-      if (beat % 2 === 1) {
+      if (beat % 2 === 1 && (!zen || beat === 3 || beat === 7)) {
         const arpeggio = chord[1 + ((Math.floor(beat / 2) + bar) % 3)];
         this.tone(arpeggio, at, eighth * 0.85,
-          relaxed ? 'sine' : 'triangle', relaxed ? 0.073 : 0.095, 'music', null, 0.009);
+          relaxed ? 'sine' : 'triangle', zen ? 0.06 : relaxed ? 0.073 : 0.095,
+          'music', null, zen ? 0.02 : 0.009);
       }
     }
 
@@ -907,6 +1080,27 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           if (Number(payload.combo) > 0) note(79 + Math.min(8, Number(payload.combo)), 0.21, 0.17, 'sine', 0.16);
           break;
         }
+        case 'perfectClear': {
+          const zen = /zen|\u7985/i.test(String(payload.mode || this.mode));
+          // A compact resolving fanfare; the quiet square sparkle keeps a chiptune character.
+          [60, 64, 67, 72, 76, 79, 84].forEach((n, i) =>
+            note(n, i * 0.055, i === 6 ? 0.32 : 0.18,
+              zen ? 'sine' : 'triangle', zen ? 0.16 : 0.21));
+          note(72, 0.33, 0.34, 'triangle', zen ? 0.12 : 0.16);
+          if (!zen) note(84, 0.33, 0.12, 'square', 0.045);
+          break;
+        }
+        case 'eventStart': {
+          const type = String(payload.type || '').toLowerCase();
+          const melody = /tiny|small/.test(type) ? [76, 81, 84]
+            : /long|straight/.test(type) ? [60, 67, 72] : [72, 76, 79];
+          melody.forEach((n, i) => note(n, i * 0.085, 0.24, 'sine', 0.16));
+          break;
+        }
+        case 'eventEnd':
+          note(72, 0, 0.15, 'sine', 0.11);
+          note(67, 0.09, 0.22, 'sine', 0.10);
+          break;
         case 'hold': note(72, 0, 0.075, 'triangle', 0.19); note(67, 0.06, 0.10, 'triangle', 0.18); break;
         case 'pause': note(72, 0, 0.075, 'sine', 0.17); note(67, 0.07, 0.13, 'sine', 0.17); break;
         case 'levelUp':
@@ -921,7 +1115,11 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           [79, 76, 72, 67].forEach((n, i) => note(n, i * 0.085, 0.3, 'sine', 0.18));
           break;
         case 'emergency':
-          [60, 67, 72, 79].forEach((n, i) => note(n, i * 0.065, 0.22, 'triangle', 0.21));
+          if (payload.zen) {
+            [60, 64, 67].forEach((n, i) => note(n, i * 0.13, 0.4, 'sine', 0.15));
+          } else {
+            [60, 67, 72, 79].forEach((n, i) => note(n, i * 0.065, 0.22, 'triangle', 0.21));
+          }
           break;
         case 'gameOver':
           [64, 60, 57, 45].forEach((n, i) => note(n, i * 0.16, 0.35, 'triangle', 0.2));
@@ -952,7 +1150,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 
 (function () {
   'use strict';
-  const { Game, Piece, CONFIG, COLORS, SHAPES } = RetroCore;
+  const { Game, Piece, CONFIG, COLORS, SHAPES, AUX_TYPES } = RetroCore;
   const $ = id => document.getElementById(id);
   const Storage = {
     get(key, fallback) { try { const v = localStorage.getItem('retro-blocks-v1:' + key); return v === null ? fallback : JSON.parse(v); } catch (_) { return fallback; } },
@@ -983,14 +1181,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   };
   Settings.load(); Settings.apply();
   const storedBest = mode => { const value = Storage.get('best:' + mode, 0); return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0; };
-  const best = { classic: storedBest('classic'), chill: storedBest('chill') };
+  const best = { classic: storedBest('classic'), chill: storedBest('chill'), zen: storedBest('zen') };
   const audio = new RetroAudio(() => Settings.value);
   let bestAtStart = 0, saveDirty = false, saveElapsed = 0, toastTime = 0, eventTime = 0, pausedTime = 0;
   let uiDirty = true, overlayKey = '', previewKey = '', lastState = 'MENU';
   const pad = (n, len = 6) => String(n).padStart(len, '0');
   const text = (id, value) => { const el = $(id), s = String(value); if (el.textContent !== s) el.textContent = s; };
-  function saveBest() { if (saveDirty) { Storage.set('best:classic', best.classic); Storage.set('best:chill', best.chill); saveDirty = false; } }
+  function saveBest() { if (saveDirty) { for (const mode of Object.keys(best)) Storage.set('best:' + mode, best[mode]); saveDirty = false; } }
   function notice(message, subtext = '', duration = 2900) {
+    $('toast').classList.toggle('perfect', message === 'PERFECT CLEAR!');
     $('toast').replaceChildren(document.createTextNode(message));
     if (subtext) { const small = document.createElement('small'); small.textContent = subtext; $('toast').append(small); }
     $('toast').hidden = false; toastTime = duration;
@@ -1038,15 +1237,24 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       for (const y of data.rows || []) for (let x = 0; x < CONFIG.COLS; x++) if (game.board.grid[y][x]) cells.push({ x, y, type: game.board.grid[y][x] });
       particles.burst(cells, data.lines === 4 || data.tspin);
       const combo = data.combo >= 2 ? 'COMBO ×' + data.combo : '';
-      eventText(data.label, [data.b2b ? 'BACK TO BACK' : '', combo].filter(Boolean).join(' · '));
+      const ranks = ['', '', 'NICE', 'GREAT', 'AWESOME', 'ON FIRE', 'SUPERB', 'BRILLIANT', 'UNSTOPPABLE'];
+      const rank = data.combo >= 2 ? ranks[Math.min(8, data.combo)] : '';
+      eventText(data.label, [data.b2b ? 'BACK TO BACK' : '', combo, rank].filter(Boolean).join(' · '));
     }
     if (name === 'hardDrop') { particles.pulse = 120; particles.dropCells = data.cells; input.clear(); }
     if (name === 'hold') input.clear();
     if (name === 'bomb') { particles.burst(data.cells, true); eventText('BOMB!', '腾出一点呼吸的空间。'); }
     if (name === 'levelUp') eventText('LEVEL ' + pad(data.level, 2), 'KEEP THE RHYTHM.');
     if (name === 'slow') eventText('SLOW TIME', '10 SECONDS TO BREATHE.');
+    if (name === 'perfectClear') {
+      eventText('PERFECT CLEAR!', '+' + data.bonus + ' BONUS');
+      notice('PERFECT CLEAR!', '+' + data.bonus + ' BONUS', 2100);
+      particles.burst(Array.from({ length: 10 }, (_, x) => ({ x, y: 17 + (x % 3), type: Object.keys(COLORS)[x % 7] })), true);
+    }
+    if (name === 'eventStart') eventText(data.label, '从已预告队列之后生效');
+    if (name === 'zenClear') eventText('CLEAR SKY', '∞ FREE PLAY');
     if (name === 'toast') notice(data.text, data.subtext);
-    if (name === 'emergency') { input.clear(); eventText('EMERGENCY CLEAR!', 'ONE MORE CHANCE.'); }
+    if (name === 'emergency') { input.clear(); eventText(data.zen ? 'CLEAR SKY' : 'EMERGENCY CLEAR!', data.zen ? '∞ FREE PLAY' : 'ONE MORE CHANCE.'); }
     if (name === 'pause' || name === 'gameOver') { input.clear(); audio.setActive(false); saveBest(); }
     if (name === 'pause') pausedTime = 0;
     if (name === 'gameOver') particles.clear();
@@ -1081,7 +1289,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
   }
   const input = new Input();
-  const keyActions = { ArrowLeft: 'left', ArrowRight: 'right', ArrowDown: 'down', ArrowUp: 'rotate', KeyZ: 'reverse', Space: 'drop', KeyC: 'hold' };
+  const keyActions = { ArrowLeft: 'left', ArrowRight: 'right', ArrowDown: 'down', ArrowUp: 'rotate', KeyZ: 'reverse', BracketLeft: 'reverse', BracketRight: 'rotate', Space: 'drop', KeyC: 'hold' };
+  const bracketActions = { '[': 'reverse', '【': 'reverse', ']': 'rotate', '】': 'rotate' };
   const hasDialog = () => Boolean(document.querySelector('dialog[open]'));
   function togglePause() {
     if (hasDialog()) return;
@@ -1092,16 +1301,21 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   document.addEventListener('keydown', e => {
     if (e.ctrlKey || e.altKey || e.metaKey || hasDialog()) return;
     if (game.state === 'MENU') return;
-    if (keyActions[e.code] || ['KeyP', 'Escape'].includes(e.code)) e.preventDefault();
+    const action = keyActions[e.code] || bracketActions[e.key];
+    const targetIsControl = e.target instanceof HTMLElement && e.target.closest('button');
+    if (e.code === 'Space' && targetIsControl) return;
+    if (action || ['KeyP', 'Escape'].includes(e.code)) e.preventDefault();
     if (e.repeat) return;
     if (['KeyP', 'Escape'].includes(e.code)) { togglePause(); return; }
-    if (keyActions[e.code]) input.press(keyActions[e.code], e.code);
+    if (action) input.press(action, e.code || e.key);
   });
   document.addEventListener('keyup', e => input.release(e.code));
   document.querySelectorAll('[data-control]').forEach(button => {
     button.addEventListener('pointerdown', e => { e.preventDefault(); button.setPointerCapture(e.pointerId); input.press(button.dataset.control, 'pointer:' + e.pointerId); });
     for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(event, e => input.release('pointer:' + e.pointerId));
     button.addEventListener('contextmenu', e => e.preventDefault());
+    // Pointer activation is handled above; detail=0 is a keyboard/assistive click.
+    button.addEventListener('click', e => { if (e.detail === 0 && game.state === 'PLAYING') input.perform(button.dataset.control); });
   });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { input.clear(); game.pause(); audio.setActive(false); saveBest(); } });
   window.addEventListener('blur', () => { input.clear(); game.pause(); });
@@ -1111,11 +1325,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     saveBest(); bestAtStart = best[mode]; input.clear(); previewKey = ''; overlayKey = ''; game.start(mode); audio.init().then(() => { if (game.state === 'COUNTDOWN') audio.play('start'); });
     $('home').hidden = true; $('gamePage').hidden = false;
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
-    window.scrollTo({ top: 0, behavior: 'instant' }); resizeAll(); syncUI();
+    window.scrollTo({ top: 0, behavior: 'auto' }); resizeAll(); syncUI();
   }
   function mainMenu() { saveBest(); input.clear(); particles.clear(); game.menu(); audio.setActive(false); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
   $('chillStart').addEventListener('click', () => start('chill'));
   $('classicStart').addEventListener('click', () => start('classic'));
+  $('zenStart').addEventListener('click', () => start('zen'));
   $('pauseButton').addEventListener('click', togglePause);
   $('restartButton').addEventListener('click', () => start(game.mode));
   $('brandButton').addEventListener('click', mainMenu);
@@ -1163,6 +1378,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       if (type === 'O') for (const px of [-p, p]) for (const py of [-p, p]) ctx.fillRect(px - 1, py - 1, 2, 2);
       if (type === 'J') { ctx.fillRect(-p - 1, -1, 2, 2); ctx.fillRect(p - 1, -1, 2, 2); }
       if (type === 'L') ctx.rect(-p, -p, p * 2, p * 2);
+      if (type === 'I3') for (const py of [-p, 0, p]) ctx.fillRect(-1, py - 1, 2, 2);
+      if (type === 'I2') { ctx.moveTo(-p / 2, -p); ctx.lineTo(-p / 2, p); ctx.moveTo(p / 2, -p); ctx.lineTo(p / 2, p); }
+      if (type === 'L3') { ctx.moveTo(0, -p); ctx.lineTo(p, p); ctx.lineTo(-p, p); ctx.closePath(); }
+      if (type === 'V5') { ctx.moveTo(-p, -p); ctx.lineTo(0, p); ctx.lineTo(p, -p); }
+      if (type === 'I5') { ctx.moveTo(0, -p); ctx.lineTo(0, p); ctx.moveTo(-p, -p); ctx.lineTo(p, -p); ctx.moveTo(-p, p); ctx.lineTo(p, p); }
+      if (type === 'DOT') { ctx.moveTo(0, -p); ctx.lineTo(p, 0); ctx.lineTo(0, p); ctx.lineTo(-p, 0); ctx.closePath(); }
       ctx.stroke(); ctx.restore();
     }
     if (bomb) {
@@ -1178,7 +1399,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     const type = typeof descriptor === 'string' ? descriptor : descriptor.type;
     const piece = new Piece(type, descriptor.bomb), cells = piece.cells(0, 0);
     const minX = Math.min(...cells.map(c => c.x)), maxX = Math.max(...cells.map(c => c.x)), minY = Math.min(...cells.map(c => c.y)), maxY = Math.max(...cells.map(c => c.y));
-    const size = Math.min(21, (width - 18) / 4, (height - 12) / 2);
+    const size = Math.min(21, (width - 18) / Math.max(4, maxX - minX + 1), (height - 12) / Math.max(2, maxY - minY + 1));
     const ox = (width - (maxX - minX + 1) * size) / 2, oy = (height - (maxY - minY + 1) * size) / 2;
     for (const c of cells) block(ctx, ox + (c.x - minX) * size, oy + (c.y - minY) * size, size, type, false, descriptor.bomb && c === cells[0]);
   }
@@ -1239,22 +1460,33 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     if (state === 'COUNTDOWN') el.innerHTML = '<div class="overlay-overline">MAKE YOURSELF AT HOME.</div><h2 class="overlay-title">' + game.countdownText + '</h2>';
     else if (state === 'PAUSED') el.innerHTML = '<div class="overlay-overline">A MOMENT OF QUIET.</div><h2 class="overlay-title">PAUSED</h2><p class="overlay-desc" id="pauseMessage">PRESS P TO CONTINUE<br>慢慢来，方块会等你。</p><div class="overlay-actions"><button class="primary-button" data-action="resume">▶ RESUME</button><button class="secondary-button" data-action="restart">↻ RESTART</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
     else if (state === 'GAME_OVER') el.innerHTML = '<div class="overlay-overline">THAT WAS A GOOD BREAK.</div><h2 class="overlay-title">GAME<br>OVER</h2>' + (game.score > bestAtStart ? '<p class="new-best">★ NEW HIGH SCORE!</p>' : '') + '<dl class="result-grid"><div><dt>SCORE</dt><dd>' + pad(game.score) + '</dd></div><div><dt>BEST</dt><dd>' + pad(best[game.mode]) + '</dd></div><div><dt>LINES</dt><dd>' + pad(game.lines,2) + '</dd></div><div><dt>LEVEL</dt><dd>' + pad(game.level,2) + '</dd></div></dl><div class="overlay-actions"><button class="primary-button" data-action="restart">↻ PLAY AGAIN</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
-    else if (state === 'EMERGENCY') el.innerHTML = '<div class="overlay-overline">WE HAVE YOUR BACK.</div><h2 class="overlay-title">EMERGENCY<br>CLEAR!</h2><p class="overlay-desc">深呼吸，再来一次。</p>';
+    else if (state === 'EMERGENCY') el.innerHTML = game.mode === 'zen'
+      ? '<div class="overlay-overline">∞ FREE PLAY</div><h2 class="overlay-title">CLEAR SKY</h2><p class="overlay-desc">自动清理 · 继续摆放</p>'
+      : '<div class="overlay-overline">ONE MORE CHANCE.</div><h2 class="overlay-title">EMERGENCY<br>CLEAR!</h2><p class="overlay-desc">危险区域已清理。</p>';
   }
   function syncUI() {
+    const zen = game.mode === 'zen';
+    $('gamePage').classList.toggle('zen-session', zen);
     text('classicBest', pad(best.classic)); text('chillBest', pad(best.chill));
     for (const prefix of ['', 'mobile']) {
       const id = name => prefix ? prefix + name[0].toUpperCase() + name.slice(1) : name;
-      text(id('score'), pad(game.score)); text(id('best'), pad(best[game.mode])); text(id('level'), pad(game.level, 2)); text(id('lines'), pad(game.lines, 2));
+      text(id('score'), pad(game.score)); text(id('best'), pad(best[game.mode])); text(id('level'), zen ? '∞' : pad(game.level, 2)); text(id('lines'), pad(game.lines, 2));
     }
+    text('levelLabel', zen ? 'PACE' : 'LEVEL'); text('mobileLevelLabel', zen ? 'PACE' : 'LEVEL');
     text('combo', game.combo >= 2 ? '×' + game.combo : '—'); text('modeLabel', game.mode.toUpperCase() + ' MODE');
     $('levelProgress').style.width = game.lines % 10 * 10 + '%';
     $('pauseButton').textContent = game.state === 'PAUSED' ? '▶ RESUME' : 'Ⅱ PAUSE';
     $('pauseButton').disabled = ['MENU','GAME_OVER'].includes(game.state);
     $('holdBox').classList.toggle('unavailable', !game.canHold);
     $('reviveBox').hidden = game.mode !== 'chill'; $('itemCaption').hidden = game.mode !== 'chill'; $('classicCaption').hidden = game.mode !== 'classic';
+    $('zenNote').hidden = !zen;
+    const danger = game.danger && !zen;
+    $('dangerBadge').hidden = !danger; $('boardFrame').classList.toggle('danger', danger);
+    const activeEvent = game.activeEvent;
+    const eventStatus = activeEvent ? activeEvent.label + ' · ' + activeEvent.remaining + ' BLOCKS' : '';
+    text('eventStatus', eventStatus); text('mobileEventStatus', eventStatus);
     const reviveKey = String(game.reviveUsed); if ($('reviveBox').dataset.used !== reviveKey) { $('reviveBox').dataset.used = reviveKey; $('reviveBox').innerHTML = game.reviveUsed ? '♡ REVIVE USED<small>这一次，靠你自己啦。</small>' : '♡ ONE MORE CHANCE<small>触顶时自动清理一次</small>'; $('reviveBox').style.color = game.reviveUsed ? '#928799' : ''; }
-    const queue = game.queue.preview(4), nextKey = queue.join('') + JSON.stringify(game.holdPiece) + Settings.value.colorAssist;
+    const queue = game.queue.preview(4), nextKey = queue.join('|') + JSON.stringify(game.holdPiece) + Settings.value.colorAssist;
     if (previewKey !== nextKey) { previewKey = nextKey; drawPreview($('holdCanvas'), game.holdPiece); document.querySelectorAll('.nextCanvas').forEach((canvas, i) => drawPreview(canvas, queue[i])); }
     overlay(); uiDirty = false;
   }
