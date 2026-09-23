@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#171722">
+<title>RETRO BLOCKS · Take a little break</title>
+<style>
+:root{color-scheme:dark;--bg:#171722;--surface:#20202e;--line:#41404f;--muted:#aba7b9;--white:#f6f0db;--mint:#c8f789;--purple:#af90eb;--pink:#f298af;--board:#11121e;--font:Consolas,"Lucida Console","Courier New",monospace}
+*{box-sizing:border-box}html{min-width:280px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);font-size:14px;min-height:100vh;background-image:radial-gradient(ellipse at 80% 20%,#35304b45,transparent 56%)}button,input{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}button{border-radius:0}button:hover{filter:brightness(1.12)}button:active{transform:translateY(2px)}[hidden]{display:none!important}canvas{display:block}body::after{content:"";pointer-events:none;position:fixed;inset:0;z-index:30;background:repeating-linear-gradient(0deg,transparent,transparent 3px,#0000000e 3px,#0000000e 4px);opacity:.5}body.no-crt::after{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.topbar{max-width:1240px;margin:auto;height:95px;padding:0 42px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff13}.brand{display:flex;align-items:center;gap:12px;background:none;border:0;padding:0;font-weight:bold;letter-spacing:2px;font-size:15px}.logo{display:grid;grid-template:repeat(2,8px)/repeat(3,8px);gap:2px}.logo i{background:var(--mint);box-shadow:inset 0 -2px #87b44f}.logo i:first-child{grid-column:2}.logo i:nth-child(2){grid-row:2}.logo i:nth-child(3){grid-row:2}.logo i:nth-child(4){grid-row:2}.top-right{display:flex;align-items:center;gap:22px}.top-note{font-size:10px;color:var(--muted);letter-spacing:1.5px}.status-dot{display:inline-block;width:6px;height:6px;background:var(--mint);margin-right:8px;box-shadow:0 0 8px #c8f74455}.icon-button{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);background:transparent;font-size:19px}.icon-button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5}.header-actions{display:flex;gap:8px}.page{max-width:1090px;margin:auto;padding:51px 36px 24px}.eyebrow{color:var(--purple);font-size:11px;letter-spacing:2.3px;margin:0 0 23px;display:flex;align-items:center;gap:12px}.eyebrow::before{content:"";width:20px;height:2px;background:currentColor}.home-grid{display:grid;grid-template-columns:1.12fr 1fr;gap:75px;align-items:center}.hero-title{margin:0 0 24px}.hero-title canvas{width:100%;max-width:470px;height:auto;image-rendering:pixelated}.hero-copy{font-size:19px;line-height:1.6;letter-spacing:-.5px;margin:0 0 13px}.hero-copy .faded{color:var(--muted)}.chinese-copy{font-family:var(--font),sans-serif;font-size:12px;color:#9893a8;line-height:1.8;margin:0 0 28px}.mode-button{display:flex;align-items:center;justify-content:space-between;text-align:left;width:100%;border:1px solid var(--mint);background:var(--mint);color:#242a1a;padding:17px 19px;box-shadow:0 4px 0 #728a4c;margin-bottom:16px;transition:filter .15s,transform .15s}.mode-button b{font-size:17px;letter-spacing:1.3px}.mode-button small{display:block;font-size:11px;margin-top:6px;opacity:.75;font-family:var(--font),sans-serif}.mode-button .arrow{font-size:24px}.mode-button.secondary{background:#22232b;color:var(--white);border-color:#696578;box-shadow:0 4px 0 #353341}.mode-button.secondary b{font-size:16px}.mini-tag{font-size:8px;letter-spacing:.9px;border:1px solid currentColor;padding:3px 5px;margin-left:8px;vertical-align:3px}.text-actions{display:flex;gap:25px;margin:25px 0 29px}.text-button{background:none;border:0;border-bottom:1px solid #747082;padding:0 0 5px;color:#c9c3d5;font-size:10px;letter-spacing:1px}.text-button span{color:var(--purple);margin-right:7px}.best-strip{display:flex;border-top:1px solid var(--line);padding-top:19px;gap:38px}.mini-label{color:var(--muted);letter-spacing:1.4px;font-size:9px;display:block;margin-bottom:8px}.best-strip strong{font-size:19px;font-weight:normal;letter-spacing:2px}.best-strip strong::before{content:"★ ";color:var(--purple);font-size:12px}.attract{position:relative;padding:0 5px}.attract::before{content:"";position:absolute;background:radial-gradient(ellipse,#8773ae22,transparent 70%);inset:-40px;z-index:-1}.cabinet{padding:18px;background:#292937;border:1px solid #666171;box-shadow:7px 7px 0 #0c0e1744;transform:rotate(2deg);position:relative}.cabinet::before,.cabinet::after{content:"+";position:absolute;color:#787180;font-size:12px;top:5px}.cabinet::before{left:5px}.cabinet::after{right:5px}.cabinet-top{display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#c5bfcb;letter-spacing:1.5px;margin:0 0 14px}.cabinet-top .led{width:6px;height:6px;background:var(--pink);box-shadow:0 0 8px #f298af66}.attract-screen{position:relative;background:var(--board);border:2px solid #11111c;box-shadow:0 0 0 1px #4c485d,inset 0 0 30px #000}.attract-screen canvas{width:100%;height:auto;aspect-ratio:10/13}.attract-badge{position:absolute;left:-23px;top:34px;z-index:2;background:var(--purple);color:#262131;border:2px solid var(--bg);padding:10px 14px;font-size:11px;font-weight:bold;box-shadow:3px 3px 0 #15131f;transform:rotate(-5deg)}.attract-caption{padding-top:16px;display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:2px;color:#c5bfcb}.tiny-blocks{display:flex;gap:4px}.tiny-blocks i{width:8px;height:8px;background:#80728f}.tiny-blocks i:first-child{background:var(--mint)}.tiny-blocks i:nth-child(2){background:var(--purple)}.desk-note{margin:23px 0 0;text-align:center;font-size:10px;color:#9f97ac;letter-spacing:1.5px}.desk-note span{color:var(--mint)}.home-footer{display:flex;justify-content:space-between;border-top:1px solid #ffffff14;margin-top:45px;padding-top:21px;color:#797586;font-size:9px;letter-spacing:1.3px}.footer-blocks{color:var(--purple)}
+.game-page{max-width:1010px;margin:auto;padding:20px 28px 18px}.game-toolbar{display:flex;align-items:center;justify-content:space-between;max-width:748px;margin:0 auto 17px}.mode-label{font-size:12px;letter-spacing:2px;color:var(--mint)}.mode-label::before{content:"●";font-size:8px;margin-right:10px}.game-subtitle{color:#827b92;font-size:10px;margin-left:12px}.toolbar-actions{display:flex;gap:9px}.small-button{padding:8px 12px;background:transparent;border:1px solid var(--line);font-size:10px;letter-spacing:1px}.game-layout{--board-w:min(34vw,320px,calc((100dvh - 206px)/2));display:grid;grid-template-columns:150px var(--board-w) 174px;gap:23px;justify-content:center;align-items:start}.instrument{border-top:2px solid #55505f;padding-top:14px;margin-bottom:26px}.instrument-title{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:2px;color:#bdb5c9;margin:0 0 13px}.keycap{border:1px solid #55505f;font-size:9px;padding:2px 5px;letter-spacing:0;color:#aaa1ba}.hold-box{background:#1b1b27;border:1px solid #3b374a;position:relative}.hold-box canvas{width:100%;height:92px}.hold-box.unavailable{opacity:.45}.hold-hint{font-size:9px;color:#777084;line-height:1.6;margin:9px 0 0}.left-bottom{margin-top:32px}.revive-box{padding:12px 0;border-top:1px solid #3a3746;border-bottom:1px solid #3a3746;font-size:10px;color:var(--mint);line-height:1.9}.revive-box small{font-size:10px;color:#948a9f;display:block}.item-caption{color:#8f849f;font-size:10px;line-height:1.9;margin-top:17px}.item-caption b{display:block;color:var(--purple);font-size:10px;letter-spacing:1px;margin-bottom:7px}.board-frame{padding:8px;border:1px solid #696174;background:#2a2635;box-shadow:0 0 0 3px #10111b,0 0 28px #ab87f211;position:relative}.board-frame::before,.board-frame::after{content:"";position:absolute;width:3px;height:3px;background:#93839e;top:2px}.board-frame::before{left:2px}.board-frame::after{right:2px}.board-screen{position:relative;aspect-ratio:1/2;background:var(--board);overflow:hidden}.board-screen>canvas{width:100%;height:100%}.board-frame.slow{border-color:#7edfe4;box-shadow:0 0 18px #7edfe42b}.board-frame.slow::after{background:#7edfe4}.board-overlay{position:absolute;inset:0;background:#11121edb;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;z-index:4;backdrop-filter:blur(3px)}.board-overlay.countdown{background:#11121e80;backdrop-filter:none}.overlay-overline{color:var(--purple);font-size:9px;letter-spacing:2px;margin-bottom:18px}.overlay-title{font-size:27px;font-weight:bold;letter-spacing:-1px;line-height:1.3;margin:0;color:var(--white);text-shadow:2px 2px #806792}.countdown .overlay-title{font-size:57px;color:var(--mint);text-shadow:3px 3px #426044}.overlay-desc{font-size:10px;color:#a79db5;line-height:1.8;margin:14px 0 23px}.overlay-actions{display:grid;gap:12px;width:100%}.primary-button{padding:13px 12px;background:var(--mint);color:#20251a;font-weight:bold;border:1px solid var(--mint);box-shadow:0 3px 0 #647f42;font-size:12px;letter-spacing:1px}.secondary-button{padding:11px 12px;border:1px solid #696173;background:#242230;font-size:11px;letter-spacing:1px}.result-grid{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:16px 10px;margin:20px 0 23px}.result-grid dt{color:#aaa0b8;font-size:9px;letter-spacing:1px}.result-grid dd{margin:5px 0 0;font-size:17px;color:var(--white)}.new-best{color:var(--mint);font-size:10px;margin:16px 0 0;line-height:1.6}.score-value{font-size:30px;color:var(--mint);letter-spacing:1px;font-weight:normal;line-height:1.2}.best-value{font-size:14px;color:#b6adbf;display:flex;justify-content:space-between;margin-top:15px}.best-value span:first-child{font-size:9px;letter-spacing:1px;padding-top:3px}.metrics{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #423b50;border-bottom:1px solid #423b50;padding:14px 0;margin:18px 0;gap:12px}.metrics strong{font-size:21px;font-weight:normal}.metrics .mini-label{font-size:8px}.level-progress{height:3px;background:#3b3548;margin:12px 0 4px}.level-progress span{height:100%;display:block;background:var(--purple);width:0%;transition:width .2s}.combo-value{color:var(--pink);font-size:13px}.next-list{background:#1b1b27;border:1px solid #3b374a}.next-list canvas{width:100%;height:64px;border-bottom:1px solid #37313f}.next-list canvas:last-child{border:0}.game-event{margin:19px 0 0;min-height:52px;font-size:12px;line-height:1.7;color:var(--mint);letter-spacing:1px}.game-event small{display:block;color:#9e94ae;font-size:9px;letter-spacing:0}.slow-status{margin-top:12px;font-size:10px;color:#86e3e5;height:18px}.control-legend{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:#9890a8;font-size:9px;margin:22px auto 0}.control-legend kbd{font:inherit;color:#dad2e0;margin-right:5px}.touch-controls{display:none;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;max-width:520px;margin:21px auto 0}.touch-controls button{height:49px;background:#272333;border:1px solid #62566d;border-bottom:3px solid #62566d;font-size:17px;user-select:none;-webkit-user-select:none;touch-action:none;-webkit-touch-callout:none}.touch-controls .touch-label{font-size:9px;display:block}.touch-controls .drop{background:var(--mint);color:#242a1a;border-color:#86a05d}.game-footnote{text-align:center;font-size:8px;letter-spacing:2px;color:#70697d;margin-top:17px}.mobile-stats{display:none}
+dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;max-width:490px;width:calc(100% - 30px);max-height:85dvh;box-shadow:8px 8px 0 #10101988}dialog::backdrop{background:#10101ad9;backdrop-filter:blur(5px)}.dialog-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #443a50;padding:20px 25px}.dialog-header h2{font-size:16px;letter-spacing:2px;margin:0}.dialog-body{padding:22px 25px}.setting-heading{color:var(--purple);font-size:10px;letter-spacing:2px;margin:3px 0 20px}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px;font-size:12px}.setting-row small{display:block;color:#9c92a9;font-size:10px;margin-top:5px;line-height:1.6}.switch{appearance:none;width:36px;height:20px;border:1px solid #776584;background:#171320;cursor:pointer;position:relative;flex-shrink:0}.switch::before{content:"";position:absolute;top:3px;left:3px;width:12px;height:12px;background:#83748e}.switch:checked{border-color:var(--mint)}.switch:checked::before{background:var(--mint);left:19px}.volume-row{display:grid;grid-template-columns:1fr 42px;gap:15px;align-items:center;margin:-7px 0 23px}.volume-row input{width:100%;accent-color:var(--purple);cursor:pointer}.volume-row output{font-size:11px;color:#bcb0c9;text-align:right}.divider{height:1px;background:#443a50;margin:23px 0}.dialog-note{color:#93859f;font-size:10px;line-height:1.9;margin:18px 0 0}.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:11px}.help-grid div{display:flex;align-items:center;gap:10px}.help-grid kbd{font:inherit;background:#181522;border:1px solid #655571;min-width:42px;padding:7px 5px;text-align:center;color:var(--mint)}.help-point{margin:0 0 18px;font-size:12px;line-height:1.8}.help-point b{display:block;color:var(--purple);font-size:11px;letter-spacing:1px}.help-point span{color:#b7acc3;font-size:11px}.settings-keys{font-size:10px;color:#baafc6;line-height:2}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:50;padding:13px 22px;border:1px solid #797083;background:#282232;box-shadow:4px 4px #101019;max-width:calc(100vw - 32px);width:max-content;text-align:center;font-size:11px;line-height:1.7;color:var(--mint)}.toast small{display:block;color:#c0b4cc;font-size:10px}.reduced-motion *, .reduced-motion *::before,.reduced-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(min-width:1100px) and (min-height:860px){.page{padding-top:35px;padding-bottom:19px}.home-footer{margin-top:35px}.game-page{padding-top:28px}.game-layout{--board-w:min(350px,calc((100dvh - 274px)/2))}}
+@media(max-width:850px){.topbar{height:73px;padding:0 25px}.page{padding:38px 25px 20px}.home-grid{gap:34px}.hero-copy{font-size:16px}.mini-tag{display:none}.mode-button b{font-size:15px}.eyebrow{font-size:9px}.game-layout{grid-template-columns:110px var(--board-w) 132px;gap:17px;--board-w:min(38vw,320px,calc((100dvh - 182px)/2))}.game-page{padding:19px 22px}.score-value{font-size:24px}.game-subtitle{display:none}.control-legend{gap:12px}.top-note{display:none}}
+@media(max-width:600px){.topbar{height:65px;padding:0 18px}.brand{font-size:12px;letter-spacing:1.4px;gap:10px}.top-right{gap:0}.icon-button{width:32px;height:32px}.page{padding:32px 23px 20px;max-width:440px}.home-grid{grid-template-columns:1fr;gap:0}.eyebrow{font-size:9px;letter-spacing:1.5px;margin-bottom:19px}.hero-title{margin-bottom:20px}.hero-title canvas{max-width:360px}.hero-copy{font-size:17px}.chinese-copy{font-size:11px;margin-bottom:24px}.attract{display:none}.mode-button{padding:15px 17px}.mode-button b{font-size:16px}.mini-tag{display:inline-block}.best-strip{gap:33px}.text-actions{margin:24px 0}.home-footer{margin-top:27px;gap:20px;font-size:8px;line-height:1.7}.home-footer>span:last-child{display:none}.game-page{padding:13px 12px 18px}.game-toolbar{margin-bottom:12px}.mode-label{font-size:10px;letter-spacing:1px}.small-button{padding:7px 8px;font-size:9px}.game-layout{--board-w:min(61vw,calc((100dvh - 259px)/2),300px);grid-template-columns:minmax(0,var(--board-w)) minmax(64px,95px);gap:13px;align-items:start}.left-panel{grid-column:2;grid-row:1;padding-top:191px;pointer-events:none}.board-frame{grid-column:1;grid-row:1;padding:5px}.right-panel{grid-column:2;grid-row:1}.right-panel .score-instrument{display:none}.right-panel .instrument{margin-bottom:10px;padding-top:9px}.instrument-title{font-size:8px;letter-spacing:1px;margin-bottom:8px}.next-list canvas{height:46px}.next-list canvas:nth-child(n+4){display:none}.left-panel .instrument{padding-top:9px;margin:0}.hold-box canvas{height:52px}.hold-hint{display:none}.left-bottom{margin-top:12px}.revive-box{font-size:8px;line-height:1.7;padding:8px 0}.revive-box small{font-size:8px}.item-caption{display:none}.game-event{font-size:8px;margin-top:103px;min-height:32px;letter-spacing:0}.game-event small{font-size:8px}.slow-status{font-size:8px}.mobile-stats{display:grid;grid-template-columns:1.4fr 1fr .7fr .7fr;gap:8px;max-width:410px;margin:0 auto 15px;border-top:1px solid #393341;border-bottom:1px solid #393341;padding:10px 2px}.mobile-stats .mini-label{font-size:7px;letter-spacing:1px;margin-bottom:5px}.mobile-stats strong{font-size:17px;font-weight:normal}.mobile-stats>div:first-child strong{color:var(--mint)}.touch-controls{display:grid;margin-top:17px;gap:6px}.control-legend{display:none}.game-footnote{margin-top:14px;font-size:7px}.overlay-title{font-size:23px}.overlay-overline{font-size:8px;margin-bottom:10px}.overlay-desc{font-size:8px;margin:12px 0 16px}.overlay-actions{gap:10px}.primary-button{padding:11px 7px;font-size:10px}.secondary-button{padding:9px 7px;font-size:9px}.result-grid{gap:10px;margin:13px 0 17px}.result-grid dd{font-size:14px}.result-grid dt{font-size:7px}.board-overlay{padding:12px}.new-best{font-size:8px;margin-top:11px}.dialog-header{padding:17px 19px}.dialog-body{padding:20px 19px}}
+@media(pointer:coarse) and (min-width:601px){.touch-controls{display:grid}.game-layout{--board-w:min(35vw,300px,calc((100dvh - 270px)/2))}.control-legend{display:none}}
+@media(max-width:360px){.page{padding:26px 18px 18px}.mini-tag{display:none}.game-layout{gap:10px}.game-page{padding-left:10px;padding-right:10px}.touch-controls{gap:4px}.touch-controls button{height:46px}.game-event{margin-top:107px}.best-strip{gap:27px}.hero-copy{font-size:16px}}
+.mobile-feedback{display:none}
+@media(max-width:600px){.right-panel .game-event,.right-panel .slow-status{display:none}.mobile-feedback{display:flex;justify-content:space-between;gap:8px;margin:-4px auto 12px;max-width:410px;min-height:12px;font-size:8px;line-height:1.5;letter-spacing:.5px;color:var(--mint)}#mobileSlowStatus{color:#86e3e5}.game-layout{--board-w:min(61vw,calc((100dvh - 278px)/2),300px)}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <button class="brand" id="brandButton" aria-label="返回主菜单"><span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>RETRO BLOCKS</button>
+  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / EST. 1984-ISH</span><div class="header-actions">
+  <button id="muteButton" class="icon-button" aria-label="静音" title="静音"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="soundWaves" d="M15 8q5 4 0 8M18 5q8 7 0 14"/></svg></button>
+  <button class="icon-button" data-dialog="settingsDialog" aria-label="设置" title="设置"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6M16 9v6M10 15v6"/></svg></button>
+  </div></div>
+</header>
+<main id="home" class="page">
+  <div class="home-grid"><section>
+  <p class="eyebrow">A LITTLE ARCADE. A LITTLE ESCAPE.</p>
+  <h1 class="hero-title"><span class="sr-only">RETRO BLOCKS</span><canvas id="titleCanvas" width="490" height="176" aria-hidden="true"></canvas></h1>
+  <p class="hero-copy">TAKE A BREAK.<br><span class="faded">CLEAR YOUR MIND.</span><br>CLEAR SOME LINES.</p>
+  <p class="chinese-copy">把杂念放一边，让方块各就各位。</p>
+  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">TAKE IT EASY</span><small>慢一点，有道具，也有一次重来的机会。</small></span><span class="arrow">↗</span></button>
+  <button id="classicStart" class="mode-button secondary"><span><b>CLASSIC MODE</b><small>熟悉的七种方块，纯粹的消行快乐。</small></span><span class="arrow">→</span></button>
+  <div class="text-actions"><button class="text-button" data-dialog="helpDialog"><span>?</span>HOW TO PLAY</button><button class="text-button" data-dialog="settingsDialog"><span>+</span>SETTINGS</button></div>
+  <div class="best-strip"><div><span class="mini-label">CHILL BEST</span><strong id="chillBest">000000</strong></div><div><span class="mini-label">CLASSIC BEST</span><strong id="classicBest">000000</strong></div></div>
+  </section><aside class="attract" aria-label="复古方块街机插画"><div class="cabinet"><div class="cabinet-top"><span>01 / THE BREAK ROOM</span><span class="led"></span></div><div class="attract-screen"><span class="attract-badge">NO COINS NEEDED.</span><canvas id="attractCanvas" width="400" height="520"></canvas></div><div class="attract-caption"><span>STACK. CLEAR. EXHALE.</span><span class="tiny-blocks"><i></i><i></i><i></i></span></div></div><p class="desk-note"><span>✦</span> YOUR NEXT BREAK STARTS HERE.</p></aside></div>
+  <footer class="home-footer"><span><span class="footer-blocks">■ ■ ■</span> &nbsp;7 SHAPES. ENDLESS POSSIBILITIES.</span><span>NO ADS · NO RUSH · JUST BLOCKS</span></footer>
+</main>
+<main id="gamePage" class="game-page" hidden>
+  <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
+  <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div></div>
+  <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus"></span></div>
+  <div class="game-layout">
+    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><p class="item-caption" id="itemCaption"><b>POCKET-SIZED MAGIC</b>✹ BOMB BLOCK<br>↔ LINE CLEAR<br>◷ SLOW TIME<br><br>每 15–25 块，一点小惊喜。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>消满一行，腾出空间。<br>每 10 行提升一个等级。</p></div></aside>
+    <div class="board-frame" id="boardFrame"><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
+    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="slowStatus" class="slow-status"></div></aside>
+  </div>
+  <div class="touch-controls" aria-label="触屏操作"><button data-control="left" aria-label="向左移动">←</button><button data-control="right" aria-label="向右移动">→</button><button data-control="down" aria-label="加速下降">↓</button><button data-control="rotate" aria-label="顺时针旋转">↻<span class="touch-label">ROTATE</span></button><button data-control="hold" aria-label="暂存方块">⇄<span class="touch-label">HOLD</span></button><button class="drop" data-control="drop" aria-label="直接落下">⇓<span class="touch-label">DROP</span></button></div>
+  <div class="control-legend"><span><kbd>← →</kbd>MOVE</span><span><kbd>↑ / Z</kbd>ROTATE</span><span><kbd>↓</kbd>SOFT DROP</span><span><kbd>SPACE</kbd>DROP</span><span><kbd>C</kbd>HOLD</span><span><kbd>P / ESC</kbd>PAUSE</span></div><p class="game-footnote">TAKE YOUR TIME. THE WORLD CAN WAIT A MINUTE.</p>
+</main>
+<dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">SETTINGS</h2><button class="icon-button" data-close aria-label="关闭设置">×</button></div><div class="dialog-body">
+<p class="setting-heading">01 / AUDIO</p><label class="setting-row"><span>MUSIC<small>轻量合成背景音乐</small></span><input class="switch" type="checkbox" id="musicOn" checked aria-label="背景音乐开关"></label><div class="volume-row"><input type="range" id="musicVolume" min="0" max="100" value="30" aria-label="背景音乐音量"><output id="musicVolumeValue">30%</output></div>
+<label class="setting-row"><span>SOUND EFFECTS<small>移动、消行与小小的胜利</small></span><input class="switch" type="checkbox" id="sfxOn" checked aria-label="音效开关"></label><div class="volume-row"><input type="range" id="sfxVolume" min="0" max="100" value="50" aria-label="音效音量"><output id="sfxVolumeValue">50%</output></div>
+<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速 · ↑ / Z 旋转<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>音乐会在开始游戏后播放。</p></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY</h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次消除四行就是 TETRIS！</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>↑ / Z</kbd>正向 / 反向旋转</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 提前展示下一块。HOLD 可以留住好牌，每块落地前只能交换一次。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>连续落块都消行可累积 COMBO。连续 TETRIS 或 T-SPIN 消行可获得 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CHILL HAS YOUR BACK</b><span>每 15–25 块自动获得一种惊喜：炸弹方块落地清除周围 3×3、清除底部非空行，或减速 10 秒。首次触顶会自动清理危险区域，给你一次续命。</span></p><p class="dialog-note">切换标签页会自动暂停，回来后手动继续。<br>没有时间限制，慢慢来就好。</p></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<script>
+(function (root) {
+  'use strict';
+
+  const CONFIG = Object.freeze({
+    COLS: 10, ROWS: 20, PREVIEW_COUNT: 3,
+    LOCK_DELAY: 450, MAX_LOCK_RESETS: 12,
+    DAS: 160, ARR: 45, SOFT_DROP_INTERVAL: 45,
+    MAX_DELTA: 100, CLEAR_DURATION: 230, COUNTDOWN_DURATION: 2500,
+    EMERGENCY_DURATION: 500, REVIVE_FRACTION: 0.35,
+    CHILL_ITEM_MIN: 15, CHILL_ITEM_MAX: 25,
+    SLOW_TIME_DURATION: 10000, SLOW_FACTOR: 2.5,
+    CLASSIC_GRAVITY: 880, CLASSIC_DECAY: 0.83, CLASSIC_MIN_GRAVITY: 65,
+    CHILL_GRAVITY: 1150, CHILL_DECAY: 0.92, CHILL_MIN_GRAVITY: 150,
+    LINES_PER_LEVEL: 10, MAX_PARTICLES: 150, BREAK_TIME: 600000,
+    DEFAULT_MUSIC_VOLUME: 0.30, DEFAULT_SFX_VOLUME: 0.50,
+    LINE_SCORES: Object.freeze([0, 100, 300, 500, 800]),
+    TSPIN_SCORES: Object.freeze([400, 800, 1200, 1600]),
+    B2B_MULTIPLIER: 1.5, COMBO_SCORE: 50,
+    ITEM_LINE_SCORE: 150, BOMB_CELL_SCORE: 10
+  });
+
+  const COLORS = Object.freeze({
+    I: '#53dbe7', O: '#ffe071', T: '#bb8cf5', S: '#8bdd83',
+    Z: '#fb7585', J: '#74a5ef', L: '#ffa66d'
+  });
+  const SHAPES = Object.freeze({
+    I: [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]],
+    O: [[1, 1], [1, 1]],
+    T: [[0, 1, 0], [1, 1, 1], [0, 0, 0]],
+    S: [[0, 1, 1], [1, 1, 0], [0, 0, 0]],
+    Z: [[1, 1, 0], [0, 1, 1], [0, 0, 0]],
+    J: [[1, 0, 0], [1, 1, 1], [0, 0, 0]],
+    L: [[0, 0, 1], [1, 1, 1], [0, 0, 0]]
+  });
+  Object.values(SHAPES).forEach(matrix => {
+    matrix.forEach(Object.freeze);
+    Object.freeze(matrix);
+  });
+
+  // SRS offsets use an upward-positive Y axis; rotate() converts to board Y.
+  const KICKS = Object.freeze({
+    '0>1': [[0, 0], [-1, 0], [-1, 1], [0, -2], [-1, -2]],
+    '1>0': [[0, 0], [1, 0], [1, -1], [0, 2], [1, 2]],
+    '1>2': [[0, 0], [1, 0], [1, -1], [0, 2], [1, 2]],
+    '2>1': [[0, 0], [-1, 0], [-1, 1], [0, -2], [-1, -2]],
+    '2>3': [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]],
+    '3>2': [[0, 0], [-1, 0], [-1, -1], [0, 2], [-1, 2]],
+    '3>0': [[0, 0], [-1, 0], [-1, -1], [0, 2], [-1, 2]],
+    '0>3': [[0, 0], [1, 0], [1, 1], [0, -2], [1, -2]]
+  });
+  const I_KICKS = Object.freeze({
+    '0>1': [[0, 0], [-2, 0], [1, 0], [-2, -1], [1, 2]],
+    '1>0': [[0, 0], [2, 0], [-1, 0], [2, 1], [-1, -2]],
+    '1>2': [[0, 0], [-1, 0], [2, 0], [-1, 2], [2, -1]],
+    '2>1': [[0, 0], [1, 0], [-2, 0], [1, -2], [-2, 1]],
+    '2>3': [[0, 0], [2, 0], [-1, 0], [2, 1], [-1, -2]],
+    '3>2': [[0, 0], [-2, 0], [1, 0], [-2, -1], [1, 2]],
+    '3>0': [[0, 0], [1, 0], [-2, 0], [1, -2], [-2, 1]],
+    '0>3': [[0, 0], [-1, 0], [2, 0], [-1, 2], [2, -1]]
+  });
+
+  class Piece {
+    constructor(type, bomb = false) {
+      if (!SHAPES[type]) throw new Error('Unknown Tetromino: ' + type);
+      this.type = type;
+      this.matrix = SHAPES[type].map(row => row.slice());
+      this.x = Math.floor((CONFIG.COLS - this.matrix.length) / 2);
+      this.y = type === 'O' ? 0 : -1;
+      this.rotation = 0;
+      this.bomb = Boolean(bomb);
+    }
+    rotated(direction = 1) {
+      const n = this.matrix.length;
+      return Array.from({ length: n }, (_, y) => Array.from({ length: n }, (_, x) =>
+        direction > 0 ? this.matrix[n - 1 - x][y] : this.matrix[x][n - 1 - y]));
+    }
+    cells(x = this.x, y = this.y, matrix = this.matrix) {
+      const cells = [];
+      for (let r = 0; r < matrix.length; r++) {
+        for (let c = 0; c < matrix[r].length; c++) {
+          if (matrix[r][c]) cells.push({ x: x + c, y: y + r, type: this.type });
+        }
+      }
+      return cells;
+    }
+    descriptor() { return { type: this.type, bomb: this.bomb }; }
+    bombCore() {
+      const center = (this.matrix.length - 1) / 2;
+      let best = null;
+      let distance = Infinity;
+      for (const cell of this.cells()) {
+        const value = Math.abs(cell.x - this.x - center) + Math.abs(cell.y - this.y - center);
+        if (value < distance) { distance = value; best = cell; }
+      }
+      return best;
+    }
+  }
+
+  class Board {
+    constructor() { this.reset(); }
+    reset() { this.grid = Array.from({ length: CONFIG.ROWS }, () => Array(CONFIG.COLS).fill(null)); }
+    collides(piece, x = piece.x, y = piece.y, matrix = piece.matrix) {
+      for (let r = 0; r < matrix.length; r++) {
+        for (let c = 0; c < matrix[r].length; c++) {
+          if (!matrix[r][c]) continue;
+          const bx = x + c, by = y + r;
+          if (bx < 0 || bx >= CONFIG.COLS || by >= CONFIG.ROWS) return true;
+          if (by >= 0 && this.grid[by][bx]) return true;
+        }
+      }
+      return false;
+    }
+    occupied(x, y) {
+      return x < 0 || x >= CONFIG.COLS || y < 0 || y >= CONFIG.ROWS || Boolean(this.grid[y][x]);
+    }
+    place(piece) {
+      const cells = piece.cells();
+      let overflow = false;
+      for (const cell of cells) {
+        if (cell.y < 0) { overflow = true; continue; }
+        if (cell.x >= 0 && cell.x < CONFIG.COLS && cell.y < CONFIG.ROWS) {
+          this.grid[cell.y][cell.x] = piece.type;
+        } else overflow = true;
+      }
+      return { overflow, cells };
+    }
+    fullRows() {
+      const rows = [];
+      for (let y = 0; y < CONFIG.ROWS; y++) if (this.grid[y].every(Boolean)) rows.push(y);
+      return rows;
+    }
+    clearRows(rows) {
+      const remove = new Set(rows.filter(y => Number.isInteger(y) && y >= 0 && y < CONFIG.ROWS));
+      const retained = this.grid.filter((_, y) => !remove.has(y));
+      while (retained.length < CONFIG.ROWS) retained.unshift(Array(CONFIG.COLS).fill(null));
+      this.grid = retained;
+    }
+    countCells() { return this.grid.reduce((sum, row) => sum + row.filter(Boolean).length, 0); }
+    bottomNonemptyRow() {
+      for (let y = CONFIG.ROWS - 1; y >= 0; y--) if (this.grid[y].some(Boolean)) return y;
+      return -1;
+    }
+    explode(x, y) {
+      const cells = [];
+      for (let r = Math.max(0, y - 1); r <= Math.min(CONFIG.ROWS - 1, y + 1); r++) {
+        for (let c = Math.max(0, x - 1); c <= Math.min(CONFIG.COLS - 1, x + 1); c++) {
+          if (this.grid[r][c]) cells.push({ x: c, y: r, type: this.grid[r][c] });
+          this.grid[r][c] = null;
+        }
+      }
+      return cells;
+    }
+  }
+
+  class Bag {
+    constructor(random = Math.random) { this.random = random; this.items = []; this._fill(CONFIG.PREVIEW_COUNT + 1); }
+    _fill(count) {
+      while (this.items.length < count) {
+        const bag = Object.keys(SHAPES);
+        for (let i = bag.length - 1; i > 0; i--) {
+          const j = Math.floor(this.random() * (i + 1));
+          [bag[i], bag[j]] = [bag[j], bag[i]];
+        }
+        this.items.push(...bag);
+      }
+    }
+    next() { this._fill(1); const type = this.items.shift(); this._fill(CONFIG.PREVIEW_COUNT); return type; }
+    preview(count = CONFIG.PREVIEW_COUNT) { this._fill(count); return this.items.slice(0, count); }
+  }
+
+  class Game {
+    constructor(onEvent = () => {}) {
+      this.onEvent = onEvent;
+      this._reset('classic');
+      this.state = 'MENU';
+    }
+    _emit(name, payload = {}) { this.onEvent(name, payload); }
+    _change() { this._emit('change', { state: this.state }); }
+    _reset(mode) {
+      this.mode = mode === 'chill' ? 'chill' : 'classic';
+      this.board = new Board();
+      this.queue = new Bag();
+      this.piece = null;
+      this.holdPiece = null;
+      this.canHold = true;
+      this.score = 0;
+      this.lines = 0;
+      this.level = 1;
+      this.combo = 0;
+      this.b2b = false;
+      this.slowRemaining = 0;
+      this.reviveUsed = false;
+      this.clearRows = [];
+      this.phaseElapsed = 0;
+      this.phaseDuration = 0;
+      this.countdownText = 'READY';
+      this.gameTime = 0;
+      this._gravityElapsed = 0;
+      this._lockElapsed = 0;
+      this._lockResets = 0;
+      this._lastAction = null;
+      this._clearKind = null;
+      this._resumeState = null;
+      this._pendingBomb = false;
+      this._pendingRevivePiece = null;
+      this._normalLocks = 0;
+      this._rewardCountdown = this._newCooldown();
+      this._rewardBag = [];
+      this._rewardDue = false;
+      this._locking = false;
+      this._breakShown = false;
+      this._tetrisStreak = 0;
+      this._pauseElapsed = 0;
+    }
+    _newCooldown() {
+      return CONFIG.CHILL_ITEM_MIN + Math.floor(Math.random() * (CONFIG.CHILL_ITEM_MAX - CONFIG.CHILL_ITEM_MIN + 1));
+    }
+    start(mode = this.mode) {
+      this._reset(mode);
+      this.state = 'COUNTDOWN';
+      this.phaseDuration = CONFIG.COUNTDOWN_DURATION;
+      this._emit('start', { mode: this.mode });
+      this._change();
+    }
+    menu() {
+      this._reset(this.mode);
+      this.state = 'MENU';
+      this._change();
+    }
+    get gravityInterval() {
+      const chill = this.mode === 'chill';
+      const initial = chill ? CONFIG.CHILL_GRAVITY : CONFIG.CLASSIC_GRAVITY;
+      const decay = chill ? CONFIG.CHILL_DECAY : CONFIG.CLASSIC_DECAY;
+      const minimum = chill ? CONFIG.CHILL_MIN_GRAVITY : CONFIG.CLASSIC_MIN_GRAVITY;
+      return Math.max(minimum, initial * Math.pow(decay, this.level - 1)) * (this.slowRemaining > 0 ? CONFIG.SLOW_FACTOR : 1);
+    }
+    update(delta) {
+      if (!Number.isFinite(delta) || delta <= 0) return;
+      const dt = Math.min(delta, CONFIG.MAX_DELTA);
+      if (this.state === 'MENU' || this.state === 'GAME_OVER' || this.state === 'PAUSED') return;
+      if (this.state === 'COUNTDOWN') {
+        this.phaseElapsed += dt;
+        const elapsed = this.phaseElapsed;
+        const text = elapsed < 400 ? 'READY' : elapsed < 900 ? '3' : elapsed < 1400 ? '2' : elapsed < 1900 ? '1' : 'GO!';
+        if (text !== this.countdownText) { this.countdownText = text; this._change(); }
+        if (elapsed >= this.phaseDuration) {
+          this.countdownText = '';
+          this.state = 'PLAYING';
+          this.phaseElapsed = 0;
+          this.phaseDuration = 0;
+          this._spawnNext();
+        }
+        return;
+      }
+      this.gameTime += dt;
+      if (this.slowRemaining > 0) {
+        const wasSlow = this.slowRemaining;
+        this.slowRemaining = Math.max(0, this.slowRemaining - dt);
+        if (wasSlow > 0 && this.slowRemaining === 0) this._change();
+      }
+      if (this.mode === 'chill' && !this._breakShown && this.gameTime >= CONFIG.BREAK_TIME) {
+        this._breakShown = true;
+        this._emit('toast', { text: 'GOOD BREAK.', subtext: '休息得不错，随时可以回来。' });
+      }
+      if (this.state === 'CLEARING') {
+        this.phaseElapsed += dt;
+        if (this.phaseElapsed >= this.phaseDuration) this._finishClear();
+        return;
+      }
+      if (this.state === 'EMERGENCY') {
+        this.phaseElapsed += dt;
+        if (this.phaseElapsed >= this.phaseDuration) this._finishEmergency();
+        return;
+      }
+      if (this.state !== 'PLAYING' || !this.piece) return;
+      this._gravityElapsed += dt;
+      const interval = this.gravityInterval;
+      while (this._gravityElapsed >= interval) {
+        this._gravityElapsed -= interval;
+        if (this.board.collides(this.piece, this.piece.x, this.piece.y + 1)) {
+          this._gravityElapsed = 0;
+          break;
+        }
+        this.piece.y++;
+      }
+      if (this.board.collides(this.piece, this.piece.x, this.piece.y + 1)) {
+        this._lockElapsed += dt;
+        if (this._lockElapsed >= CONFIG.LOCK_DELAY) this._lock();
+      }
+    }
+    _nextDescriptor() {
+      const descriptor = { type: this.queue.next(), bomb: this._pendingBomb };
+      this._pendingBomb = false;
+      return descriptor;
+    }
+    _spawnNext() { this._spawn(this._nextDescriptor()); }
+    _spawn(descriptor) {
+      this.piece = new Piece(descriptor.type, descriptor.bomb);
+      this._gravityElapsed = 0;
+      this._lockElapsed = 0;
+      this._lockResets = 0;
+      this._lastAction = null;
+      this.phaseElapsed = 0;
+      this.phaseDuration = 0;
+      if (this.board.collides(this.piece)) { this._topOut(descriptor); return false; }
+      this.state = 'PLAYING';
+      this._change();
+      return true;
+    }
+    _interactive() { return this.state === 'PLAYING' && this.piece !== null && !this._locking; }
+    _resetLockIfAllowed(wasGrounded) {
+      if (wasGrounded && this._lockResets < CONFIG.MAX_LOCK_RESETS) {
+        this._lockElapsed = 0;
+        this._lockResets++;
+      }
+    }
+    move(dx) {
+      if (!this._interactive() || !Number.isFinite(dx) || dx === 0) return false;
+      dx = dx < 0 ? -1 : 1;
+      const piece = this.piece;
+      if (this.board.collides(piece, piece.x + dx, piece.y)) return false;
+      const grounded = this.board.collides(piece, piece.x, piece.y + 1);
+      piece.x += dx;
+      this._lastAction = 'move';
+      this._resetLockIfAllowed(grounded);
+      this._emit('move', { dx });
+      return true;
+    }
+    rotate(direction = 1) {
+      if (!this._interactive()) return false;
+      const piece = this.piece;
+      direction = direction < 0 ? -1 : 1;
+      const rotation = (piece.rotation + direction + 4) % 4;
+      const matrix = piece.rotated(direction);
+      const kicks = piece.type === 'O' ? [[0, 0]] : (piece.type === 'I' ? I_KICKS : KICKS)[piece.rotation + '>' + rotation];
+      const grounded = this.board.collides(piece, piece.x, piece.y + 1);
+      for (const [dx, up] of kicks) {
+        if (this.board.collides(piece, piece.x + dx, piece.y - up, matrix)) continue;
+        piece.x += dx;
+        piece.y -= up;
+        piece.matrix = matrix;
+        piece.rotation = rotation;
+        this._lastAction = 'rotate';
+        this._resetLockIfAllowed(grounded);
+        this._emit('rotate', { direction });
+        return true;
+      }
+      return false;
+    }
+    softDrop() {
+      if (!this._interactive() || this.board.collides(this.piece, this.piece.x, this.piece.y + 1)) return false;
+      this.piece.y++;
+      this._lastAction = 'softDrop';
+      this._gravityElapsed = 0;
+      this._addScore(1, 'softDrop');
+      this._emit('softDrop', { distance: 1 });
+      return true;
+    }
+    ghostY() {
+      if (!this.piece) return null;
+      let y = this.piece.y;
+      while (!this.board.collides(this.piece, this.piece.x, y + 1)) y++;
+      return y;
+    }
+    hardDrop() {
+      if (!this._interactive()) return false;
+      const piece = this.piece;
+      const y = this.ghostY();
+      const distance = y - piece.y;
+      piece.y = y;
+      if (distance > 0) this._lastAction = 'hardDrop';
+      this._addScore(distance * 2, 'hardDrop');
+      this._emit('hardDrop', { distance, cells: piece.cells() });
+      this._lock();
+      return true;
+    }
+    hold() {
+      if (!this._interactive() || !this.canHold) return false;
+      const outgoing = this.piece.descriptor();
+      const incoming = this.holdPiece || this._nextDescriptor();
+      this.holdPiece = outgoing;
+      this.canHold = false;
+      this._spawn(incoming);
+      this._emit('hold', { held: this.holdPiece });
+      this._change();
+      return true;
+    }
+    pause() {
+      if (!['PLAYING', 'COUNTDOWN', 'CLEARING', 'EMERGENCY'].includes(this.state)) return false;
+      this._resumeState = this.state;
+      this.state = 'PAUSED';
+      this._pauseElapsed = 0;
+      this._emit('pause');
+      this._change();
+      return true;
+    }
+    resume() {
+      if (this.state !== 'PAUSED') return false;
+      this.state = this._resumeState || 'PLAYING';
+      this._resumeState = null;
+      this._emit('resume');
+      this._change();
+      return true;
+    }
+    _addScore(delta, reason) {
+      if (delta <= 0) return;
+      this.score += Math.floor(delta);
+      this._emit('score', { score: this.score, delta: Math.floor(delta), reason });
+    }
+    _isTSpin(piece) {
+      if (piece.type !== 'T' || this._lastAction !== 'rotate') return false;
+      let corners = 0;
+      for (const [dx, dy] of [[0, 0], [2, 0], [0, 2], [2, 2]]) {
+        if (this.board.occupied(piece.x + dx, piece.y + dy)) corners++;
+      }
+      return corners >= 3;
+    }
+    _lock() {
+      if (!this._interactive()) return false;
+      this._locking = true;
+      const piece = this.piece;
+      const tspin = this._isTSpin(piece);
+      const result = this.board.place(piece);
+      this.piece = null;
+      this.canHold = true;
+      this._emit('lock', { type: piece.type, cells: result.cells, bomb: piece.bomb });
+      if (piece.bomb) {
+        const center = piece.bombCore();
+        const cells = this.board.explode(center.x, center.y);
+        this._addScore(cells.length * CONFIG.BOMB_CELL_SCORE, 'bomb');
+        this._emit('bomb', { x: center.x, y: center.y, cells });
+      } else if (this.mode === 'chill') {
+        this._normalLocks++;
+        this._rewardCountdown--;
+        if (this._rewardCountdown <= 0) this._rewardDue = true;
+      }
+      this._locking = false;
+      if (result.overflow) { this._topOut(null); return true; }
+      const rows = this.board.fullRows();
+      this._scoreClear(rows, tspin);
+      if (rows.length) {
+        this.clearRows = rows;
+        this.phaseElapsed = 0;
+        this.phaseDuration = CONFIG.CLEAR_DURATION;
+        this._clearKind = 'normal';
+        this.state = 'CLEARING';
+        this._change();
+      } else this._finishTurn();
+      return true;
+    }
+    _scoreClear(rows, tspin) {
+      const count = rows.length;
+      const difficult = count > 0 && (count === 4 || tspin);
+      const backToBack = difficult && this.b2b;
+      const base = tspin ? CONFIG.TSPIN_SCORES[Math.min(count, 3)] : CONFIG.LINE_SCORES[Math.min(count, 4)];
+      if (count > 0) {
+        this.combo++;
+        this._addScore(base * this.level * (backToBack ? CONFIG.B2B_MULTIPLIER : 1), 'clear');
+        this._addScore(CONFIG.COMBO_SCORE * Math.max(0, this.combo - 1) * this.level, 'combo');
+        this.b2b = difficult;
+        this._incrementLines(count);
+      } else {
+        this.combo = 0;
+        if (tspin) this._addScore(base * this.level, 'tspin');
+      }
+      this._tetrisStreak = count === 4 ? this._tetrisStreak + 1 : 0;
+      if (count || tspin) {
+        const names = ['', 'SINGLE', 'DOUBLE', 'TRIPLE', 'TETRIS!'];
+        const label = tspin ? 'T-SPIN' + (count ? ' ' + names[count] : '!') : names[count];
+        this._emit('clear', { lines: count, tspin, b2b: backToBack, combo: this.combo, label, rows: rows.slice() });
+        if (this._tetrisStreak === 3) this._emit('toast', { text: 'BLOCK MASTER', subtext: 'THREE TETRISES IN A ROW' });
+        else if (this.combo === 8) this._emit('toast', { text: 'ON FIRE!', subtext: 'COMBO ×8' });
+      }
+      this._change();
+    }
+    _incrementLines(count) {
+      this.lines += count;
+      const nextLevel = 1 + Math.floor(this.lines / CONFIG.LINES_PER_LEVEL);
+      if (nextLevel > this.level) {
+        this.level = nextLevel;
+        this._emit('levelUp', { level: this.level });
+      }
+    }
+    _finishClear() {
+      const kind = this._clearKind;
+      this.board.clearRows(this.clearRows);
+      this.clearRows = [];
+      this._clearKind = null;
+      this.phaseElapsed = 0;
+      this.phaseDuration = 0;
+      this.state = 'PLAYING';
+      if (kind === 'item') this._spawnNext();
+      else this._finishTurn();
+    }
+    _finishTurn() {
+      this.state = 'PLAYING';
+      if (this.mode === 'chill' && this._rewardDue) {
+        this._rewardDue = false;
+        this._rewardCountdown = this._newCooldown();
+        this.reward(this._nextReward());
+        if (this.state === 'CLEARING') return;
+      }
+      this._spawnNext();
+    }
+    _nextReward() {
+      if (!this._rewardBag.length) {
+        this._rewardBag = ['bomb', 'line', 'slow'];
+        for (let i = this._rewardBag.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [this._rewardBag[i], this._rewardBag[j]] = [this._rewardBag[j], this._rewardBag[i]];
+        }
+      }
+      return this._rewardBag.pop();
+    }
+    reward(type) {
+      if (this.mode !== 'chill' || !['bomb', 'line', 'slow'].includes(type)) return false;
+      this._emit('reward', { type });
+      if (type === 'bomb') {
+        this._pendingBomb = true;
+        this._emit('toast', { text: 'BOMB BLOCK', subtext: '下一块携带炸弹，落地清除 3 × 3 区域。' });
+      } else if (type === 'slow') {
+        this.slowRemaining = CONFIG.SLOW_TIME_DURATION;
+        this._emit('slow', { duration: this.slowRemaining });
+        this._emit('toast', { text: 'SLOW TIME', subtext: '放慢 10 秒，慢慢来。' });
+      } else {
+        const y = this.board.bottomNonemptyRow();
+        if (y < 0) {
+          this._emit('toast', { text: 'ALL CLEAR', subtext: '棋盘已经空空如也。' });
+        } else {
+          this._addScore(CONFIG.ITEM_LINE_SCORE * this.level, 'item');
+          this._incrementLines(1);
+          this._emit('clear', { lines: 1, tspin: false, b2b: false, combo: 0, label: 'LINE SWEEP', rows: [y], item: true });
+          if (this.piece) {
+            // Public reward injection also remains safe while a piece is active.
+            this.board.clearRows([y]);
+          } else {
+            this.clearRows = [y];
+            this._clearKind = 'item';
+            this.phaseElapsed = 0;
+            this.phaseDuration = CONFIG.CLEAR_DURATION;
+            this.state = 'CLEARING';
+          }
+        }
+      }
+      this._change();
+      return true;
+    }
+    _topOut(descriptor) {
+      this.piece = null;
+      this.clearRows = [];
+      this._clearKind = null;
+      if (this.mode === 'chill' && !this.reviveUsed) {
+        this.reviveUsed = true;
+        this._pendingRevivePiece = descriptor;
+        this.state = 'EMERGENCY';
+        this.phaseElapsed = 0;
+        this.phaseDuration = CONFIG.EMERGENCY_DURATION;
+        this._emit('emergency', { duration: this.phaseDuration });
+        this._change();
+      } else {
+        this.state = 'GAME_OVER';
+        this.phaseElapsed = 0;
+        this.phaseDuration = 0;
+        this._emit('gameOver', { score: this.score, lines: this.lines, level: this.level, mode: this.mode });
+        this._change();
+      }
+    }
+    _finishEmergency() {
+      const target = Math.ceil(this.board.countCells() * CONFIG.REVIVE_FRACTION);
+      let removed = 0;
+      const rows = [];
+      for (let y = 0; y < CONFIG.ROWS && removed < target; y++) {
+        const occupied = this.board.grid[y].filter(Boolean).length;
+        if (occupied) { rows.push(y); removed += occupied; }
+      }
+      this.board.clearRows(rows);
+      const descriptor = this._pendingRevivePiece || this._nextDescriptor();
+      this._pendingRevivePiece = null;
+      const candidate = new Piece(descriptor.type, descriptor.bomb);
+      // Deleting whole occupied rows also guarantees a clean spawn after an unusually dense stack.
+      for (let attempt = 0; attempt < CONFIG.ROWS && this.board.collides(candidate); attempt++) {
+        const top = this.board.grid.findIndex(row => row.some(Boolean));
+        if (top < 0) break;
+        this.board.clearRows([top]);
+      }
+      this.combo = 0;
+      this.canHold = true;
+      this._rewardDue = false;
+      if (this._rewardCountdown <= 0) this._rewardCountdown = this._newCooldown();
+      this.state = 'PLAYING';
+      this._spawn(descriptor);
+      this._emit('toast', { text: 'ONE MORE CHANCE', subtext: '深呼吸，继续。' });
+    }
+  }
+
+  root.RetroCore = Object.freeze({ CONFIG, Piece, Board, Bag, Game, COLORS, SHAPES });
+})(typeof globalThis !== 'undefined' ? globalThis : window);
+
+(function () {
+  'use strict';
+
+  // All timing comes from the game's animation loop. No audio is created until init().
+  class AudioManager {
+    constructor(getSettings) {
+      this.getSettings = typeof getSettings === 'function' ? getSettings : () => ({});
+      this.context = null;
+      this.musicGain = null;
+      this.sfxGain = null;
+      this.output = null;
+      this.active = false;
+      this.mode = 'classic';
+      this.step = 0;
+      this.nextMusicTime = -1;
+      this.voices = new Set();
+      this.lastEffects = Object.create(null);
+      this.settings = this.readSettings();
+      this.initializing = null;
+      this.destroyed = false;
+    }
+
+    readSettings() {
+      let value = {};
+      try { value = this.getSettings() || {}; } catch (_) {}
+      const volume = (v, fallback) => Number.isFinite(Number(v))
+        ? Math.max(0, Math.min(1, Number(v))) : fallback;
+      return {
+        musicOn: value.musicOn !== false,
+        sfxOn: value.sfxOn !== false,
+        musicVolume: volume(value.musicVolume, 0.5),
+        sfxVolume: volume(value.sfxVolume, 0.65)
+      };
+    }
+
+    async init() {
+      if (this.destroyed) return false;
+      if (this.initializing) return this.initializing;
+      this.initializing = this.initializeContext();
+      try { return await this.initializing; }
+      finally { this.initializing = null; }
+    }
+
+    async initializeContext() {
+      try {
+        if (!this.context) {
+          const AudioContextClass = globalThis.AudioContext || globalThis.webkitAudioContext;
+          if (!AudioContextClass) return false;
+          const context = new AudioContextClass({ latencyHint: 'interactive' });
+          this.context = context;
+          this.musicGain = context.createGain();
+          this.sfxGain = context.createGain();
+          this.output = context.createDynamicsCompressor();
+          this.output.threshold.value = -15;
+          this.output.knee.value = 12;
+          this.output.ratio.value = 4;
+          this.output.attack.value = 0.006;
+          this.output.release.value = 0.12;
+          this.musicGain.gain.value = 0;
+          this.sfxGain.gain.value = 0;
+          this.musicGain.connect(this.output);
+          this.sfxGain.connect(this.output);
+          this.output.connect(context.destination);
+        }
+        if (this.context.state === 'suspended') await this.context.resume();
+        this.applySettings();
+        this.nextMusicTime = -1;
+        return this.context.state === 'running';
+      } catch (_) {
+        return false;
+      }
+    }
+
+    smoothGain(node, value) {
+      if (!node || !this.context || this.context.state === 'closed') return;
+      try {
+        const now = this.context.currentTime;
+        node.gain.cancelScheduledValues(now);
+        node.gain.setTargetAtTime(value, now, 0.018);
+      } catch (_) {}
+    }
+
+    applySettings() {
+      const previous = this.settings;
+      this.settings = this.readSettings();
+      this.smoothGain(this.musicGain,
+        this.active && this.settings.musicOn ? this.settings.musicVolume * 0.36 : 0);
+      this.smoothGain(this.sfxGain, this.settings.sfxOn ? this.settings.sfxVolume * 0.3 : 0);
+      if (!this.settings.musicOn) {
+        this.stopVoices('music');
+        this.nextMusicTime = -1;
+      } else if (previous && !previous.musicOn) {
+        this.nextMusicTime = -1;
+      }
+      if (!this.settings.sfxOn) this.stopVoices('sfx');
+    }
+
+    setActive(active) {
+      const next = Boolean(active);
+      if (this.active === next) return;
+      this.active = next;
+      this.nextMusicTime = -1;
+      if (!next) this.stopVoices('music');
+      this.smoothGain(this.musicGain,
+        next && this.settings.musicOn ? this.settings.musicVolume * 0.36 : 0);
+    }
+
+    update(dt, active, mode) {
+      this.setActive(active);
+      const nextMode = /chill|relax|\u4f11\u95f2|\u8f7b\u677e/i.test(String(mode || 'classic'))
+        ? 'chill' : 'classic';
+      if (nextMode !== this.mode) {
+        this.mode = nextMode;
+        this.step = 0;
+        this.nextMusicTime = -1;
+        this.stopVoices('music');
+      }
+      const context = this.context;
+      if (!context || context.state !== 'running' || !this.active || !this.settings.musicOn) return;
+      const now = context.currentTime;
+      // A background tab must never catch up by playing a burst of old notes.
+      if (this.nextMusicTime < now - 0.15) this.nextMusicTime = now + 0.025;
+      const eighth = 60 / 105 / 2;
+      let budget = 4;
+      while (this.nextMusicTime < now + 0.09 && budget-- > 0) {
+        this.scheduleMusicStep(this.step, this.nextMusicTime, eighth);
+        this.step = (this.step + 1) % 64;
+        this.nextMusicTime += eighth;
+      }
+    }
+
+    scheduleMusicStep(step, at, eighth) {
+      const bar = Math.floor(step / 8);
+      const beat = step % 8;
+      const relaxed = this.mode === 'chill';
+      // An original eight-bar A-minor loop; silence between phrases keeps play calm.
+      const chords = [
+        [45, 60, 64, 69], [41, 60, 65, 69], [48, 60, 64, 67], [43, 59, 62, 67],
+        [45, 60, 64, 69], [41, 60, 65, 69], [48, 60, 64, 67], [43, 59, 62, 67]
+      ];
+      const melodies = [
+        [76, null, 72, null, 69, 72, 74, null],
+        [77, null, 76, 72, 69, null, 72, null],
+        [76, null, 79, null, 76, 74, 72, null],
+        [74, null, 71, null, 67, 71, 74, null],
+        [81, null, 79, 76, 72, null, 76, null],
+        [77, null, 76, null, 72, 69, 72, null],
+        [76, 79, 76, null, 74, null, 72, null],
+        [71, null, 74, null, 71, null, 69, null]
+      ];
+      const chord = chords[bar];
+      const note = melodies[bar][beat];
+      if (note !== null) {
+        this.tone(note - (relaxed ? 12 : 0), at, eighth * 1.35,
+          relaxed ? 'sine' : 'square', relaxed ? 0.13 : 0.066, 'music', null, 0.012);
+      }
+      if (beat === 0 || beat === 4) {
+        this.tone(chord[0] + (beat === 4 ? 12 : 0), at, eighth * 2.8,
+          'triangle', 0.17, 'music', null, 0.016);
+      }
+      if (beat % 2 === 1) {
+        const arpeggio = chord[1 + ((Math.floor(beat / 2) + bar) % 3)];
+        this.tone(arpeggio, at, eighth * 0.85,
+          relaxed ? 'sine' : 'triangle', relaxed ? 0.073 : 0.095, 'music', null, 0.009);
+      }
+    }
+
+    tone(midi, at, duration, type, volume, bus, slideTo, attack = 0.005) {
+      const context = this.context;
+      if (!context || context.state !== 'running' || this.voices.size >= 72) return;
+      let oscillator;
+      let envelope;
+      try {
+        oscillator = context.createOscillator();
+        envelope = context.createGain();
+        const start = Math.max(context.currentTime, at);
+        const end = start + Math.max(0.04, duration);
+        const frequency = n => 440 * Math.pow(2, (n - 69) / 12);
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency(midi), start);
+        if (slideTo !== null && slideTo !== undefined) {
+          oscillator.frequency.exponentialRampToValueAtTime(frequency(slideTo), end);
+        }
+        envelope.gain.setValueAtTime(0.0001, start);
+        envelope.gain.exponentialRampToValueAtTime(Math.max(0.001, volume), start + attack);
+        envelope.gain.exponentialRampToValueAtTime(Math.max(0.0002, volume * 0.48), start + duration * 0.32);
+        envelope.gain.exponentialRampToValueAtTime(0.0001, end);
+        oscillator.connect(envelope);
+        envelope.connect(bus === 'music' ? this.musicGain : this.sfxGain);
+        const voice = { oscillator, envelope, bus, start, end };
+        this.voices.add(voice);
+        oscillator.onended = () => {
+          this.voices.delete(voice);
+          try { oscillator.disconnect(); envelope.disconnect(); } catch (_) {}
+        };
+        oscillator.start(start);
+        oscillator.stop(end + 0.012);
+      } catch (_) {
+        try { if (oscillator) oscillator.disconnect(); if (envelope) envelope.disconnect(); } catch (_) {}
+      }
+    }
+
+    stopVoices(bus) {
+      if (!this.context) return;
+      const now = this.context.currentTime;
+      for (const voice of this.voices) {
+        if (bus && voice.bus !== bus) continue;
+        try {
+          if (voice.start > now) {
+            voice.envelope.gain.cancelScheduledValues(now);
+            voice.envelope.gain.setValueAtTime(0.0001, now);
+          } else {
+            const gain = voice.envelope.gain;
+            if (typeof gain.cancelAndHoldAtTime === 'function') gain.cancelAndHoldAtTime(now);
+            else { gain.cancelScheduledValues(now); gain.setValueAtTime(Math.max(0.0001, gain.value), now); }
+            gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
+          }
+          voice.oscillator.stop(now + 0.025);
+        } catch (_) {}
+      }
+    }
+
+    play(name, payload = {}) {
+      const context = this.context;
+      if (!context || context.state !== 'running' || !this.settings.sfxOn || this.destroyed) return;
+      const now = context.currentTime;
+      const throttle = name === 'move' ? 0.043 : name === 'softDrop' ? 0.065 : 0;
+      if (throttle && now - (this.lastEffects[name] ?? -100) < throttle) return;
+      this.lastEffects[name] = now;
+      const note = (midi, offset, duration, type = 'triangle', volume = 0.23, slideTo = null) =>
+        this.tone(midi, now + offset, duration, type, volume, 'sfx', slideTo);
+      switch (name) {
+        case 'move': note(65, 0, 0.045, 'triangle', 0.14, 60); break;
+        case 'rotate': note(76, 0, 0.055, 'square', 0.085, 79); break;
+        case 'softDrop': note(48, 0, 0.045, 'triangle', 0.13, 44); break;
+        case 'hardDrop':
+          note(50, 0, 0.13, 'triangle', 0.3, 29);
+          note(72, 0, 0.065, 'square', 0.10, 48);
+          break;
+        case 'lock': note(43, 0, 0.075, 'triangle', 0.22, 36); break;
+        case 'clear': {
+          const lines = Math.max(1, Math.min(4, Number(payload.lines) || 1));
+          const base = payload.tspin ? 65 : 60;
+          const steps = lines === 4 || payload.tspin ? [0, 4, 7, 12, 16] : [0, 4, 7, 12].slice(0, lines + 1);
+          steps.forEach((interval, i) => note(base + interval, i * 0.055, 0.19, 'triangle', 0.23));
+          if (payload.b2b) note(base + 19, 0.28, 0.22, 'sine', 0.22);
+          if (Number(payload.combo) > 0) note(79 + Math.min(8, Number(payload.combo)), 0.21, 0.17, 'sine', 0.16);
+          break;
+        }
+        case 'hold': note(72, 0, 0.075, 'triangle', 0.19); note(67, 0.06, 0.10, 'triangle', 0.18); break;
+        case 'pause': note(72, 0, 0.075, 'sine', 0.17); note(67, 0.07, 0.13, 'sine', 0.17); break;
+        case 'levelUp':
+          [60, 64, 67, 72, 76].forEach((n, i) => note(n, i * 0.07, 0.23, 'triangle', 0.2));
+          break;
+        case 'bomb':
+          note(52, 0, 0.24, 'triangle', 0.31, 23);
+          note(43, 0.04, 0.28, 'sawtooth', 0.075, 26);
+          note(79, 0.06, 0.17, 'sine', 0.16, 45);
+          break;
+        case 'slow':
+          [79, 76, 72, 67].forEach((n, i) => note(n, i * 0.085, 0.3, 'sine', 0.18));
+          break;
+        case 'emergency':
+          [60, 67, 72, 79].forEach((n, i) => note(n, i * 0.065, 0.22, 'triangle', 0.21));
+          break;
+        case 'gameOver':
+          [64, 60, 57, 45].forEach((n, i) => note(n, i * 0.16, 0.35, 'triangle', 0.2));
+          break;
+        case 'start':
+          [60, 64, 67, 72].forEach((n, i) => note(n, i * 0.06, 0.19, 'triangle', 0.2));
+          break;
+        default: break;
+      }
+    }
+
+    destroy() {
+      this.destroyed = true;
+      this.active = false;
+      this.stopVoices();
+      try { if (this.musicGain) this.musicGain.disconnect(); } catch (_) {}
+      try { if (this.sfxGain) this.sfxGain.disconnect(); } catch (_) {}
+      try { if (this.output) this.output.disconnect(); } catch (_) {}
+      if (this.context && this.context.state !== 'closed') {
+        try { this.context.close().catch(() => {}); } catch (_) {}
+      }
+      this.voices.clear();
+    }
+  }
+
+  globalThis.RetroAudio = AudioManager;
+})();
+
+(function () {
+  'use strict';
+  const { Game, Piece, CONFIG, COLORS, SHAPES } = RetroCore;
+  const $ = id => document.getElementById(id);
+  const Storage = {
+    get(key, fallback) { try { const v = localStorage.getItem('retro-blocks-v1:' + key); return v === null ? fallback : JSON.parse(v); } catch (_) { return fallback; } },
+    set(key, value) { try { localStorage.setItem('retro-blocks-v1:' + key, JSON.stringify(value)); } catch (_) {} }
+  };
+  const Settings = {
+    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false },
+    load() {
+      const saved = Storage.get('settings', {});
+      if (!saved || typeof saved !== 'object') return;
+      for (const key of Object.keys(this.value)) {
+        if (typeof this.value[key] === 'boolean' && typeof saved[key] === 'boolean') this.value[key] = saved[key];
+        if (typeof this.value[key] === 'number' && Number.isFinite(saved[key])) this.value[key] = Math.max(0, Math.min(1, saved[key]));
+      }
+    },
+    save() { Storage.set('settings', this.value); },
+    apply() {
+      document.body.classList.toggle('no-crt', !this.value.crt);
+      document.body.classList.toggle('reduced-motion', this.value.reducedMotion);
+      for (const key of ['musicOn', 'sfxOn', 'crt', 'reducedMotion', 'colorAssist']) $(key).checked = this.value[key];
+      for (const key of ['musicVolume', 'sfxVolume']) { $(key).value = Math.round(this.value[key] * 100); $(key + 'Value').value = $(key).value + '%'; }
+      const muted = !this.value.musicOn && !this.value.sfxOn;
+      $('muteButton').setAttribute('aria-label', muted ? '取消静音' : '静音');
+      $('muteButton').title = muted ? '取消静音' : '静音';
+      $('muteButton').setAttribute('aria-pressed', String(muted));
+      $('soundWaves').setAttribute('d', muted ? 'M16 9l6 6M22 9l-6 6' : 'M15 8q5 4 0 8M18 5q8 7 0 14');
+    }
+  };
+  Settings.load(); Settings.apply();
+  const storedBest = mode => { const value = Storage.get('best:' + mode, 0); return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0; };
+  const best = { classic: storedBest('classic'), chill: storedBest('chill') };
+  const audio = new RetroAudio(() => Settings.value);
+  let bestAtStart = 0, saveDirty = false, saveElapsed = 0, toastTime = 0, eventTime = 0, pausedTime = 0;
+  let uiDirty = true, overlayKey = '', previewKey = '', lastState = 'MENU';
+  const pad = (n, len = 6) => String(n).padStart(len, '0');
+  const text = (id, value) => { const el = $(id), s = String(value); if (el.textContent !== s) el.textContent = s; };
+  function saveBest() { if (saveDirty) { Storage.set('best:classic', best.classic); Storage.set('best:chill', best.chill); saveDirty = false; } }
+  function notice(message, subtext = '', duration = 2900) {
+    $('toast').replaceChildren(document.createTextNode(message));
+    if (subtext) { const small = document.createElement('small'); small.textContent = subtext; $('toast').append(small); }
+    $('toast').hidden = false; toastTime = duration;
+  }
+  function eventText(message, subtext = '') {
+    $('gameEvent').replaceChildren(document.createTextNode(message));
+    text('mobileGameEvent', message + (/COMBO|BACK TO BACK/.test(subtext) ? ' · ' + subtext : ''));
+    if (subtext) { const small = document.createElement('small'); small.textContent = subtext; $('gameEvent').append(small); }
+    eventTime = 3500;
+  }
+  class ParticleSystem {
+    constructor() { this.particles = []; this.pulse = 0; this.dropCells = []; }
+    clear() { this.particles.length = 0; this.pulse = 0; this.dropCells = []; }
+    burst(cells, strong = false) {
+      if (!cells || !cells.length) return;
+      const count = Settings.value.reducedMotion ? 3 : strong ? 28 : 14;
+      for (let i = 0; i < count && this.particles.length < CONFIG.MAX_PARTICLES; i++) {
+        const cell = cells[i % cells.length];
+        this.particles.push({ x: cell.x + .5, y: cell.y + .5, vx: (Math.random() - .5) * 7, vy: -Math.random() * 6 - 1, life: .6 + Math.random() * .3, maxLife: .9, size: .07 + Math.random() * .09, color: COLORS[cell.type] || '#c8f789' });
+      }
+    }
+    update(dt) {
+      const seconds = dt / 1000;
+      for (let i = this.particles.length - 1; i >= 0; i--) {
+        const p = this.particles[i]; p.life -= seconds;
+        if (p.life <= 0) { this.particles.splice(i, 1); continue; }
+        p.x += p.vx * seconds; p.y += p.vy * seconds; p.vy += 12 * seconds;
+      }
+      this.pulse = Math.max(0, this.pulse - dt);
+    }
+    draw(ctx, size) {
+      for (const p of this.particles) { ctx.globalAlpha = p.life / p.maxLife; ctx.fillStyle = p.color; ctx.fillRect(p.x * size, p.y * size, p.size * size, p.size * size); }
+      ctx.globalAlpha = 1;
+      if (this.pulse > 0 && !Settings.value.reducedMotion) { ctx.fillStyle = '#fff'; ctx.globalAlpha = this.pulse / 120 * .28; for (const c of this.dropCells) ctx.fillRect(c.x * size + 1, c.y * size + 1, size - 2, size - 2); ctx.globalAlpha = 1; }
+    }
+  }
+  const particles = new ParticleSystem();
+  const game = new Game((name, data) => {
+    uiDirty = true;
+    if (name !== 'change' && name !== 'score' && name !== 'toast' && name !== 'reward') audio.play(name, data);
+    if (name === 'start') { particles.clear(); eventText('FIND YOUR FLOW.', '每一块，都有它的位置。'); toastTime = 0; $('toast').hidden = true; }
+    if (name === 'score' && game.score > best[game.mode]) { best[game.mode] = game.score; saveDirty = true; }
+    if (name === 'clear') {
+      const cells = [];
+      for (const y of data.rows || []) for (let x = 0; x < CONFIG.COLS; x++) if (game.board.grid[y][x]) cells.push({ x, y, type: game.board.grid[y][x] });
+      particles.burst(cells, data.lines === 4 || data.tspin);
+      const combo = data.combo >= 2 ? 'COMBO ×' + data.combo : '';
+      eventText(data.label, [data.b2b ? 'BACK TO BACK' : '', combo].filter(Boolean).join(' · '));
+    }
+    if (name === 'hardDrop') { particles.pulse = 120; particles.dropCells = data.cells; input.clear(); }
+    if (name === 'hold') input.clear();
+    if (name === 'bomb') { particles.burst(data.cells, true); eventText('BOMB!', '腾出一点呼吸的空间。'); }
+    if (name === 'levelUp') eventText('LEVEL ' + pad(data.level, 2), 'KEEP THE RHYTHM.');
+    if (name === 'slow') eventText('SLOW TIME', '10 SECONDS TO BREATHE.');
+    if (name === 'toast') notice(data.text, data.subtext);
+    if (name === 'emergency') { input.clear(); eventText('EMERGENCY CLEAR!', 'ONE MORE CHANCE.'); }
+    if (name === 'pause' || name === 'gameOver') { input.clear(); audio.setActive(false); saveBest(); }
+    if (name === 'pause') pausedTime = 0;
+    if (name === 'gameOver') particles.clear();
+  });
+  class Input {
+    constructor() { this.held = new Map(); this.order = 0; }
+    clear() { this.held.clear(); }
+    press(action, source) {
+      if (game.state !== 'PLAYING' || this.held.has(source)) return;
+      if (['left', 'right', 'down'].includes(action)) this.held.set(source, { action, elapsed: 0, next: action === 'down' ? CONFIG.SOFT_DROP_INTERVAL : CONFIG.DAS, order: ++this.order });
+      this.perform(action);
+    }
+    perform(action) {
+      if (action === 'left') game.move(-1);
+      else if (action === 'right') game.move(1);
+      else if (action === 'down') game.softDrop();
+      else if (action === 'rotate') game.rotate(1);
+      else if (action === 'reverse') game.rotate(-1);
+      else if (action === 'drop') game.hardDrop();
+      else if (action === 'hold') game.hold();
+    }
+    release(source) { this.held.delete(source); }
+    update(dt) {
+      if (game.state !== 'PLAYING') return;
+      let latest = null;
+      for (const item of this.held.values()) if (item.action !== 'down' && (!latest || item.order > latest.order)) latest = item;
+      for (const item of this.held.values()) {
+        if (item.action !== 'down' && item !== latest) continue;
+        item.elapsed += dt;
+        while (item.elapsed >= item.next && game.state === 'PLAYING') { this.perform(item.action); item.next += item.action === 'down' ? CONFIG.SOFT_DROP_INTERVAL : CONFIG.ARR; }
+      }
+    }
+  }
+  const input = new Input();
+  const keyActions = { ArrowLeft: 'left', ArrowRight: 'right', ArrowDown: 'down', ArrowUp: 'rotate', KeyZ: 'reverse', Space: 'drop', KeyC: 'hold' };
+  const hasDialog = () => Boolean(document.querySelector('dialog[open]'));
+  function togglePause() {
+    if (hasDialog()) return;
+    input.clear();
+    if (game.state === 'PAUSED') { audio.init(); game.resume(); }
+    else game.pause();
+  }
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.altKey || e.metaKey || hasDialog()) return;
+    if (game.state === 'MENU') return;
+    if (keyActions[e.code] || ['KeyP', 'Escape'].includes(e.code)) e.preventDefault();
+    if (e.repeat) return;
+    if (['KeyP', 'Escape'].includes(e.code)) { togglePause(); return; }
+    if (keyActions[e.code]) input.press(keyActions[e.code], e.code);
+  });
+  document.addEventListener('keyup', e => input.release(e.code));
+  document.querySelectorAll('[data-control]').forEach(button => {
+    button.addEventListener('pointerdown', e => { e.preventDefault(); button.setPointerCapture(e.pointerId); input.press(button.dataset.control, 'pointer:' + e.pointerId); });
+    for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(event, e => input.release('pointer:' + e.pointerId));
+    button.addEventListener('contextmenu', e => e.preventDefault());
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { input.clear(); game.pause(); audio.setActive(false); saveBest(); } });
+  window.addEventListener('blur', () => { input.clear(); game.pause(); });
+  window.addEventListener('pagehide', saveBest);
+  function start(mode) {
+    document.querySelectorAll('dialog[open]').forEach(d => d.close());
+    saveBest(); bestAtStart = best[mode]; input.clear(); previewKey = ''; overlayKey = ''; game.start(mode); audio.init().then(() => { if (game.state === 'COUNTDOWN') audio.play('start'); });
+    $('home').hidden = true; $('gamePage').hidden = false;
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+    window.scrollTo({ top: 0, behavior: 'instant' }); resizeAll(); syncUI();
+  }
+  function mainMenu() { saveBest(); input.clear(); particles.clear(); game.menu(); audio.setActive(false); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
+  $('chillStart').addEventListener('click', () => start('chill'));
+  $('classicStart').addEventListener('click', () => start('classic'));
+  $('pauseButton').addEventListener('click', togglePause);
+  $('restartButton').addEventListener('click', () => start(game.mode));
+  $('brandButton').addEventListener('click', mainMenu);
+  $('overlay').addEventListener('click', e => { const action = e.target.closest('[data-action]')?.dataset.action; if (action === 'resume') togglePause(); else if (action === 'restart') start(game.mode); else if (action === 'menu') mainMenu(); });
+  document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', () => { input.clear(); game.pause(); $(button.dataset.dialog).showModal(); }));
+  document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
+  document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } }));
+  for (const key of Object.keys(Settings.value)) $(key).addEventListener('input', () => {
+    Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked : Number($(key).value) / 100;
+    Settings.save(); Settings.apply(); audio.applySettings(); previewKey = ''; drawAttract(); uiDirty = true;
+  });
+  let unmuteSettings = { musicOn: Settings.value.musicOn, sfxOn: Settings.value.sfxOn };
+  $('muteButton').addEventListener('click', () => {
+    if (!Settings.value.musicOn && !Settings.value.sfxOn) { Settings.value.musicOn = unmuteSettings.musicOn; Settings.value.sfxOn = unmuteSettings.sfxOn; if (!Settings.value.musicOn && !Settings.value.sfxOn) Settings.value.musicOn = Settings.value.sfxOn = true; }
+    else { unmuteSettings = { musicOn: Settings.value.musicOn, sfxOn: Settings.value.sfxOn }; Settings.value.musicOn = Settings.value.sfxOn = false; }
+    Settings.save(); Settings.apply(); audio.applySettings();
+  });
+  function fit(canvas) {
+    const rect = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    const width = Math.round(rect.width * dpr), height = Math.round(rect.height * dpr);
+    if (!width || !height) return null;
+    if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
+    const ctx = canvas.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { ctx, width: rect.width, height: rect.height };
+  }
+  function block(ctx, x, y, s, type, ghost = false, bomb = false) {
+    const color = COLORS[type] || '#c8f789';
+    if (ghost) {
+      ctx.globalAlpha = .23; ctx.fillStyle = color; ctx.fillRect(x + 3, y + 3, s - 6, s - 6);
+      ctx.globalAlpha = .6; ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.setLineDash([3, 3]); ctx.strokeRect(x + 2.5, y + 2.5, s - 5, s - 5); ctx.setLineDash([]); ctx.globalAlpha = 1; return;
+    }
+    const gap = s < 20 ? 1 : 1.5, edge = Math.max(2, s * .11), size = s - gap * 2;
+    x += gap; y += gap;
+    ctx.fillStyle = '#0c0d18'; ctx.fillRect(x - .5, y - .5, size + 1, size + 1);
+    ctx.fillStyle = color; ctx.fillRect(x, y, size, size);
+    ctx.fillStyle = '#ffffff65'; ctx.fillRect(x, y, size, edge); ctx.fillRect(x, y + edge, edge, size - edge);
+    ctx.fillStyle = '#10122855'; ctx.fillRect(x, y + size - edge, size, edge); ctx.fillRect(x + size - edge, y + edge, edge, size - edge);
+    const gradient = ctx.createLinearGradient(x, y, x + size, y + size); gradient.addColorStop(0, '#ffffff16'); gradient.addColorStop(1, '#00000017'); ctx.fillStyle = gradient; ctx.fillRect(x + edge, y + edge, size - edge * 2, size - edge * 2);
+    if (Settings.value.colorAssist) {
+      ctx.save(); ctx.translate(x + size / 2, y + size / 2); const p = size * .18;
+      ctx.strokeStyle = '#17203ab0'; ctx.fillStyle = '#17203ab0'; ctx.lineWidth = Math.max(1, s * .055); ctx.beginPath();
+      if (type === 'I') { ctx.moveTo(-p, -p / 2); ctx.lineTo(p, -p / 2); ctx.moveTo(-p, p / 2); ctx.lineTo(p, p / 2); }
+      if (type === 'T') { ctx.moveTo(-p, 0); ctx.lineTo(p, 0); ctx.moveTo(0, -p); ctx.lineTo(0, p); }
+      if (type === 'S' || type === 'Z') { const k = type === 'S' ? 1 : -1; ctx.moveTo(-p, p * k); ctx.lineTo(p, -p * k); }
+      if (type === 'O') for (const px of [-p, p]) for (const py of [-p, p]) ctx.fillRect(px - 1, py - 1, 2, 2);
+      if (type === 'J') { ctx.fillRect(-p - 1, -1, 2, 2); ctx.fillRect(p - 1, -1, 2, 2); }
+      if (type === 'L') ctx.rect(-p, -p, p * 2, p * 2);
+      ctx.stroke(); ctx.restore();
+    }
+    if (bomb) {
+      ctx.fillStyle = '#21192f'; ctx.beginPath(); ctx.arc(x + size / 2, y + size * .57, size * .24, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#21192f'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x + size * .53, y + size * .36); ctx.lineTo(x + size * .65, y + size * .17); ctx.stroke();
+      ctx.fillStyle = '#fff3c7'; ctx.fillRect(x + size * .66, y + size * .14, Math.max(2, size * .1), Math.max(2, size * .1));
+    }
+  }
+  function drawPreview(canvas, descriptor) {
+    const metrics = fit(canvas); if (!metrics) return;
+    const { ctx, width, height } = metrics; ctx.clearRect(0, 0, width, height);
+    if (!descriptor) { ctx.fillStyle = '#60556f'; ctx.font = '20px Consolas,monospace'; ctx.textAlign = 'center'; ctx.fillText('+', width / 2, height / 2 + 7); return; }
+    const type = typeof descriptor === 'string' ? descriptor : descriptor.type;
+    const piece = new Piece(type, descriptor.bomb), cells = piece.cells(0, 0);
+    const minX = Math.min(...cells.map(c => c.x)), maxX = Math.max(...cells.map(c => c.x)), minY = Math.min(...cells.map(c => c.y)), maxY = Math.max(...cells.map(c => c.y));
+    const size = Math.min(21, (width - 18) / 4, (height - 12) / 2);
+    const ox = (width - (maxX - minX + 1) * size) / 2, oy = (height - (maxY - minY + 1) * size) / 2;
+    for (const c of cells) block(ctx, ox + (c.x - minX) * size, oy + (c.y - minY) * size, size, type, false, descriptor.bomb && c === cells[0]);
+  }
+  function grid(ctx, width, height, cols, rows) {
+    ctx.fillStyle = '#10121e'; ctx.fillRect(0, 0, width, height); ctx.strokeStyle = '#b99df00b'; ctx.lineWidth = .7;
+    ctx.beginPath(); for (let x = 1; x < cols; x++) { ctx.moveTo(x * width / cols, 0); ctx.lineTo(x * width / cols, height); }
+    for (let y = 1; y < rows; y++) { ctx.moveTo(0, y * height / rows); ctx.lineTo(width, y * height / rows); } ctx.stroke();
+  }
+  function drawBoard() {
+    if (game.state === 'MENU') return;
+    const m = fit($('boardCanvas')); if (!m) return;
+    const { ctx, width, height } = m, size = width / CONFIG.COLS;
+    grid(ctx, width, height, CONFIG.COLS, CONFIG.ROWS);
+    const clearing = game.state === 'CLEARING' || (game.state === 'PAUSED' && game._resumeState === 'CLEARING');
+    const progress = clearing ? Math.min(1, game.phaseElapsed / game.phaseDuration) : 0;
+    for (let y = 0; y < CONFIG.ROWS; y++) for (let x = 0; x < CONFIG.COLS; x++) {
+      const type = game.board.grid[y][x]; if (!type) continue;
+      const isClearing = clearing && game.clearRows.includes(y);
+      if (isClearing) ctx.globalAlpha = Math.max(0, 1 - progress);
+      block(ctx, x * size, y * size, size, type); ctx.globalAlpha = 1;
+      if (isClearing && !Settings.value.reducedMotion) { ctx.fillStyle = '#f5eaff'; ctx.globalAlpha = (1 - progress) * .5; ctx.fillRect(x * size + 1, y * size + 1, size - 2, size - 2); ctx.globalAlpha = 1; }
+    }
+    if (game.piece) {
+      const p = game.piece, ghost = game.ghostY();
+      for (const c of p.cells(p.x, ghost)) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, true);
+      const core = p.bomb ? p.bombCore() : null;
+      for (const c of p.cells()) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, false, core && core.x === c.x && core.y === c.y);
+    }
+    particles.draw(ctx, size);
+    if (game.state === 'EMERGENCY' && !Settings.value.reducedMotion) { ctx.globalAlpha = .12 * (1 - game.phaseElapsed / game.phaseDuration); ctx.fillStyle = '#c8f789'; ctx.fillRect(0, 0, width, height); ctx.globalAlpha = 1; }
+  }
+  function drawTitle() {
+    const glyphs = { R: ['11110','10001','10001','11110','10100','10010','10001'], E: ['11111','10000','10000','11110','10000','10000','11111'], T: ['11111','00100','00100','00100','00100','00100','00100'], O: ['01110','10001','10001','10001','10001','10001','01110'], B: ['11110','10001','10001','11110','10001','10001','11110'], L: ['10000','10000','10000','10000','10000','10000','11111'], C: ['01111','10000','10000','10000','10000','10000','01111'], K: ['10001','10010','10100','11000','10100','10010','10001'], S: ['01111','10000','10000','01110','00001','00001','11110'] };
+    const canvas = $('titleCanvas'), ctx = canvas.getContext('2d'); canvas.width = 490; canvas.height = 176;
+    ['RETRO','BLOCKS'].forEach((word, row) => {
+      const cellX = row ? 13.7 : 16.5, cellY = 10, offsetY = row * 88;
+      for (let shadow = 1; shadow >= 0; shadow--) {
+        ctx.fillStyle = shadow ? '#65516f' : row ? '#c8f789' : '#f6f0db';
+        [...word].forEach((letter, i) => glyphs[letter].forEach((line, y) => [...line].forEach((on, x) => { if (on === '1') ctx.fillRect((i * 6 + x) * cellX + shadow * 4, offsetY + y * cellY + shadow * 5, cellX + .1, cellY + .1); })));
+      }
+    });
+  }
+  function drawAttract() {
+    const canvas = $('attractCanvas'); if (!canvas.getBoundingClientRect().width) return;
+    const m = fit(canvas); if (!m) return; const { ctx, width, height } = m, s = width / 10;
+    grid(ctx, width, height, 10, 13);
+    const rows = ['..........','..........','..........','..........','..........','..........','..........','..........','JJ......LL','JZZ.....SL','JIZZOO.SSL','IITTOOSSTT','IITTZZOOTL'];
+    for (let y = 0; y < rows.length; y++) for (let x = 0; x < 10; x++) if (rows[y][x] !== '.') block(ctx, x * s, y * s, s, rows[y][x]);
+    for (const [x, y] of [[4,2],[3,3],[4,3],[5,3]]) block(ctx, x * s, y * s, s, 'T');
+    for (const [x, y] of [[4,8],[3,9],[4,9],[5,9]]) block(ctx, x * s, y * s, s, 'T', true);
+    ctx.fillStyle = '#777081'; ctx.font = Math.max(8, width * .024) + 'px Consolas,monospace'; ctx.textAlign = 'center'; ctx.fillText('A GOOD PLACE TO LAND.', width / 2, s * 6.35);
+    ctx.fillStyle = '#c8f789'; ctx.fillRect(s * 4.5, s * 6.7, s * .12, s * .12); ctx.fillStyle = '#bb8cf5'; ctx.fillRect(s * 4.95, s * 6.7, s * .12, s * .12); ctx.fillStyle = '#f298af'; ctx.fillRect(s * 5.4, s * 6.7, s * .12, s * .12);
+  }
+  function overlay() {
+    const state = game.state, key = state + (state === 'COUNTDOWN' ? game.countdownText : '') + (state === 'GAME_OVER' ? game.score : '');
+    if (key === overlayKey) return; overlayKey = key;
+    const el = $('overlay'); el.hidden = !['COUNTDOWN','PAUSED','GAME_OVER','EMERGENCY'].includes(state); el.className = 'board-overlay' + (state === 'COUNTDOWN' ? ' countdown' : '');
+    if (state === 'COUNTDOWN') el.innerHTML = '<div class="overlay-overline">MAKE YOURSELF AT HOME.</div><h2 class="overlay-title">' + game.countdownText + '</h2>';
+    else if (state === 'PAUSED') el.innerHTML = '<div class="overlay-overline">A MOMENT OF QUIET.</div><h2 class="overlay-title">PAUSED</h2><p class="overlay-desc" id="pauseMessage">PRESS P TO CONTINUE<br>慢慢来，方块会等你。</p><div class="overlay-actions"><button class="primary-button" data-action="resume">▶ RESUME</button><button class="secondary-button" data-action="restart">↻ RESTART</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
+    else if (state === 'GAME_OVER') el.innerHTML = '<div class="overlay-overline">THAT WAS A GOOD BREAK.</div><h2 class="overlay-title">GAME<br>OVER</h2>' + (game.score > bestAtStart ? '<p class="new-best">★ NEW HIGH SCORE!</p>' : '') + '<dl class="result-grid"><div><dt>SCORE</dt><dd>' + pad(game.score) + '</dd></div><div><dt>BEST</dt><dd>' + pad(best[game.mode]) + '</dd></div><div><dt>LINES</dt><dd>' + pad(game.lines,2) + '</dd></div><div><dt>LEVEL</dt><dd>' + pad(game.level,2) + '</dd></div></dl><div class="overlay-actions"><button class="primary-button" data-action="restart">↻ PLAY AGAIN</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
+    else if (state === 'EMERGENCY') el.innerHTML = '<div class="overlay-overline">WE HAVE YOUR BACK.</div><h2 class="overlay-title">EMERGENCY<br>CLEAR!</h2><p class="overlay-desc">深呼吸，再来一次。</p>';
+  }
+  function syncUI() {
+    text('classicBest', pad(best.classic)); text('chillBest', pad(best.chill));
+    for (const prefix of ['', 'mobile']) {
+      const id = name => prefix ? prefix + name[0].toUpperCase() + name.slice(1) : name;
+      text(id('score'), pad(game.score)); text(id('best'), pad(best[game.mode])); text(id('level'), pad(game.level, 2)); text(id('lines'), pad(game.lines, 2));
+    }
+    text('combo', game.combo >= 2 ? '×' + game.combo : '—'); text('modeLabel', game.mode.toUpperCase() + ' MODE');
+    $('levelProgress').style.width = game.lines % 10 * 10 + '%';
+    $('pauseButton').textContent = game.state === 'PAUSED' ? '▶ RESUME' : 'Ⅱ PAUSE';
+    $('pauseButton').disabled = ['MENU','GAME_OVER'].includes(game.state);
+    $('holdBox').classList.toggle('unavailable', !game.canHold);
+    $('reviveBox').hidden = game.mode !== 'chill'; $('itemCaption').hidden = game.mode !== 'chill'; $('classicCaption').hidden = game.mode !== 'classic';
+    const reviveKey = String(game.reviveUsed); if ($('reviveBox').dataset.used !== reviveKey) { $('reviveBox').dataset.used = reviveKey; $('reviveBox').innerHTML = game.reviveUsed ? '♡ REVIVE USED<small>这一次，靠你自己啦。</small>' : '♡ ONE MORE CHANCE<small>触顶时自动清理一次</small>'; $('reviveBox').style.color = game.reviveUsed ? '#928799' : ''; }
+    const queue = game.queue.preview(4), nextKey = queue.join('') + JSON.stringify(game.holdPiece) + Settings.value.colorAssist;
+    if (previewKey !== nextKey) { previewKey = nextKey; drawPreview($('holdCanvas'), game.holdPiece); document.querySelectorAll('.nextCanvas').forEach((canvas, i) => drawPreview(canvas, queue[i])); }
+    overlay(); uiDirty = false;
+  }
+  function resizeAll() { previewKey = ''; drawTitle(); drawAttract(); if (game.state !== 'MENU') { syncUI(); drawBoard(); } }
+  const observer = new ResizeObserver(resizeAll);
+  observer.observe($('boardCanvas')); observer.observe($('attractCanvas')); observer.observe($('holdCanvas'));
+  window.addEventListener('resize', resizeAll);
+  let previousTime = performance.now(), previousDpr = window.devicePixelRatio;
+  function frame(time) {
+    const dt = Math.max(0, Math.min(CONFIG.MAX_DELTA, time - previousTime)); previousTime = time;
+    input.update(dt); game.update(dt);
+    const active = ['PLAYING','CLEARING','COUNTDOWN','EMERGENCY'].includes(game.state);
+    audio.update(dt, active && !document.hidden, game.mode);
+    if (game.state !== lastState) { input.clear(); lastState = game.state; uiDirty = true; }
+    if (active) { particles.update(dt); if (eventTime > 0) { eventTime -= dt; if (eventTime <= 0) eventText('FIND YOUR FLOW.', game.mode === 'chill' ? '慢慢来，也很精彩。' : 'KEEP THE RHYTHM.'); } }
+    if (game.state === 'PAUSED') { pausedTime += dt; if (pausedTime >= 20000 && $('pauseMessage')) text('pauseMessage', 'TAKE YOUR TIME. 方块会等你。'); }
+    if (toastTime > 0 && game.state !== 'PAUSED') { toastTime -= dt; if (toastTime <= 0) $('toast').hidden = true; }
+    saveElapsed += dt; if (saveElapsed >= 1000) { saveElapsed = 0; saveBest(); }
+    if (uiDirty) syncUI();
+    const slowLabel = game.slowRemaining > 0 ? '◷ SLOW TIME ' + Math.ceil(game.slowRemaining / 1000) + 's' : '';
+    text('slowStatus', slowLabel); text('mobileSlowStatus', slowLabel);
+    $('boardFrame').classList.toggle('slow', game.slowRemaining > 0);
+    if (window.devicePixelRatio !== previousDpr) { previousDpr = window.devicePixelRatio; resizeAll(); }
+    drawBoard(); requestAnimationFrame(frame);
+  }
+  drawTitle(); drawAttract(); syncUI(); requestAnimationFrame(frame);
+  // The only stateful loop is frame(); this read-only container also enables local verification.
+  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles }), writable: false });
+})();
+
+</script>
+</body>
+</html>
