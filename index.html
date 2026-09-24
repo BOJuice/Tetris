@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#171722">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%229%22%20fill%3D%22%23171722%22%2F%3E%3Cpath%20d%3D%22M3%203h58v58H3z%22%20fill%3D%22none%22%20stroke%3D%22%23b69af2%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M24%209h16v16H24zM8%2025h16v16H8zM24%2025h16v16H24zM40%2025h16v16H40z%22%20fill%3D%22%23d3ff83%22%20stroke%3D%22%23f7ffe6%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M12%2038h9M28%2038h9M44%2038h9M28%2022h9%22%20stroke%3D%22%236daa51%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
-<title>RETRO BLOCKS v1.6 · Take a little break</title>
+<title>RETRO BLOCKS v1.7 · Take a little break</title>
 <style>
 :root{color-scheme:dark;--bg:#171722;--surface:#20202e;--line:#41404f;--muted:#aba7b9;--white:#f6f0db;--mint:#c8f789;--purple:#af90eb;--pink:#f298af;--board:#11121e;--font:Consolas,"Lucida Console","Courier New",monospace}
 *{box-sizing:border-box}html{min-width:280px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);font-size:14px;min-height:100vh;background-image:radial-gradient(ellipse at 80% 20%,#35304b45,transparent 56%)}button,input{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}button{border-radius:0}button:hover{filter:brightness(1.12)}button:active{transform:translateY(2px)}[hidden]{display:none!important}canvas{display:block}body::after{content:"";pointer-events:none;position:fixed;inset:0;z-index:30;background:repeating-linear-gradient(0deg,transparent,transparent 3px,#0000000e 3px,#0000000e 4px);opacity:.5}body.no-crt::after{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -208,12 +208,60 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   #gamePage.focus-mode .game-layout{--board-w:min(64vw,max(150px,calc((100dvh - 310px)/2)),310px)}
 }
 @media(prefers-reduced-motion:reduce){#boardFrame.land-pulse,#boardFrame.hard-pulse,#boardFrame.forewarn-gravityShift{animation:none}#gamePage.hud-dimmed *{transition:none}}
+/* v1.7: a visible second chance, compact status panels, and one-screen results. */
+.control-legend .chill-only{display:none}
+.game-page.chill-session .control-legend .chill-only{display:inline}
+.oops-button{display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;min-height:36px;padding:6px 9px;border:1px solid #baa0d5;background:#332a40;color:#f3ddff;box-shadow:0 2px 0 #50415d;text-align:left;font-size:12px;font-weight:bold;letter-spacing:.4px}
+.oops-button kbd{border:1px solid #927ba9;color:#d8c1eb;padding:1px 5px;font:inherit;font-size:10px}
+.oops-button.unavailable,.mobile-oops-button.unavailable{opacity:.8;border-color:#716579;color:#b8afc1}
+.oops-button.unavailable::after,.mobile-oops-button.unavailable::after{content:"UNAVAILABLE";font-size:9px;letter-spacing:0;color:#e0bdc4}
+.oops-button.unavailable>span{font-size:0}
+.oops-button.unavailable>span::before{content:"OOPS";font-size:11px}
+.oops-button.unavailable kbd,.mobile-oops-button.unavailable strong,.mobile-oops-button.unavailable>span{display:none}
+.theme-status{display:block;color:#e2c7f3;font-size:12px;line-height:1.25;letter-spacing:.3px}
+.theme-status:not([hidden])::before{content:"✦ ";color:#c9f18c}
+#themeStatus{margin-top:4px}
+#pauseStatus,#runSummary{width:100%;margin:2px 0 12px;padding:9px 10px;border:1px solid #675875;background:#201d2c;text-align:left}
+#pauseStatus h3,#runSummary h3{margin:0 0 8px;color:#d5bdf0;font-size:11px;line-height:1.2;letter-spacing:1px}
+#pauseStatus dl,#runSummary dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 9px;margin:0}
+#pauseStatus dl>div,#runSummary dl>div{min-width:0}
+#pauseStatus dt,#runSummary dt{color:#a99db7;font-size:9px;line-height:1.2;letter-spacing:.2px;overflow-wrap:anywhere}
+#pauseStatus dd,#runSummary dd{margin:3px 0 0;color:#f4efdf;font-size:15px;line-height:1.1;overflow-wrap:anywhere}
+#pauseStatus dd{font-size:12px;color:#c9f18c}
+#runSummary dl>div:first-child dd{font-size:23px;color:var(--mint)}
+.retry-hint{margin:1px 0 11px;color:#c9f18c;font-size:11px;letter-spacing:1.1px;line-height:1.3}
+.board-overlay:has(#runSummary),.board-overlay:has(#pauseStatus){overflow-y:auto;justify-content:center}
+@keyframes oops-rewind-flash{from{opacity:.34}to{opacity:0}}
+#boardFrame.oops-flash .board-screen::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(0deg,#d7bbed40 0 3px,transparent 3px 16px);animation:oops-rewind-flash .3s ease-out both}
+@media(min-width:1024px) and (pointer:fine){.oops-button{font-size:13px}.oops-button kbd{font-size:11px}#pauseStatus,#runSummary{padding:10px 12px}#pauseStatus dt,#runSummary dt{font-size:11px}#pauseStatus dd,#runSummary dd{font-size:17px}#pauseStatus dd{font-size:14px}}
+@media(max-width:600px){
+  .oops-button{display:none!important}
+  #gamePage.chill-session .mobile-stats{grid-template-columns:minmax(0,1.24fr) minmax(0,.84fr) minmax(0,.58fr) minmax(0,.58fr) minmax(0,.74fr);gap:5px}
+  #gamePage.chill-session.focus-mode .mobile-stats{grid-template-columns:minmax(0,1.45fr) minmax(0,.7fr) minmax(0,.7fr) minmax(0,.85fr)}
+  .mobile-oops-button{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:35px;padding:2px 1px;border:1px solid #baa0d5;background:#332a40;color:#f3ddff;line-height:1.1}
+  .mobile-oops-button>span{font-size:8px;letter-spacing:.4px}
+  .mobile-oops-button strong{font-size:13px;font-weight:normal;white-space:nowrap}
+  .mobile-oops-button.unavailable::after{font-size:6px;letter-spacing:-.4px}
+  #mobileThemeStatus{font-size:8px;margin-left:auto}
+  .control-feel{flex-wrap:wrap;gap:10px}
+  .control-feel select{width:100%}
+  .board-overlay:has(#runSummary),.board-overlay:has(#pauseStatus){position:fixed;inset:69px 9px 10px;z-index:40;max-width:420px;margin:auto;padding:20px;box-shadow:0 0 0 999px #11111bcc,0 12px 30px #0008;border:1px solid #766386;background:#1d1b29f7;overflow:auto}
+  #runSummary,#pauseStatus{max-width:340px;padding:13px;margin:0 0 17px}
+  #runSummary dt,#pauseStatus dt{font-size:10px}
+  #runSummary dd{font-size:17px}
+  #pauseStatus dd{font-size:14px}
+  .retry-hint{font-size:12px;margin-bottom:14px}
+  .board-overlay:has(#runSummary) .overlay-actions,.board-overlay:has(#pauseStatus) .overlay-actions{max-width:340px}
+}
+@media(max-width:360px){#gamePage.chill-session .mobile-stats{gap:3px}.mobile-oops-button>span{font-size:7px}.mobile-oops-button strong{font-size:11px}}
+@media(prefers-reduced-motion:reduce){#boardFrame.oops-flash .board-screen::before{animation:none;display:none}}
+.reduced-motion #boardFrame.oops-flash .board-screen::before{animation:none;display:none}
 </style>
 </head>
 <body>
 <header class="topbar">
   <button class="brand" id="brandButton" aria-label="返回主菜单"><span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>RETRO BLOCKS</button>
-  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.6</span><div class="header-actions">
+  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.7</span><div class="header-actions">
   <button id="muteButton" class="icon-button" aria-label="静音" title="静音"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="soundWaves" d="M15 8q5 4 0 8M18 5q8 7 0 14"/></svg></button>
   <button class="icon-button" data-dialog="settingsDialog" aria-label="设置" title="设置"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6M16 9v6M10 15v6"/></svg></button>
   </div></div>
@@ -236,15 +284,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 </main>
 <main id="gamePage" class="game-page" hidden>
   <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="mode-meta" id="modeMeta" hidden></span><span class="danger-badge" id="dangerBadge" hidden>DANGER</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="focusButton" class="small-button focus-button" type="button" aria-pressed="false" aria-label="切换专注模式">▢ FOCUS</button><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
-  <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div class="mobile-best"><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label" id="mobileLevelLabel">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div></div>
-  <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus" class="buff-status"></span></div>
+  <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div class="mobile-best"><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label" id="mobileLevelLabel">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div><button id="mobileOopsButton" class="mobile-oops-button" type="button" aria-label="撤回上一个落下的方块" hidden><span>OOPS</span><strong>×<span id="mobileOopsCount">1</span></strong></button></div>
+  <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus" class="buff-status"></span><span id="mobileThemeStatus" class="theme-status" hidden></span></div>
   <div id="mobileSurpriseArea" class="mobile-surprise-area" hidden><div id="mobileRecentSurprises" class="mobile-recent-surprises"></div><div id="mobileEventCard" class="mobile-surprise-card" hidden><span id="mobileEventCardIcon" class="mobile-surprise-icon"></span><div><strong id="mobileEventCardChinese"></strong><small id="mobileEventCardEnglish"></small></div></div></div>
   <div class="mobile-event-status" id="mobileEventStatus"></div>
   <div class="game-layout">
-    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p><section id="recentSurprisesPanel" class="recent-surprises" hidden><h2>最近惊喜 · RECENT</h2><ol id="recentSurprises" aria-label="最近三个惊喜"></ol></section></div>  <div class="rotation-controls" aria-label="旋转按钮"><button class="rotation-button" data-control="reverse" aria-label="逆时针旋转"><span class="symbol">⟲</span><small>CCW</small><kbd>[ / Z</kbd></button><button class="rotation-button" data-control="rotate" aria-label="顺时针旋转"><span class="symbol">⟳</span><small>CW</small><kbd>] / ↑</kbd></button></div>
-  <div class="control-legend"><span><kbd>← →</kbd>MOVE</span><span><kbd>[ / ]</kbd>ROTATE</span><span><kbd>↓</kbd>SOFT DROP</span><span><kbd>SPACE</kbd>DROP</span><span><kbd>C</kbd>HOLD</span><span><kbd>P / ESC</kbd>PAUSE</span></div></aside>
+    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><button id="oopsButton" class="oops-button" type="button" aria-label="撤回上一个落下的方块" hidden><span>↶ OOPS ×<span id="oopsCount">1</span></span><kbd>U</kbd></button><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p><section id="recentSurprisesPanel" class="recent-surprises" hidden><h2>最近惊喜 · RECENT</h2><ol id="recentSurprises" aria-label="最近三个惊喜"></ol></section></div>  <div class="rotation-controls" aria-label="旋转按钮"><button class="rotation-button" data-control="reverse" aria-label="逆时针旋转"><span class="symbol">⟲</span><small>CCW</small><kbd>[ / Z</kbd></button><button class="rotation-button" data-control="rotate" aria-label="顺时针旋转"><span class="symbol">⟳</span><small>CW</small><kbd>] / ↑</kbd></button></div>
+  <div class="control-legend"><span><kbd>← →</kbd>MOVE</span><span><kbd>[ / ]</kbd>ROTATE</span><span><kbd>↓</kbd>SOFT DROP</span><span><kbd>SPACE</kbd>DROP</span><span><kbd>C</kbd>HOLD</span><span class="chill-only"><kbd>U</kbd>OOPS</span><span><kbd>P / ESC</kbd>PAUSE</span></div></aside>
     <div class="board-frame" id="boardFrame"><section id="eventCard" class="event-card" aria-live="polite" hidden><span id="eventCardIcon" class="event-card-icon" aria-hidden="true">✦</span><div class="event-card-copy"><strong id="eventCardChinese" class="event-card-title"></strong><span id="eventCardEnglish" class="event-card-en"></span><small id="eventCardDescription" class="event-card-desc"></small></div></section><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
-    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" data-next-index="0" aria-label="下一个方块"></canvas><canvas class="nextCanvas" data-next-index="1" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" data-next-index="2" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" data-next-index="3" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status buff-status"></div></aside>
+    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" data-next-index="0" aria-label="下一个方块"></canvas><canvas class="nextCanvas" data-next-index="1" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" data-next-index="2" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" data-next-index="3" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status buff-status"></div><div id="themeStatus" class="theme-status" hidden></div></aside>
   </div>
   <div class="touch-controls" aria-label="触屏操作"><button data-control="left" aria-label="向左移动">←</button><button data-control="right" aria-label="向右移动">→</button><button data-control="down" aria-label="加速下降">↓</button><button class="drop" data-control="drop" aria-label="直接落下">⇓<span class="touch-label">DROP</span></button><button data-control="hold" aria-label="暂存方块">⇄<span class="touch-label">HOLD</span></button><button data-control="reverse" aria-label="逆时针旋转">⟲<span class="touch-label">CCW</span></button><button data-control="rotate" aria-label="顺时针旋转">⟳<span class="touch-label">CW</span></button></div>
 <p class="game-footnote">TAKE YOUR TIME. THE WORLD CAN WAIT A MINUTE.</p>
@@ -253,8 +301,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 <p class="setting-heading">01 / AUDIO</p><label class="setting-row"><span>MUSIC<small>轻量合成背景音乐</small></span><input class="switch" type="checkbox" id="musicOn" checked aria-label="背景音乐开关"></label><div class="volume-row"><input type="range" id="musicVolume" min="0" max="100" value="30" aria-label="背景音乐音量"><output id="musicVolumeValue">30%</output></div>
 <label class="setting-row"><span>SOUND EFFECTS<small>移动、消行与小小的胜利</small></span><input class="switch" type="checkbox" id="sfxOn" checked aria-label="音效开关"></label><div class="volume-row"><input type="range" id="sfxVolume" min="0" max="100" value="50" aria-label="音效音量"><output id="sfxVolumeValue">50%</output></div>
 <label class="audio-intensity"><span>AUDIO INTENSITY<small>音效表现强度 · 禅模式始终更柔和</small></span><select id="audioIntensity" aria-label="音效强度"><option value="low">LOW / 轻柔</option><option value="normal" selected>NORMAL / 标准</option><option value="arcade">ARCADE / 街机</option></select></label>
-<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><label class="setting-row"><span>FOCUS MODE<small>放大棋盘，收起次要信息</small></span><input class="switch" type="checkbox" id="focusMode"></label><div class="divider"></div><p class="setting-heading">03 / CHILL MODE</p><label class="audio-intensity surprise-frequency"><span>SURPRISE FREQUENCY<small>惊喜频率 · 仅影响 Chill 模式</small></span><select id="surpriseFrequency" aria-label="Chill 模式惊喜频率"><option value="relaxed">RELAXED / 悠闲</option><option value="normal" selected>NORMAL / 标准</option><option value="lively">LIVELY / 热闹</option></select></label><div class="divider"></div><p class="setting-heading">04 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>首次点击游戏或菜单按钮后，背景音乐会开始播放。</p></div></dialog>
-<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.6</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。可在设置中选择惊喜频率；特殊内容会逐步解锁至 SPECIAL GUIDE 图鉴。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
+<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>高对比符号辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><label class="setting-row"><span>FOCUS MODE<small>放大棋盘，收起次要信息</small></span><input class="switch" type="checkbox" id="focusMode"></label><label class="setting-row"><span>BLOCK PATTERN<small>轻微像素纹理辅助识别方块</small></span><input class="switch" type="checkbox" id="blockPattern" checked></label><div class="divider"></div><p class="setting-heading">03 / CHILL MODE</p><label class="audio-intensity surprise-frequency"><span>SURPRISE FREQUENCY<small>惊喜频率 · 仅影响 Chill 模式</small></span><select id="surpriseFrequency" aria-label="Chill 模式惊喜频率"><option value="relaxed">RELAXED / 悠闲</option><option value="normal" selected>NORMAL / 标准</option><option value="lively">LIVELY / 热闹</option></select></label><div class="divider"></div><p class="setting-heading">04 / CONTROLS</p><label class="audio-intensity control-feel"><span>CONTROL FEEL<small>左右长按与加速下降的手感</small></span><select id="controlFeel" aria-label="操作手感"><option value="soft">SOFT / 柔和</option><option value="normal" selected>NORMAL / 标准</option><option value="fast">FAST / 迅捷</option></select></label><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · U 撤回 (Chill)<br>P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>首次点击游戏或菜单按钮后，背景音乐会开始播放。</p></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.7</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>U</kbd>撤回上一步 (Chill)</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。可在设置中选择惊喜频率；特殊内容会逐步解锁至 SPECIAL GUIDE 图鉴。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="help-point"><b>07 / A SECOND CHANCE</b><span>Chill 每局有一次 OOPS，可撤回最后锁定的方块；部分复杂惊喜完成后暂不可用。结算时按 SPACE 可立即重开当前模式。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
 <dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle"><div class="dialog-header"><h2 id="guideTitle">SPECIAL GUIDE <span class="version-tag">CHILL MODE</span></h2><button class="icon-button" data-close aria-label="关闭特殊内容说明">×</button></div><div id="guideBody" class="guide-body"></div><div class="guide-footer"><button id="guideMenuButton" type="button">⌂ 返回主菜单</button></div></dialog>
 <div id="toast" class="toast" role="status" hidden></div>
 <script>
@@ -289,6 +337,10 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const STANDARD_TYPES = Object.freeze(['I', 'O', 'T', 'S', 'Z', 'J', 'L']);
   const AUX_TYPES = Object.freeze(['I3', 'I2', 'L3', 'T3', 'V5', 'I5', 'DOT']);
   const EVENT_LABELS = Object.freeze({ lucky: 'LUCKY WAVE', tiny: 'TINY BLOCKS', long: 'LONG BOY' });
+  const THEME_LABELS = Object.freeze({
+    tinyParty: 'TINY PARTY', longNight: 'LONG NIGHT',
+    luckyWindow: 'LUCKY WINDOW', calm: 'CALM PHASE'
+  });
   const SHAPES = Object.freeze({
     I: [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]],
     O: [[1, 1], [1, 1]],
@@ -462,7 +514,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     constructor(board, random = Math.random) {
       this.board = board; this.random = random; this.items = []; this.tags = [];
       this.pool = []; this.history = []; this.ages = Object.fromEntries(Object.keys(SHAPES).map(t => [t, 0]));
-      this.event = null; this.linkedLongBoost = false; this.bagsCreated = 0; this._fill(CONFIG.PREVIEW_COUNT);
+      this.event = null; this.linkedLongBoost = false; this.bagsCreated = 0;
+      this.themePhase = null; this._fill(CONFIG.PREVIEW_COUNT);
     }
     _pick(entries, weights) {
       const total = weights.reduce((a, b) => a + b, 0);
@@ -482,6 +535,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       if (['I2', 'DOT'].includes(type) && terrain.holes > 5) weight *= 1.08;
       // Lucky Hold gently favors long pieces without rewriting committed previews.
       if (this.linkedLongBoost && ['I', 'I3', 'I5'].includes(type)) weight *= 1.18;
+      if (this.themePhase === 'tinyParty' && ['I3', 'I2', 'L3', 'T3', 'DOT'].includes(type)) weight *= 1.6;
+      if (this.themePhase === 'longNight' && ['I', 'I3', 'I5'].includes(type)) weight *= 1.55;
       if (this.event && this.event.toGenerate > 0) {
         if (this.event.type === 'lucky' && ['I', 'O', 'I3', 'I2', 'L3'].includes(type)) weight *= 1.55;
         if (this.event.type === 'long' && ['I', 'I3', 'I5'].includes(type)) weight *= 1.9;
@@ -490,12 +545,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     _refillPool() {
       const terrain = this.board.terrain();
-      const helpers = CONFIG.ADAPTIVE_HELPERS + (this.random() < (terrain.danger ? .2 : terrain.wells ? .1 : 0) ? 1 : 0);
+      const helpers = Math.min(5, CONFIG.ADAPTIVE_HELPERS + (this.themePhase === 'tinyParty' || this.themePhase === 'longNight' ? 1 : 0)
+        + (this.random() < (terrain.danger ? .2 : terrain.wells ? .1 : 0) ? 1 : 0));
       this.pool = [...STANDARD_TYPES, ...STANDARD_TYPES];
       while (this.pool.length < CONFIG.ADAPTIVE_BAG_SIZE - helpers) {
         this.pool.push(this._pick(STANDARD_TYPES, STANDARD_TYPES.map(t => this.weight(t, terrain))));
       }
       const helperWeights = [1.8, 1.4, 1.1, .7, .45, .065, .04];
+      if (this.themePhase === 'tinyParty') for (const i of [0, 1, 2, 3, 6]) helperWeights[i] *= 1.5;
+      if (this.themePhase === 'longNight') for (const i of [0, 5]) helperWeights[i] *= 1.65;
       for (let i = 0; i < helpers; i++) this.pool.push(this._pick(AUX_TYPES, helperWeights.map((w, j) => w * this.weight(AUX_TYPES[j], terrain))));
       this.bagsCreated++;
     }
@@ -561,6 +619,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.linkages = { tiny: 0, long: 0, bomb: 0 };
       this.foreshadow = null;
       this._plannedType = null;
+      this.themePhase = null;
+      this.pacing = 'normal';
     }
     rollCheck() {
       const { first, last } = SURPRISE_FREQUENCIES[this.frequency];
@@ -593,6 +653,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       if (type === 'tiny' && this.linkages.tiny > 0) value *= 1.25;
       if (type === 'long' && this.linkages.long > 0) value *= 1.22;
       if (type === 'bomb' && this.linkages.bomb > 0) value *= .75;
+      if (this.themePhase === 'tinyParty' && type === 'tiny') value *= 2.0;
+      if (this.themePhase === 'longNight') {
+        if (type === 'long') value *= 2.0;
+        if (type === 'bomb') value *= .75;
+      }
+      if (this.themePhase === 'luckyWindow' && ['luckyHold', 'mystery', 'lucky', 'line', 'slow'].includes(type)) value *= 1.6;
       return value;
     }
     pick(eligible) {
@@ -607,12 +673,16 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     tick(eligible) {
       this.totalLocks++; this.since++;
+      const offset = (this.pacing === 'breathe' ? 2 : this.pacing === 'wake' ? -1 : 0)
+        + (this.themePhase === 'calm' ? 2 : 0);
+      const check = Math.max(2, this.nextCheck + offset);
+      const maximum = Math.max(check, this.maximum + Math.max(0, offset));
       if (!eligible.length || (this._plannedType && !eligible.includes(this._plannedType))) {
         this.foreshadow = null;
         this._plannedType = null;
       }
       let result = null;
-      if (eligible.length && this.since === this.nextCheck - 2) {
+      if (eligible.length && this.since === check - 2) {
         // Only a naturally scheduled director event can cast a hint. Mystery
         // effects are selected later and never expose their result here.
         const candidate = this.pick(eligible);
@@ -620,12 +690,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           this._plannedType = candidate;
           this.foreshadow = { type: candidate, remaining: 2 };
         }
-      } else if (this._plannedType && this.since < this.nextCheck) {
-        this.foreshadow = { type: this._plannedType, remaining: this.nextCheck - this.since };
+      } else if (this._plannedType && this.since < check) {
+        this.foreshadow = { type: this._plannedType, remaining: check - this.since };
       }
-      if (eligible.length && this.since >= this.nextCheck) {
-        const chance = Math.min(.98, SURPRISE_FREQUENCIES[this.frequency].chance + Math.max(0, this.since - this.nextCheck) * .07);
-        if (this.since >= this.maximum || this.random() <= chance) {
+      if (eligible.length && this.since >= check) {
+        const baseChance = SURPRISE_FREQUENCIES[this.frequency].chance + Math.max(0, this.since - check) * .07;
+        const pacingFactor = this.pacing === 'breathe' ? .70 : this.pacing === 'wake' ? 1.15 : 1;
+        const themeFactor = this.themePhase === 'calm' ? .78 : this.themePhase === 'luckyWindow' ? 1.05 : 1;
+        const chance = Math.min(.98, baseChance * pacingFactor * themeFactor);
+        if (this.since >= maximum || this.random() <= chance) {
           result = this._plannedType && eligible.includes(this._plannedType) ? this._plannedType : this.pick(eligible);
         }
         this.foreshadow = null;
@@ -647,6 +720,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     snapshot(eligible = Object.keys(SURPRISE_GROUPS)) {
       return { since: this.since, nextCheck: this.nextCheck, maximum: this.maximum, frequency: this.frequency,
+        themePhase: this.themePhase, pacing: this.pacing,
         history: this.history.slice(), counts: { ...this.counts },
         linkages: { ...this.linkages }, foreshadow: this.foreshadow ? { ...this.foreshadow } : null,
         weights: Object.fromEntries(eligible.map(type => [type, this.weight(type)])) };
@@ -706,8 +780,36 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._pauseElapsed = 0;
       this._turnCounted = false;
       this._directorEligibleLock = false;
+      this.oopsRemaining = this.mode === 'chill' ? 1 : 0;
+      this._oopsSnapshot = null;
+      this._hardDropSnapshot = null;
+      this._runTetrises = 0;
+      this._maxCombo = 0;
+      this._surprises = 0;
+      this._oopsUsed = 0;
+      this._themePhase = null;
+      this._lastThemeType = null;
+      this._nextThemeAt = this.mode === 'chill' ? 45000 + Math.floor(Math.random() * 25001) : Infinity;
+      this._themeAttemptLocks = 0;
+      this._lastSurpriseAt = 0;
+      this._surpriseTimes = [];
     }
     get activeEvent() { return this.mode === 'chill' ? this.queue.event : null; }
+    get themePhase() { return this._themePhase ? { ...this._themePhase } : null; }
+    get runStats() { return {
+      tetrises: this._runTetrises, maxCombo: this._maxCombo, surprises: this._surprises,
+      oopsUsed: this._oopsUsed, perfectClears: this.perfectClears, elapsedMs: Math.floor(this.gameTime)
+    }; }
+    get oopsReason() {
+      if (this.mode !== 'chill') return 'mode';
+      if (this.oopsRemaining <= 0) return 'used';
+      if (this.state === 'GAME_OVER') return 'game_over';
+      if (this.state === 'EMERGENCY') return 'emergency';
+      if (!['PLAYING', 'CLEARING'].includes(this.state)) return 'inactive';
+      if (!this._oopsSnapshot) return 'no_lock';
+      return this._oopsSnapshot.blockedReason || null;
+    }
+    get oopsAvailable() { return this.oopsReason === null; }
     get danger() { return this.board.terrain().danger; }
     get surpriseDebug() { return this.director.snapshot(this._eligibleSurprises()); }
     get foreshadow() {
@@ -731,6 +833,100 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._change();
       return true;
     }
+    _copyData(value) {
+      if (Array.isArray(value)) return value.map(item => this._copyData(item));
+      if (value && typeof value === 'object') return Object.fromEntries(
+        Object.entries(value).map(([key, item]) => [key, this._copyData(item)]));
+      return value;
+    }
+    _snapshotTurn() {
+      if (this.mode !== 'chill' || this.oopsRemaining <= 0) return null;
+      const fields = ['holdPiece', 'canHold', 'score', 'lines', 'level', 'combo', 'b2b',
+        'slowRemaining', 'freezeRemaining', 'luckyHoldActive', 'reviveUsed', 'zenClears',
+        'perfectClears', '_perfectArmed', 'clearRows', 'phaseElapsed', 'phaseDuration',
+        'countdownText', '_gravityElapsed', '_lockElapsed', '_lockResets', '_touching',
+        '_lastAction', '_clearKind', '_pendingBomb', '_pendingMystery', '_pendingRareMystery',
+        '_pendingMysteryEffect', '_forcedSurprise', '_pendingRevivePiece', '_breakShown',
+        '_tetrisStreak', '_pauseElapsed', '_turnCounted', '_directorEligibleLock',
+        '_runTetrises', '_maxCombo', '_surprises', '_lastSurpriseAt', '_surpriseTimes'];
+      const values = Object.fromEntries(fields.map(key => [key, this._copyData(this[key])]));
+      const copyObject = (object, skip) => Object.fromEntries(Object.keys(object)
+        .filter(key => !skip.includes(key)).map(key => [key, this._copyData(object[key])]));
+      return { board: this._copyGrid(), piece: { descriptor: this.piece.descriptor(),
+        matrix: this._copyData(this.piece.matrix), x: this.piece.x, y: this.piece.y,
+        rotation: this.piece.rotation }, values,
+        queue: copyObject(this.queue, ['board', 'random']),
+        director: copyObject(this.director, ['random']),
+        cells: [], blockedReason: null };
+    }
+    _restoreTurn(snapshot) {
+      this.board.grid = this._copyData(snapshot.board);
+      for (const [key, value] of Object.entries(snapshot.values)) this[key] = this._copyData(value);
+      for (const [key, value] of Object.entries(snapshot.queue)) this.queue[key] = this._copyData(value);
+      for (const [key, value] of Object.entries(snapshot.director)) this.director[key] = this._copyData(value);
+      // Theme time keeps running independently of the undone lock.
+      this.queue.themePhase = this._themePhase?.type || null;
+      this.director.themePhase = this._themePhase?.type || null;
+      this._updatePacing();
+      const { descriptor, matrix, x, y, rotation } = snapshot.piece;
+      this.piece = new Piece(descriptor.type, descriptor.bomb, descriptor.mystery, descriptor.rareMystery);
+      this.piece.matrix = this._copyData(matrix);
+      this.piece.x = x; this.piece.y = y; this.piece.rotation = rotation;
+      // A natural lock was already touching the floor; always grant a fresh lock delay.
+      this._lockElapsed = 0; this._gravityElapsed = 0; this._touching = false;
+      this.phaseElapsed = 0; this.phaseDuration = 0; this.clearRows = []; this._clearKind = null;
+      this._locking = false; this.state = 'PLAYING';
+    }
+    useOops() {
+      if (!this.oopsAvailable) return false;
+      const snapshot = this._oopsSnapshot;
+      const before = this._copyGrid();
+      this._restoreTurn(snapshot);
+      this.oopsRemaining--;
+      this._oopsUsed++;
+      this._oopsSnapshot = null;
+      this._hardDropSnapshot = null;
+      this._emit('oops', { before, after: this._copyGrid(), cells: this._copyData(snapshot.cells), duration: 320 });
+      this._change();
+      return true;
+    }
+    _updateTheme(dt) {
+      if (this.mode !== 'chill' || !this._themePhase) return;
+      this._themePhase.remainingMs = Math.max(0, this._themePhase.remainingMs - dt);
+      if (this._themePhase.remainingMs > 0) return;
+      const ended = { ...this._themePhase };
+      this._themePhase = null;
+      this.queue.themePhase = null;
+      this.director.themePhase = null;
+      this._nextThemeAt = this.gameTime + 60000 + Math.floor(this.director.random() * 30001);
+      this._themeAttemptLocks = 0;
+      this._emit('phaseEnd', ended);
+      this._change();
+    }
+    _updatePacing() {
+      if (this.mode !== 'chill') return;
+      this._surpriseTimes = this._surpriseTimes.filter(time => this.gameTime - time <= 25000).slice(-6);
+      this.director.pacing = this._surpriseTimes.length >= 3 ? 'breathe'
+        : this.gameTime >= 45000 && this.gameTime - this._lastSurpriseAt >= 45000 ? 'wake' : 'normal';
+    }
+    _maybeStartTheme() {
+      if (this.mode !== 'chill' || this._themePhase || this.gameTime < this._nextThemeAt) return false;
+      this._themeAttemptLocks++;
+      const chance = this.director.pacing === 'wake' ? .55 : .34;
+      if (this._themeAttemptLocks < 6 && this.director.random() >= chance) return false;
+      const types = Object.keys(THEME_LABELS).filter(type => type !== this._lastThemeType);
+      const type = types[Math.floor(Math.min(.999999, Math.max(0, this.director.random())) * types.length)];
+      const duration = 20000 + Math.floor(Math.min(.999999, Math.max(0, this.director.random())) * 10001);
+      this._themePhase = { type, label: THEME_LABELS[type], remainingMs: duration };
+      this._lastThemeType = type;
+      this._nextThemeAt = Infinity;
+      this.queue.themePhase = type;
+      this.director.themePhase = type;
+      if (this._oopsSnapshot) this._oopsSnapshot.blockedReason = 'complex';
+      this._emit('phaseStart', { ...this._themePhase, duration });
+      this._change();
+      return true;
+    }
     start(mode = this.mode) {
       this._reset(mode);
       this.state = 'COUNTDOWN';
@@ -749,7 +945,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       const initial = chill ? CONFIG.CHILL_GRAVITY : CONFIG.CLASSIC_GRAVITY;
       const decay = chill ? CONFIG.CHILL_DECAY : CONFIG.CLASSIC_DECAY;
       const minimum = chill ? CONFIG.CHILL_MIN_GRAVITY : CONFIG.CLASSIC_MIN_GRAVITY;
-      return Math.max(minimum, initial * Math.pow(decay, this.level - 1)) * (this.slowRemaining > 0 ? CONFIG.SLOW_FACTOR : 1);
+      return Math.max(minimum, initial * Math.pow(decay, this.level - 1))
+        * (this.slowRemaining > 0 ? CONFIG.SLOW_FACTOR : 1)
+        * (chill && this._themePhase?.type === 'calm' ? 1.12 : 1);
     }
     update(delta) {
       if (!Number.isFinite(delta) || delta <= 0) return;
@@ -770,6 +968,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         return;
       }
       this.gameTime += dt;
+      this._updateTheme(dt);
       if (this.slowRemaining > 0) {
         const wasSlow = this.slowRemaining;
         this.slowRemaining = Math.max(0, this.slowRemaining - dt);
@@ -906,6 +1105,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     hardDrop() {
       if (!this._interactive()) return false;
+      this._hardDropSnapshot = this._snapshotTurn();
       const piece = this.piece;
       const y = this.ghostY();
       const distance = y - piece.y;
@@ -966,12 +1166,19 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     _lock(source = 'natural') {
       if (!this._interactive()) return false;
+      const undoSnapshot = source === 'hard' && this._hardDropSnapshot
+        ? this._hardDropSnapshot : this._snapshotTurn();
+      this._hardDropSnapshot = null;
       this._locking = true;
       this._turnCounted = false;
       const piece = this.piece;
       this._directorEligibleLock = this.mode === 'chill' && !piece.bomb && !piece.mystery;
       const tspin = this._isTSpin(piece);
       const result = this.board.place(piece);
+      if (this.mode === 'chill') {
+        this._oopsSnapshot = undoSnapshot;
+        if (undoSnapshot) undoSnapshot.cells = this._copyData(result.cells);
+      }
       this._perfectArmed = this.board.countCells() > 0;
       this.piece = null;
       this.canHold = true;
@@ -1017,6 +1224,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       const base = tspin ? CONFIG.TSPIN_SCORES[Math.min(count, 3)] : CONFIG.LINE_SCORES[Math.min(count, 5)];
       if (count > 0) {
         this.combo++;
+        this._maxCombo = Math.max(this._maxCombo, this.combo);
+        if (count === 4) this._runTetrises++;
         this._addScore(base * this.level * (backToBack ? CONFIG.B2B_MULTIPLIER : 1), 'clear');
         this._addScore(CONFIG.COMBO_SCORE * Math.max(0, this.combo - 1) * this.level, 'combo');
         this.b2b = difficult;
@@ -1062,6 +1271,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       if (this.mode === 'zen' && this.danger) { this._topOut(null); return; }
       if (this.mode === 'chill' && !this._turnCounted) {
         this._turnCounted = true;
+        this._updatePacing();
+        this._maybeStartTheme();
         const mystery = this._pendingMysteryEffect;
         this._pendingMysteryEffect = null;
         const forced = this._forcedSurprise;
@@ -1268,6 +1479,14 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       const previousForeshadow = this.foreshadow;
       this.director.record(type);
+      this._surprises++;
+      this._lastSurpriseAt = this.gameTime;
+      this._surpriseTimes.push(this.gameTime);
+      this._surpriseTimes = this._surpriseTimes.slice(-6);
+      if (this._oopsSnapshot && ['tiny', 'lucky', 'long', 'mirror', 'gravityShift',
+        'colorSweep', 'miniRain', 'cleanCut', 'clearSky'].includes(type)) {
+        this._oopsSnapshot.blockedReason = 'complex';
+      }
       this._syncForeshadow(previousForeshadow);
       this._emit('surprise', { type, source, history: this.director.history.slice() });
       if (details) return this._finishBoardSurprise(type, before, details);
@@ -1315,6 +1534,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       return true;
     }
     _topOut(descriptor) {
+      this._oopsSnapshot = null;
+      this._hardDropSnapshot = null;
       this.piece = null;
       this.clearRows = [];
       this._clearKind = null;
@@ -1330,7 +1551,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         this.state = 'GAME_OVER';
         this.phaseElapsed = 0;
         this.phaseDuration = 0;
-        this._emit('gameOver', { score: this.score, lines: this.lines, level: this.level, mode: this.mode });
+        this._emit('gameOver', { score: this.score, lines: this.lines, level: this.level,
+          mode: this.mode, summary: this.runStats });
         this._change();
       }
     }
@@ -1378,7 +1600,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     lock: 4, touchdown: 5, pause: 4, start: 4, slow: 5, eventStart: 5, clear: 6,
     mystery: 6, gravityShift: 6, colorSweep: 7, freeze: 5, luckyHold: 5,
     miniRain: 5, cleanCut: 7, mirror: 5, clearSky: 7,
-    levelUp: 6, bomb: 7, emergency: 7, gameOver: 8, perfectClear: 9 });
+    levelUp: 6, bomb: 7, emergency: 7, gameOver: 8, perfectClear: 9, oops: 10 });
   const INTENSITY = Object.freeze({ low: .58, normal: 1, arcade: 1.16 });
   const MAX_VOICES = 72;
   const MUSIC_FADE_SECONDS = .55;
@@ -1401,6 +1623,10 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.menuStep = 0; this.nextMenuTime = -1;
       this.musicFades = Object.create(null); this.session = 0;
       this.lastPlan = null;
+      // Three fixed, time-limited accents share the existing game music bus.
+      this.musicLayers = { combo: { from: 0, to: 0, start: 0, end: 0 },
+        tetris: null, surprise: null };
+      this.layerPausedAt = null;
     }
 
     readSettings() {
@@ -1490,6 +1716,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       const modeChanged = nextScene === 'game' && this.gameMusicMode !== nextMode;
       const activeChanged = this.active !== Boolean(active);
       if (!changed && !modeChanged && !activeChanged) return;
+      if (nextScene === 'menu' || modeChanged) this.clearMusicLayers();
+      else if (activeChanged) this.setLayerPlayback(Boolean(active));
       this.scene = nextScene; this.active = Boolean(active);
       if (nextScene === 'game') {
         this.mode = nextMode;
@@ -1525,7 +1753,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       this.smoothGain(this.sfxGain, this.sfxLevel());
       if (!this.settings.musicOn) {
-        this.stopVoices('music'); this.stopVoices('menu');
+        this.stopVoices('music'); this.stopVoices('menu'); this.stopVoices('layer');
         this.nextMusicTime = this.nextMenuTime = -1;
       } else if (previous && !previous.musicOn) this.nextMusicTime = this.nextMenuTime = -1;
       if (!this.settings.sfxOn) this.stopVoices('sfx');
@@ -1533,11 +1761,74 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     setActive(active) {
       const next = Boolean(active);
       if (this.active === next) return;
+      this.setLayerPlayback(next);
       this.active = next;
       this.syncMusicGains(.12);
     }
+    setLayerPlayback(active) {
+      const now = this.context ? this.context.currentTime : 0;
+      if (!active && this.scene === 'game') {
+        if (this.layerPausedAt === null) this.layerPausedAt = now;
+        return;
+      }
+      if (active && this.layerPausedAt !== null) {
+        const shift = Math.max(0, now - this.layerPausedAt);
+        const combo = this.musicLayers.combo;
+        combo.start += shift; combo.end += shift;
+        for (const name of ['tetris', 'surprise']) {
+          const layer = this.musicLayers[name];
+          if (layer) { layer.start += shift; layer.end += shift; }
+        }
+        this.layerPausedAt = null;
+      }
+    }
+    clearMusicLayers() {
+      this.stopVoices('layer');
+      this.musicLayers.combo = { from: 0, to: 0, start: 0, end: 0 };
+      this.musicLayers.tetris = this.musicLayers.surprise = null;
+      this.layerPausedAt = null;
+    }
+    comboLevel(at) {
+      const layer = this.musicLayers.combo;
+      if (at >= layer.end) return layer.to;
+      if (at <= layer.start) return layer.from;
+      return layer.from + (layer.to - layer.from) * (at - layer.start) / (layer.end - layer.start);
+    }
+    transientLevel(layer, at) {
+      if (!layer || at >= layer.end || at < layer.start) return 0;
+      const fadeIn = Math.min(1, (at - layer.start + .03) / .16);
+      const fadeOut = Math.min(1, (layer.end - at) / .85);
+      return Math.max(0, Math.min(fadeIn, fadeOut));
+    }
+    // Called from game events; repeated events refresh one slot rather than stacking voices.
+    musicEvent(name, payload = {}) {
+      if (this.destroyed) return;
+      if (name === 'oops') {
+        this.clearMusicLayers();
+        this.priorityUntil = -1; this.priorityLevel = 0;
+        this.duckUntil = -1; this.ducking = false;
+        this.syncMusicGains(.09);
+        return;
+      }
+      if (this.scene !== 'game') return;
+      const now = this.context ? this.context.currentTime : 0;
+      if (name === 'combo') {
+        const combo = Math.max(0, Math.min(12, Math.floor(Number(payload.combo) || 0)));
+        const level = combo >= 2 ? Math.min(1, .32 + (combo - 2) * .11) : 0;
+        const from = this.comboLevel(now);
+        this.musicLayers.combo = { from, to: level, start: now, end: now + (level ? .35 : .65) };
+      } else if (name === 'clear' && Number(payload.lines) >= 4) {
+        this.musicLayers.tetris = { start: now, end: now + 4.1 };
+      } else if (name === 'surprise' && this.mode === 'chill') {
+        const type = String(payload.type || '').toLowerCase();
+        this.musicLayers.surprise = { type: /freeze|slow|calm/.test(type) ? 'air'
+          : /gravity|long|night/.test(type) ? 'pulse'
+            : /lucky|tiny|party|clear|color/.test(type) ? 'bright' : 'soft',
+          start: now, end: now + 3.25 };
+      }
+    }
     resetSession(mode) {
-      this.session++; this.stopVoices('sfx');
+      this.session++; this.stopVoices('sfx'); this.clearMusicLayers();
       this.mode = this.modeName(mode); this.active = false;
       if (String(mode).toLowerCase() !== 'menu') {
         this.step = 0; this.nextMusicTime = -1;
@@ -1621,6 +1912,35 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         this.tone(pitch, at, eighth * .85, relaxed ? 'sine' : 'triangle',
           zen ? .06 : relaxed ? .073 : .095, 'music', null, zen ? .02 : .009);
       }
+      if (this.active && this.scene === 'game') this.scheduleMusicLayers(beat, chord, at, eighth);
+    }
+    scheduleMusicLayers(beat, chord, at, eighth) {
+      const combo = this.comboLevel(at);
+      if (combo > .02) {
+        if (beat === 0 || beat === 4)
+          this.tone(chord[0] + 24, at, eighth * .42, 'triangle', .065 * combo, 'layer');
+        if (beat === 2 || beat === 6)
+          this.tone(chord[2] + 12, at, eighth * .68, 'sine', .08 * combo, 'layer');
+      }
+      const tetris = this.transientLevel(this.musicLayers.tetris, at);
+      if (tetris > .02) {
+        if (beat === 0 || beat === 4) {
+          this.tone(chord[1] + 12, at, eighth * 1.8, 'sine', .055 * tetris, 'layer');
+          this.tone(chord[3] + 12, at, eighth * 1.8, 'triangle', .04 * tetris, 'layer');
+        } else if (beat === 3 || beat === 7)
+          this.tone(chord[2] + 24, at, eighth * .55, 'sine', .055 * tetris, 'layer');
+      }
+      const surprise = this.musicLayers.surprise;
+      const color = this.transientLevel(surprise, at);
+      if (color > .02 && (beat === 0 || beat === 4)) {
+        const palette = surprise.type;
+        const pitch = palette === 'air' ? chord[2] + 24
+          : palette === 'pulse' ? chord[0] - 12
+            : palette === 'bright' ? chord[3] + 24 : chord[1] + 12;
+        this.tone(pitch, at, eighth * (palette === 'air' ? 2.2 : 1.15),
+          palette === 'pulse' ? 'triangle' : 'sine',
+          (palette === 'bright' ? .08 : .06) * color, 'layer');
+      }
     }
     tone(midi, at, duration, type, volume, bus = 'sfx', slideTo = null, attack = .005, priority = 0) {
       const context = this.context;
@@ -1635,7 +1955,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         envelope.gain.exponentialRampToValueAtTime(Math.max(.001, volume), start + attack);
         envelope.gain.exponentialRampToValueAtTime(Math.max(.0002, volume * .48), start + duration * .32);
         envelope.gain.exponentialRampToValueAtTime(.0001, end);
-        oscillator.connect(envelope); envelope.connect(bus === 'music' ? this.musicGain : bus === 'menu' ? this.menuGain : this.sfxGain);
+        oscillator.connect(envelope); envelope.connect(bus === 'music' || bus === 'layer' ? this.musicGain : bus === 'menu' ? this.menuGain : this.sfxGain);
         const voice = { oscillator, envelope, bus, start, end, priority, midi, session: this.session };
         this.voices.add(voice);
         oscillator.onended = () => {
@@ -1766,6 +2086,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         case 'pause':
           this.stopVoices('sfx');
           note(72, 0, .075, 'sine', .12); note(67, .07, .13, 'sine', .12); break;
+        case 'oops':
+          this.stopVoices('sfx');
+          note(84, 0, .085, 'square', .13, 72);
+          note(76, .067, .105, 'sine', .15, 81);
+          note(69, .15, .12, 'sine', .14, 76);
+          break;
         case 'levelUp': [60,64,67,72,76].forEach((p,i) => note(p,i * .07,.23,softType,.16)); break;
         case 'bomb':
           note(50,0,.25,'triangle',.23,29); note(43,.04,.23,'sawtooth',.05,26);
@@ -1823,7 +2149,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     set(key, value) { try { localStorage.setItem('retro-blocks-v1:' + key, JSON.stringify(value)); } catch (_) {} }
   };
   const Settings = {
-    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, audioIntensity: 'normal', surpriseFrequency: 'normal', crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false, focusMode: false },
+    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, audioIntensity: 'normal', surpriseFrequency: 'normal', controlFeel: 'normal', crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false, blockPattern: true, focusMode: false },
     load() {
       const saved = Storage.get('settings', {});
       if (!saved || typeof saved !== 'object') return;
@@ -1832,6 +2158,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         if (typeof this.value[key] === 'number' && Number.isFinite(saved[key])) this.value[key] = Math.max(0, Math.min(1, saved[key]));
         if (key === 'audioIntensity' && ['low', 'normal', 'arcade'].includes(saved[key])) this.value[key] = saved[key];
         if (key === 'surpriseFrequency' && ['relaxed', 'normal', 'lively'].includes(saved[key])) this.value[key] = saved[key];
+        if (key === 'controlFeel' && ['soft', 'normal', 'fast'].includes(saved[key])) this.value[key] = saved[key];
       }
     },
     save() { Storage.set('settings', this.value); },
@@ -1839,7 +2166,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       document.body.classList.toggle('no-crt', !this.value.crt);
       document.body.classList.toggle('reduced-motion', this.value.reducedMotion);
       $('gamePage').classList.toggle('focus-mode', this.value.focusMode);
-      for (const key of ['musicOn', 'sfxOn', 'crt', 'reducedMotion', 'colorAssist', 'focusMode']) $(key).checked = this.value[key];
+      for (const key of ['musicOn', 'sfxOn', 'crt', 'reducedMotion', 'colorAssist', 'blockPattern', 'focusMode']) $(key).checked = this.value[key];
       if ($('focusButton')) {
         $('focusButton').setAttribute('aria-pressed', String(this.value.focusMode));
         $('focusButton').textContent = this.value.focusMode ? '▣ FOCUS ON' : '▢ FOCUS';
@@ -1847,6 +2174,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       for (const key of ['musicVolume', 'sfxVolume']) { $(key).value = Math.round(this.value[key] * 100); $(key + 'Value').value = $(key).value + '%'; }
       $('audioIntensity').value = this.value.audioIntensity;
       $('surpriseFrequency').value = this.value.surpriseFrequency;
+      $('controlFeel').value = this.value.controlFeel;
       const muted = !this.value.musicOn && !this.value.sfxOn;
       $('muteButton').setAttribute('aria-label', muted ? '取消静音' : '静音');
       $('muteButton').title = muted ? '取消静音' : '静音';
@@ -1860,7 +2188,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const audio = new RetroAudio(() => Settings.value);
   audio.transitionTo('menu', true);
   let bestAtStart = 0, saveDirty = false, saveElapsed = 0, toastTime = 0, eventTime = 0, pausedTime = 0, startGeneration = 0;
-  let lastHudAttention = performance.now(), hudHoverCount = 0, landPulseTime = 0, forewarnClass = '';
+  let lastHudAttention = performance.now(), hudHoverCount = 0, landPulseTime = 0, oopsFlashTime = 0, forewarnClass = '';
   let uiDirty = true, overlayKey = '', previewKey = '', lastState = 'MENU';
   const pad = (n, len = 6) => String(n).padStart(len, '0');
   const text = (id, value) => { const el = $(id), s = String(value); if (el.textContent !== s) el.textContent = s; };
@@ -1881,6 +2209,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     colorSweep: ['◈', '颜色清扫', 'COLOR SWEEP', '一种颜色的方块消失'],
     miniRain: ['⋮', '方块雨', 'MINI RAIN', '单格小块落入低洼处'],
     cleanCut: ['╍', '整齐切线', 'CLEAN CUT', '切除一层并压缩棋盘']
+  });
+  const THEME_META = Object.freeze({
+    tinyParty: ['▦', '迷你派对', 'TINY PARTY', '小型辅助方块更容易出现'],
+    longNight: ['║', '长条之夜', 'LONG NIGHT', '长条与竖直辅助方块更容易出现'],
+    luckyWindow: ['✦', '幸运窗口', 'LUCKY WINDOW', '幸运惊喜更容易出现'],
+    calm: ['☾', '安静时刻', 'CALM PHASE', '稍缓一口气，按自己的节奏来']
   });
   const HIDDEN_DISCOVERIES = Object.freeze(['mirror', 'clearSky', 'gravityShift', 'colorSweep', 'luckyHold', 'miniRain', 'cleanCut']);
   const storedDiscoveries = Storage.get('discoveries', []);
@@ -1943,7 +2277,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     $('eventCard').classList.remove('leaving'); $('mobileEventCard').classList.remove('leaving');
   }
   function showEventCard(type) {
-    const entry = SURPRISE_META[type]; if (!entry) return;
+    const entry = SURPRISE_META[type] || THEME_META[type]; if (!entry) return;
     text('eventCardIcon', entry[0]); text('eventCardChinese', entry[1]);
     text('eventCardEnglish', entry[2]); text('eventCardDescription', entry[3]);
     text('mobileEventCardIcon', entry[0]); text('mobileEventCardChinese', entry[1]); text('mobileEventCardEnglish', entry[2]);
@@ -2029,7 +2363,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       if (!Array.isArray(data.before) || !Array.isArray(data.after) || Settings.value.reducedMotion) return;
       this.current = { kind, before: data.before, after: data.after,
         moves: data.moves || [], removed: data.removed || [], elapsed: 0,
-        duration: kind === 'miniRain' ? 520 : kind === 'colorSweep' ? 440 : 390 };
+        duration: kind === 'miniRain' ? 520 : kind === 'colorSweep' ? 440 : kind === 'oops' ? 320 : 390 };
     },
     clear() { this.current = null; },
     update(dt) {
@@ -2065,6 +2399,31 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       ctx.restore();
     }
   };
+  const dropTrail = {
+    cells: [], distance: 0, remaining: 0, duration: 170,
+    clear() { this.cells = []; this.distance = 0; this.remaining = 0; },
+    start(cells, distance) {
+      if (Settings.value.reducedMotion || matchMedia('(prefers-reduced-motion: reduce)').matches || !distance) return;
+      this.cells = cells.map(cell => ({ ...cell })); this.distance = distance; this.remaining = this.duration;
+    },
+    update(dt) { if (this.remaining > 0) this.remaining = Math.max(0, this.remaining - dt); },
+    draw(ctx, size) {
+      if (!this.remaining || Settings.value.reducedMotion || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const life = this.remaining / this.duration;
+      ctx.save();
+      for (let echo = 1; echo <= 3; echo++) {
+        const offset = this.distance * (1 - echo / 4);
+        ctx.globalAlpha = life * (.06 + echo * .035);
+        for (const cell of this.cells) {
+          const y = cell.y - offset; if (y < 0) continue;
+          ctx.fillStyle = COLORS[cell.type] || '#c8f789';
+          ctx.fillRect(cell.x * size + size * .25, y * size + size * .25, size * .5, size * .5);
+        }
+      }
+      ctx.restore();
+    },
+    snapshot() { return { distance: this.distance, remaining: this.remaining, count: this.cells.length }; }
+  };
   function restoreHud() {
     lastHudAttention = performance.now();
     $('gamePage').classList.remove('hud-dimmed');
@@ -2082,12 +2441,16 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const game = new Game((name, data) => {
     uiDirty = true;
     if (!['change', 'score', 'toast', 'reward', 'hardDrop', 'start', 'surprise', 'foreshadow', 'foreshadowEnd'].includes(name)) audio.play(name, data);
-    if (name === 'lock') pulseBoard(Boolean(data.hardDrop));
+    if (name === 'lock') {
+      pulseBoard(Boolean(data.hardDrop));
+      if (!data.lines) audio.musicEvent('combo', { combo: 0 });
+    }
     if (name === 'start') {
       particles.clear(); recentSurprises.length = 0; renderRecentSurprises(); hideEventCard();
       eventText('FIND YOUR FLOW.', '每一块，都有它的位置。'); toastTime = 0; $('toast').hidden = true;
     }
     if (name === 'surprise') {
+      audio.musicEvent('surprise', { type: data.type });
       showEventCard(data.type);
       recentSurprises.unshift(data.type);
       if (recentSurprises.length > 3) recentSurprises.length = 3;
@@ -2096,6 +2459,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     if (name === 'score' && game.score > best[game.mode]) { best[game.mode] = game.score; saveDirty = true; }
     if (name === 'clear') {
+      audio.musicEvent('combo', { combo: data.combo });
+      audio.musicEvent('clear', { lines: data.lines });
       const cells = [];
       for (const y of data.rows || []) for (let x = 0; x < CONFIG.COLS; x++) if (game.board.grid[y][x]) cells.push({ x, y, type: game.board.grid[y][x] });
       particles.burst(cells, data.lines === 4 || data.tspin);
@@ -2104,7 +2469,27 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       const rank = data.combo >= 2 ? ranks[Math.min(8, data.combo)] : '';
       eventText(data.label, [data.b2b ? 'BACK TO BACK' : '', combo, rank].filter(Boolean).join(' · '));
     }
-    if (name === 'hardDrop') { particles.pulse = 120; particles.dropCells = data.cells; input.clear(); }
+    if (name === 'hardDrop') { particles.pulse = 120; particles.dropCells = data.cells; dropTrail.start(data.cells, data.distance); input.clear(); }
+    if (name === 'oops') {
+      audio.musicEvent('oops');
+      audio.musicEvent('combo', { combo: game.combo });
+      particles.clear(); boardFx.clear(); boardFx.start('oops', data); dropTrail.clear(); previewKey = '';
+      best[game.mode] = Math.max(bestAtStart, game.score); saveDirty = true;
+      $('boardFrame').classList.remove('land-pulse', 'hard-pulse');
+      if (!Settings.value.reducedMotion && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        $('boardFrame').classList.remove('oops-flash');
+        void $('boardFrame').offsetWidth;
+        $('boardFrame').classList.add('oops-flash');
+        oopsFlashTime = data.duration || 320;
+      }
+      eventText('OOPS · REWIND', '撤回上一步，重新摆放。');
+    }
+    if (name === 'phaseStart') {
+      audio.musicEvent('surprise', { type: data.type });
+      showEventCard(data.type);
+      eventText(data.label, '主题阶段开始');
+    }
+    if (name === 'phaseEnd') eventText('PHASE ENDED', '回到平常节奏。');
     if (name === 'mystery') eventText('MYSTERY REVEALED', '效果：' + ({ bomb:'炸弹', line:'清除一行', slow:'慢速', freeze:'冻结重力', luckyHold:'幸运暂存', gravityShift:'重力转移', colorSweep:'颜色清扫', miniRain:'单格雨', cleanCut:'整齐切线', clearSky:'清空危险区' }[data.effect] || data.effect));
     const boardNames = { gravityShift: 'GRAVITY SHIFT', colorSweep: 'COLOR SWEEP', miniRain: 'MINI RAIN', cleanCut: 'CLEAN CUT', mirror: 'MIRROR', clearSky: 'CLEAR SKY' };
     if (boardNames[name]) {
@@ -2137,12 +2522,19 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     if (name === 'gameOver') { particles.clear(); hideEventCard(); }
   });
   game.setSurpriseFrequency(Settings.value.surpriseFrequency);
+  const CONTROL_FEEL = Object.freeze({
+    soft: Object.freeze({ das: 215, arr: 72, softDrop: 72 }),
+    normal: Object.freeze({ das: CONFIG.DAS, arr: CONFIG.ARR, softDrop: CONFIG.SOFT_DROP_INTERVAL }),
+    fast: Object.freeze({ das: 105, arr: 24, softDrop: 26 })
+  });
   class Input {
     constructor() { this.held = new Map(); this.order = 0; }
     clear() { this.held.clear(); }
+    profile() { return CONTROL_FEEL[Settings.value.controlFeel]; }
     press(action, source) {
       if (game.state !== 'PLAYING' || this.held.has(source)) return;
-      if (['left', 'right', 'down'].includes(action)) this.held.set(source, { action, elapsed: 0, next: action === 'down' ? CONFIG.SOFT_DROP_INTERVAL : CONFIG.DAS, order: ++this.order });
+      const feel = this.profile();
+      if (['left', 'right', 'down'].includes(action)) this.held.set(source, { action, elapsed: 0, next: action === 'down' ? feel.softDrop : feel.das, order: ++this.order });
       this.perform(action);
     }
     perform(action) {
@@ -2157,12 +2549,13 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     release(source) { this.held.delete(source); }
     update(dt) {
       if (game.state !== 'PLAYING') return;
+      const feel = this.profile();
       let latest = null;
       for (const item of this.held.values()) if (item.action !== 'down' && (!latest || item.order > latest.order)) latest = item;
       for (const item of this.held.values()) {
         if (item.action !== 'down' && item !== latest) continue;
         item.elapsed += dt;
-        while (item.elapsed >= item.next && game.state === 'PLAYING') { this.perform(item.action); item.next += item.action === 'down' ? CONFIG.SOFT_DROP_INTERVAL : CONFIG.ARR; }
+        while (item.elapsed >= item.next && game.state === 'PLAYING') { this.perform(item.action); item.next += item.action === 'down' ? feel.softDrop : feel.arr; }
       }
     }
   }
@@ -2177,9 +2570,23 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     if (game.state === 'PAUSED') { audio.init(); game.resume(); }
     else game.pause();
   }
+  function useOops() {
+    if (game.useOops()) { input.clear(); syncUI(); return true; }
+    if (game.mode === 'chill' && !['MENU', 'GAME_OVER'].includes(game.state)) {
+      notice('OOPS UNAVAILABLE', game.oopsReason === 'complex' ? '复杂连锁已完成，无法安全撤回。' :
+        game.oopsReason === 'used' ? '本局撤回次数已用完。' : '先落下一块，再试一次。', 1800);
+    }
+    return false;
+  }
   document.addEventListener('keydown', e => {
     if (e.ctrlKey || e.altKey || e.metaKey || hasDialog()) return;
     if (game.state === 'MENU') return;
+    if (game.state === 'GAME_OVER' && e.code === 'Space') {
+      e.preventDefault(); if (!e.repeat) start(game.mode); return;
+    }
+    if (e.code === 'KeyU') {
+      e.preventDefault(); if (!e.repeat) useOops(); return;
+    }
     const action = keyActions[e.code] || bracketActions[e.key];
     const targetIsControl = e.target instanceof HTMLElement && e.target.closest('button');
     if (e.code === 'Space' && targetIsControl) return;
@@ -2205,20 +2612,22 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   }, { capture: true });
   function start(mode) {
     document.querySelectorAll('dialog[open]').forEach(d => d.close());
-    saveBest(); bestAtStart = best[mode]; input.clear(); boardFx.clear(); previewKey = ''; overlayKey = '';
-    restoreHud(); landPulseTime = 0; $('boardFrame').classList.remove('land-pulse', 'hard-pulse');
+    saveBest(); bestAtStart = best[mode]; input.clear(); boardFx.clear(); dropTrail.clear(); previewKey = ''; overlayKey = '';
+    restoreHud(); landPulseTime = 0; oopsFlashTime = 0; $('boardFrame').classList.remove('land-pulse', 'hard-pulse', 'oops-flash');
     audio.resetSession(mode); audio.transitionTo(mode, true); const generation = ++startGeneration;
     game.start(mode); audio.init().then(() => { if (generation === startGeneration && game.state === 'COUNTDOWN') audio.play('start'); });
     $('home').hidden = true; $('gamePage').hidden = false;
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     window.scrollTo({ top: 0, behavior: 'auto' }); resizeAll(); syncUI();
   }
-  function mainMenu() { saveBest(); input.clear(); particles.clear(); boardFx.clear(); recentSurprises.length = 0; renderRecentSurprises(); hideEventCard(); ++startGeneration; audio.resetSession('menu'); audio.transitionTo('menu', true); game.menu(); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; restoreHud(); drawTitle(); drawAttract(); syncUI(); }
+  function mainMenu() { saveBest(); input.clear(); particles.clear(); boardFx.clear(); dropTrail.clear(); oopsFlashTime = 0; $('boardFrame').classList.remove('oops-flash'); recentSurprises.length = 0; renderRecentSurprises(); hideEventCard(); ++startGeneration; audio.resetSession('menu'); audio.transitionTo('menu', true); game.menu(); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; restoreHud(); drawTitle(); drawAttract(); syncUI(); }
   $('chillStart').addEventListener('click', () => start('chill'));
   $('classicStart').addEventListener('click', () => start('classic'));
   $('zenStart').addEventListener('click', () => start('zen'));
   $('pauseButton').addEventListener('click', togglePause);
   $('restartButton').addEventListener('click', () => start(game.mode));
+  $('oopsButton').addEventListener('click', useOops);
+  $('mobileOopsButton').addEventListener('click', useOops);
   $('focusButton')?.addEventListener('click', () => {
     Settings.value.focusMode = !Settings.value.focusMode;
     Settings.save(); Settings.apply(); restoreHud(); resizeAll();
@@ -2237,8 +2646,9 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     dialog.addEventListener('close', restoreHud);
   });
   for (const key of Object.keys(Settings.value)) $(key).addEventListener('input', () => {
-    Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked : ['audioIntensity', 'surpriseFrequency'].includes(key) ? $(key).value : Number($(key).value) / 100;
+    Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked : ['audioIntensity', 'surpriseFrequency', 'controlFeel'].includes(key) ? $(key).value : Number($(key).value) / 100;
     if (key === 'surpriseFrequency') game.setSurpriseFrequency(Settings.value.surpriseFrequency);
+    if (key === 'controlFeel') input.clear();
     Settings.save(); Settings.apply(); audio.applySettings(); previewKey = ''; drawAttract(); uiDirty = true;
     if (key === 'focusMode') { restoreHud(); resizeAll(); }
   });
@@ -2269,6 +2679,30 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     ctx.fillStyle = '#ffffff65'; ctx.fillRect(x, y, size, edge); ctx.fillRect(x, y + edge, edge, size - edge);
     ctx.fillStyle = '#10122855'; ctx.fillRect(x, y + size - edge, size, edge); ctx.fillRect(x + size - edge, y + edge, edge, size - edge);
     const gradient = ctx.createLinearGradient(x, y, x + size, y + size); gradient.addColorStop(0, '#ffffff16'); gradient.addColorStop(1, '#00000017'); ctx.fillStyle = gradient; ctx.fillRect(x + edge, y + edge, size - edge * 2, size - edge * 2);
+    if (Settings.value.blockPattern && s >= 14) {
+      const cx = x + size / 2, cy = y + size / 2, p = size * .17;
+      ctx.save(); ctx.strokeStyle = '#17203a78'; ctx.fillStyle = '#17203a78';
+      ctx.lineWidth = Math.max(1, s * .045); ctx.lineCap = 'square'; ctx.beginPath();
+      if (['I', 'I2', 'I3', 'I5'].includes(type)) {
+        ctx.moveTo(cx - p, cy - p / 2); ctx.lineTo(cx + p, cy - p / 2);
+        ctx.moveTo(cx - p, cy + p / 2); ctx.lineTo(cx + p, cy + p / 2);
+      } else if (type === 'O') {
+        for (const dx of [-p, p]) for (const dy of [-p, p]) ctx.fillRect(cx + dx - 1, cy + dy - 1, 2, 2);
+      } else if (type === 'T' || type === 'T3') {
+        ctx.moveTo(cx - p, cy - p / 2); ctx.lineTo(cx + p, cy - p / 2);
+        ctx.moveTo(cx, cy - p / 2); ctx.lineTo(cx, cy + p);
+      } else if (type === 'S' || type === 'Z') {
+        const sign = type === 'S' ? 1 : -1;
+        ctx.moveTo(cx - p, cy + sign * p); ctx.lineTo(cx + p, cy - sign * p);
+      } else if (type === 'J' || type === 'L' || type === 'L3') {
+        const sign = type === 'J' ? -1 : 1;
+        ctx.moveTo(cx + sign * p, cy - p); ctx.lineTo(cx + sign * p, cy + p);
+        ctx.lineTo(cx - sign * p, cy + p);
+      } else if (type === 'V5') {
+        ctx.moveTo(cx - p, cy - p); ctx.lineTo(cx, cy + p); ctx.lineTo(cx + p, cy - p);
+      } else ctx.fillRect(cx - 1.5, cy - 1.5, 3, 3);
+      ctx.stroke(); ctx.restore();
+    }
     if (Settings.value.colorAssist) {
       ctx.save(); ctx.translate(x + size / 2, y + size / 2); const p = size * .18;
       ctx.strokeStyle = '#17203ab0'; ctx.fillStyle = '#17203ab0'; ctx.lineWidth = Math.max(1, s * .055); ctx.beginPath();
@@ -2330,6 +2764,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     const m = fit($('boardCanvas')); if (!m) return;
     const { ctx, width, height } = m, size = width / CONFIG.COLS;
     grid(ctx, width, height, CONFIG.COLS, CONFIG.ROWS);
+    dropTrail.draw(ctx, size);
     const clearing = game.state === 'CLEARING' || (game.state === 'PAUSED' && game._resumeState === 'CLEARING');
     const progress = clearing ? Math.min(1, game.phaseElapsed / game.phaseDuration) : 0;
     for (let y = 0; y < CONFIG.ROWS; y++) for (let x = 0; x < CONFIG.COLS; x++) {
@@ -2459,13 +2894,41 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const attract = new AttractScene();
   function drawAttract() { attract.draw(); }
   systemReducedMotion.addEventListener?.('change', drawAttract);
+  const statusItem = (label, value) => '<div><dt>' + label + '</dt><dd>' + value + '</dd></div>';
   function overlay() {
     const state = game.state, key = state + (state === 'COUNTDOWN' ? game.countdownText : '') + (state === 'GAME_OVER' ? game.score : '');
     if (key === overlayKey) return; overlayKey = key;
     const el = $('overlay'); el.hidden = !['COUNTDOWN','PAUSED','GAME_OVER','EMERGENCY'].includes(state); el.className = 'board-overlay' + (state === 'COUNTDOWN' ? ' countdown' : '');
     if (state === 'COUNTDOWN') el.innerHTML = '<div class="overlay-overline">MAKE YOURSELF AT HOME.</div><h2 class="overlay-title">' + game.countdownText + '</h2>';
-    else if (state === 'PAUSED') el.innerHTML = '<div class="overlay-overline">A MOMENT OF QUIET.</div><h2 class="overlay-title">PAUSED</h2><p class="overlay-desc" id="pauseMessage">PRESS P TO CONTINUE<br>慢慢来，方块会等你。</p><div class="overlay-actions"><button class="primary-button" data-action="resume">▶ RESUME</button>' + (game.mode === 'chill' ? '<button class="secondary-button" data-action="guide">? SPECIAL GUIDE</button>' : '') + '<button class="secondary-button" data-action="restart">↻ RESTART</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
-    else if (state === 'GAME_OVER') el.innerHTML = '<div class="overlay-overline">THAT WAS A GOOD BREAK.</div><h2 class="overlay-title">GAME<br>OVER</h2>' + (game.score > bestAtStart ? '<p class="new-best">★ NEW HIGH SCORE!</p>' : '') + '<dl class="result-grid"><div><dt>SCORE</dt><dd>' + pad(game.score) + '</dd></div><div><dt>BEST</dt><dd>' + pad(best[game.mode]) + '</dd></div><div><dt>LINES</dt><dd>' + pad(game.lines,2) + '</dd></div><div><dt>LEVEL</dt><dd>' + pad(game.level,2) + '</dd></div></dl><div class="overlay-actions"><button class="primary-button" data-action="restart">↻ PLAY AGAIN</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
+    else if (state === 'PAUSED') {
+      const status = [
+        statusItem('FREEZE', game.freezeRemaining > 0 ? (game.freezeRemaining / 1000).toFixed(1) + 's' : '—'),
+        statusItem('SLOW TIME', game.slowRemaining > 0 ? (game.slowRemaining / 1000).toFixed(1) + 's' : '—'),
+        statusItem('LUCKY HOLD', game.luckyHoldActive ? 'READY' : '—'),
+        statusItem('EMERGENCY CLEAR', game.mode === 'chill' ? game.reviveUsed ? 'USED' : 'AVAILABLE' : '—'),
+        statusItem('OOPS TOKEN', game.mode === 'chill' ? String(game.oopsRemaining) : '—'),
+        statusItem('SURPRISE FREQUENCY', game.mode === 'chill' ? game.surpriseFrequency.toUpperCase() : '—')
+      ].join('');
+      el.innerHTML = '<div class="overlay-overline">A MOMENT OF QUIET.</div><h2 class="overlay-title">PAUSED</h2>' +
+        '<p class="overlay-desc" id="pauseMessage">PRESS P TO CONTINUE<br>慢慢来，方块会等你。</p>' +
+        '<section id="pauseStatus"><h3>CURRENT STATUS</h3><dl>' + status + '</dl></section>' +
+        '<div class="overlay-actions"><button class="primary-button" data-action="resume">▶ RESUME</button>' +
+        (game.mode === 'chill' ? '<button class="secondary-button" data-action="guide">? SPECIAL GUIDE</button>' : '') +
+        '<button class="secondary-button" data-action="restart">↻ RESTART</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
+    } else if (state === 'GAME_OVER') {
+      const stats = game.runStats;
+      const summary = [
+        statusItem('SCORE', pad(game.score)), statusItem('LINES', pad(game.lines, 2)),
+        statusItem('LEVEL', pad(game.level, 2)), statusItem('TETRIS', stats.tetrises),
+        statusItem('MAX COMBO', '×' + stats.maxCombo), statusItem('PERFECT CLEAR', stats.perfectClears),
+        statusItem('SURPRISES', stats.surprises), statusItem('OOPS', game.mode === 'chill' ? stats.oopsUsed + ' / 1' : '—')
+      ].join('');
+      el.innerHTML = '<div class="overlay-overline">THAT WAS A GOOD BREAK.</div><h2 class="overlay-title">GAME<br>OVER</h2>' +
+        (game.score > bestAtStart ? '<p class="new-best">★ NEW HIGH SCORE!</p>' : '') +
+        '<section id="runSummary"><h3>RUN SUMMARY</h3><dl class="result-grid">' + summary + '</dl></section>' +
+        '<p class="retry-hint">SPACE TO RETRY</p><div class="overlay-actions"><button class="primary-button" data-action="restart">↻ PLAY AGAIN</button>' +
+        '<button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
+    }
     else if (state === 'EMERGENCY') el.innerHTML = game.mode === 'zen'
       ? '<div class="overlay-overline">∞ FREE PLAY</div><h2 class="overlay-title">CLEAR SKY</h2><p class="overlay-desc">自动清理 · 继续摆放</p>'
       : '<div class="overlay-overline">ONE MORE CHANCE.</div><h2 class="overlay-title">EMERGENCY<br>CLEAR!</h2><p class="overlay-desc">危险区域已清理。</p>';
@@ -2489,6 +2952,17 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     $('pauseButton').disabled = ['MENU','GAME_OVER'].includes(game.state);
     $('holdBox').classList.toggle('unavailable', !game.canHold);
     $('reviveBox').hidden = game.mode !== 'chill'; $('itemCaption').hidden = game.mode !== 'chill'; $('classicCaption').hidden = game.mode !== 'classic';
+    const showOops = game.mode === 'chill' && game.state !== 'MENU';
+    const blockedOops = game.oopsReason === 'complex';
+    for (const id of ['oopsButton', 'mobileOopsButton']) {
+      const button = $(id);
+      button.hidden = !showOops;
+      button.disabled = !game.oopsAvailable;
+      button.classList.toggle('unavailable', blockedOops);
+      button.title = blockedOops ? 'OOPS UNAVAILABLE：复杂事件完成后无法撤回' : game.oopsReason === 'used' ? '本局撤回机会已用完' : '撤回上一个落下的方块';
+    }
+    text('oopsCount', game.oopsRemaining);
+    text('mobileOopsCount', game.oopsRemaining);
     $('recentSurprisesPanel').hidden = game.mode !== 'chill' || game.state === 'MENU';
     $('mobileSurpriseArea').hidden = game.mode !== 'chill' || game.state === 'MENU';
     $('zenNote').hidden = !zen;
@@ -2498,9 +2972,16 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     const eventStatus = activeEvent ? activeEvent.label + ' · ' + activeEvent.remaining + ' BLOCKS' : '';
     text('eventStatus', eventStatus); text('mobileEventStatus', eventStatus);
     const reviveKey = String(game.reviveUsed); if ($('reviveBox').dataset.used !== reviveKey) { $('reviveBox').dataset.used = reviveKey; $('reviveBox').innerHTML = game.reviveUsed ? '♡ REVIVE USED<small>这一次，靠你自己啦。</small>' : '♡ ONE MORE CHANCE<small>触顶时自动清理一次</small>'; $('reviveBox').style.color = game.reviveUsed ? '#928799' : ''; }
-    const queue = game.queue.preview(4), nextKey = queue.join('|') + JSON.stringify(game.holdPiece) + Settings.value.colorAssist;
+    const queue = game.queue.preview(4), nextKey = queue.join('|') + JSON.stringify(game.holdPiece) + Settings.value.colorAssist + Settings.value.blockPattern;
     if (previewKey !== nextKey) { previewKey = nextKey; drawPreview($('holdCanvas'), game.holdPiece); document.querySelectorAll('.nextCanvas').forEach((canvas, i) => drawPreview(canvas, queue[i])); }
     overlay(); uiDirty = false;
+  }
+  function updateThemeStatus() {
+    const phase = game.mode === 'chill' && game.state !== 'MENU' ? game.themePhase : null;
+    for (const id of ['themeStatus', 'mobileThemeStatus']) {
+      $(id).hidden = !phase;
+      if (phase) text(id, phase.label + ' · ' + Math.ceil(phase.remainingMs / 1000) + 's');
+    }
   }
   function resizeAll() { previewKey = ''; drawTitle(); drawAttract(); if (game.state !== 'MENU') { syncUI(); drawBoard(); } }
   const observer = new ResizeObserver(resizeAll);
@@ -2540,7 +3021,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       landPulseTime -= dt;
       if (landPulseTime <= 0) $('boardFrame').classList.remove('land-pulse', 'hard-pulse');
     }
+    if (oopsFlashTime > 0) {
+      oopsFlashTime -= dt;
+      if (oopsFlashTime <= 0) $('boardFrame').classList.remove('oops-flash');
+    }
     if (game.state !== lastState) { input.clear(); lastState = game.state; uiDirty = true; }
+    dropTrail.update(dt);
     if (active) { particles.update(dt); boardFx.update(dt); if (eventTime > 0) { eventTime -= dt; if (eventTime <= 0) eventText('FIND YOUR FLOW.', game.mode === 'chill' ? '慢慢来，也很精彩。' : 'KEEP THE RHYTHM.'); } }
     if (game.state === 'PAUSED') { pausedTime += dt; if (pausedTime >= 20000 && $('pauseMessage')) text('pauseMessage', 'TAKE YOUR TIME. 方块会等你。'); }
     if (toastTime > 0 && game.state !== 'PAUSED') { toastTime -= dt; if (toastTime <= 0) $('toast').hidden = true; }
@@ -2551,6 +3037,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     saveElapsed += dt; if (saveElapsed >= 1000) { saveElapsed = 0; saveBest(); }
     if (uiDirty) syncUI();
+    updateThemeStatus();
     const powers = [];
     if (game.slowRemaining > 0) powers.push('◷ SLOW ' + Math.ceil(game.slowRemaining / 1000) + 's');
     if (game.freezeRemaining > 0) powers.push('❄ FREEZE ' + Math.ceil(game.freezeRemaining / 1000) + 's');
@@ -2564,7 +3051,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   }
   renderGuide(); drawTitle(); drawAttract(); syncUI(); requestAnimationFrame(frame);
   // The only stateful loop is frame(); this read-only container also enables local verification.
-  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles, boardFx, attract,
+  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles, boardFx, dropTrail, attract,
     discoveries: Object.freeze({ has: type => discoveries.has(type), list: () => [...discoveries] }), recentSurprises: () => recentSurprises.slice() }), writable: false });
 })();
 
