@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#171722">
-<title>RETRO BLOCKS v1.1 · Take a little break</title>
+<title>RETRO BLOCKS v1.3 · Take a little break</title>
 <style>
 :root{color-scheme:dark;--bg:#171722;--surface:#20202e;--line:#41404f;--muted:#aba7b9;--white:#f6f0db;--mint:#c8f789;--purple:#af90eb;--pink:#f298af;--board:#11121e;--font:Consolas,"Lucida Console","Courier New",monospace}
 *{box-sizing:border-box}html{min-width:280px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);font-size:14px;min-height:100vh;background-image:radial-gradient(ellipse at 80% 20%,#35304b45,transparent 56%)}button,input{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}button{border-radius:0}button:hover{filter:brightness(1.12)}button:active{transform:translateY(2px)}[hidden]{display:none!important}canvas{display:block}body::after{content:"";pointer-events:none;position:fixed;inset:0;z-index:30;background:repeating-linear-gradient(0deg,transparent,transparent 3px,#0000000e 3px,#0000000e 4px);opacity:.5}body.no-crt::after{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -25,12 +25,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 @media(pointer:coarse) and (min-width:601px){.rotation-controls{display:none}.game-layout{--board-w:min(35vw,300px,calc((100dvh - 340px)/2))}}
 @media(max-width:600px) and (max-height:650px){.next-list canvas{height:38px}.left-panel{padding-top:164px}.hold-box canvas{height:46px}.left-bottom{margin-top:10px}}
 @media(min-width:601px){.right-panel .score-instrument{margin-bottom:18px}.right-panel .metrics{padding:10px 0;margin:12px 0}.right-panel .next-list canvas{height:clamp(36px,calc(var(--board-w) * .15),48px)}.right-panel .instrument{margin-bottom:14px}.right-panel .game-event{margin-top:12px;min-height:38px}.right-panel .slow-status{margin-top:6px}.right-panel .event-status{margin-top:6px}}
+.audio-intensity{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:6px 0 20px;font-size:12px}.audio-intensity small{display:block;color:#9c92a9;font-size:10px;line-height:1.6;margin-top:5px}.audio-intensity select{appearance:none;min-width:138px;padding:10px 22px 10px 11px;background:#171522;color:#e9dfea;border:1px solid #776584;cursor:pointer;font-size:11px;letter-spacing:1px}.audio-intensity select:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.guide-link{display:flex;align-items:center;gap:9px;margin:-3px 0 16px;padding:5px 1px;background:transparent;border:0;border-bottom:1px solid #8a77a1;color:#d1bee8;font-size:10px;letter-spacing:.8px}.guide-link span{display:grid;place-items:center;width:18px;height:18px;border:1px solid currentColor;border-radius:50%;font-weight:bold}.guide-link:hover{color:var(--mint)}.guide-dialog{max-width:820px;width:calc(100% - 28px);max-height:90dvh}.guide-dialog .dialog-header{position:sticky;top:0;z-index:2;background:#23202e}.guide-dialog .icon-button{width:44px;height:44px}.guide-body{padding:6px 24px 18px;max-height:calc(90dvh - 150px);overflow-y:auto;overscroll-behavior:contain}.guide-intro{color:#b7acc3;font-size:11px;line-height:1.8;margin:15px 0 24px}.guide-section{margin:0 0 25px}.guide-section h3{margin:0 0 12px;padding-bottom:9px;border-bottom:1px solid #55485e;color:var(--purple);font-size:11px;letter-spacing:1.5px}.guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.guide-card{display:flex;align-items:center;gap:11px;min-width:0;padding:11px;background:#1a1926;border:1px solid #51485d}.guide-icon{display:grid;place-items:center;flex:0 0 53px;width:53px;height:48px;background:#282537;border:1px solid #5c5269;color:var(--mint);font-size:24px;font-weight:bold;text-shadow:2px 2px #111}.guide-piece{flex:0 0 53px;width:53px;height:48px;background:#282537;border:1px solid #5c5269}.guide-card b{display:block;color:#f2e9f5;font-size:10px;letter-spacing:.5px;line-height:1.4}.guide-card p{margin:4px 0 0;color:#b4a9c0;font-size:10px;line-height:1.55;overflow-wrap:anywhere}.guide-footer{display:flex;justify-content:flex-end;border-top:1px solid #51485d;padding:13px 24px;background:#23202e}.guide-footer button{min-height:44px;padding:9px 15px;background:#2e293b;border:1px solid #796a87;color:var(--white);font-size:11px}.buff-status{color:#91e1e3;line-height:1.5;white-space:normal;min-height:18px;height:auto}.board-frame.freeze{border-color:#a4d8ee;box-shadow:0 0 0 3px #10111b,0 0 20px #97dfff44}.board-frame.lucky{border-color:#e0c87a}.guide-dialog :focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+@media(max-width:600px){.guide-link{margin:-3px 0 14px}.guide-dialog{width:calc(100% - 20px);max-height:94dvh}.guide-body{padding:3px 16px 16px;max-height:calc(94dvh - 130px)}.guide-grid{grid-template-columns:1fr}.guide-card{padding:9px}.guide-card b{font-size:11px}.guide-card p{font-size:11px;line-height:1.6}.guide-intro{font-size:12px}.guide-dialog .dialog-header{padding:12px 16px}.guide-dialog .dialog-header h2{font-size:14px}.guide-footer{padding:9px 16px}.mobile-feedback{flex-wrap:wrap}.mobile-feedback span{overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
 <header class="topbar">
   <button class="brand" id="brandButton" aria-label="返回主菜单"><span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>RETRO BLOCKS</button>
-  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.1</span><div class="header-actions">
+  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.3</span><div class="header-actions">
   <button id="muteButton" class="icon-button" aria-label="静音" title="静音"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="soundWaves" d="M15 8q5 4 0 8M18 5q8 7 0 14"/></svg></button>
   <button class="icon-button" data-dialog="settingsDialog" aria-label="设置" title="设置"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6M16 9v6M10 15v6"/></svg></button>
   </div></div>
@@ -41,7 +44,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   <h1 class="hero-title"><span class="sr-only">RETRO BLOCKS</span><canvas id="titleCanvas" width="490" height="176" aria-hidden="true"></canvas></h1>
   <p class="hero-copy">TAKE A BREAK.<br><span class="faded">CLEAR YOUR MIND.</span><br>CLEAR SOME LINES.</p>
   <p class="chinese-copy">把杂念放一边，让方块各就各位。</p>
-  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">A LITTLE LUCK</span><small>辅助方块、随机惊喜，还有一次续命。</small></span><span class="arrow">↗</span></button>
+  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">A LITTLE LUCK</span><small>辅助方块、神秘方块、轮换惊喜与一次续命。</small></span><span class="arrow">↗</span></button>
+  <button id="chillGuideButton" class="guide-link" data-dialog="guideDialog"><span aria-hidden="true">?</span>SPECIAL GUIDE · 查看特殊内容</button>
   <button id="classicStart" class="mode-button secondary"><span><b>CLASSIC MODE</b><small>熟悉的七种方块，纯粹的消行快乐。</small></span><span class="arrow">→</span></button>
   <button id="zenStart" class="mode-button zen"><span><b>ZEN MODE</b><span class="mini-tag">NO GAME OVER</span><small>恒定慢速，自动清理。想玩多久，就玩多久。</small></span><span class="arrow">∞</span></button>
   <div class="text-actions"><button class="text-button" data-dialog="helpDialog"><span>?</span>HOW TO PLAY</button><button class="text-button" data-dialog="settingsDialog"><span>+</span>SETTINGS</button></div>
@@ -52,12 +56,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 <main id="gamePage" class="game-page" hidden>
   <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="danger-badge" id="dangerBadge" hidden>DANGER</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
   <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div class="mobile-best"><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label" id="mobileLevelLabel">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div></div>
-  <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus"></span></div>
+  <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus" class="buff-status"></span></div>
   <div class="mobile-event-status" id="mobileEventStatus"></div>
   <div class="game-layout">
-    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>↔ LINE CLEAR<br>◷ SLOW TIME<br><br>辅助方块与低频随机事件。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p></div></aside>
+    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p></div></aside>
     <div class="board-frame" id="boardFrame"><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
-    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status"></div></aside>
+    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status buff-status"></div></aside>
   </div>
   <div class="rotation-controls" aria-label="旋转按钮"><button class="rotation-button" data-control="reverse" aria-label="逆时针旋转"><span class="symbol">⟲</span><small>CCW</small><kbd>[ / Z</kbd></button><button class="rotation-button" data-control="rotate" aria-label="顺时针旋转"><span class="symbol">⟳</span><small>CW</small><kbd>] / ↑</kbd></button></div>
   <div class="touch-controls" aria-label="触屏操作"><button data-control="left" aria-label="向左移动">←</button><button data-control="right" aria-label="向右移动">→</button><button data-control="down" aria-label="加速下降">↓</button><button class="drop" data-control="drop" aria-label="直接落下">⇓<span class="touch-label">DROP</span></button><button data-control="hold" aria-label="暂存方块">⇄<span class="touch-label">HOLD</span></button><button data-control="reverse" aria-label="逆时针旋转">⟲<span class="touch-label">CCW</span></button><button data-control="rotate" aria-label="顺时针旋转">⟳<span class="touch-label">CW</span></button></div>
@@ -66,8 +70,10 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="dialog-header"><h2 id="settingsTitle">SETTINGS</h2><button class="icon-button" data-close aria-label="关闭设置">×</button></div><div class="dialog-body">
 <p class="setting-heading">01 / AUDIO</p><label class="setting-row"><span>MUSIC<small>轻量合成背景音乐</small></span><input class="switch" type="checkbox" id="musicOn" checked aria-label="背景音乐开关"></label><div class="volume-row"><input type="range" id="musicVolume" min="0" max="100" value="30" aria-label="背景音乐音量"><output id="musicVolumeValue">30%</output></div>
 <label class="setting-row"><span>SOUND EFFECTS<small>移动、消行与小小的胜利</small></span><input class="switch" type="checkbox" id="sfxOn" checked aria-label="音效开关"></label><div class="volume-row"><input type="range" id="sfxVolume" min="0" max="100" value="50" aria-label="音效音量"><output id="sfxVolumeValue">50%</output></div>
+<label class="audio-intensity"><span>AUDIO INTENSITY<small>音效表现强度 · 禅模式始终更柔和</small></span><select id="audioIntensity" aria-label="音效强度"><option value="low">LOW / 轻柔</option><option value="normal" selected>NORMAL / 标准</option><option value="arcade">ARCADE / 街机</option></select></label>
 <div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>音乐会在开始游戏后播放。</p></div></dialog>
-<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.1</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>连续消行累积 COMBO 和视觉称号。连续 TETRIS 或 T-SPIN 消行获得 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>以标准方块为主，偶尔出现两格、三格、小靴子和极少见的五格长条或单格块。自适应方块池减少重复，温和改善长条匮乏。</span></p><p class="help-point"><span>每 15–25 块获得炸弹、底行消除或 10 秒减速。首次触顶可续命一次。更低频出现 LUCKY WAVE（较易摆放）、TINY BLOCKS（3 个小方块）、LONG BOY（提高长条概率）；事件从已预告队列之后生效。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">切换标签页会自动暂停，回来后手动继续。<br>没有时间限制。</p></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.3</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。主菜单及暂停菜单的 SPECIAL GUIDE 可查看完整图文说明。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
+<dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle"><div class="dialog-header"><h2 id="guideTitle">SPECIAL GUIDE <span class="version-tag">CHILL MODE</span></h2><button class="icon-button" data-close aria-label="关闭特殊内容说明">×</button></div><div id="guideBody" class="guide-body"></div><div class="guide-footer"><button id="guideMenuButton" type="button">⌂ 返回主菜单</button></div></dialog>
 <div id="toast" class="toast" role="status" hidden></div>
 <script>
 (function (root) {
@@ -79,13 +85,11 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     DAS: 160, ARR: 45, SOFT_DROP_INTERVAL: 45,
     MAX_DELTA: 100, CLEAR_DURATION: 230, COUNTDOWN_DURATION: 2500,
     EMERGENCY_DURATION: 500, REVIVE_FRACTION: 0.35,
-    CHILL_ITEM_MIN: 15, CHILL_ITEM_MAX: 25,
     SLOW_TIME_DURATION: 10000, SLOW_FACTOR: 2.5,
     CLASSIC_GRAVITY: 880, CLASSIC_DECAY: 0.83, CLASSIC_MIN_GRAVITY: 65,
     CHILL_GRAVITY: 1150, CHILL_DECAY: 0.92, CHILL_MIN_GRAVITY: 150,
     ZEN_GRAVITY: 1400, DANGER_ROW: 5, ZEN_CLEAR_FRACTION: 0.45,
     ADAPTIVE_BAG_SIZE: 21, ADAPTIVE_HELPERS: 3,
-    EVENT_MIN: 35, EVENT_MAX: 55, SURPRISE_GAP: 6,
     PERFECT_CLEAR_SCORE: 2000,
     LINES_PER_LEVEL: 10, MAX_PARTICLES: 150, BREAK_TIME: 600000,
     DEFAULT_MUSIC_VOLUME: 0.30, DEFAULT_SFX_VOLUME: 0.50,
@@ -98,10 +102,10 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const COLORS = Object.freeze({
     I: '#53dbe7', O: '#ffe071', T: '#bb8cf5', S: '#8bdd83',
     Z: '#fb7585', J: '#74a5ef', L: '#ffa66d',
-    I3: '#82e6c6', I2: '#b5e88b', L3: '#f2c38f', V5: '#caa4df', I5: '#a4daf8', DOT: '#f5cfdf'
+    I3: '#82e6c6', I2: '#b5e88b', L3: '#f2c38f', T3: '#e0a8ef', V5: '#caa4df', I5: '#a4daf8', DOT: '#f5cfdf'
   });
   const STANDARD_TYPES = Object.freeze(['I', 'O', 'T', 'S', 'Z', 'J', 'L']);
-  const AUX_TYPES = Object.freeze(['I3', 'I2', 'L3', 'V5', 'I5', 'DOT']);
+  const AUX_TYPES = Object.freeze(['I3', 'I2', 'L3', 'T3', 'V5', 'I5', 'DOT']);
   const EVENT_LABELS = Object.freeze({ lucky: 'LUCKY WAVE', tiny: 'TINY BLOCKS', long: 'LONG BOY' });
   const SHAPES = Object.freeze({
     I: [[0, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0]],
@@ -114,6 +118,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     I3: [[0, 1, 0], [0, 1, 0], [0, 1, 0]],
     I2: [[1, 0], [1, 0]],
     L3: [[1, 0], [1, 1]],
+    T3: [[1, 1, 1], [0, 1, 0], [0, 0, 0]],
     V5: [[1, 0, 0], [1, 0, 0], [1, 1, 1]],
     I5: [[0,0,1,0,0], [0,0,1,0,0], [0,0,1,0,0], [0,0,1,0,0], [0,0,1,0,0]],
     DOT: [[1]]
@@ -146,7 +151,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   });
 
   class Piece {
-    constructor(type, bomb = false) {
+    constructor(type, bomb = false, mystery = false) {
       if (!SHAPES[type]) throw new Error('Unknown Tetromino: ' + type);
       this.type = type;
       this.matrix = SHAPES[type].map(row => row.slice());
@@ -154,6 +159,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.y = STANDARD_TYPES.includes(type) && type !== 'O' ? -1 : 0;
       this.rotation = 0;
       this.bomb = Boolean(bomb);
+      this.mystery = Boolean(mystery);
     }
     rotated(direction = 1) {
       const n = this.matrix.length;
@@ -169,7 +175,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       return cells;
     }
-    descriptor() { return { type: this.type, bomb: this.bomb }; }
+    descriptor() { return { type: this.type, bomb: this.bomb, mystery: this.mystery }; }
     bombCore() {
       const center = (this.matrix.length - 1) / 2;
       let best = null;
@@ -304,7 +310,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       while (this.pool.length < CONFIG.ADAPTIVE_BAG_SIZE - helpers) {
         this.pool.push(this._pick(STANDARD_TYPES, STANDARD_TYPES.map(t => this.weight(t, terrain))));
       }
-      const helperWeights = [1.8, 1.4, 1.1, .45, .065, .04];
+      const helperWeights = [1.8, 1.4, 1.1, .7, .45, .065, .04];
       for (let i = 0; i < helpers; i++) this.pool.push(this._pick(AUX_TYPES, helperWeights.map((w, j) => w * this.weight(AUX_TYPES[j], terrain))));
       this.bagsCreated++;
     }
@@ -345,6 +351,68 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
   }
 
+  const SURPRISE_GROUPS = Object.freeze({
+    bomb: 'special', line: 'special', mystery: 'special',
+    slow: 'buff', freeze: 'buff', luckyHold: 'buff',
+    lucky: 'event', tiny: 'event', long: 'event', mirror: 'event',
+    clearSky: 'rescue', gravityShift: 'rescue', colorSweep: 'rescue',
+    miniRain: 'rescue', cleanCut: 'rescue'
+  });
+  const GROUP_SHARE = Object.freeze({ special: .30, buff: .25, event: .25, rescue: .20 });
+  class SurpriseDirector {
+    constructor(random = Math.random) {
+      this.random = random; this.since = 0; this.totalLocks = 0;
+      this.nextCheck = this.rollCheck(); this.maximum = 26;
+      this.history = []; this.counts = Object.fromEntries(Object.keys(SURPRISE_GROUPS).map(k => [k, 0]));
+      this.lastSeen = Object.create(null);
+    }
+    rollCheck() { return 10 + Math.floor(Math.max(0, Math.min(.999999, this.random())) * 7); }
+    weight(type) {
+      const group = SURPRISE_GROUPS[type]; if (!group) return 0;
+      const poolSize = Object.values(SURPRISE_GROUPS).filter(g => g === group).length;
+      let value = GROUP_SHARE[group] / poolSize;
+      const last = this.history.at(-1), previous = this.history.at(-2);
+      if (type === last) value *= .04;
+      if (type === previous) value *= .32;
+      const seen = this.counts[type] || 0;
+      if (!seen) value *= 2.5;
+      else value /= 1 + seen * .26;
+      const age = this.totalLocks - (this.lastSeen[type] ?? -35);
+      value *= 1 + Math.min(1.3, Math.max(0, age - 18) * .023);
+      if (type === 'mystery') value *= 1.15;
+      if (type === 'colorSweep' || type === 'cleanCut') value *= .55;
+      return value;
+    }
+    pick(eligible) {
+      const choices = eligible.filter(type => this.weight(type) > 0);
+      const alternatives = choices.filter(type => type !== this.history.at(-1));
+      const types = alternatives.length ? alternatives : choices;
+      if (!types.length) return null;
+      const weights = types.map(type => this.weight(type));
+      let draw = Math.max(0, Math.min(.999999999, this.random())) * weights.reduce((a,b) => a+b, 0);
+      for (let i = 0; i < types.length; i++) { draw -= weights[i]; if (draw < 0) return types[i]; }
+      return types.at(-1);
+    }
+    tick(eligible) {
+      this.totalLocks++; this.since++;
+      if (this.since < this.nextCheck || !eligible.length) return null;
+      const chance = Math.min(.98, .67 + Math.max(0, this.since - this.nextCheck) * .055);
+      if (this.since < this.maximum && this.random() > chance) return null;
+      return this.pick(eligible);
+    }
+    record(type) {
+      if (!SURPRISE_GROUPS[type]) return;
+      this.since = 0; this.nextCheck = this.rollCheck();
+      this.history.push(type); if (this.history.length > 6) this.history.shift();
+      this.counts[type]++; this.lastSeen[type] = this.totalLocks;
+    }
+    snapshot(eligible = Object.keys(SURPRISE_GROUPS)) {
+      return { since: this.since, nextCheck: this.nextCheck, maximum: this.maximum,
+        history: this.history.slice(), counts: { ...this.counts },
+        weights: Object.fromEntries(eligible.map(type => [type, this.weight(type)])) };
+    }
+  }
+
   class Game {
     constructor(onEvent = () => {}) {
       this.onEvent = onEvent;
@@ -366,13 +434,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.combo = 0;
       this.b2b = false;
       this.slowRemaining = 0;
+      this.freezeRemaining = 0;
+      this.luckyHoldActive = false;
       this.reviveUsed = false;
       this.zenClears = 0;
       this.perfectClears = 0;
       this._perfectArmed = false;
-      this._eventCountdown = this._newEventCooldown();
-      this._lastSurpriseLock = -CONFIG.SURPRISE_GAP;
-      this._eventBag = [];
       this.clearRows = [];
       this.phaseElapsed = 0;
       this.phaseDuration = 0;
@@ -381,26 +448,26 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._gravityElapsed = 0;
       this._lockElapsed = 0;
       this._lockResets = 0;
+      this._touching = false;
       this._lastAction = null;
       this._clearKind = null;
       this._resumeState = null;
       this._pendingBomb = false;
+      this._pendingMystery = false;
+      this._pendingMysteryEffect = null;
+      this._forcedSurprise = null;
+      this.director = new SurpriseDirector();
       this._pendingRevivePiece = null;
-      this._normalLocks = 0;
-      this._rewardCountdown = this._newCooldown();
-      this._rewardBag = [];
-      this._rewardDue = false;
       this._locking = false;
       this._breakShown = false;
       this._tetrisStreak = 0;
       this._pauseElapsed = 0;
+      this._turnCounted = false;
+      this._directorEligibleLock = false;
     }
-    _newCooldown() {
-      return CONFIG.CHILL_ITEM_MIN + Math.floor(Math.random() * (CONFIG.CHILL_ITEM_MAX - CONFIG.CHILL_ITEM_MIN + 1));
-    }
-    _newEventCooldown() { return CONFIG.EVENT_MIN + Math.floor(Math.random() * (CONFIG.EVENT_MAX - CONFIG.EVENT_MIN + 1)); }
     get activeEvent() { return this.mode === 'chill' ? this.queue.event : null; }
     get danger() { return this.board.terrain().danger; }
+    get surpriseDebug() { return this.director.snapshot(this._eligibleSurprises()); }
     start(mode = this.mode) {
       this._reset(mode);
       this.state = 'COUNTDOWN';
@@ -445,6 +512,10 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         this.slowRemaining = Math.max(0, this.slowRemaining - dt);
         if (wasSlow > 0 && this.slowRemaining === 0) this._change();
       }
+      if (this.freezeRemaining > 0) {
+        this.freezeRemaining = Math.max(0, this.freezeRemaining - dt);
+        if (this.freezeRemaining === 0) { this._gravityElapsed = 0; this._emit('freezeEnd'); this._change(); }
+      }
       if (this.mode === 'chill' && !this._breakShown && this.gameTime >= CONFIG.BREAK_TIME) {
         this._breakShown = true;
         this._emit('toast', { text: 'GOOD BREAK.', subtext: '休息得不错，随时可以回来。' });
@@ -460,9 +531,10 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         return;
       }
       if (this.state !== 'PLAYING' || !this.piece) return;
-      this._gravityElapsed += dt;
+      if (this.freezeRemaining > 0) this._gravityElapsed = 0;
+      else this._gravityElapsed += dt;
       const interval = this.gravityInterval;
-      while (this._gravityElapsed >= interval) {
+      while (this.freezeRemaining <= 0 && this._gravityElapsed >= interval) {
         this._gravityElapsed -= interval;
         if (this.board.collides(this.piece, this.piece.x, this.piece.y + 1)) {
           this._gravityElapsed = 0;
@@ -470,6 +542,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         }
         this.piece.y++;
       }
+      this._checkTouchdown();
       if (this.board.collides(this.piece, this.piece.x, this.piece.y + 1)) {
         this._lockElapsed += dt;
         if (this._lockElapsed >= CONFIG.LOCK_DELAY) this._lock();
@@ -477,17 +550,19 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     _nextDescriptor() {
       const before = this.activeEvent;
-      const descriptor = { type: this.queue.next(), bomb: this._pendingBomb };
+      const descriptor = { type: this.queue.next(), bomb: this._pendingBomb, mystery: this._pendingMystery };
       if (before && !this.activeEvent) this._emit('eventEnd', { type: before.type });
       this._pendingBomb = false;
+      this._pendingMystery = false;
       return descriptor;
     }
     _spawnNext() { this._spawn(this._nextDescriptor()); }
     _spawn(descriptor) {
-      this.piece = new Piece(descriptor.type, descriptor.bomb);
+      this.piece = new Piece(descriptor.type, descriptor.bomb, descriptor.mystery);
       this._gravityElapsed = 0;
       this._lockElapsed = 0;
       this._lockResets = 0;
+      this._touching = false;
       this._lastAction = null;
       this.phaseElapsed = 0;
       this.phaseDuration = 0;
@@ -503,6 +578,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         this._lockResets++;
       }
     }
+    _checkTouchdown(source = 'natural', distance = 0) {
+      if (!this.piece) return;
+      const grounded = this.board.collides(this.piece, this.piece.x, this.piece.y + 1);
+      if (grounded && (!this._touching || source === 'hard')) {
+        this._emit('touchdown', { hardDrop: source === 'hard', distance,
+          source, cells: this.piece.cells() });
+      }
+      this._touching = grounded;
+    }
     move(dx) {
       if (!this._interactive() || !Number.isFinite(dx) || dx === 0) return false;
       dx = dx < 0 ? -1 : 1;
@@ -512,6 +596,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       piece.x += dx;
       this._lastAction = 'move';
       this._resetLockIfAllowed(grounded);
+      this._checkTouchdown();
       this._emit('move', { dx });
       return true;
     }
@@ -533,6 +618,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         piece.rotation = rotation;
         this._lastAction = 'rotate';
         this._resetLockIfAllowed(grounded);
+        this._checkTouchdown();
         this._emit('rotate', { direction });
         return true;
       }
@@ -544,6 +630,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._lastAction = 'softDrop';
       this._gravityElapsed = 0;
       this._addScore(1, 'softDrop');
+      this._checkTouchdown();
       this._emit('softDrop', { distance: 1 });
       return true;
     }
@@ -561,18 +648,22 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       piece.y = y;
       if (distance > 0) this._lastAction = 'hardDrop';
       this._addScore(distance * 2, 'hardDrop');
+      this._checkTouchdown('hard', distance);
       this._emit('hardDrop', { distance, cells: piece.cells() });
-      this._lock();
+      this._lock('hard');
       return true;
     }
     hold() {
       if (!this._interactive() || !this.canHold) return false;
       const outgoing = this.piece.descriptor();
+      const swap = Boolean(this.holdPiece);
       const incoming = this.holdPiece || this._nextDescriptor();
       this.holdPiece = outgoing;
-      this.canHold = false;
+      const lucky = this.luckyHoldActive;
+      this.canHold = lucky;
+      if (lucky) this.luckyHoldActive = false;
       this._spawn(incoming);
-      this._emit('hold', { held: this.holdPiece });
+      this._emit('hold', { held: this.holdPiece, swap, lucky, kind: swap ? 'swap' : 'store' });
       this._change();
       return true;
     }
@@ -606,26 +697,31 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       return corners >= 3;
     }
-    _lock() {
+    _lock(source = 'natural') {
       if (!this._interactive()) return false;
       this._locking = true;
+      this._turnCounted = false;
       const piece = this.piece;
+      this._directorEligibleLock = this.mode === 'chill' && !piece.bomb && !piece.mystery;
       const tspin = this._isTSpin(piece);
       const result = this.board.place(piece);
       this._perfectArmed = this.board.countCells() > 0;
       this.piece = null;
       this.canHold = true;
-      this._emit('lock', { type: piece.type, cells: result.cells, bomb: piece.bomb });
-      if (piece.bomb) {
+      this._emit('lock', { type: piece.type, cells: result.cells, bomb: piece.bomb,
+        hardDrop: source === 'hard', drop: source === 'hard' ? 'hard' : 'natural',
+        lines: this.board.fullRows().length });
+      const mysteryEffect = piece.mystery ? this._selectMysteryEffect(this.board.fullRows().length > 0) : null;
+      if (mysteryEffect) {
+        this._emit('mystery', { effect: mysteryEffect, cells: result.cells });
+        if (mysteryEffect !== 'bomb') this._pendingMysteryEffect = mysteryEffect;
+      }
+      if (piece.bomb || mysteryEffect === 'bomb') {
         const center = piece.bombCore();
         const cells = this.board.explode(center.x, center.y);
         this._addScore(cells.length * CONFIG.BOMB_CELL_SCORE, 'bomb');
         this._emit('bomb', { x: center.x, y: center.y, cells });
-      } else if (this.mode === 'chill') {
-        this._normalLocks++;
-        this._rewardCountdown--;
-        this._eventCountdown--;
-        if (this._rewardCountdown <= 0) this._rewardDue = true;
+        if (mysteryEffect === 'bomb') this.director.record('bomb');
       }
       this._locking = false;
       if (result.overflow) { this._topOut(null); return true; }
@@ -691,20 +787,17 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.state = 'PLAYING';
       this._checkPerfectClear();
       if (this.mode === 'zen' && this.danger) { this._topOut(null); return; }
-      let rewarded = false;
-      if (this.mode === 'chill' && this._rewardDue) {
-        this._rewardDue = false;
-        this._rewardCountdown = this._newCooldown();
-        this.reward(this._nextReward());
-        rewarded = true;
-        if (this.state === 'CLEARING') return;
-      }
-      if (this.mode === 'chill' && !rewarded && this._eventCountdown <= 0 && !this.activeEvent && this._rewardCountdown >= CONFIG.SURPRISE_GAP && this._normalLocks - this._lastSurpriseLock >= CONFIG.SURPRISE_GAP) {
-        if (!this._eventBag.length) {
-          this._eventBag = Object.keys(EVENT_LABELS);
-          for (let i = this._eventBag.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [this._eventBag[i], this._eventBag[j]] = [this._eventBag[j], this._eventBag[i]]; }
+      if (this.mode === 'chill' && !this._turnCounted) {
+        this._turnCounted = true;
+        const mystery = this._pendingMysteryEffect;
+        this._pendingMysteryEffect = null;
+        const forced = this._forcedSurprise;
+        this._forcedSurprise = null;
+        const type = mystery || forced || (this._directorEligibleLock
+          ? this.director.tick(this.activeEvent ? [] : this._eligibleSurprises()) : null);
+        if (type && this._applySurprise(type, mystery ? 'mystery' : forced ? 'debug' : 'director')) {
+          if (this.state === 'CLEARING') return;
         }
-        this.beginEvent(this._eventBag.pop());
       }
       this._spawnNext();
     }
@@ -716,24 +809,183 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._emit('perfectClear', { bonus, mode: this.mode, count: this.perfectClears });
       return true;
     }
-    beginEvent(type) {
-      if (this.mode !== 'chill' || !this.queue.startEvent(type)) return false;
-      this._eventCountdown = this._newEventCooldown(); this._lastSurpriseLock = this._normalLocks;
-      this._emit('eventStart', { ...this.activeEvent }); this._change(); return true;
+    _eligibleSurprises() {
+      if (this.mode !== 'chill') return [];
+      const cells = this.board.countCells(), terrain = this.board.terrain();
+      const types = ['tiny', 'lucky', 'long'];
+      if (!this._pendingBomb) types.push('bomb');
+      if (this.slowRemaining <= 3000) types.push('slow');
+      if (this.freezeRemaining <= 0) types.push('freeze');
+      if (!this.luckyHoldActive) types.push('luckyHold');
+      if (!this._pendingBomb && !this._pendingMystery) types.push('mystery');
+      if (cells > 0) types.push('line');
+      if (cells >= 6) types.push('mirror');
+      if (cells >= 7 && terrain.holes > 0) types.push('gravityShift');
+      if (cells >= 10) {
+        const counts = Object.create(null);
+        for (const row of this.board.grid) for (const cell of row) if (cell) counts[cell] = (counts[cell] || 0) + 1;
+        if (Object.values(counts).some(count => count >= 2)) types.push('colorSweep');
+        if (this.board.grid.some((row,y) => y >= 5 && row.filter(Boolean).length >= 3)) types.push('cleanCut');
+        if (this.board.grid[0].some(cell => !cell)) types.push('miniRain');
+      }
+      if (terrain.height >= 9) types.push('clearSky');
+      return types.filter(type => !this.activeEvent || !['tiny', 'lucky', 'long'].includes(type));
     }
-    _nextReward() {
-      if (!this._rewardBag.length) {
-        this._rewardBag = ['bomb', 'line', 'slow'];
-        for (let i = this._rewardBag.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [this._rewardBag[i], this._rewardBag[j]] = [this._rewardBag[j], this._rewardBag[i]];
+    _selectMysteryEffect(clearing = false) {
+      const pool = this._eligibleSurprises().filter(type => clearing
+        ? ['bomb', 'slow', 'freeze', 'luckyHold'].includes(type)
+        : !['mystery', 'tiny', 'lucky', 'long', 'mirror'].includes(type));
+      return this.director.pick(pool) || 'slow';
+    }
+    forceSurprise(type) {
+      if (this.mode !== 'chill' || !SURPRISE_GROUPS[type] || this.state === 'MENU' || this.state === 'GAME_OVER') return false;
+      this._forcedSurprise = type;
+      return true;
+    }
+    _copyGrid() { return this.board.grid.map(row => row.slice()); }
+    _reconcilePieceAfterBoardChange() {
+      if (!this.piece || !this.board.collides(this.piece)) return;
+      const piece = this.piece;
+      for (let y = piece.y; y >= -piece.matrix.length; y--) {
+        for (const x of [piece.x, piece.x - 1, piece.x + 1, piece.x - 2, piece.x + 2]) {
+          if (this.board.collides(piece, x, y)) continue;
+          piece.x = x; piece.y = y;
+          this._lockElapsed = 0; this._touching = false;
+          this._change(); return;
         }
       }
-      return this._rewardBag.pop();
+      this._topOut(piece.descriptor());
+    }
+    _collapseColumns(columns) {
+      const moves = [];
+      for (const x of new Set(columns)) {
+        if (x < 0 || x >= CONFIG.COLS) continue;
+        const entries = [];
+        for (let y = CONFIG.ROWS - 1; y >= 0; y--) if (this.board.grid[y][x]) entries.push({ y, type: this.board.grid[y][x] });
+        let write = CONFIG.ROWS - 1;
+        for (const entry of entries) {
+          this.board.grid[write][x] = entry.type;
+          if (write !== entry.y) moves.push({ from: { x, y: entry.y }, to: { x, y: write }, type: entry.type });
+          write--;
+        }
+        for (let y = write; y >= 0; y--) this.board.grid[y][x] = null;
+      }
+      return moves;
+    }
+    _finishBoardSurprise(name, before, details = {}) {
+      const after = this._copyGrid();
+      this._emit(name, { before, after, ...details });
+      const rows = this.board.fullRows();
+      if (rows.length) {
+        this._scoreClear(rows, false);
+        this.clearRows = rows;
+        this.phaseElapsed = 0;
+        this.phaseDuration = CONFIG.CLEAR_DURATION;
+        this._clearKind = 'surprise';
+        this.state = 'CLEARING';
+      } else this._checkPerfectClear();
+      this._change();
+      return true;
+    }
+    _applySurprise(type, source = 'director') {
+      if (this.mode !== 'chill' || !SURPRISE_GROUPS[type]) return false;
+      const before = this._copyGrid();
+      let details = null;
+      if (['bomb', 'line', 'slow'].includes(type)) {
+        if (!this.reward(type)) return false;
+      } else if (['tiny', 'lucky', 'long'].includes(type)) {
+        if (!this.beginEvent(type)) return false;
+      } else if (type === 'mystery') {
+        this._pendingMystery = true;
+        this._emit('toast', { text: 'MYSTERY BLOCK', subtext: '下一块有问号，落地后揭晓惊喜。' });
+      } else if (type === 'freeze') {
+        this.freezeRemaining = 5000 + Math.floor(Math.random() * 3001);
+        this._gravityElapsed = 0;
+        this._emit('freeze', { duration: this.freezeRemaining });
+      } else if (type === 'luckyHold') {
+        this.luckyHoldActive = true;
+        this._emit('luckyHold', { active: true });
+      } else if (type === 'mirror') {
+        this.board.grid = this.board.grid.map(row => row.slice().reverse());
+        details = { axis: 'vertical' };
+      } else if (type === 'gravityShift') {
+        const columns = [];
+        for (let x = 0; x < CONFIG.COLS; x++) {
+          const first = this.board.grid.findIndex(row => row[x]);
+          if (first >= 0) {
+            let holes = 0;
+            for (let y = first; y < CONFIG.ROWS; y++) if (!this.board.grid[y][x]) holes++;
+            if (holes) columns.push({ x, holes });
+          }
+        }
+        columns.sort((a,b) => b.holes - a.holes || a.x - b.x);
+        const selected = columns.slice(0, Math.min(3, columns.length)).map(entry => entry.x);
+        if (!selected.length) return false;
+        details = { columns: selected, moves: this._collapseColumns(selected) };
+      } else if (type === 'colorSweep') {
+        const counts = Object.create(null);
+        for (const row of this.board.grid) for (const cell of row) if (cell) counts[cell] = (counts[cell] || 0) + 1;
+        const colors = Object.keys(counts).filter(key => counts[key] >= 2);
+        if (!colors.length) return false;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const removed = [], columns = new Set();
+        for (let y = 0; y < CONFIG.ROWS; y++) for (let x = 0; x < CONFIG.COLS; x++) {
+          if (this.board.grid[y][x] !== color) continue;
+          removed.push({ x, y, type: color }); columns.add(x); this.board.grid[y][x] = null;
+        }
+        details = { color, removed, moves: this._collapseColumns(columns) };
+      } else if (type === 'miniRain') {
+        const count = 3 + Math.floor(Math.random() * 3), drops = [];
+        for (let i = 0; i < count; i++) {
+          const heights = Array.from({ length: CONFIG.COLS }, (_, x) => {
+            const first = this.board.grid.findIndex(row => row[x]);
+            return { x, first: first < 0 ? CONFIG.ROWS : first };
+          }).filter(item => item.first > 0);
+          if (!heights.length) break;
+          const heightAt = x => { const first = this.board.grid.findIndex(row => row[x]); return first < 0 ? 0 : CONFIG.ROWS - first; };
+          for (const item of heights) {
+            const own = CONFIG.ROWS - item.first;
+            const left = item.x === 0 ? heightAt(1) : heightAt(item.x - 1);
+            const right = item.x === CONFIG.COLS - 1 ? heightAt(CONFIG.COLS - 2) : heightAt(item.x + 1);
+            item.well = Math.max(0, Math.min(left, right) - own);
+          }
+          heights.sort((a,b) => b.well - a.well || b.first - a.first || a.x - b.x);
+          const shortlist = heights.slice(0, Math.min(3, heights.length));
+          const target = shortlist[Math.floor(Math.random() * shortlist.length)];
+          const y = target.first - 1;
+          this.board.grid[y][target.x] = 'DOT';
+          drops.push({ from: { x: target.x, y: -1 }, to: { x: target.x, y }, type: 'DOT' });
+        }
+        if (!drops.length) return false;
+        details = { drops, moves: drops };
+      } else if (type === 'cleanCut') {
+        const rows = this.board.grid.map((row,y) => ({ y, cells: row.filter(Boolean).length }))
+          .filter(entry => entry.cells >= 3 && entry.y >= 5);
+        if (!rows.length) return false;
+        rows.sort((a,b) => b.cells - a.cells || b.y - a.y);
+        const row = rows[Math.floor(Math.random() * Math.min(3, rows.length))].y;
+        this.board.clearRows([row]);
+        details = { row };
+      } else if (type === 'clearSky') {
+        const rows = this.board.grid.map((row,y) => ({ y, cells: row.filter(Boolean).length }))
+          .filter(entry => entry.cells > 0);
+        if (!rows.length) return false;
+        const removedRows = rows.slice(0, Math.min(2, rows.length)).map(entry => entry.y);
+        this.board.clearRows(removedRows);
+        details = { rows: removedRows };
+      }
+      this.director.record(type);
+      this._emit('surprise', { type, source, history: this.director.history.slice() });
+      if (details) return this._finishBoardSurprise(type, before, details);
+      this._change();
+      return true;
+    }
+    beginEvent(type) {
+      if (this.mode !== 'chill' || !this.queue.startEvent(type)) return false;
+      this._emit('eventStart', { ...this.activeEvent }); this._change(); return true;
     }
     reward(type) {
       if (this.mode !== 'chill' || !['bomb', 'line', 'slow'].includes(type)) return false;
-      this._lastSurpriseLock = this._normalLocks;
       this._emit('reward', { type });
       if (type === 'bomb') {
         this._pendingBomb = true;
@@ -754,6 +1006,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           if (this.piece) {
             // Public reward injection also remains safe while a piece is active.
             this.board.clearRows([y]);
+            this._reconcilePieceAfterBoardChange();
             this._checkPerfectClear();
           } else {
             this.clearRows = [y];
@@ -804,7 +1057,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       const descriptor = this._pendingRevivePiece || this._nextDescriptor();
       this._pendingRevivePiece = null;
-      const candidate = new Piece(descriptor.type, descriptor.bomb);
+      const candidate = new Piece(descriptor.type, descriptor.bomb, descriptor.mystery);
       // Deleting whole occupied rows also guarantees a clean spawn after an unusually dense stack.
       for (let attempt = 0; attempt < CONFIG.ROWS && this.board.collides(candidate); attempt++) {
         const top = this.board.grid.findIndex(row => row.some(Boolean));
@@ -813,8 +1066,6 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       this.combo = 0;
       this.canHold = true;
-      this._rewardDue = false;
-      if (this._rewardCountdown <= 0) this._rewardCountdown = this._newCooldown();
       this.state = 'PLAYING';
       this._perfectArmed = this.board.countCells() > 0;
       this._spawn(descriptor);
@@ -823,328 +1074,348 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
   }
 
-  root.RetroCore = Object.freeze({ CONFIG, Piece, Board, Bag, AdaptiveBag, Game, COLORS, SHAPES, STANDARD_TYPES, AUX_TYPES, EVENT_LABELS });
+  root.RetroCore = Object.freeze({ CONFIG, Piece, Board, Bag, AdaptiveBag, SurpriseDirector, Game, COLORS, SHAPES, STANDARD_TYPES, AUX_TYPES, EVENT_LABELS });
 })(typeof globalThis !== 'undefined' ? globalThis : window);
 
 (function () {
   'use strict';
 
-  // All timing comes from the game's animation loop. No audio is created until init().
+  const PRIORITY = Object.freeze({ move: 1, softDrop: 1, rotate: 2, hold: 3, eventEnd: 3,
+    lock: 4, touchdown: 5, pause: 4, start: 4, slow: 5, eventStart: 5, clear: 6,
+    mystery: 6, gravityShift: 6, colorSweep: 7, freeze: 5, luckyHold: 5,
+    miniRain: 5, cleanCut: 7, mirror: 5, clearSky: 7,
+    levelUp: 6, bomb: 7, emergency: 7, gameOver: 8, perfectClear: 9 });
+  const INTENSITY = Object.freeze({ low: .58, normal: 1, arcade: 1.16 });
+  const MAX_VOICES = 72;
+  const hz = midi => 440 * Math.pow(2, (midi - 69) / 12);
+
+  // One audio clock, shared by effects and music. The game owns the only RAF.
   class AudioManager {
     constructor(getSettings) {
       this.getSettings = typeof getSettings === 'function' ? getSettings : () => ({});
-      this.context = null;
-      this.musicGain = null;
-      this.sfxGain = null;
-      this.output = null;
-      this.active = false;
-      this.mode = 'classic';
-      this.step = 0;
-      this.nextMusicTime = -1;
-      this.voices = new Set();
-      this.lastEffects = Object.create(null);
+      this.context = this.musicGain = this.sfxGain = this.output = null;
       this.settings = this.readSettings();
-      this.initializing = null;
-      this.destroyed = false;
+      this.mode = 'classic'; this.active = false; this.destroyed = false;
+      this.initializing = null; this.voices = new Set();
+      this.lastEffects = Object.create(null); this.lastLockAt = -10;
+      this.lastTouchdownAt = -10;
+      this.priorityUntil = -1; this.priorityLevel = 0;
+      this.duckUntil = -1; this.ducking = false;
+      this.step = 0; this.nextMusicTime = -1; this.session = 0;
+      this.lastPlan = null;
     }
 
     readSettings() {
       let value = {};
       try { value = this.getSettings() || {}; } catch (_) {}
-      const volume = (v, fallback) => Number.isFinite(Number(v))
-        ? Math.max(0, Math.min(1, Number(v))) : fallback;
-      return {
-        musicOn: value.musicOn !== false,
-        sfxOn: value.sfxOn !== false,
-        musicVolume: volume(value.musicVolume, 0.5),
-        sfxVolume: volume(value.sfxVolume, 0.65)
-      };
+      const volume = (v, fallback) => Number.isFinite(Number(v)) ? Math.max(0, Math.min(1, Number(v))) : fallback;
+      return { musicOn: value.musicOn !== false, sfxOn: value.sfxOn !== false,
+        musicVolume: volume(value.musicVolume, .30), sfxVolume: volume(value.sfxVolume, .50),
+        audioIntensity: Object.hasOwn(INTENSITY, value.audioIntensity) ? value.audioIntensity : 'normal' };
     }
-
+    modeName(value) {
+      const name = String(value || 'classic');
+      return /zen|\u7985/i.test(name) ? 'zen'
+        : /chill|relax|\u4f11\u95f2|\u8f7b\u677e/i.test(name) ? 'chill' : 'classic';
+    }
     async init() {
       if (this.destroyed) return false;
       if (this.initializing) return this.initializing;
       this.initializing = this.initializeContext();
-      try { return await this.initializing; }
-      finally { this.initializing = null; }
+      try { return await this.initializing; } finally { this.initializing = null; }
     }
-
     async initializeContext() {
       try {
         if (!this.context) {
-          const AudioContextClass = globalThis.AudioContext || globalThis.webkitAudioContext;
-          if (!AudioContextClass) return false;
-          const context = new AudioContextClass({ latencyHint: 'interactive' });
+          const Constructor = globalThis.AudioContext || globalThis.webkitAudioContext;
+          if (!Constructor) return false;
+          const context = new Constructor({ latencyHint: 'interactive' });
           this.context = context;
-          this.musicGain = context.createGain();
-          this.sfxGain = context.createGain();
+          this.musicGain = context.createGain(); this.sfxGain = context.createGain();
           this.output = context.createDynamicsCompressor();
-          this.output.threshold.value = -15;
-          this.output.knee.value = 12;
-          this.output.ratio.value = 4;
-          this.output.attack.value = 0.006;
-          this.output.release.value = 0.12;
-          this.musicGain.gain.value = 0;
-          this.sfxGain.gain.value = 0;
-          this.musicGain.connect(this.output);
-          this.sfxGain.connect(this.output);
+          this.output.threshold.value = -18; this.output.knee.value = 14;
+          this.output.ratio.value = 4; this.output.attack.value = .006; this.output.release.value = .13;
+          this.musicGain.gain.value = this.sfxGain.gain.value = 0;
+          this.musicGain.connect(this.output); this.sfxGain.connect(this.output);
           this.output.connect(context.destination);
         }
         if (this.context.state === 'suspended') await this.context.resume();
-        this.applySettings();
-        this.nextMusicTime = -1;
+        this.applySettings(); this.nextMusicTime = -1;
         return this.context.state === 'running';
-      } catch (_) {
-        return false;
-      }
+      } catch (_) { return false; }
     }
-
-    smoothGain(node, value) {
+    smoothGain(node, target, seconds = .018) {
       if (!node || !this.context || this.context.state === 'closed') return;
       try {
         const now = this.context.currentTime;
-        node.gain.cancelScheduledValues(now);
-        node.gain.setTargetAtTime(value, now, 0.018);
+        node.gain.cancelScheduledValues(now); node.gain.setTargetAtTime(target, now, seconds);
       } catch (_) {}
     }
-
+    musicLevel() {
+      return this.active && this.settings.musicOn ? this.settings.musicVolume * .36 * (this.ducking ? .47 : 1) : 0;
+    }
+    sfxLevel() {
+      if (!this.settings.sfxOn) return 0;
+      const modeFactor = this.mode === 'zen' ? .72 : this.mode === 'chill' ? .88 : 1;
+      return this.settings.sfxVolume * .30 * INTENSITY[this.settings.audioIntensity] * modeFactor;
+    }
     applySettings() {
       const previous = this.settings;
       this.settings = this.readSettings();
-      this.smoothGain(this.musicGain,
-        this.active && this.settings.musicOn ? this.settings.musicVolume * 0.36 : 0);
-      this.smoothGain(this.sfxGain, this.settings.sfxOn ? this.settings.sfxVolume * 0.3 : 0);
-      if (!this.settings.musicOn) {
-        this.stopVoices('music');
-        this.nextMusicTime = -1;
-      } else if (previous && !previous.musicOn) {
-        this.nextMusicTime = -1;
-      }
+      this.smoothGain(this.musicGain, this.musicLevel()); this.smoothGain(this.sfxGain, this.sfxLevel());
+      if (!this.settings.musicOn) { this.stopVoices('music'); this.nextMusicTime = -1; }
+      else if (previous && !previous.musicOn) this.nextMusicTime = -1;
       if (!this.settings.sfxOn) this.stopVoices('sfx');
     }
-
     setActive(active) {
       const next = Boolean(active);
       if (this.active === next) return;
-      this.active = next;
-      this.nextMusicTime = -1;
+      this.active = next; this.nextMusicTime = -1;
       if (!next) this.stopVoices('music');
-      this.smoothGain(this.musicGain,
-        next && this.settings.musicOn ? this.settings.musicVolume * 0.36 : 0);
+      this.smoothGain(this.musicGain, this.musicLevel());
     }
-
+    resetSession(mode) {
+      this.session++; this.stopVoices(); this.voices.clear();
+      this.mode = this.modeName(mode); this.active = false; this.step = 0; this.nextMusicTime = -1;
+      this.lastEffects = Object.create(null); this.lastLockAt = -10;
+      this.lastTouchdownAt = -10;
+      this.priorityUntil = -1; this.priorityLevel = 0; this.duckUntil = -1;
+      this.ducking = false; this.lastPlan = null;
+      this.smoothGain(this.musicGain, 0); this.smoothGain(this.sfxGain, this.sfxLevel());
+    }
     update(dt, active, mode) {
       this.setActive(active);
-      const modeName = String(mode || 'classic');
-      const nextMode = /zen|\u7985/i.test(modeName) ? 'zen'
-        : /chill|relax|\u4f11\u95f2|\u8f7b\u677e/i.test(modeName) ? 'chill' : 'classic';
+      const nextMode = this.modeName(mode);
       if (nextMode !== this.mode) {
-        this.mode = nextMode;
-        this.step = 0;
-        this.nextMusicTime = -1;
-        this.stopVoices('music');
+        this.mode = nextMode; this.step = 0; this.nextMusicTime = -1;
+        this.stopVoices('music'); this.smoothGain(this.sfxGain, this.sfxLevel());
       }
       const context = this.context;
-      if (!context || context.state !== 'running' || !this.active || !this.settings.musicOn) return;
+      if (!context || context.state !== 'running') return;
       const now = context.currentTime;
-      // A background tab must never catch up by playing a burst of old notes.
-      if (this.nextMusicTime < now - 0.15) this.nextMusicTime = now + 0.025;
-      // Zen keeps the same unhurried tempo regardless of level or field height.
+      if (this.ducking && now >= this.duckUntil) {
+        this.ducking = false; this.smoothGain(this.musicGain, this.musicLevel(), .09);
+      }
+      if (!this.active || !this.settings.musicOn) return;
+      if (this.nextMusicTime < now - .15) this.nextMusicTime = now + .025;
       const eighth = 60 / (this.mode === 'zen' ? 84 : 105) / 2;
       let budget = 4;
-      while (this.nextMusicTime < now + 0.09 && budget-- > 0) {
+      while (this.nextMusicTime < now + .09 && budget-- > 0) {
         this.scheduleMusicStep(this.step, this.nextMusicTime, eighth);
-        this.step = (this.step + 1) % 64;
-        this.nextMusicTime += eighth;
+        this.step = (this.step + 1) % 64; this.nextMusicTime += eighth;
       }
     }
-
     scheduleMusicStep(step, at, eighth) {
-      const bar = Math.floor(step / 8);
-      const beat = step % 8;
-      const zen = this.mode === 'zen';
-      const relaxed = this.mode !== 'classic';
-      // An original eight-bar A-minor loop; silence between phrases keeps play calm.
-      const chords = [
-        [45, 60, 64, 69], [41, 60, 65, 69], [48, 60, 64, 67], [43, 59, 62, 67],
-        [45, 60, 64, 69], [41, 60, 65, 69], [48, 60, 64, 67], [43, 59, 62, 67]
-      ];
-      const melodies = [
-        [76, null, 72, null, 69, 72, 74, null],
-        [77, null, 76, 72, 69, null, 72, null],
-        [76, null, 79, null, 76, 74, 72, null],
-        [74, null, 71, null, 67, 71, 74, null],
-        [81, null, 79, 76, 72, null, 76, null],
-        [77, null, 76, null, 72, 69, 72, null],
-        [76, 79, 76, null, 74, null, 72, null],
-        [71, null, 74, null, 71, null, 69, null]
-      ];
-      const chord = chords[bar];
-      const note = melodies[bar][beat];
-      if (note !== null && (!zen || beat % 2 === 0)) {
-        this.tone(note - (relaxed ? 12 : 0), at, eighth * (zen ? 1.8 : 1.35),
-          relaxed ? 'sine' : 'square', zen ? 0.105 : relaxed ? 0.13 : 0.066,
-          'music', null, zen ? 0.025 : 0.012);
-      }
-      if (beat === 0 || beat === 4) {
+      const bar = Math.floor(step / 8), beat = step % 8;
+      const zen = this.mode === 'zen', relaxed = this.mode !== 'classic';
+      const chords = [[45,60,64,69],[41,60,65,69],[48,60,64,67],[43,59,62,67],
+        [45,60,64,69],[41,60,65,69],[48,60,64,67],[43,59,62,67]];
+      const melodies = [[76,null,72,null,69,72,74,null],[77,null,76,72,69,null,72,null],
+        [76,null,79,null,76,74,72,null],[74,null,71,null,67,71,74,null],
+        [81,null,79,76,72,null,76,null],[77,null,76,null,72,69,72,null],
+        [76,79,76,null,74,null,72,null],[71,null,74,null,71,null,69,null]];
+      const chord = chords[bar], melody = melodies[bar][beat];
+      if (melody !== null && (!zen || beat % 2 === 0))
+        this.tone(melody - (relaxed ? 12 : 0), at, eighth * (zen ? 1.8 : 1.35),
+          relaxed ? 'sine' : 'square', zen ? .105 : relaxed ? .13 : .066,
+          'music', null, zen ? .025 : .012);
+      if (beat === 0 || beat === 4)
         this.tone(chord[0] + (beat === 4 ? 12 : 0), at, eighth * 2.8,
-          'triangle', zen ? 0.13 : 0.17, 'music', null, zen ? 0.035 : 0.016);
-      }
+          'triangle', zen ? .13 : .17, 'music', null, zen ? .035 : .016);
       if (beat % 2 === 1 && (!zen || beat === 3 || beat === 7)) {
-        const arpeggio = chord[1 + ((Math.floor(beat / 2) + bar) % 3)];
-        this.tone(arpeggio, at, eighth * 0.85,
-          relaxed ? 'sine' : 'triangle', zen ? 0.06 : relaxed ? 0.073 : 0.095,
-          'music', null, zen ? 0.02 : 0.009);
+        const pitch = chord[1 + ((Math.floor(beat / 2) + bar) % 3)];
+        this.tone(pitch, at, eighth * .85, relaxed ? 'sine' : 'triangle',
+          zen ? .06 : relaxed ? .073 : .095, 'music', null, zen ? .02 : .009);
       }
     }
-
-    tone(midi, at, duration, type, volume, bus, slideTo, attack = 0.005) {
+    tone(midi, at, duration, type, volume, bus = 'sfx', slideTo = null, attack = .005, priority = 0) {
       const context = this.context;
-      if (!context || context.state !== 'running' || this.voices.size >= 72) return;
-      let oscillator;
-      let envelope;
+      if (!context || context.state !== 'running' || this.voices.size >= MAX_VOICES) return false;
+      let oscillator, envelope;
       try {
-        oscillator = context.createOscillator();
-        envelope = context.createGain();
-        const start = Math.max(context.currentTime, at);
-        const end = start + Math.max(0.04, duration);
-        const frequency = n => 440 * Math.pow(2, (n - 69) / 12);
-        oscillator.type = type;
-        oscillator.frequency.setValueAtTime(frequency(midi), start);
-        if (slideTo !== null && slideTo !== undefined) {
-          oscillator.frequency.exponentialRampToValueAtTime(frequency(slideTo), end);
-        }
-        envelope.gain.setValueAtTime(0.0001, start);
-        envelope.gain.exponentialRampToValueAtTime(Math.max(0.001, volume), start + attack);
-        envelope.gain.exponentialRampToValueAtTime(Math.max(0.0002, volume * 0.48), start + duration * 0.32);
-        envelope.gain.exponentialRampToValueAtTime(0.0001, end);
-        oscillator.connect(envelope);
-        envelope.connect(bus === 'music' ? this.musicGain : this.sfxGain);
-        const voice = { oscillator, envelope, bus, start, end };
+        const start = Math.max(context.currentTime, at), end = start + Math.max(.04, duration);
+        oscillator = context.createOscillator(); envelope = context.createGain();
+        oscillator.type = type; oscillator.frequency.setValueAtTime(hz(midi), start);
+        if (slideTo !== null) oscillator.frequency.exponentialRampToValueAtTime(hz(slideTo), end);
+        envelope.gain.setValueAtTime(.0001, start);
+        envelope.gain.exponentialRampToValueAtTime(Math.max(.001, volume), start + attack);
+        envelope.gain.exponentialRampToValueAtTime(Math.max(.0002, volume * .48), start + duration * .32);
+        envelope.gain.exponentialRampToValueAtTime(.0001, end);
+        oscillator.connect(envelope); envelope.connect(bus === 'music' ? this.musicGain : this.sfxGain);
+        const voice = { oscillator, envelope, bus, start, end, priority, midi, session: this.session };
         this.voices.add(voice);
         oscillator.onended = () => {
           this.voices.delete(voice);
           try { oscillator.disconnect(); envelope.disconnect(); } catch (_) {}
         };
-        oscillator.start(start);
-        oscillator.stop(end + 0.012);
+        oscillator.start(start); oscillator.stop(end + .012);
+        return true;
       } catch (_) {
         try { if (oscillator) oscillator.disconnect(); if (envelope) envelope.disconnect(); } catch (_) {}
+        return false;
       }
     }
-
-    stopVoices(bus) {
+    stopVoices(bus, belowPriority = Infinity) {
       if (!this.context) return;
       const now = this.context.currentTime;
-      for (const voice of this.voices) {
+      for (const voice of Array.from(this.voices)) {
         if (bus && voice.bus !== bus) continue;
+        if (voice.priority >= belowPriority) continue;
         try {
-          if (voice.start > now) {
-            voice.envelope.gain.cancelScheduledValues(now);
-            voice.envelope.gain.setValueAtTime(0.0001, now);
-          } else {
-            const gain = voice.envelope.gain;
-            if (typeof gain.cancelAndHoldAtTime === 'function') gain.cancelAndHoldAtTime(now);
-            else { gain.cancelScheduledValues(now); gain.setValueAtTime(Math.max(0.0001, gain.value), now); }
-            gain.exponentialRampToValueAtTime(0.0001, now + 0.02);
-          }
-          voice.oscillator.stop(now + 0.025);
+          voice.envelope.gain.cancelScheduledValues(now);
+          voice.envelope.gain.setValueAtTime(.0001, now);
+          voice.oscillator.stop(now + .02);
+          voice.oscillator.disconnect(); voice.envelope.disconnect();
         } catch (_) {}
+        this.voices.delete(voice);
       }
     }
-
     play(name, payload = {}) {
       const context = this.context;
-      if (!context || context.state !== 'running' || !this.settings.sfxOn || this.destroyed) return;
+      if (!context || context.state !== 'running' || !this.settings.sfxOn || this.destroyed) return false;
+      if (name === 'hardDrop') return false; // The real lock event supplies the only impact sound.
       const now = context.currentTime;
-      const throttle = name === 'move' ? 0.043 : name === 'softDrop' ? 0.065 : 0;
-      if (throttle && now - (this.lastEffects[name] ?? -100) < throttle) return;
+      const throttle = name === 'move' ? .085 : name === 'softDrop' ? .12 : name === 'rotate' ? .052
+        : name === 'touchdown' && !payload.hardDrop ? .08 : 0;
+      if (throttle && now - (this.lastEffects[name] ?? -100) < throttle) return false;
       this.lastEffects[name] = now;
-      const note = (midi, offset, duration, type = 'triangle', volume = 0.23, slideTo = null) =>
-        this.tone(midi, now + offset, duration, type, volume, 'sfx', slideTo);
+      const priority = PRIORITY[name] || 2;
+      const shadowed = now < this.priorityUntil && priority < this.priorityLevel;
+      const scale = shadowed ? priority <= 2 ? .32 : .56 : 1;
+      let planStart = Infinity, planEnd = -Infinity;
+      const notes = [];
+      const note = (pitch, offset, duration, type = 'triangle', volume = .18, slideTo = null) => {
+        const start = now + offset;
+        if (this.tone(pitch, start, duration, type, volume * scale, 'sfx', slideTo, .005, priority)) {
+          planStart = Math.min(planStart, start); planEnd = Math.max(planEnd, start + duration);
+          notes.push({ pitch, start, duration, type });
+        }
+      };
+      const relaxed = this.mode !== 'classic', softType = relaxed ? 'sine' : 'triangle';
       switch (name) {
-        case 'move': note(65, 0, 0.045, 'triangle', 0.14, 60); break;
-        case 'rotate': note(76, 0, 0.055, 'square', 0.085, 79); break;
-        case 'softDrop': note(48, 0, 0.045, 'triangle', 0.13, 44); break;
-        case 'hardDrop':
-          note(50, 0, 0.13, 'triangle', 0.3, 29);
-          note(72, 0, 0.065, 'square', 0.10, 48);
+        case 'move': note(58, 0, .044, 'triangle', .075, 54); break;
+        case 'softDrop': note(45, 0, .047, 'triangle', .064, 40); break;
+        case 'rotate': {
+          const clockwise = Number(payload.direction) >= 0;
+          note(clockwise ? 69 : 72, 0, .067, softType, .095, clockwise ? 72 : 69); break;
+        }
+        case 'hold':
+          if (payload.swap || payload.kind === 'swap') {
+            note(67, 0, .075, softType, .15, 72);
+            note(74, .082, .095, softType, .15, 69);
+          } else note(65, 0, .12, softType, .16, 60);
           break;
-        case 'lock': note(43, 0, 0.075, 'triangle', 0.22, 36); break;
+        case 'touchdown': {
+          const hard = Boolean(payload.hardDrop || payload.source === 'hard');
+          const distance = Math.max(0, Math.min(20, Number(payload.distance) || 0));
+          const weight = hard ? 1.07 + Math.min(.18, distance * .012) : 1;
+          this.lastTouchdownAt = now;
+          // Fast high layer gives the clack; short low layer supplies restrained weight.
+          note(hard ? 62 : 67, 0, hard ? .044 : .035, 'square',
+            (hard ? .14 : .105) * weight, hard ? 48 : 56);
+          note(hard ? 40 : 46, .003, hard ? .118 : .089, 'triangle',
+            (hard ? .20 : .145) * weight, hard ? 31 : 39);
+          break;
+        }
+        case 'lock': {
+          const hard = Boolean(payload.hardDrop || payload.drop === 'hard');
+          this.lastLockAt = now;
+          const closeToImpact = now - this.lastTouchdownAt < .17;
+          note(hard ? 44 : 53, 0, hard ? .112 : .082, 'triangle',
+            (hard ? .25 : .15) * (Number(payload.lines) > 0 ? .65 : 1) * (closeToImpact ? .28 : 1), hard ? 32 : 46);
+          if (hard && !relaxed && !closeToImpact) note(71, .015, .055, 'sine', .075, 57);
+          break;
+        }
         case 'clear': {
-          const lines = Math.max(1, Math.min(4, Number(payload.lines) || 1));
-          const base = payload.tspin ? 65 : 60;
-          const steps = lines === 4 || payload.tspin ? [0, 4, 7, 12, 16] : [0, 4, 7, 12].slice(0, lines + 1);
-          steps.forEach((interval, i) => note(base + interval, i * 0.055, 0.19, 'triangle', 0.23));
-          if (payload.b2b) note(base + 19, 0.28, 0.22, 'sine', 0.22);
-          if (Number(payload.combo) > 0) note(79 + Math.min(8, Number(payload.combo)), 0.21, 0.17, 'sine', 0.16);
+          const lines = Math.max(0, Math.min(5, Number(payload.lines) || 0));
+          const start = Math.max(now + .012, this.lastLockAt + .105), offset = start - now;
+          let mainEnd;
+          if (lines >= 4) {
+            // Dedicated cadence for Tetris, rather than repeating the single-line sound.
+            [60,64,67,72,67,76,84].forEach((p,i) => note(p, offset + i * .098, .18,
+              relaxed ? 'sine' : i === 6 ? 'triangle' : 'square', i === 6 ? .22 : .13));
+            note(48, offset + .30, .32, 'triangle', .12); mainEnd = offset + .768;
+          } else if (lines === 3) {
+            [64,69,74,81].forEach((p,i) => note(p, offset + i * .125,
+              i === 3 ? .18 : .16, softType, i === 3 ? .19 : .15)); mainEnd = offset + .555;
+          } else if (lines === 2) {
+            [67,72,79].forEach((p,i) => note(p, offset + i * .127,
+              i === 2 ? .17 : .145, softType, i === 2 ? .18 : .14)); mainEnd = offset + .424;
+          } else if (lines === 1) {
+            note(72, offset, .19, softType, .15, 76); note(79, offset + .135, .18, softType, .17);
+            mainEnd = offset + .315;
+          } else {
+            [67,72,76].forEach((p,i) => note(p, offset + i * .105, .16, softType, .14)); mainEnd = offset + .37;
+          }
+          if (payload.tspin && lines < 4) note(84, Math.max(offset + .15, mainEnd - .18), .15, softType, .105);
+          const combo = Math.floor(Number(payload.combo) || 0);
+          if (combo >= 2) note(Math.min(88, 82 + (combo - 2) * 2), mainEnd + .035, .115, 'sine', .10);
+          if (payload.b2b) {
+            note(79, mainEnd + (combo >= 2 ? .16 : .035), .14, 'sine', .095);
+            note(86, mainEnd + (combo >= 2 ? .23 : .105), .17, 'sine', .085);
+          }
+          if (now >= this.priorityUntil || this.priorityLevel <= 6) {
+            this.priorityUntil = Math.max(this.priorityUntil, now + mainEnd); this.priorityLevel = 6;
+          }
           break;
         }
         case 'perfectClear': {
-          const zen = /zen|\u7985/i.test(String(payload.mode || this.mode));
-          // A compact resolving fanfare; the quiet square sparkle keeps a chiptune character.
-          [60, 64, 67, 72, 76, 79, 84].forEach((n, i) =>
-            note(n, i * 0.055, i === 6 ? 0.32 : 0.18,
-              zen ? 'sine' : 'triangle', zen ? 0.16 : 0.21));
-          note(72, 0.33, 0.34, 'triangle', zen ? 0.12 : 0.16);
-          if (!zen) note(84, 0.33, 0.12, 'square', 0.045);
+          this.stopVoices('sfx');
+          [60,64,67,72,76,79,84,88].forEach((p,i) => note(p, i * .105,
+            i === 7 ? .31 : .18, relaxed ? 'sine' : i === 7 ? 'triangle' : 'square', i === 7 ? .19 : .12));
+          note(48, .17, .38, 'triangle', .075); note(72, .47, .36, 'triangle', .09);
+          this.priorityUntil = now + 1.05; this.priorityLevel = 9;
+          this.duckUntil = now + 1.05; this.ducking = true;
+          this.smoothGain(this.musicGain, this.musicLevel(), .04);
           break;
         }
+        case 'pause':
+          this.stopVoices('sfx');
+          note(72, 0, .075, 'sine', .12); note(67, .07, .13, 'sine', .12); break;
+        case 'levelUp': [60,64,67,72,76].forEach((p,i) => note(p,i * .07,.23,softType,.16)); break;
+        case 'bomb':
+          note(50,0,.25,'triangle',.23,29); note(43,.04,.23,'sawtooth',.05,26);
+          note(76,.075,.18,'sine',.12,50); break;
+        case 'slow': [79,76,72,67].forEach((p,i) => note(p,i * .09,.27,'sine',.13)); break;
+        case 'emergency':
+          if (payload.zen) [60,64,67].forEach((p,i) => note(p,i * .13,.35,'sine',.12));
+          else [60,67,72,79].forEach((p,i) => note(p,i * .065,.22,softType,.16)); break;
+        case 'gameOver':
+          this.stopVoices('sfx');
+          [64,60,57,45].forEach((p,i) => note(p,i * .16,.32,softType,.16)); break;
+        case 'start': [60,64,67,72].forEach((p,i) => note(p,i * .06,.19,softType,.15)); break;
         case 'eventStart': {
           const type = String(payload.type || '').toLowerCase();
-          const melody = /tiny|small/.test(type) ? [76, 81, 84]
-            : /long|straight/.test(type) ? [60, 67, 72] : [72, 76, 79];
-          melody.forEach((n, i) => note(n, i * 0.085, 0.24, 'sine', 0.16));
-          break;
+          const melody = /tiny|small/.test(type) ? [76,81,84]
+            : /long|straight/.test(type) ? [60,67,72] : [72,76,79];
+          melody.forEach((p,i) => note(p,i * .085,.22,'sine',.12)); break;
         }
-        case 'eventEnd':
-          note(72, 0, 0.15, 'sine', 0.11);
-          note(67, 0.09, 0.22, 'sine', 0.10);
-          break;
-        case 'hold': note(72, 0, 0.075, 'triangle', 0.19); note(67, 0.06, 0.10, 'triangle', 0.18); break;
-        case 'pause': note(72, 0, 0.075, 'sine', 0.17); note(67, 0.07, 0.13, 'sine', 0.17); break;
-        case 'levelUp':
-          [60, 64, 67, 72, 76].forEach((n, i) => note(n, i * 0.07, 0.23, 'triangle', 0.2));
-          break;
-        case 'bomb':
-          note(52, 0, 0.24, 'triangle', 0.31, 23);
-          note(43, 0.04, 0.28, 'sawtooth', 0.075, 26);
-          note(79, 0.06, 0.17, 'sine', 0.16, 45);
-          break;
-        case 'slow':
-          [79, 76, 72, 67].forEach((n, i) => note(n, i * 0.085, 0.3, 'sine', 0.18));
-          break;
-        case 'emergency':
-          if (payload.zen) {
-            [60, 64, 67].forEach((n, i) => note(n, i * 0.13, 0.4, 'sine', 0.15));
-          } else {
-            [60, 67, 72, 79].forEach((n, i) => note(n, i * 0.065, 0.22, 'triangle', 0.21));
-          }
-          break;
-        case 'gameOver':
-          [64, 60, 57, 45].forEach((n, i) => note(n, i * 0.16, 0.35, 'triangle', 0.2));
-          break;
-        case 'start':
-          [60, 64, 67, 72].forEach((n, i) => note(n, i * 0.06, 0.19, 'triangle', 0.2));
-          break;
-        default: break;
+        case 'eventEnd': note(72,0,.13,'sine',.08); note(67,.09,.2,'sine',.07); break;
+        case 'mystery': [72,79,84].forEach((p,i) => note(p,i*.065,.13,'sine',.105)); break;
+        case 'gravityShift': [57,52,48].forEach((p,i) => note(p,i*.07,.13,'triangle',.12, p-5)); break;
+        case 'colorSweep': [76,81,88].forEach((p,i) => note(p,i*.08,.19,'sine',.11)); break;
+        case 'freeze': note(84,0,.22,'sine',.12,72); note(72,.1,.25,'sine',.08,67); break;
+        case 'freezeEnd': note(67,0,.10,'sine',.07,72); break;
+        case 'luckyHold': note(74,0,.12,'sine',.11); note(81,.1,.20,'sine',.12); break;
+        case 'miniRain': [79,76,72,69].forEach((p,i) => note(p,i*.09,.09,'sine',.07)); break;
+        case 'cleanCut': note(60,0,.08,'square',.12,52); note(48,.07,.22,'triangle',.13,40); break;
+        case 'mirror': note(72,0,.10,'sine',.09,79); note(79,.09,.16,'sine',.09,72); break;
+        case 'clearSky': [60,67,72,79].forEach((p,i) => note(p,i*.08,.23,'sine',.11)); break;
+        default: return false;
       }
+      this.lastPlan = { name, start: planStart, end: planEnd, notes, priority, mode: this.mode };
+      return notes.length > 0;
     }
-
     destroy() {
-      this.destroyed = true;
-      this.active = false;
-      this.stopVoices();
+      this.destroyed = true; this.active = false; this.stopVoices(); this.voices.clear();
       try { if (this.musicGain) this.musicGain.disconnect(); } catch (_) {}
       try { if (this.sfxGain) this.sfxGain.disconnect(); } catch (_) {}
       try { if (this.output) this.output.disconnect(); } catch (_) {}
       if (this.context && this.context.state !== 'closed') {
         try { this.context.close().catch(() => {}); } catch (_) {}
       }
-      this.voices.clear();
     }
   }
-
   globalThis.RetroAudio = AudioManager;
 })();
 
@@ -1157,13 +1428,14 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     set(key, value) { try { localStorage.setItem('retro-blocks-v1:' + key, JSON.stringify(value)); } catch (_) {} }
   };
   const Settings = {
-    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false },
+    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, audioIntensity: 'normal', crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false },
     load() {
       const saved = Storage.get('settings', {});
       if (!saved || typeof saved !== 'object') return;
       for (const key of Object.keys(this.value)) {
         if (typeof this.value[key] === 'boolean' && typeof saved[key] === 'boolean') this.value[key] = saved[key];
         if (typeof this.value[key] === 'number' && Number.isFinite(saved[key])) this.value[key] = Math.max(0, Math.min(1, saved[key]));
+        if (key === 'audioIntensity' && ['low', 'normal', 'arcade'].includes(saved[key])) this.value[key] = saved[key];
       }
     },
     save() { Storage.set('settings', this.value); },
@@ -1172,6 +1444,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       document.body.classList.toggle('reduced-motion', this.value.reducedMotion);
       for (const key of ['musicOn', 'sfxOn', 'crt', 'reducedMotion', 'colorAssist']) $(key).checked = this.value[key];
       for (const key of ['musicVolume', 'sfxVolume']) { $(key).value = Math.round(this.value[key] * 100); $(key + 'Value').value = $(key).value + '%'; }
+      $('audioIntensity').value = this.value.audioIntensity;
       const muted = !this.value.musicOn && !this.value.sfxOn;
       $('muteButton').setAttribute('aria-label', muted ? '取消静音' : '静音');
       $('muteButton').title = muted ? '取消静音' : '静音';
@@ -1183,10 +1456,57 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const storedBest = mode => { const value = Storage.get('best:' + mode, 0); return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0; };
   const best = { classic: storedBest('classic'), chill: storedBest('chill'), zen: storedBest('zen') };
   const audio = new RetroAudio(() => Settings.value);
-  let bestAtStart = 0, saveDirty = false, saveElapsed = 0, toastTime = 0, eventTime = 0, pausedTime = 0;
+  let bestAtStart = 0, saveDirty = false, saveElapsed = 0, toastTime = 0, eventTime = 0, pausedTime = 0, startGeneration = 0;
   let uiDirty = true, overlayKey = '', previewKey = '', lastState = 'MENU';
   const pad = (n, len = 6) => String(n).padStart(len, '0');
   const text = (id, value) => { const el = $(id), s = String(value); if (el.textContent !== s) el.textContent = s; };
+  const GUIDE_SECTIONS = [
+    ['SPECIAL BLOCKS', [
+      ['BOMB BLOCK', '落地后清除周围约 3×3 的方块。', '✹'],
+      ['MYSTERY BLOCK', '带问号的方块；落地后才揭晓效果。', '?'],
+      ['LINE CLEAR ITEM', '清除棋盘最低的一条非空行。', '↔'],
+      ['SLOW TIME', '自动下落放慢约 10 秒。', '◷'],
+      ['RESCUE BLOCK', '单格块适合补小缺口。', null, 'DOT']
+    ]],
+    ['SUPPORT PIECES', [
+      ['2×1 MINI BAR', '两格短条，填补狭窄空位。', null, 'I2'],
+      ['3×1 HALF BAR', '三格半长竖条，处理较深凹槽。', null, 'I3'],
+      ['MINI L', '三格转角块，补边角。', null, 'L3'],
+      ['MINI T', '紧凑 T 形补位块。', null, 'T3'],
+      ['BOOT BLOCK', '靴子形辅助块，适应起伏地形。', null, 'V5'],
+      ['LONG I5', '稀有五格长条，帮助打通深井。', null, 'I5'],
+      ['SINGLE DOT', '极少见的单格救援块。', null, 'DOT']
+    ]],
+    ['SURPRISE EVENTS', [
+      ['LUCKY WAVE', '短暂提高易摆放方块的机会。', '✦'],
+      ['TINY BLOCKS', '接下来出现三块小辅助方块。', '▦'],
+      ['LONG BOY', '短暂提高长条方块的机会。', '║'],
+      ['MIRROR', '棋盘左右翻转一次。', '⇄'],
+      ['CLEAR SKY', '清理上方危险区域的一部分。', '☁'],
+      ['GRAVITY SHIFT', '部分悬空方块向下塌落。', '⇣'],
+      ['COLOR SWEEP', '一种现有颜色高亮后消失。', '◈'],
+      ['FREEZE', '暂停自动重力约 5–8 秒，操作照常。', '❄'],
+      ['LUCKY HOLD', '下一次暂存可多获得一次暂存机会。', '♧'],
+      ['MINI RAIN', '数个单格小块落入低洼处。', '⋮'],
+      ['CLEAN CUT', '切除一条有效高度线并压缩棋盘。', '╍']
+    ]],
+    ['RESCUE SYSTEMS', [
+      ['EMERGENCY CLEAR', '首次触顶时清理危险区域，获得一次续命。', '♡'],
+      ['RESCUE PIECE', '小块与长条会温和照顾凹槽，但不会代玩。', '▣'],
+      ['SURPRISE PITY', '惊喜会轮换且有保底，减少长时间空窗。', '★']
+    ]]
+  ];
+  function renderGuide() {
+    $('guideBody').innerHTML = '<p class="guide-intro">辅助方块、道具与惊喜会适度轮换。标准七种方块仍是主角；每次新惊喜会在游戏中提示。</p>' +
+      GUIDE_SECTIONS.map(([heading, items]) => '<section class="guide-section"><h3>' + heading + '</h3><div class="guide-grid">' +
+        items.map(([name, description, icon, piece]) => '<article class="guide-card">' +
+          (piece ? '<canvas class="guide-piece" data-guide-piece="' + piece + '" aria-hidden="true"></canvas>' : '<span class="guide-icon" aria-hidden="true">' + icon + '</span>') +
+          '<div><b>' + name + '</b><p>' + description + '</p></div></article>').join('') +
+        '</div></section>').join('');
+  }
+  function drawGuidePreviews() {
+    document.querySelectorAll('[data-guide-piece]').forEach(canvas => drawPreview(canvas, canvas.dataset.guidePiece));
+  }
   function saveBest() { if (saveDirty) { for (const mode of Object.keys(best)) Storage.set('best:' + mode, best[mode]); saveDirty = false; } }
   function notice(message, subtext = '', duration = 2900) {
     $('toast').classList.toggle('perfect', message === 'PERFECT CLEAR!');
@@ -1227,9 +1547,51 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
   }
   const particles = new ParticleSystem();
+  const boardFx = {
+    current: null,
+    start(kind, data) {
+      if (!Array.isArray(data.before) || !Array.isArray(data.after) || Settings.value.reducedMotion) return;
+      this.current = { kind, before: data.before, after: data.after,
+        moves: data.moves || [], removed: data.removed || [], elapsed: 0,
+        duration: kind === 'miniRain' ? 520 : kind === 'colorSweep' ? 440 : 390 };
+    },
+    clear() { this.current = null; },
+    update(dt) {
+      if (!this.current) return;
+      this.current.elapsed += dt;
+      if (this.current.elapsed >= this.current.duration) this.current = null;
+    },
+    draw(ctx, size) {
+      const fx = this.current; if (!fx) return;
+      const p = Math.min(1, fx.elapsed / fx.duration);
+      ctx.save();
+      for (let y = 0; y < CONFIG.ROWS; y++) for (let x = 0; x < CONFIG.COLS; x++) {
+        const type = fx.before[y]?.[x];
+        if (!type || fx.after[y]?.[x] === type) continue;
+        ctx.globalAlpha = (1 - p) * (fx.kind === 'colorSweep' ? .78 : .45);
+        block(ctx, x * size, y * size, size, type);
+        if (fx.kind === 'colorSweep' && p < .5) {
+          ctx.globalAlpha = (.5 - p) * .65;
+          ctx.fillStyle = '#fff9dc'; ctx.fillRect(x * size + 2, y * size + 2, size - 4, size - 4);
+        }
+      }
+      for (const [index, move] of fx.moves.entries()) {
+        const from = move.from, to = move.to;
+        if (!from || !to) continue;
+        const stagger = fx.kind === 'miniRain' ? Math.min(.65, index * .16)
+          : fx.kind === 'gravityShift' ? Math.min(.35, index * .04) : 0;
+        const t = Math.max(0, Math.min(1, (p - stagger) / (1 - stagger)));
+        ctx.globalAlpha = (1 - t) * .85;
+        block(ctx, (from.x + (to.x - from.x) * t) * size,
+          (from.y + (to.y - from.y) * (t * t * (3 - 2 * t))) * size,
+          size, move.type || 'DOT');
+      }
+      ctx.restore();
+    }
+  };
   const game = new Game((name, data) => {
     uiDirty = true;
-    if (name !== 'change' && name !== 'score' && name !== 'toast' && name !== 'reward') audio.play(name, data);
+    if (!['change', 'score', 'toast', 'reward', 'hardDrop', 'start', 'surprise'].includes(name)) audio.play(name, data);
     if (name === 'start') { particles.clear(); eventText('FIND YOUR FLOW.', '每一块，都有它的位置。'); toastTime = 0; $('toast').hidden = true; }
     if (name === 'score' && game.score > best[game.mode]) { best[game.mode] = game.score; saveDirty = true; }
     if (name === 'clear') {
@@ -1242,6 +1604,16 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       eventText(data.label, [data.b2b ? 'BACK TO BACK' : '', combo, rank].filter(Boolean).join(' · '));
     }
     if (name === 'hardDrop') { particles.pulse = 120; particles.dropCells = data.cells; input.clear(); }
+    if (name === 'mystery') eventText('MYSTERY REVEALED', '效果：' + ({ bomb:'炸弹', line:'清除一行', slow:'慢速', freeze:'冻结重力', luckyHold:'幸运暂存', gravityShift:'重力转移', colorSweep:'颜色清扫', miniRain:'单格雨', cleanCut:'整齐切线', clearSky:'清空危险区' }[data.effect] || data.effect));
+    const boardNames = { gravityShift: 'GRAVITY SHIFT', colorSweep: 'COLOR SWEEP', miniRain: 'MINI RAIN', cleanCut: 'CLEAN CUT', mirror: 'MIRROR', clearSky: 'CLEAR SKY' };
+    if (boardNames[name]) {
+      boardFx.start(name, data);
+      eventText(boardNames[name], { gravityShift:'悬空方块向下塌落', colorSweep:'同色方块消失', miniRain:'小方块落入凹槽', cleanCut:'切除一层并压缩', mirror:'棋盘左右翻转', clearSky:'清理上方危险区' }[name]);
+      if (data.removed?.length) particles.burst(data.removed, true);
+    }
+    if (name === 'freeze') eventText('FREEZE', '自动下落暂时停止，你仍可操作。');
+    if (name === 'luckyHold') eventText('LUCKY HOLD', '下一次暂存不消耗本回合使用权。');
+    if (name === 'freezeEnd') eventText('FREEZE ENDED', '重力恢复。');
     if (name === 'hold') input.clear();
     if (name === 'bomb') { particles.burst(data.cells, true); eventText('BOMB!', '腾出一点呼吸的空间。'); }
     if (name === 'levelUp') eventText('LEVEL ' + pad(data.level, 2), 'KEEP THE RHYTHM.');
@@ -1322,24 +1694,31 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   window.addEventListener('pagehide', saveBest);
   function start(mode) {
     document.querySelectorAll('dialog[open]').forEach(d => d.close());
-    saveBest(); bestAtStart = best[mode]; input.clear(); previewKey = ''; overlayKey = ''; game.start(mode); audio.init().then(() => { if (game.state === 'COUNTDOWN') audio.play('start'); });
+    saveBest(); bestAtStart = best[mode]; input.clear(); boardFx.clear(); previewKey = ''; overlayKey = '';
+    audio.resetSession(mode); const generation = ++startGeneration;
+    game.start(mode); audio.init().then(() => { if (generation === startGeneration && game.state === 'COUNTDOWN') audio.play('start'); });
     $('home').hidden = true; $('gamePage').hidden = false;
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     window.scrollTo({ top: 0, behavior: 'auto' }); resizeAll(); syncUI();
   }
-  function mainMenu() { saveBest(); input.clear(); particles.clear(); game.menu(); audio.setActive(false); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
+  function mainMenu() { saveBest(); input.clear(); particles.clear(); boardFx.clear(); ++startGeneration; audio.resetSession('menu'); game.menu(); audio.setActive(false); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
   $('chillStart').addEventListener('click', () => start('chill'));
   $('classicStart').addEventListener('click', () => start('classic'));
   $('zenStart').addEventListener('click', () => start('zen'));
   $('pauseButton').addEventListener('click', togglePause);
   $('restartButton').addEventListener('click', () => start(game.mode));
   $('brandButton').addEventListener('click', mainMenu);
-  $('overlay').addEventListener('click', e => { const action = e.target.closest('[data-action]')?.dataset.action; if (action === 'resume') togglePause(); else if (action === 'restart') start(game.mode); else if (action === 'menu') mainMenu(); });
-  document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', () => { input.clear(); game.pause(); $(button.dataset.dialog).showModal(); }));
+  $('overlay').addEventListener('click', e => { const action = e.target.closest('[data-action]')?.dataset.action; if (action === 'resume') togglePause(); else if (action === 'restart') start(game.mode); else if (action === 'menu') mainMenu(); else if (action === 'guide') openDialog('guideDialog'); });
+  function openDialog(id) {
+    input.clear(); game.pause(); $(id).showModal();
+    if (id === 'guideDialog') drawGuidePreviews();
+  }
+  document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', () => openDialog(button.dataset.dialog)));
+  $('guideMenuButton').addEventListener('click', () => { $('guideDialog').close(); mainMenu(); });
   document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
   document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } }));
   for (const key of Object.keys(Settings.value)) $(key).addEventListener('input', () => {
-    Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked : Number($(key).value) / 100;
+    Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked : key === 'audioIntensity' ? $(key).value : Number($(key).value) / 100;
     Settings.save(); Settings.apply(); audio.applySettings(); previewKey = ''; drawAttract(); uiDirty = true;
   });
   let unmuteSettings = { musicOn: Settings.value.musicOn, sfxOn: Settings.value.sfxOn };
@@ -1356,7 +1735,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     const ctx = canvas.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     return { ctx, width: rect.width, height: rect.height };
   }
-  function block(ctx, x, y, s, type, ghost = false, bomb = false) {
+  function block(ctx, x, y, s, type, ghost = false, bomb = false, mystery = false) {
     const color = COLORS[type] || '#c8f789';
     if (ghost) {
       ctx.globalAlpha = .23; ctx.fillStyle = color; ctx.fillRect(x + 3, y + 3, s - 6, s - 6);
@@ -1381,6 +1760,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       if (type === 'I3') for (const py of [-p, 0, p]) ctx.fillRect(-1, py - 1, 2, 2);
       if (type === 'I2') { ctx.moveTo(-p / 2, -p); ctx.lineTo(-p / 2, p); ctx.moveTo(p / 2, -p); ctx.lineTo(p / 2, p); }
       if (type === 'L3') { ctx.moveTo(0, -p); ctx.lineTo(p, p); ctx.lineTo(-p, p); ctx.closePath(); }
+      if (type === 'T3') { ctx.moveTo(-p, -p); ctx.lineTo(p, -p); ctx.moveTo(0, -p); ctx.lineTo(0, p); }
       if (type === 'V5') { ctx.moveTo(-p, -p); ctx.lineTo(0, p); ctx.lineTo(p, -p); }
       if (type === 'I5') { ctx.moveTo(0, -p); ctx.lineTo(0, p); ctx.moveTo(-p, -p); ctx.lineTo(p, -p); ctx.moveTo(-p, p); ctx.lineTo(p, p); }
       if (type === 'DOT') { ctx.moveTo(0, -p); ctx.lineTo(p, 0); ctx.lineTo(0, p); ctx.lineTo(-p, 0); ctx.closePath(); }
@@ -1391,17 +1771,24 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       ctx.strokeStyle = '#21192f'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x + size * .53, y + size * .36); ctx.lineTo(x + size * .65, y + size * .17); ctx.stroke();
       ctx.fillStyle = '#fff3c7'; ctx.fillRect(x + size * .66, y + size * .14, Math.max(2, size * .1), Math.max(2, size * .1));
     }
+    if (mystery && s >= 14) {
+      ctx.strokeStyle = '#fff2a0'; ctx.lineWidth = Math.max(1, s * .07);
+      ctx.strokeRect(x + 2, y + 2, size - 4, size - 4);
+      ctx.fillStyle = '#211927'; ctx.font = 'bold ' + Math.max(10, Math.round(s * .56)) + 'px Consolas,monospace';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('?', x + size / 2, y + size / 2 + 1);
+    }
   }
   function drawPreview(canvas, descriptor) {
     const metrics = fit(canvas); if (!metrics) return;
     const { ctx, width, height } = metrics; ctx.clearRect(0, 0, width, height);
     if (!descriptor) { ctx.fillStyle = '#60556f'; ctx.font = '20px Consolas,monospace'; ctx.textAlign = 'center'; ctx.fillText('+', width / 2, height / 2 + 7); return; }
     const type = typeof descriptor === 'string' ? descriptor : descriptor.type;
-    const piece = new Piece(type, descriptor.bomb), cells = piece.cells(0, 0);
+    const piece = new Piece(type, descriptor.bomb, descriptor.mystery), cells = piece.cells(0, 0);
     const minX = Math.min(...cells.map(c => c.x)), maxX = Math.max(...cells.map(c => c.x)), minY = Math.min(...cells.map(c => c.y)), maxY = Math.max(...cells.map(c => c.y));
     const size = Math.min(21, (width - 18) / Math.max(4, maxX - minX + 1), (height - 12) / Math.max(2, maxY - minY + 1));
     const ox = (width - (maxX - minX + 1) * size) / 2, oy = (height - (maxY - minY + 1) * size) / 2;
-    for (const c of cells) block(ctx, ox + (c.x - minX) * size, oy + (c.y - minY) * size, size, type, false, descriptor.bomb && c === cells[0]);
+    for (const c of cells) block(ctx, ox + (c.x - minX) * size, oy + (c.y - minY) * size, size, type, false, descriptor.bomb && c === cells[0], descriptor.mystery);
   }
   function grid(ctx, width, height, cols, rows) {
     ctx.fillStyle = '#10121e'; ctx.fillRect(0, 0, width, height); ctx.strokeStyle = '#b99df00b'; ctx.lineWidth = .7;
@@ -1422,11 +1809,12 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       block(ctx, x * size, y * size, size, type); ctx.globalAlpha = 1;
       if (isClearing && !Settings.value.reducedMotion) { ctx.fillStyle = '#f5eaff'; ctx.globalAlpha = (1 - progress) * .5; ctx.fillRect(x * size + 1, y * size + 1, size - 2, size - 2); ctx.globalAlpha = 1; }
     }
+    boardFx.draw(ctx, size);
     if (game.piece) {
       const p = game.piece, ghost = game.ghostY();
       for (const c of p.cells(p.x, ghost)) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, true);
       const core = p.bomb ? p.bombCore() : null;
-      for (const c of p.cells()) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, false, core && core.x === c.x && core.y === c.y);
+      for (const c of p.cells()) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, false, core && core.x === c.x && core.y === c.y, p.mystery);
     }
     particles.draw(ctx, size);
     if (game.state === 'EMERGENCY' && !Settings.value.reducedMotion) { ctx.globalAlpha = .12 * (1 - game.phaseElapsed / game.phaseDuration); ctx.fillStyle = '#c8f789'; ctx.fillRect(0, 0, width, height); ctx.globalAlpha = 1; }
@@ -1458,7 +1846,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     if (key === overlayKey) return; overlayKey = key;
     const el = $('overlay'); el.hidden = !['COUNTDOWN','PAUSED','GAME_OVER','EMERGENCY'].includes(state); el.className = 'board-overlay' + (state === 'COUNTDOWN' ? ' countdown' : '');
     if (state === 'COUNTDOWN') el.innerHTML = '<div class="overlay-overline">MAKE YOURSELF AT HOME.</div><h2 class="overlay-title">' + game.countdownText + '</h2>';
-    else if (state === 'PAUSED') el.innerHTML = '<div class="overlay-overline">A MOMENT OF QUIET.</div><h2 class="overlay-title">PAUSED</h2><p class="overlay-desc" id="pauseMessage">PRESS P TO CONTINUE<br>慢慢来，方块会等你。</p><div class="overlay-actions"><button class="primary-button" data-action="resume">▶ RESUME</button><button class="secondary-button" data-action="restart">↻ RESTART</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
+    else if (state === 'PAUSED') el.innerHTML = '<div class="overlay-overline">A MOMENT OF QUIET.</div><h2 class="overlay-title">PAUSED</h2><p class="overlay-desc" id="pauseMessage">PRESS P TO CONTINUE<br>慢慢来，方块会等你。</p><div class="overlay-actions"><button class="primary-button" data-action="resume">▶ RESUME</button>' + (game.mode === 'chill' ? '<button class="secondary-button" data-action="guide">? SPECIAL GUIDE</button>' : '') + '<button class="secondary-button" data-action="restart">↻ RESTART</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
     else if (state === 'GAME_OVER') el.innerHTML = '<div class="overlay-overline">THAT WAS A GOOD BREAK.</div><h2 class="overlay-title">GAME<br>OVER</h2>' + (game.score > bestAtStart ? '<p class="new-best">★ NEW HIGH SCORE!</p>' : '') + '<dl class="result-grid"><div><dt>SCORE</dt><dd>' + pad(game.score) + '</dd></div><div><dt>BEST</dt><dd>' + pad(best[game.mode]) + '</dd></div><div><dt>LINES</dt><dd>' + pad(game.lines,2) + '</dd></div><div><dt>LEVEL</dt><dd>' + pad(game.level,2) + '</dd></div></dl><div class="overlay-actions"><button class="primary-button" data-action="restart">↻ PLAY AGAIN</button><button class="secondary-button" data-action="menu">MAIN MENU</button></div>';
     else if (state === 'EMERGENCY') el.innerHTML = game.mode === 'zen'
       ? '<div class="overlay-overline">∞ FREE PLAY</div><h2 class="overlay-title">CLEAR SKY</h2><p class="overlay-desc">自动清理 · 继续摆放</p>'
@@ -1501,20 +1889,25 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     const active = ['PLAYING','CLEARING','COUNTDOWN','EMERGENCY'].includes(game.state);
     audio.update(dt, active && !document.hidden, game.mode);
     if (game.state !== lastState) { input.clear(); lastState = game.state; uiDirty = true; }
-    if (active) { particles.update(dt); if (eventTime > 0) { eventTime -= dt; if (eventTime <= 0) eventText('FIND YOUR FLOW.', game.mode === 'chill' ? '慢慢来，也很精彩。' : 'KEEP THE RHYTHM.'); } }
+    if (active) { particles.update(dt); boardFx.update(dt); if (eventTime > 0) { eventTime -= dt; if (eventTime <= 0) eventText('FIND YOUR FLOW.', game.mode === 'chill' ? '慢慢来，也很精彩。' : 'KEEP THE RHYTHM.'); } }
     if (game.state === 'PAUSED') { pausedTime += dt; if (pausedTime >= 20000 && $('pauseMessage')) text('pauseMessage', 'TAKE YOUR TIME. 方块会等你。'); }
     if (toastTime > 0 && game.state !== 'PAUSED') { toastTime -= dt; if (toastTime <= 0) $('toast').hidden = true; }
     saveElapsed += dt; if (saveElapsed >= 1000) { saveElapsed = 0; saveBest(); }
     if (uiDirty) syncUI();
-    const slowLabel = game.slowRemaining > 0 ? '◷ SLOW TIME ' + Math.ceil(game.slowRemaining / 1000) + 's' : '';
-    text('slowStatus', slowLabel); text('mobileSlowStatus', slowLabel);
+    const powers = [];
+    if (game.slowRemaining > 0) powers.push('◷ SLOW ' + Math.ceil(game.slowRemaining / 1000) + 's');
+    if (game.freezeRemaining > 0) powers.push('❄ FREEZE ' + Math.ceil(game.freezeRemaining / 1000) + 's');
+    if (game.luckyHoldActive) powers.push('✦ LUCKY HOLD');
+    text('slowStatus', powers.join(' · ')); text('mobileSlowStatus', powers.join(' · '));
     $('boardFrame').classList.toggle('slow', game.slowRemaining > 0);
+    $('boardFrame').classList.toggle('freeze', game.freezeRemaining > 0);
+    $('boardFrame').classList.toggle('lucky', game.luckyHoldActive);
     if (window.devicePixelRatio !== previousDpr) { previousDpr = window.devicePixelRatio; resizeAll(); }
     drawBoard(); requestAnimationFrame(frame);
   }
-  drawTitle(); drawAttract(); syncUI(); requestAnimationFrame(frame);
+  renderGuide(); drawTitle(); drawAttract(); syncUI(); requestAnimationFrame(frame);
   // The only stateful loop is frame(); this read-only container also enables local verification.
-  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles }), writable: false });
+  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles, boardFx }), writable: false });
 })();
 
 </script>
