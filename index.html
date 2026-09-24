@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#171722">
-<title>RETRO BLOCKS v1.3 · Take a little break</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%229%22%20fill%3D%22%23171722%22%2F%3E%3Cpath%20d%3D%22M3%203h58v58H3z%22%20fill%3D%22none%22%20stroke%3D%22%23b69af2%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M24%209h16v16H24zM8%2025h16v16H8zM24%2025h16v16H24zM40%2025h16v16H40z%22%20fill%3D%22%23d3ff83%22%20stroke%3D%22%23f7ffe6%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M12%2038h9M28%2038h9M44%2038h9M28%2022h9%22%20stroke%3D%22%236daa51%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<title>RETRO BLOCKS v1.5 · Take a little break</title>
 <style>
 :root{color-scheme:dark;--bg:#171722;--surface:#20202e;--line:#41404f;--muted:#aba7b9;--white:#f6f0db;--mint:#c8f789;--purple:#af90eb;--pink:#f298af;--board:#11121e;--font:Consolas,"Lucida Console","Courier New",monospace}
 *{box-sizing:border-box}html{min-width:280px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);font-size:14px;min-height:100vh;background-image:radial-gradient(ellipse at 80% 20%,#35304b45,transparent 56%)}button,input{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}button{border-radius:0}button:hover{filter:brightness(1.12)}button:active{transform:translateY(2px)}[hidden]{display:none!important}canvas{display:block}body::after{content:"";pointer-events:none;position:fixed;inset:0;z-index:30;background:repeating-linear-gradient(0deg,transparent,transparent 3px,#0000000e 3px,#0000000e 4px);opacity:.5}body.no-crt::after{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -28,38 +29,137 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 .audio-intensity{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:6px 0 20px;font-size:12px}.audio-intensity small{display:block;color:#9c92a9;font-size:10px;line-height:1.6;margin-top:5px}.audio-intensity select{appearance:none;min-width:138px;padding:10px 22px 10px 11px;background:#171522;color:#e9dfea;border:1px solid #776584;cursor:pointer;font-size:11px;letter-spacing:1px}.audio-intensity select:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
 .guide-link{display:flex;align-items:center;gap:9px;margin:-3px 0 16px;padding:5px 1px;background:transparent;border:0;border-bottom:1px solid #8a77a1;color:#d1bee8;font-size:10px;letter-spacing:.8px}.guide-link span{display:grid;place-items:center;width:18px;height:18px;border:1px solid currentColor;border-radius:50%;font-weight:bold}.guide-link:hover{color:var(--mint)}.guide-dialog{max-width:820px;width:calc(100% - 28px);max-height:90dvh}.guide-dialog .dialog-header{position:sticky;top:0;z-index:2;background:#23202e}.guide-dialog .icon-button{width:44px;height:44px}.guide-body{padding:6px 24px 18px;max-height:calc(90dvh - 150px);overflow-y:auto;overscroll-behavior:contain}.guide-intro{color:#b7acc3;font-size:11px;line-height:1.8;margin:15px 0 24px}.guide-section{margin:0 0 25px}.guide-section h3{margin:0 0 12px;padding-bottom:9px;border-bottom:1px solid #55485e;color:var(--purple);font-size:11px;letter-spacing:1.5px}.guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.guide-card{display:flex;align-items:center;gap:11px;min-width:0;padding:11px;background:#1a1926;border:1px solid #51485d}.guide-icon{display:grid;place-items:center;flex:0 0 53px;width:53px;height:48px;background:#282537;border:1px solid #5c5269;color:var(--mint);font-size:24px;font-weight:bold;text-shadow:2px 2px #111}.guide-piece{flex:0 0 53px;width:53px;height:48px;background:#282537;border:1px solid #5c5269}.guide-card b{display:block;color:#f2e9f5;font-size:10px;letter-spacing:.5px;line-height:1.4}.guide-card p{margin:4px 0 0;color:#b4a9c0;font-size:10px;line-height:1.55;overflow-wrap:anywhere}.guide-footer{display:flex;justify-content:flex-end;border-top:1px solid #51485d;padding:13px 24px;background:#23202e}.guide-footer button{min-height:44px;padding:9px 15px;background:#2e293b;border:1px solid #796a87;color:var(--white);font-size:11px}.buff-status{color:#91e1e3;line-height:1.5;white-space:normal;min-height:18px;height:auto}.board-frame.freeze{border-color:#a4d8ee;box-shadow:0 0 0 3px #10111b,0 0 20px #97dfff44}.board-frame.lucky{border-color:#e0c87a}.guide-dialog :focus-visible{outline:3px solid var(--mint);outline-offset:3px}
 @media(max-width:600px){.guide-link{margin:-3px 0 14px}.guide-dialog{width:calc(100% - 20px);max-height:94dvh}.guide-body{padding:3px 16px 16px;max-height:calc(94dvh - 130px)}.guide-grid{grid-template-columns:1fr}.guide-card{padding:9px}.guide-card b{font-size:11px}.guide-card p{font-size:11px;line-height:1.6}.guide-intro{font-size:12px}.guide-dialog .dialog-header{padding:12px 16px}.guide-dialog .dialog-header h2{font-size:14px}.guide-footer{padding:9px 16px}.mobile-feedback{flex-wrap:wrap}.mobile-feedback span{overflow-wrap:anywhere}}
+.surprise-frequency{border-top:1px solid #443a50;padding-top:21px;margin-top:7px}.surprise-frequency select{min-width:148px}.surprise-frequency small{max-width:220px}
+#settingsDialog .dialog-body{max-height:calc(85dvh - 74px);overflow-y:auto;overscroll-behavior:contain}
+.event-card{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:start;gap:8px;margin:10px 0 0;padding:9px 8px;border:1px solid #ad92d7;background:linear-gradient(120deg,#34283f,#241f32);box-shadow:3px 3px 0 #12101c,0 0 15px #ac82e430;animation:event-card-in .2s ease-out both}.event-card-icon{display:grid;place-items:center;width:28px;height:28px;border:1px solid #a787ce;background:#473657;color:#e6ccff;font-size:17px}.event-card-copy{min-width:0}.event-card-title{display:block;font-size:11px;line-height:1.35;color:#f2dfff;overflow-wrap:anywhere}.event-card-en{display:block;margin-top:2px;color:#c8f789;font-size:8px;letter-spacing:.5px;line-height:1.35;overflow-wrap:anywhere}.event-card-desc{display:block;margin-top:4px;color:#bbadc8;font-size:8px;line-height:1.45;overflow-wrap:anywhere}@keyframes event-card-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.recent-surprises{margin:11px 0 0;padding:9px 0 0;border-top:1px solid #4b4057}.recent-surprises h2{margin:0 0 8px;color:#d3b7eb;font-size:9px;line-height:1.5;letter-spacing:.4px}.recent-surprises ol{list-style:none;margin:0;padding:0;display:grid;gap:5px}.recent-surprises li{display:flex;align-items:center;gap:6px;min-width:0;color:#bcb0c8;font-size:9px;line-height:1.35}.recent-surprises li>span:first-child{flex:0 0 14px;color:var(--mint);text-align:center}.recent-surprises li>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.guide-card.locked{border-style:dashed;border-color:#625a6b;background:#1c1a25}.guide-card.locked .guide-icon,.guide-card.locked .guide-piece{color:#9a90a3;border-color:#706678;background:#26232d;box-shadow:none;text-shadow:none}.guide-card.locked b{color:#bdb5c7;letter-spacing:2px}.guide-card.locked p{color:#9e93aa}.guide-card.rare-mystery:not(.locked){border-color:#d8ae60;background:linear-gradient(115deg,#332b2a,#211c28);box-shadow:inset 0 0 18px #e8bd5b19}.guide-card.rare-mystery:not(.locked) .guide-icon{color:#ffe9a0;border-color:#eac66d;background:#47372a;box-shadow:0 0 15px #e9ba5a44;text-shadow:0 0 9px #f4cf74}
+@media(min-width:1024px){.guide-dialog{max-width:1080px;width:calc(100% - 64px)}.guide-dialog .dialog-header{padding:23px 34px}.guide-dialog .dialog-header h2{font-size:21px}.guide-body{padding:12px 34px 27px;max-height:calc(90dvh - 168px)}.guide-intro{font-size:16px;line-height:1.75;margin:14px 0 31px}.guide-section{margin-bottom:36px}.guide-section h3{font-size:24px;line-height:1.4;letter-spacing:.6px;padding-bottom:13px;margin-bottom:18px}.guide-grid{gap:16px}.guide-card{gap:18px;padding:19px;align-items:flex-start;min-height:114px}.guide-card b{font-size:19px;line-height:1.4}.guide-card p{font-size:17px;line-height:1.65;margin-top:7px}.guide-card small{font-size:15px;line-height:1.6}.guide-icon,.guide-piece{flex-basis:68px;width:68px;height:62px}.guide-icon{font-size:31px}.guide-footer{padding:15px 34px}.guide-footer button{font-size:14px}}
+@media(max-width:600px){.surprise-frequency{flex-wrap:wrap;gap:10px}.surprise-frequency select{width:100%}.event-card{display:block;margin-top:5px;padding:6px 5px}.event-card-icon{display:inline-grid;width:20px;height:20px;float:left;margin-right:4px;font-size:12px}.event-card-title{font-size:9px;line-height:1.2}.event-card-en{font-size:7px;letter-spacing:0}.event-card-desc{display:none}.recent-surprises{margin-top:7px;padding-top:6px}.recent-surprises h2{font-size:7px;letter-spacing:0;margin-bottom:5px}.recent-surprises ol{gap:3px}.recent-surprises li{font-size:8px;gap:3px}.recent-surprises li>span:first-child{flex-basis:11px}}
+.toast{pointer-events:none}.toast.in-game{top:102px;bottom:auto}.event-card-title{font-size:12px}.event-card-en,.event-card-desc{font-size:9px}.recent-surprises li{font-size:10px}
+.mobile-surprise-area{display:none}
+@media(min-width:851px) and (pointer:fine){.game-layout{height:calc(var(--board-w)*2 - 18px)}.control-legend{max-width:300px;gap:6px 12px;line-height:1.5;margin-top:10px}}
+@media(max-width:600px){.toast.in-game{top:auto;bottom:18px}.right-panel #eventCard,.right-panel #recentSurprisesPanel{display:none!important}.mobile-surprise-area{position:relative;display:block;max-width:410px;height:43px;margin:-4px auto 8px;padding:7px 8px;background:#211e2b;border:1px solid #4b405d}.mobile-recent-surprises{display:flex;align-items:center;flex-wrap:wrap;gap:3px 8px;color:#c1afcf;font-size:9px;line-height:1.35}.mobile-recent-surprises b{color:#d4b8ed;font-size:8px;font-weight:normal;letter-spacing:.3px}.mobile-recent-surprises span{white-space:nowrap}.mobile-surprise-card{position:absolute;inset:0;display:flex;align-items:center;gap:8px;padding:5px 8px;border:1px solid #ad92d7;background:#34283f;box-shadow:0 0 10px #ac82e430}.mobile-surprise-card .mobile-surprise-icon{display:grid;place-items:center;flex:0 0 27px;height:27px;background:#4d3a5d;border:1px solid #ae92d3;color:#e8d1ff;font-size:16px}.mobile-surprise-card strong{display:block;font-size:10px;color:#f2dfff;line-height:1.25}.mobile-surprise-card small{display:block;font-size:8px;color:var(--mint);line-height:1.25}.mobile-surprise-card.rare{border-color:#ecc96f;background:#3c2f2f}.mobile-surprise-card.rare .mobile-surprise-icon{color:#ffe695;border-color:#efce7b}.event-card-title{font-size:9px}.event-card-en{font-size:7px}.recent-surprises li{font-size:8px}}
+.event-card.leaving{animation:none;opacity:0;transform:translateY(-4px);transition:opacity .26s ease,transform .26s ease}.mobile-surprise-card.leaving{opacity:0;transform:translateY(-3px);transition:opacity .26s ease,transform .26s ease}
+@media(max-width:600px){.mobile-surprise-card.new-discovery{border-color:var(--mint);background:#303532}.mobile-surprise-card.new-discovery .mobile-surprise-icon{color:var(--mint);border-color:var(--mint)}.mobile-surprise-card.new-discovery small{color:#eaf8c8}}
+/* The menu demonstration is drawn by the same lightweight loop as the cabinet canvas. */
+#home{position:relative;isolation:isolate}
+.menu-backdrop{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.12;pointer-events:none;image-rendering:pixelated}
+#home>.home-grid,#home>.home-footer{position:relative;z-index:1}
+.mode-button small{font-size:12px;line-height:1.5}
+.mode-meta{color:#cdbbdc;font-size:13px;letter-spacing:.3px;white-space:nowrap}
+.mode-meta::before{content:"/";color:#72657e;margin-right:10px}
+@media(max-width:600px){.menu-backdrop{opacity:.07}.mode-meta{display:none}}
+
+/* Roomier desktop instruments keep the board central at 1280x900 and 1920x1080. */
+@media(min-width:1024px) and (pointer:fine){
+  .game-page{max-width:1160px;padding:25px 32px 20px;--board-w:min(34vw,350px,calc((100dvh - 324px)/2))}
+  .game-toolbar{max-width:874px;min-height:43px;margin-bottom:17px;gap:20px}
+  .game-toolbar>div:first-child{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;min-width:0}
+  .mode-label{font-size:20px;letter-spacing:1.1px;white-space:nowrap}
+  .mode-label::before{font-size:10px;margin-right:9px}
+  .mode-meta{font-size:17px}
+  .game-subtitle{display:none}
+  .danger-badge{font-size:15px;margin-left:0}
+  .small-button{min-height:41px;padding:8px 13px;font-size:15px;white-space:nowrap}
+  .game-layout{grid-template-columns:220px var(--board-w) 240px;gap:32px;height:auto;min-height:calc(var(--board-w)*2 + 18px)}
+  .left-panel,.right-panel{min-width:0}
+  .instrument{padding-top:11px;margin-bottom:15px}
+  .instrument-title{font-size:20px;letter-spacing:1.2px;margin-bottom:9px;line-height:1.25}
+  .score-instrument .instrument-title{font-size:17px}
+  .keycap{font-size:13px;padding:2px 7px}
+  .hold-box canvas{height:112px}
+  .hold-hint{font-size:14px;line-height:1.5;color:#ada2b8;margin-top:10px}
+  .left-bottom{margin-top:29px}
+  .revive-box{font-size:17px;padding:11px 0;line-height:1.5}
+  .revive-box small{font-size:14px;line-height:1.5}
+  .zen-note{font-size:15px;line-height:1.65}
+  .zen-note b{font-size:18px}
+  .zen-note small{font-size:13px}
+  .item-caption{font-size:14px;line-height:1.7;margin-top:15px;color:#b1a4c0}
+  .item-caption b{font-size:15px;margin-bottom:5px}
+  .score-value,.game-page.zen-session .score-value{font-size:30px}
+  .best-value{font-size:25px;align-items:baseline;margin-top:8px;gap:10px}
+  .best-value span:first-child{font-size:16px;padding:0}
+  .right-panel .score-instrument{margin-bottom:14px}
+  .right-panel .metrics{padding:8px 0;margin:10px 0;gap:12px}
+  .metrics .mini-label{font-size:16px;margin-bottom:4px;letter-spacing:.5px}
+  .metrics strong{font-size:26px}
+  .combo-value{font-size:22px}
+  .level-progress{height:4px;margin:8px 0 0}
+  .right-panel .instrument{margin-bottom:13px}
+  .right-panel .next-list canvas{height:clamp(50px,calc(var(--board-w)*.17),60px)}
+  .right-panel .game-event{font-size:18px;line-height:1.3;min-height:43px;margin-top:8px;letter-spacing:.3px}
+  .game-event small{font-size:15px;line-height:1.35;color:#bbafc9}
+  .right-panel .event-status,.right-panel .slow-status{font-size:17px;line-height:1.35;margin-top:5px;min-height:0;height:auto}
+  .event-card{grid-template-columns:35px minmax(0,1fr);gap:9px;margin-top:7px;padding:8px}
+  .event-card-icon{width:33px;height:33px;font-size:20px}
+  .event-card-title{font-size:16px;line-height:1.25}
+  .event-card-en,.event-card-desc{font-size:13px;line-height:1.3}
+  .recent-surprises{margin-top:8px;padding-top:7px}
+  .recent-surprises h2{font-size:17px;line-height:1.2;letter-spacing:0;margin-bottom:6px}
+  .recent-surprises ol{gap:4px}
+  .recent-surprises li{font-size:15px;line-height:1.25;gap:5px}
+  .recent-surprises li>span:first-child{flex-basis:17px}
+  .board-overlay{padding:20px}
+  .overlay-overline{font-size:13px;margin-bottom:12px}
+  .overlay-title{font-size:34px}
+  .overlay-desc{font-size:15px;line-height:1.55;margin:12px 0 17px}
+  .overlay-actions{gap:9px}
+  .primary-button,.secondary-button{font-size:16px;min-height:44px;padding:10px 9px}
+  .result-grid{gap:11px 8px;margin:14px 0 17px}
+  .result-grid dt{font-size:14px}
+  .result-grid dd{font-size:24px;margin-top:3px}
+  .new-best{font-size:15px;margin-top:10px}
+  .control-legend{max-width:874px;gap:9px 16px;font-size:16px;line-height:1.3;margin-top:13px;color:#c3b9ce}
+  .control-legend kbd{color:var(--white)}
+  .game-footnote{font-size:10px;margin-top:13px}
+  .left-panel #itemCaption{display:none}
+  .left-panel .event-card{margin-top:16px}
+  .left-panel .recent-surprises{margin-top:14px}
+  .right-panel .score-instrument{padding-top:8px;margin-bottom:10px}
+  .right-panel .score-instrument .instrument-title{margin-bottom:6px}
+  .right-panel .score-instrument .score-value{line-height:1.05}
+  .right-panel .score-instrument .best-value{margin-top:5px}
+  .right-panel .score-instrument .metrics{padding:6px 0;margin:8px 0}
+  .right-panel .score-instrument .level-progress{margin-top:6px}
+  .toast.in-game{top:18px;bottom:auto}
+}
+@media(max-width:600px){.left-panel #eventCard,.left-panel #recentSurprisesPanel{display:none!important}}
 </style>
 </head>
 <body>
 <header class="topbar">
   <button class="brand" id="brandButton" aria-label="返回主菜单"><span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>RETRO BLOCKS</button>
-  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.3</span><div class="header-actions">
+  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.5</span><div class="header-actions">
   <button id="muteButton" class="icon-button" aria-label="静音" title="静音"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="soundWaves" d="M15 8q5 4 0 8M18 5q8 7 0 14"/></svg></button>
   <button class="icon-button" data-dialog="settingsDialog" aria-label="设置" title="设置"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6M16 9v6M10 15v6"/></svg></button>
   </div></div>
 </header>
 <main id="home" class="page">
+  <canvas id="menuBackdropCanvas" class="menu-backdrop" width="1000" height="640" aria-hidden="true"></canvas>
   <div class="home-grid"><section>
   <p class="eyebrow">A LITTLE ARCADE. A LITTLE ESCAPE.</p>
   <h1 class="hero-title"><span class="sr-only">RETRO BLOCKS</span><canvas id="titleCanvas" width="490" height="176" aria-hidden="true"></canvas></h1>
   <p class="hero-copy">TAKE A BREAK.<br><span class="faded">CLEAR YOUR MIND.</span><br>CLEAR SOME LINES.</p>
   <p class="chinese-copy">把杂念放一边，让方块各就各位。</p>
-  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">A LITTLE LUCK</span><small>辅助方块、神秘方块、轮换惊喜与一次续命。</small></span><span class="arrow">↗</span></button>
+  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">A LITTLE LUCK</span><small>特殊方块 · 随机惊喜 · 高容错</small></span><span class="arrow">↗</span></button>
   <button id="chillGuideButton" class="guide-link" data-dialog="guideDialog"><span aria-hidden="true">?</span>SPECIAL GUIDE · 查看特殊内容</button>
-  <button id="classicStart" class="mode-button secondary"><span><b>CLASSIC MODE</b><small>熟悉的七种方块，纯粹的消行快乐。</small></span><span class="arrow">→</span></button>
-  <button id="zenStart" class="mode-button zen"><span><b>ZEN MODE</b><span class="mini-tag">NO GAME OVER</span><small>恒定慢速，自动清理。想玩多久，就玩多久。</small></span><span class="arrow">∞</span></button>
+  <button id="classicStart" class="mode-button secondary"><span><b>CLASSIC MODE</b><small>标准规则 · 纯粹挑战</small></span><span class="arrow">→</span></button>
+  <button id="zenStart" class="mode-button zen"><span><b>ZEN MODE</b><span class="mini-tag">NO GAME OVER</span><small>无 Game Over · 无限放松</small></span><span class="arrow">∞</span></button>
   <div class="text-actions"><button class="text-button" data-dialog="helpDialog"><span>?</span>HOW TO PLAY</button><button class="text-button" data-dialog="settingsDialog"><span>+</span>SETTINGS</button></div>
   <div class="best-strip"><div><span class="mini-label">CHILL BEST</span><strong id="chillBest">000000</strong></div><div><span class="mini-label">CLASSIC BEST</span><strong id="classicBest">000000</strong></div></div>
   </section><aside class="attract" aria-label="复古方块街机插画"><div class="cabinet"><div class="cabinet-top"><span>01 / THE BREAK ROOM</span><span class="led"></span></div><div class="attract-screen"><span class="attract-badge">NO COINS NEEDED.</span><canvas id="attractCanvas" width="400" height="520"></canvas></div><div class="attract-caption"><span>STACK. CLEAR. EXHALE.</span><span class="tiny-blocks"><i></i><i></i><i></i></span></div></div><p class="desk-note"><span>✦</span> YOUR NEXT BREAK STARTS HERE.</p></aside></div>
   <footer class="home-footer"><span><span class="footer-blocks">■ ■ ■</span> &nbsp;THREE MODES. YOUR KIND OF BREAK.</span><span>NO ADS · NO RUSH · JUST BLOCKS</span></footer>
 </main>
 <main id="gamePage" class="game-page" hidden>
-  <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="danger-badge" id="dangerBadge" hidden>DANGER</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
+  <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="mode-meta" id="modeMeta" hidden></span><span class="danger-badge" id="dangerBadge" hidden>DANGER</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
   <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div class="mobile-best"><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label" id="mobileLevelLabel">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div></div>
   <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus" class="buff-status"></span></div>
+  <div id="mobileSurpriseArea" class="mobile-surprise-area" hidden><div id="mobileRecentSurprises" class="mobile-recent-surprises"></div><div id="mobileEventCard" class="mobile-surprise-card" hidden><span id="mobileEventCardIcon" class="mobile-surprise-icon"></span><div><strong id="mobileEventCardChinese"></strong><small id="mobileEventCardEnglish"></small></div></div></div>
   <div class="mobile-event-status" id="mobileEventStatus"></div>
   <div class="game-layout">
-    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p></div></aside>
+    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p><section id="eventCard" class="event-card" aria-live="polite" hidden><span id="eventCardIcon" class="event-card-icon" aria-hidden="true">✦</span><div class="event-card-copy"><strong id="eventCardChinese" class="event-card-title"></strong><span id="eventCardEnglish" class="event-card-en"></span><small id="eventCardDescription" class="event-card-desc"></small></div></section><section id="recentSurprisesPanel" class="recent-surprises" hidden><h2>最近惊喜 · RECENT SURPRISES</h2><ol id="recentSurprises" aria-label="最近三个惊喜"></ol></section></div></aside>
     <div class="board-frame" id="boardFrame"><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
     <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status buff-status"></div></aside>
   </div>
@@ -71,8 +171,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 <p class="setting-heading">01 / AUDIO</p><label class="setting-row"><span>MUSIC<small>轻量合成背景音乐</small></span><input class="switch" type="checkbox" id="musicOn" checked aria-label="背景音乐开关"></label><div class="volume-row"><input type="range" id="musicVolume" min="0" max="100" value="30" aria-label="背景音乐音量"><output id="musicVolumeValue">30%</output></div>
 <label class="setting-row"><span>SOUND EFFECTS<small>移动、消行与小小的胜利</small></span><input class="switch" type="checkbox" id="sfxOn" checked aria-label="音效开关"></label><div class="volume-row"><input type="range" id="sfxVolume" min="0" max="100" value="50" aria-label="音效音量"><output id="sfxVolumeValue">50%</output></div>
 <label class="audio-intensity"><span>AUDIO INTENSITY<small>音效表现强度 · 禅模式始终更柔和</small></span><select id="audioIntensity" aria-label="音效强度"><option value="low">LOW / 轻柔</option><option value="normal" selected>NORMAL / 标准</option><option value="arcade">ARCADE / 街机</option></select></label>
-<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>音乐会在开始游戏后播放。</p></div></dialog>
-<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.3</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。主菜单及暂停菜单的 SPECIAL GUIDE 可查看完整图文说明。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
+<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CHILL MODE</p><label class="audio-intensity surprise-frequency"><span>SURPRISE FREQUENCY<small>惊喜频率 · 仅影响 Chill 模式</small></span><select id="surpriseFrequency" aria-label="Chill 模式惊喜频率"><option value="relaxed">RELAXED / 悠闲</option><option value="normal" selected>NORMAL / 标准</option><option value="lively">LIVELY / 热闹</option></select></label><div class="divider"></div><p class="setting-heading">04 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>首次点击游戏或菜单按钮后，背景音乐会开始播放。</p></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.5</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。可在设置中选择惊喜频率；特殊内容会逐步解锁至 SPECIAL GUIDE 图鉴。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
 <dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle"><div class="dialog-header"><h2 id="guideTitle">SPECIAL GUIDE <span class="version-tag">CHILL MODE</span></h2><button class="icon-button" data-close aria-label="关闭特殊内容说明">×</button></div><div id="guideBody" class="guide-body"></div><div class="guide-footer"><button id="guideMenuButton" type="button">⌂ 返回主菜单</button></div></dialog>
 <div id="toast" class="toast" role="status" hidden></div>
 <script>
@@ -151,7 +251,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   });
 
   class Piece {
-    constructor(type, bomb = false, mystery = false) {
+    constructor(type, bomb = false, mystery = false, rareMystery = false) {
       if (!SHAPES[type]) throw new Error('Unknown Tetromino: ' + type);
       this.type = type;
       this.matrix = SHAPES[type].map(row => row.slice());
@@ -159,7 +259,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.y = STANDARD_TYPES.includes(type) && type !== 'O' ? -1 : 0;
       this.rotation = 0;
       this.bomb = Boolean(bomb);
-      this.mystery = Boolean(mystery);
+      this.rareMystery = Boolean(rareMystery);
+      this.mystery = Boolean(mystery || rareMystery);
     }
     rotated(direction = 1) {
       const n = this.matrix.length;
@@ -175,7 +276,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       return cells;
     }
-    descriptor() { return { type: this.type, bomb: this.bomb, mystery: this.mystery }; }
+    descriptor() { return { type: this.type, bomb: this.bomb, mystery: this.mystery, rareMystery: this.rareMystery }; }
     bombCore() {
       const center = (this.matrix.length - 1) / 2;
       let best = null;
@@ -352,34 +453,51 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   }
 
   const SURPRISE_GROUPS = Object.freeze({
-    bomb: 'special', line: 'special', mystery: 'special',
+    bomb: 'special', line: 'special', mystery: 'special', rareMystery: 'special',
     slow: 'buff', freeze: 'buff', luckyHold: 'buff',
     lucky: 'event', tiny: 'event', long: 'event', mirror: 'event',
     clearSky: 'rescue', gravityShift: 'rescue', colorSweep: 'rescue',
     miniRain: 'rescue', cleanCut: 'rescue'
   });
   const GROUP_SHARE = Object.freeze({ special: .30, buff: .25, event: .25, rescue: .20 });
+  const SURPRISE_FREQUENCIES = Object.freeze({
+    relaxed: Object.freeze({ first: 8, last: 12, maximum: 18, chance: .72 }),
+    normal: Object.freeze({ first: 6, last: 9, maximum: 16, chance: .76 }),
+    lively: Object.freeze({ first: 4, last: 6, maximum: 14, chance: .80 })
+  });
   class SurpriseDirector {
-    constructor(random = Math.random) {
+    constructor(random = Math.random, frequency = 'normal') {
       this.random = random; this.since = 0; this.totalLocks = 0;
-      this.nextCheck = this.rollCheck(); this.maximum = 26;
+      this.frequency = SURPRISE_FREQUENCIES[frequency] ? frequency : 'normal';
+      this.nextCheck = this.rollCheck(); this.maximum = SURPRISE_FREQUENCIES[this.frequency].maximum;
       this.history = []; this.counts = Object.fromEntries(Object.keys(SURPRISE_GROUPS).map(k => [k, 0]));
       this.lastSeen = Object.create(null);
     }
-    rollCheck() { return 10 + Math.floor(Math.max(0, Math.min(.999999, this.random())) * 7); }
+    rollCheck() {
+      const { first, last } = SURPRISE_FREQUENCIES[this.frequency];
+      return first + Math.floor(Math.max(0, Math.min(.999999, this.random())) * (last - first + 1));
+    }
+    setFrequency(frequency) {
+      if (!SURPRISE_FREQUENCIES[frequency]) return false;
+      this.frequency = frequency;
+      this.maximum = SURPRISE_FREQUENCIES[frequency].maximum;
+      this.nextCheck = this.rollCheck();
+      return true;
+    }
     weight(type) {
       const group = SURPRISE_GROUPS[type]; if (!group) return 0;
       const poolSize = Object.values(SURPRISE_GROUPS).filter(g => g === group).length;
       let value = GROUP_SHARE[group] / poolSize;
       const last = this.history.at(-1), previous = this.history.at(-2);
       if (type === last) value *= .04;
-      if (type === previous) value *= .32;
+      else if (type === previous || this.history.slice(-3).includes(type)) value *= .30;
       const seen = this.counts[type] || 0;
-      if (!seen) value *= 2.5;
-      else value /= 1 + seen * .26;
+      if (!seen) value *= 1.65;
+      else if (seen > 1) value /= 1 + (seen - 1) * .20;
       const age = this.totalLocks - (this.lastSeen[type] ?? -35);
-      value *= 1 + Math.min(1.3, Math.max(0, age - 18) * .023);
+      value *= 1 + Math.min(.65, Math.max(0, age - 18) * .015);
       if (type === 'mystery') value *= 1.15;
+      if (type === 'rareMystery') value *= .10;
       if (type === 'colorSweep' || type === 'cleanCut') value *= .55;
       return value;
     }
@@ -396,7 +514,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     tick(eligible) {
       this.totalLocks++; this.since++;
       if (this.since < this.nextCheck || !eligible.length) return null;
-      const chance = Math.min(.98, .67 + Math.max(0, this.since - this.nextCheck) * .055);
+      const chance = Math.min(.98, SURPRISE_FREQUENCIES[this.frequency].chance + Math.max(0, this.since - this.nextCheck) * .07);
       if (this.since < this.maximum && this.random() > chance) return null;
       return this.pick(eligible);
     }
@@ -407,7 +525,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this.counts[type]++; this.lastSeen[type] = this.totalLocks;
     }
     snapshot(eligible = Object.keys(SURPRISE_GROUPS)) {
-      return { since: this.since, nextCheck: this.nextCheck, maximum: this.maximum,
+      return { since: this.since, nextCheck: this.nextCheck, maximum: this.maximum, frequency: this.frequency,
         history: this.history.slice(), counts: { ...this.counts },
         weights: Object.fromEntries(eligible.map(type => [type, this.weight(type)])) };
     }
@@ -454,9 +572,11 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._resumeState = null;
       this._pendingBomb = false;
       this._pendingMystery = false;
+      this._pendingRareMystery = false;
       this._pendingMysteryEffect = null;
       this._forcedSurprise = null;
-      this.director = new SurpriseDirector();
+      this.surpriseFrequency = this.surpriseFrequency || 'normal';
+      this.director = new SurpriseDirector(Math.random, this.surpriseFrequency);
       this._pendingRevivePiece = null;
       this._locking = false;
       this._breakShown = false;
@@ -468,6 +588,13 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     get activeEvent() { return this.mode === 'chill' ? this.queue.event : null; }
     get danger() { return this.board.terrain().danger; }
     get surpriseDebug() { return this.director.snapshot(this._eligibleSurprises()); }
+    setSurpriseFrequency(frequency) {
+      if (!SURPRISE_FREQUENCIES[frequency]) return false;
+      this.surpriseFrequency = frequency;
+      this.director.setFrequency(frequency);
+      this._change();
+      return true;
+    }
     start(mode = this.mode) {
       this._reset(mode);
       this.state = 'COUNTDOWN';
@@ -550,15 +677,16 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     _nextDescriptor() {
       const before = this.activeEvent;
-      const descriptor = { type: this.queue.next(), bomb: this._pendingBomb, mystery: this._pendingMystery };
+      const descriptor = { type: this.queue.next(), bomb: this._pendingBomb, mystery: this._pendingMystery, rareMystery: this._pendingRareMystery };
       if (before && !this.activeEvent) this._emit('eventEnd', { type: before.type });
       this._pendingBomb = false;
       this._pendingMystery = false;
+      this._pendingRareMystery = false;
       return descriptor;
     }
     _spawnNext() { this._spawn(this._nextDescriptor()); }
     _spawn(descriptor) {
-      this.piece = new Piece(descriptor.type, descriptor.bomb, descriptor.mystery);
+      this.piece = new Piece(descriptor.type, descriptor.bomb, descriptor.mystery, descriptor.rareMystery);
       this._gravityElapsed = 0;
       this._lockElapsed = 0;
       this._lockResets = 0;
@@ -711,9 +839,11 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       this._emit('lock', { type: piece.type, cells: result.cells, bomb: piece.bomb,
         hardDrop: source === 'hard', drop: source === 'hard' ? 'hard' : 'natural',
         lines: this.board.fullRows().length });
-      const mysteryEffect = piece.mystery ? this._selectMysteryEffect(this.board.fullRows().length > 0) : null;
+      const mysteryEffect = piece.mystery ? (piece.rareMystery
+        ? this._selectRareMysteryEffect(this.board.fullRows().length > 0)
+        : this._selectMysteryEffect(this.board.fullRows().length > 0)) : null;
       if (mysteryEffect) {
-        this._emit('mystery', { effect: mysteryEffect, cells: result.cells });
+        this._emit('mystery', { effect: mysteryEffect, cells: result.cells, rare: piece.rareMystery });
         if (mysteryEffect !== 'bomb') this._pendingMysteryEffect = mysteryEffect;
       }
       if (piece.bomb || mysteryEffect === 'bomb') {
@@ -829,13 +959,21 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         if (this.board.grid[0].some(cell => !cell)) types.push('miniRain');
       }
       if (terrain.height >= 9) types.push('clearSky');
+      if (!this._pendingBomb && !this._pendingMystery && cells >= 10 &&
+          types.some(type => ['gravityShift', 'colorSweep', 'clearSky', 'cleanCut'].includes(type))) types.push('rareMystery');
       return types.filter(type => !this.activeEvent || !['tiny', 'lucky', 'long'].includes(type));
     }
     _selectMysteryEffect(clearing = false) {
       const pool = this._eligibleSurprises().filter(type => clearing
         ? ['bomb', 'slow', 'freeze', 'luckyHold'].includes(type)
-        : !['mystery', 'tiny', 'lucky', 'long', 'mirror'].includes(type));
+        : !['mystery', 'rareMystery', 'tiny', 'lucky', 'long', 'mirror'].includes(type));
       return this.director.pick(pool) || 'slow';
+    }
+    _selectRareMysteryEffect(clearing = false) {
+      const pool = this._eligibleSurprises().filter(type =>
+        ['gravityShift', 'colorSweep', 'clearSky', 'cleanCut'].includes(type));
+      if (!clearing && pool.length) return this.director.pick(pool);
+      return 'freeze';
     }
     forceSurprise(type) {
       if (this.mode !== 'chill' || !SURPRISE_GROUPS[type] || this.state === 'MENU' || this.state === 'GAME_OVER') return false;
@@ -898,6 +1036,10 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       } else if (type === 'mystery') {
         this._pendingMystery = true;
         this._emit('toast', { text: 'MYSTERY BLOCK', subtext: '下一块有问号，落地后揭晓惊喜。' });
+      } else if (type === 'rareMystery') {
+        this._pendingMystery = true;
+        this._pendingRareMystery = true;
+        this._emit('toast', { text: 'RARE MYSTERY', subtext: '金色神秘方块即将登场，落地后揭晓稀有惊喜。' });
       } else if (type === 'freeze') {
         this.freezeRemaining = 5000 + Math.floor(Math.random() * 3001);
         this._gravityElapsed = 0;
@@ -1057,7 +1199,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
       const descriptor = this._pendingRevivePiece || this._nextDescriptor();
       this._pendingRevivePiece = null;
-      const candidate = new Piece(descriptor.type, descriptor.bomb, descriptor.mystery);
+      const candidate = new Piece(descriptor.type, descriptor.bomb, descriptor.mystery, descriptor.rareMystery);
       // Deleting whole occupied rows also guarantees a clean spawn after an unusually dense stack.
       for (let attempt = 0; attempt < CONFIG.ROWS && this.board.collides(candidate); attempt++) {
         const top = this.board.grid.findIndex(row => row.some(Boolean));
@@ -1074,7 +1216,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
   }
 
-  root.RetroCore = Object.freeze({ CONFIG, Piece, Board, Bag, AdaptiveBag, SurpriseDirector, Game, COLORS, SHAPES, STANDARD_TYPES, AUX_TYPES, EVENT_LABELS });
+  root.RetroCore = Object.freeze({ CONFIG, Piece, Board, Bag, AdaptiveBag, SurpriseDirector, Game, COLORS, SHAPES, STANDARD_TYPES, AUX_TYPES, EVENT_LABELS, SURPRISE_FREQUENCIES });
 })(typeof globalThis !== 'undefined' ? globalThis : window);
 
 (function () {
@@ -1087,21 +1229,25 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     levelUp: 6, bomb: 7, emergency: 7, gameOver: 8, perfectClear: 9 });
   const INTENSITY = Object.freeze({ low: .58, normal: 1, arcade: 1.16 });
   const MAX_VOICES = 72;
+  const MUSIC_FADE_SECONDS = .55;
   const hz = midi => 440 * Math.pow(2, (midi - 69) / 12);
 
   // One audio clock, shared by effects and music. The game owns the only RAF.
   class AudioManager {
     constructor(getSettings) {
       this.getSettings = typeof getSettings === 'function' ? getSettings : () => ({});
-      this.context = this.musicGain = this.sfxGain = this.output = null;
+      this.context = this.musicGain = this.menuGain = this.sfxGain = this.output = null;
       this.settings = this.readSettings();
-      this.mode = 'classic'; this.active = false; this.destroyed = false;
+      this.mode = 'classic'; this.gameMusicMode = 'classic';
+      this.scene = 'classic'; this.active = false; this.destroyed = false;
       this.initializing = null; this.voices = new Set();
       this.lastEffects = Object.create(null); this.lastLockAt = -10;
       this.lastTouchdownAt = -10;
       this.priorityUntil = -1; this.priorityLevel = 0;
       this.duckUntil = -1; this.ducking = false;
-      this.step = 0; this.nextMusicTime = -1; this.session = 0;
+      this.step = 0; this.nextMusicTime = -1;
+      this.menuStep = 0; this.nextMenuTime = -1;
+      this.musicFades = Object.create(null); this.session = 0;
       this.lastPlan = null;
     }
 
@@ -1121,6 +1267,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     async init() {
       if (this.destroyed) return false;
       if (this.initializing) return this.initializing;
+      if (this.context && this.context.state === 'running' &&
+          this.musicGain && this.menuGain && this.sfxGain) return true;
       this.initializing = this.initializeContext();
       try { return await this.initializing; } finally { this.initializing = null; }
     }
@@ -1131,16 +1279,18 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           if (!Constructor) return false;
           const context = new Constructor({ latencyHint: 'interactive' });
           this.context = context;
-          this.musicGain = context.createGain(); this.sfxGain = context.createGain();
+          this.musicGain = context.createGain(); this.menuGain = context.createGain();
+          this.sfxGain = context.createGain();
           this.output = context.createDynamicsCompressor();
           this.output.threshold.value = -18; this.output.knee.value = 14;
           this.output.ratio.value = 4; this.output.attack.value = .006; this.output.release.value = .13;
-          this.musicGain.gain.value = this.sfxGain.gain.value = 0;
-          this.musicGain.connect(this.output); this.sfxGain.connect(this.output);
+          this.musicGain.gain.value = this.menuGain.gain.value = this.sfxGain.gain.value = 0;
+          this.musicGain.connect(this.output); this.menuGain.connect(this.output);
+          this.sfxGain.connect(this.output);
           this.output.connect(context.destination);
         }
         if (this.context.state === 'suspended') await this.context.resume();
-        this.applySettings(); this.nextMusicTime = -1;
+        this.applySettings(); this.nextMusicTime = this.nextMenuTime = -1;
         return this.context.state === 'running';
       } catch (_) { return false; }
     }
@@ -1151,8 +1301,53 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         node.gain.cancelScheduledValues(now); node.gain.setTargetAtTime(target, now, seconds);
       } catch (_) {}
     }
-    musicLevel() {
-      return this.active && this.settings.musicOn ? this.settings.musicVolume * .36 * (this.ducking ? .47 : 1) : 0;
+    musicLevel(scene = this.scene) {
+      if (!this.active || !this.settings.musicOn || this.settings.musicVolume <= 0) return 0;
+      const duck = this.ducking ? .47 : 1;
+      if (scene === 'menu') return this.scene === 'menu'
+        ? this.settings.musicVolume * .23 * (this.settings.audioIntensity === 'low' ? .8 : 1) * duck : 0;
+      return this.scene !== 'menu' ? this.settings.musicVolume * .36 * duck : 0;
+    }
+    // Keep the current position of an interrupted fade before scheduling its replacement.
+    fadeMusic(node, key, target, seconds) {
+      if (!node || !this.context || this.context.state === 'closed') return;
+      const now = this.context.currentTime;
+      const previous = this.musicFades[key];
+      const value = previous && now < previous.end
+        ? previous.from + (previous.to - previous.from) * Math.max(0, (now - previous.start) / (previous.end - previous.start))
+        : previous ? previous.to : node.gain.value;
+      if (Math.abs(value - target) < .000001) {
+        node.gain.cancelScheduledValues(now); node.gain.setValueAtTime(target, now);
+        this.musicFades[key] = { from: target, to: target, start: now, end: now };
+        return;
+      }
+      node.gain.cancelScheduledValues(now);
+      node.gain.setValueAtTime(value, now);
+      node.gain.linearRampToValueAtTime(target, now + seconds);
+      this.musicFades[key] = { from: value, to: target, start: now, end: now + seconds };
+    }
+    syncMusicGains(seconds = MUSIC_FADE_SECONDS) {
+      this.fadeMusic(this.menuGain, 'menu', this.musicLevel('menu'), seconds);
+      this.fadeMusic(this.musicGain, 'game', this.musicLevel('game'), seconds);
+    }
+    transitionTo(scene, active = true) {
+      if (this.destroyed) return;
+      const nextScene = String(scene).toLowerCase() === 'menu' ? 'menu' : 'game';
+      const nextMode = nextScene === 'game' ? this.modeName(scene) : this.mode;
+      const changed = this.scene !== nextScene;
+      const modeChanged = nextScene === 'game' && this.gameMusicMode !== nextMode;
+      const activeChanged = this.active !== Boolean(active);
+      if (!changed && !modeChanged && !activeChanged) return;
+      this.scene = nextScene; this.active = Boolean(active);
+      if (nextScene === 'game') {
+        this.mode = nextMode;
+        if (modeChanged) {
+          this.gameMusicMode = nextMode;
+          this.step = 0; this.nextMusicTime = -1;
+        }
+      }
+      this.syncMusicGains(changed ? MUSIC_FADE_SECONDS : activeChanged ? .12 : .2);
+      if (modeChanged) this.smoothGain(this.sfxGain, this.sfxLevel());
     }
     sfxLevel() {
       if (!this.settings.sfxOn) return 0;
@@ -1162,52 +1357,99 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     applySettings() {
       const previous = this.settings;
       this.settings = this.readSettings();
-      this.smoothGain(this.musicGain, this.musicLevel()); this.smoothGain(this.sfxGain, this.sfxLevel());
-      if (!this.settings.musicOn) { this.stopVoices('music'); this.nextMusicTime = -1; }
-      else if (previous && !previous.musicOn) this.nextMusicTime = -1;
+      const musicChanged = !previous || previous.musicOn !== this.settings.musicOn ||
+        previous.musicVolume !== this.settings.musicVolume ||
+        previous.audioIntensity !== this.settings.audioIntensity;
+      const gainsNotInitialized = !this.musicFades.menu || !this.musicFades.game;
+      if (musicChanged || gainsNotInitialized) {
+        const now = this.context ? this.context.currentTime : 0;
+        const remaining = Math.max(0,
+          (this.musicFades.menu?.end || 0) - now,
+          (this.musicFades.game?.end || 0) - now);
+        const seconds = gainsNotInitialized ? MUSIC_FADE_SECONDS
+          : previous && previous.musicOn !== this.settings.musicOn ? .12
+            : Math.max(.04, remaining);
+        this.syncMusicGains(seconds);
+      }
+      this.smoothGain(this.sfxGain, this.sfxLevel());
+      if (!this.settings.musicOn) {
+        this.stopVoices('music'); this.stopVoices('menu');
+        this.nextMusicTime = this.nextMenuTime = -1;
+      } else if (previous && !previous.musicOn) this.nextMusicTime = this.nextMenuTime = -1;
       if (!this.settings.sfxOn) this.stopVoices('sfx');
     }
     setActive(active) {
       const next = Boolean(active);
       if (this.active === next) return;
-      this.active = next; this.nextMusicTime = -1;
-      if (!next) this.stopVoices('music');
-      this.smoothGain(this.musicGain, this.musicLevel());
+      this.active = next;
+      this.syncMusicGains(.12);
     }
     resetSession(mode) {
-      this.session++; this.stopVoices(); this.voices.clear();
-      this.mode = this.modeName(mode); this.active = false; this.step = 0; this.nextMusicTime = -1;
+      this.session++; this.stopVoices('sfx');
+      this.mode = this.modeName(mode); this.active = false;
+      if (String(mode).toLowerCase() !== 'menu') {
+        this.step = 0; this.nextMusicTime = -1;
+      }
       this.lastEffects = Object.create(null); this.lastLockAt = -10;
       this.lastTouchdownAt = -10;
       this.priorityUntil = -1; this.priorityLevel = 0; this.duckUntil = -1;
       this.ducking = false; this.lastPlan = null;
-      this.smoothGain(this.musicGain, 0); this.smoothGain(this.sfxGain, this.sfxLevel());
+      this.smoothGain(this.sfxGain, this.sfxLevel());
     }
     update(dt, active, mode) {
-      this.setActive(active);
-      const nextMode = this.modeName(mode);
-      if (nextMode !== this.mode) {
-        this.mode = nextMode; this.step = 0; this.nextMusicTime = -1;
-        this.stopVoices('music'); this.smoothGain(this.sfxGain, this.sfxLevel());
-      }
+      this.transitionTo(mode, active);
       const context = this.context;
       if (!context || context.state !== 'running') return;
       const now = context.currentTime;
       if (this.ducking && now >= this.duckUntil) {
-        this.ducking = false; this.smoothGain(this.musicGain, this.musicLevel(), .09);
+        this.ducking = false; this.syncMusicGains(.09);
       }
-      if (!this.active || !this.settings.musicOn) return;
+      if (!this.settings.musicOn || this.settings.musicVolume <= 0) return;
+      const menuFade = this.musicFades.menu;
+      const gameFade = this.musicFades.game;
+      if ((this.active && this.scene === 'menu') || (menuFade && menuFade.to === 0 && now < menuFade.end && menuFade.from > 0))
+        this.scheduleMenu(now);
+      if ((this.active && this.scene === 'game') || (gameFade && gameFade.to === 0 && now < gameFade.end && gameFade.from > 0))
+        this.scheduleGame(now);
+    }
+    scheduleGame(now) {
       if (this.nextMusicTime < now - .15) this.nextMusicTime = now + .025;
-      const eighth = 60 / (this.mode === 'zen' ? 84 : 105) / 2;
+      const eighth = 60 / (this.gameMusicMode === 'zen' ? 84 : 105) / 2;
       let budget = 4;
       while (this.nextMusicTime < now + .09 && budget-- > 0) {
         this.scheduleMusicStep(this.step, this.nextMusicTime, eighth);
         this.step = (this.step + 1) % 64; this.nextMusicTime += eighth;
       }
     }
+    scheduleMenu(now) {
+      if (this.nextMenuTime < now - .15) this.nextMenuTime = now + .025;
+      const eighth = 60 / 76 / 2;
+      let budget = 4;
+      while (this.nextMenuTime < now + .09 && budget-- > 0) {
+        this.scheduleMenuStep(this.menuStep, this.nextMenuTime, eighth);
+        this.menuStep = (this.menuStep + 1) % 64; this.nextMenuTime += eighth;
+      }
+    }
+    scheduleMenuStep(step, at, eighth) {
+      const bar = Math.floor(step / 8), beat = step % 8;
+      const roots = [48,45,53,43,48,45,50,43];
+      const melody = [[72,null,null,76,null,74,null,null],
+        [69,null,72,null,null,67,null,null],
+        [72,null,null,74,null,76,null,null],
+        [67,null,71,null,null,69,null,null],
+        [72,null,null,76,null,79,null,null],
+        [69,null,72,null,null,74,null,null],
+        [74,null,null,72,null,69,null,null],
+        [67,null,71,null,null,72,null,null]][bar][beat];
+      if (beat === 0) this.tone(roots[bar], at, eighth * 3.1, 'sine', .12, 'menu', null, .035);
+      if (beat === 2 || beat === 6) this.tone(roots[bar] + (beat === 2 ? 19 : 16),
+        at, eighth * 1.35, 'triangle', .052, 'menu', null, .025);
+      if (melody !== null) this.tone(melody, at, eighth * 1.55,
+        'sine', .073, 'menu', null, .03);
+    }
     scheduleMusicStep(step, at, eighth) {
       const bar = Math.floor(step / 8), beat = step % 8;
-      const zen = this.mode === 'zen', relaxed = this.mode !== 'classic';
+      const zen = this.gameMusicMode === 'zen', relaxed = this.gameMusicMode !== 'classic';
       const chords = [[45,60,64,69],[41,60,65,69],[48,60,64,67],[43,59,62,67],
         [45,60,64,69],[41,60,65,69],[48,60,64,67],[43,59,62,67]];
       const melodies = [[76,null,72,null,69,72,74,null],[77,null,76,72,69,null,72,null],
@@ -1241,7 +1483,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         envelope.gain.exponentialRampToValueAtTime(Math.max(.001, volume), start + attack);
         envelope.gain.exponentialRampToValueAtTime(Math.max(.0002, volume * .48), start + duration * .32);
         envelope.gain.exponentialRampToValueAtTime(.0001, end);
-        oscillator.connect(envelope); envelope.connect(bus === 'music' ? this.musicGain : this.sfxGain);
+        oscillator.connect(envelope); envelope.connect(bus === 'music' ? this.musicGain : bus === 'menu' ? this.menuGain : this.sfxGain);
         const voice = { oscillator, envelope, bus, start, end, priority, midi, session: this.session };
         this.voices.add(voice);
         oscillator.onended = () => {
@@ -1366,7 +1608,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           note(48, .17, .38, 'triangle', .075); note(72, .47, .36, 'triangle', .09);
           this.priorityUntil = now + 1.05; this.priorityLevel = 9;
           this.duckUntil = now + 1.05; this.ducking = true;
-          this.smoothGain(this.musicGain, this.musicLevel(), .04);
+          this.syncMusicGains(.04);
           break;
         }
         case 'pause':
@@ -1409,6 +1651,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     destroy() {
       this.destroyed = true; this.active = false; this.stopVoices(); this.voices.clear();
       try { if (this.musicGain) this.musicGain.disconnect(); } catch (_) {}
+      try { if (this.menuGain) this.menuGain.disconnect(); } catch (_) {}
       try { if (this.sfxGain) this.sfxGain.disconnect(); } catch (_) {}
       try { if (this.output) this.output.disconnect(); } catch (_) {}
       if (this.context && this.context.state !== 'closed') {
@@ -1428,7 +1671,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     set(key, value) { try { localStorage.setItem('retro-blocks-v1:' + key, JSON.stringify(value)); } catch (_) {} }
   };
   const Settings = {
-    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, audioIntensity: 'normal', crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false },
+    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, audioIntensity: 'normal', surpriseFrequency: 'normal', crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false },
     load() {
       const saved = Storage.get('settings', {});
       if (!saved || typeof saved !== 'object') return;
@@ -1436,6 +1679,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         if (typeof this.value[key] === 'boolean' && typeof saved[key] === 'boolean') this.value[key] = saved[key];
         if (typeof this.value[key] === 'number' && Number.isFinite(saved[key])) this.value[key] = Math.max(0, Math.min(1, saved[key]));
         if (key === 'audioIntensity' && ['low', 'normal', 'arcade'].includes(saved[key])) this.value[key] = saved[key];
+        if (key === 'surpriseFrequency' && ['relaxed', 'normal', 'lively'].includes(saved[key])) this.value[key] = saved[key];
       }
     },
     save() { Storage.set('settings', this.value); },
@@ -1445,6 +1689,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       for (const key of ['musicOn', 'sfxOn', 'crt', 'reducedMotion', 'colorAssist']) $(key).checked = this.value[key];
       for (const key of ['musicVolume', 'sfxVolume']) { $(key).value = Math.round(this.value[key] * 100); $(key + 'Value').value = $(key).value + '%'; }
       $('audioIntensity').value = this.value.audioIntensity;
+      $('surpriseFrequency').value = this.value.surpriseFrequency;
       const muted = !this.value.musicOn && !this.value.sfxOn;
       $('muteButton').setAttribute('aria-label', muted ? '取消静音' : '静音');
       $('muteButton').title = muted ? '取消静音' : '静音';
@@ -1456,19 +1701,40 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const storedBest = mode => { const value = Storage.get('best:' + mode, 0); return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0; };
   const best = { classic: storedBest('classic'), chill: storedBest('chill'), zen: storedBest('zen') };
   const audio = new RetroAudio(() => Settings.value);
+  audio.transitionTo('menu', true);
   let bestAtStart = 0, saveDirty = false, saveElapsed = 0, toastTime = 0, eventTime = 0, pausedTime = 0, startGeneration = 0;
   let uiDirty = true, overlayKey = '', previewKey = '', lastState = 'MENU';
   const pad = (n, len = 6) => String(n).padStart(len, '0');
   const text = (id, value) => { const el = $(id), s = String(value); if (el.textContent !== s) el.textContent = s; };
+  const SURPRISE_META = Object.freeze({
+    bomb: ['✹', '炸弹方块', 'BOMB BLOCK', '下一块落地后清除周围方块'],
+    line: ['↔', '清行道具', 'LINE CLEAR', '清理棋盘最低的非空行'],
+    mystery: ['?', '神秘方块', 'MYSTERY BLOCK', '下一块落地后揭晓效果'],
+    rareMystery: ['★', '稀有神秘', 'RARE MYSTERY', '金色问号将带来稀有惊喜'],
+    slow: ['◷', '慢速时光', 'SLOW TIME', '自动下落暂时放慢'],
+    freeze: ['❄', '冻结时间', 'FREEZE', '自动下落暂时停止'],
+    luckyHold: ['♧', '幸运保留', 'LUCKY HOLD', '下一次暂存多一次机会'],
+    lucky: ['✦', '幸运浪潮', 'LUCKY WAVE', '易摆放方块机会提高'],
+    tiny: ['▦', '迷你方块', 'TINY BLOCKS', '随后出现三块小辅助方块'],
+    long: ['║', '长条好运', 'LONG BOY', '长条方块机会提高'],
+    mirror: ['⇄', '镜像翻转', 'MIRROR', '棋盘左右翻转'],
+    clearSky: ['☁', '晴空救援', 'CLEAR SKY', '清理上方危险区域'],
+    gravityShift: ['⇣', '重力重组', 'GRAVITY SHIFT', '悬空结构开始下落整理'],
+    colorSweep: ['◈', '颜色清扫', 'COLOR SWEEP', '一种颜色的方块消失'],
+    miniRain: ['⋮', '方块雨', 'MINI RAIN', '单格小块落入低洼处'],
+    cleanCut: ['╍', '整齐切线', 'CLEAN CUT', '切除一层并压缩棋盘']
+  });
+  const HIDDEN_DISCOVERIES = Object.freeze(['mirror', 'clearSky', 'gravityShift', 'colorSweep', 'luckyHold', 'miniRain', 'cleanCut']);
+  const storedDiscoveries = Storage.get('discoveries', []);
+  const discoveries = new Set(Array.isArray(storedDiscoveries) ? storedDiscoveries.filter(id => HIDDEN_DISCOVERIES.includes(id)) : []);
   const GUIDE_SECTIONS = [
-    ['SPECIAL BLOCKS', [
+    ['特殊方块 · SPECIAL BLOCKS', [
       ['BOMB BLOCK', '落地后清除周围约 3×3 的方块。', '✹'],
       ['MYSTERY BLOCK', '带问号的方块；落地后才揭晓效果。', '?'],
-      ['LINE CLEAR ITEM', '清除棋盘最低的一条非空行。', '↔'],
-      ['SLOW TIME', '自动下落放慢约 10 秒。', '◷'],
-      ['RESCUE BLOCK', '单格块适合补小缺口。', null, 'DOT']
+      ['RARE MYSTERY', '极少见的金色 ★? 方块；可能带来更稀有的救援或增益。', '★', null, null, 'rare-mystery'],
+      ['LINE CLEAR ITEM', '清除棋盘最低的一条非空行。', '↔']
     ]],
-    ['SUPPORT PIECES', [
+    ['辅助方块 · SUPPORT PIECES', [
       ['2×1 MINI BAR', '两格短条，填补狭窄空位。', null, 'I2'],
       ['3×1 HALF BAR', '三格半长竖条，处理较深凹槽。', null, 'I3'],
       ['MINI L', '三格转角块，补边角。', null, 'L3'],
@@ -1477,39 +1743,91 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       ['LONG I5', '稀有五格长条，帮助打通深井。', null, 'I5'],
       ['SINGLE DOT', '极少见的单格救援块。', null, 'DOT']
     ]],
-    ['SURPRISE EVENTS', [
+    ['随机惊喜 · SURPRISE EVENTS', [
       ['LUCKY WAVE', '短暂提高易摆放方块的机会。', '✦'],
       ['TINY BLOCKS', '接下来出现三块小辅助方块。', '▦'],
       ['LONG BOY', '短暂提高长条方块的机会。', '║'],
-      ['MIRROR', '棋盘左右翻转一次。', '⇄'],
-      ['CLEAR SKY', '清理上方危险区域的一部分。', '☁'],
-      ['GRAVITY SHIFT', '部分悬空方块向下塌落。', '⇣'],
-      ['COLOR SWEEP', '一种现有颜色高亮后消失。', '◈'],
-      ['FREEZE', '暂停自动重力约 5–8 秒，操作照常。', '❄'],
-      ['LUCKY HOLD', '下一次暂存可多获得一次暂存机会。', '♧'],
-      ['MINI RAIN', '数个单格小块落入低洼处。', '⋮'],
-      ['CLEAN CUT', '切除一条有效高度线并压缩棋盘。', '╍']
+      ['MIRROR', '棋盘左右翻转一次。', '⇄', null, 'mirror'],
+      ['GRAVITY SHIFT', '部分悬空方块向下塌落。', '⇣', null, 'gravityShift'],
+      ['COLOR SWEEP', '一种现有颜色高亮后消失。', '◈', null, 'colorSweep'],
+      ['MINI RAIN', '数个单格小块落入低洼处。', '⋮', null, 'miniRain'],
+      ['CLEAN CUT', '切除一条有效高度线并压缩棋盘。', '╍', null, 'cleanCut']
     ]],
-    ['RESCUE SYSTEMS', [
+    ['救援机制 · RESCUE SYSTEMS', [
       ['EMERGENCY CLEAR', '首次触顶时清理危险区域，获得一次续命。', '♡'],
       ['RESCUE PIECE', '小块与长条会温和照顾凹槽，但不会代玩。', '▣'],
+      ['CLEAR SKY', '清理上方危险区域的一部分。', '☁', null, 'clearSky'],
       ['SURPRISE PITY', '惊喜会轮换且有保底，减少长时间空窗。', '★']
+    ]],
+    ['增益效果 · BUFF EFFECTS', [
+      ['SLOW TIME', '自动下落放慢约 10 秒。', '◷'],
+      ['FREEZE', '暂停自动重力约 5–8 秒，操作照常。', '❄'],
+      ['LUCKY HOLD', '下一次暂存可多获得一次暂存机会。', '♧', null, 'luckyHold']
     ]]
   ];
   function renderGuide() {
-    $('guideBody').innerHTML = '<p class="guide-intro">辅助方块、道具与惊喜会适度轮换。标准七种方块仍是主角；每次新惊喜会在游戏中提示。</p>' +
+    $('guideBody').innerHTML = '<p class="guide-intro">辅助方块、道具与惊喜适度轮换。高级惊喜在首次触发后解锁；已发现 ' + discoveries.size + ' / ' + HIDDEN_DISCOVERIES.length + '。</p>' +
       GUIDE_SECTIONS.map(([heading, items]) => '<section class="guide-section"><h3>' + heading + '</h3><div class="guide-grid">' +
-        items.map(([name, description, icon, piece]) => '<article class="guide-card">' +
-          (piece ? '<canvas class="guide-piece" data-guide-piece="' + piece + '" aria-hidden="true"></canvas>' : '<span class="guide-icon" aria-hidden="true">' + icon + '</span>') +
-          '<div><b>' + name + '</b><p>' + description + '</p></div></article>').join('') +
-        '</div></section>').join('');
+        items.map(([name, description, icon, piece, unlock, extraClass]) => {
+          const locked = unlock && !discoveries.has(unlock);
+          return '<article class="guide-card' + (locked ? ' locked' : '') + (extraClass ? ' ' + extraClass : '') + '">' +
+            (locked ? '<span class="guide-icon" aria-hidden="true">?</span>' : piece ? '<canvas class="guide-piece" data-guide-piece="' + piece + '" aria-hidden="true"></canvas>' : '<span class="guide-icon" aria-hidden="true">' + icon + '</span>') +
+            '<div><b>' + (locked ? '???' : name) + '</b><p>' + (locked ? '尚未发现 · UNDISCOVERED' : description) + '</p></div></article>';
+        }).join('') + '</div></section>').join('');
   }
   function drawGuidePreviews() {
     document.querySelectorAll('[data-guide-piece]').forEach(canvas => drawPreview(canvas, canvas.dataset.guidePiece));
   }
+  const recentSurprises = [];
+  let eventCardTime = 0;
+  function hideEventCard() {
+    eventCardTime = 0; $('eventCard').hidden = true; $('mobileEventCard').hidden = true;
+    $('eventCard').classList.remove('leaving'); $('mobileEventCard').classList.remove('leaving');
+  }
+  function showEventCard(type) {
+    const entry = SURPRISE_META[type]; if (!entry) return;
+    text('eventCardIcon', entry[0]); text('eventCardChinese', entry[1]);
+    text('eventCardEnglish', entry[2]); text('eventCardDescription', entry[3]);
+    text('mobileEventCardIcon', entry[0]); text('mobileEventCardChinese', entry[1]); text('mobileEventCardEnglish', entry[2]);
+    $('eventCard').classList.toggle('rare', type === 'rareMystery');
+    $('mobileEventCard').classList.toggle('rare', type === 'rareMystery');
+    $('eventCard').classList.remove('leaving'); $('mobileEventCard').classList.remove('leaving');
+    $('mobileEventCard').classList.remove('new-discovery');
+    $('eventCard').hidden = false; $('mobileEventCard').hidden = false; eventCardTime = 1300;
+  }
+  function renderRecentSurprises() {
+    const list = $('recentSurprises'); list.replaceChildren();
+    for (const type of recentSurprises) {
+      const entry = SURPRISE_META[type]; if (!entry) continue;
+      const item = document.createElement('li');
+      const icon = document.createElement('span'), label = document.createElement('span');
+      icon.className = 'recent-icon'; icon.textContent = entry[0];
+      label.textContent = entry[1] + ' · ' + entry[2];
+      item.append(icon, label); list.append(item);
+    }
+    const mobile = $('mobileRecentSurprises'); mobile.replaceChildren();
+    const heading = document.createElement('b'); heading.textContent = '最近惊喜 · RECENT'; mobile.append(heading);
+    if (!recentSurprises.length) { const empty = document.createElement('span'); empty.textContent = '等待第一份惊喜'; mobile.append(empty); }
+    for (const type of recentSurprises) {
+      const entry = SURPRISE_META[type]; if (!entry) continue;
+      const item = document.createElement('span'); item.textContent = entry[0] + ' ' + entry[1]; mobile.append(item);
+    }
+  }
+  function recordDiscovery(type) {
+    if (!HIDDEN_DISCOVERIES.includes(type) || discoveries.has(type)) return;
+    discoveries.add(type);
+    Storage.set('discoveries', [...discoveries]);
+    renderGuide();
+    if ($('guideDialog').open) drawGuidePreviews();
+    if (matchMedia('(max-width:600px)').matches) {
+      $('mobileEventCard').classList.add('new-discovery');
+      text('mobileEventCardEnglish', 'NEW DISCOVERY! · ' + SURPRISE_META[type][2]);
+    } else notice('NEW DISCOVERY!', '发现新惊喜：' + SURPRISE_META[type][2], 1750);
+  }
   function saveBest() { if (saveDirty) { for (const mode of Object.keys(best)) Storage.set('best:' + mode, best[mode]); saveDirty = false; } }
   function notice(message, subtext = '', duration = 2900) {
     $('toast').classList.toggle('perfect', message === 'PERFECT CLEAR!');
+    $('toast').classList.toggle('in-game', game.state !== 'MENU');
     $('toast').replaceChildren(document.createTextNode(message));
     if (subtext) { const small = document.createElement('small'); small.textContent = subtext; $('toast').append(small); }
     $('toast').hidden = false; toastTime = duration;
@@ -1592,7 +1910,17 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const game = new Game((name, data) => {
     uiDirty = true;
     if (!['change', 'score', 'toast', 'reward', 'hardDrop', 'start', 'surprise'].includes(name)) audio.play(name, data);
-    if (name === 'start') { particles.clear(); eventText('FIND YOUR FLOW.', '每一块，都有它的位置。'); toastTime = 0; $('toast').hidden = true; }
+    if (name === 'start') {
+      particles.clear(); recentSurprises.length = 0; renderRecentSurprises(); hideEventCard();
+      eventText('FIND YOUR FLOW.', '每一块，都有它的位置。'); toastTime = 0; $('toast').hidden = true;
+    }
+    if (name === 'surprise') {
+      showEventCard(data.type);
+      recentSurprises.unshift(data.type);
+      if (recentSurprises.length > 3) recentSurprises.length = 3;
+      renderRecentSurprises();
+      recordDiscovery(data.type);
+    }
     if (name === 'score' && game.score > best[game.mode]) { best[game.mode] = game.score; saveDirty = true; }
     if (name === 'clear') {
       const cells = [];
@@ -1625,12 +1953,17 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     if (name === 'eventStart') eventText(data.label, '从已预告队列之后生效');
     if (name === 'zenClear') eventText('CLEAR SKY', '∞ FREE PLAY');
-    if (name === 'toast') notice(data.text, data.subtext);
+    if (name === 'toast') {
+      const repeatedOnMobile = matchMedia('(max-width:600px)').matches &&
+        ['BOMB BLOCK', 'MYSTERY BLOCK', 'RARE MYSTERY', 'SLOW TIME'].includes(data.text);
+      if (!repeatedOnMobile) notice(data.text, data.subtext);
+    }
     if (name === 'emergency') { input.clear(); eventText(data.zen ? 'CLEAR SKY' : 'EMERGENCY CLEAR!', data.zen ? '∞ FREE PLAY' : 'ONE MORE CHANCE.'); }
     if (name === 'pause' || name === 'gameOver') { input.clear(); audio.setActive(false); saveBest(); }
     if (name === 'pause') pausedTime = 0;
-    if (name === 'gameOver') particles.clear();
+    if (name === 'gameOver') { particles.clear(); hideEventCard(); }
   });
+  game.setSurpriseFrequency(Settings.value.surpriseFrequency);
   class Input {
     constructor() { this.held = new Map(); this.order = 0; }
     clear() { this.held.clear(); }
@@ -1690,18 +2023,22 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     button.addEventListener('click', e => { if (e.detail === 0 && game.state === 'PLAYING') input.perform(button.dataset.control); });
   });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { input.clear(); game.pause(); audio.setActive(false); saveBest(); } });
-  window.addEventListener('blur', () => { input.clear(); game.pause(); });
+  window.addEventListener('blur', () => { input.clear(); game.pause(); audio.setActive(false); });
   window.addEventListener('pagehide', saveBest);
+  // Browser audio remains locked until a deliberate menu control is activated.
+  document.addEventListener('click', e => {
+    if (game.state === 'MENU' && e.target.closest('button')) audio.init();
+  }, { capture: true });
   function start(mode) {
     document.querySelectorAll('dialog[open]').forEach(d => d.close());
     saveBest(); bestAtStart = best[mode]; input.clear(); boardFx.clear(); previewKey = ''; overlayKey = '';
-    audio.resetSession(mode); const generation = ++startGeneration;
+    audio.resetSession(mode); audio.transitionTo(mode, true); const generation = ++startGeneration;
     game.start(mode); audio.init().then(() => { if (generation === startGeneration && game.state === 'COUNTDOWN') audio.play('start'); });
     $('home').hidden = true; $('gamePage').hidden = false;
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     window.scrollTo({ top: 0, behavior: 'auto' }); resizeAll(); syncUI();
   }
-  function mainMenu() { saveBest(); input.clear(); particles.clear(); boardFx.clear(); ++startGeneration; audio.resetSession('menu'); game.menu(); audio.setActive(false); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
+  function mainMenu() { saveBest(); input.clear(); particles.clear(); boardFx.clear(); recentSurprises.length = 0; renderRecentSurprises(); hideEventCard(); ++startGeneration; audio.resetSession('menu'); audio.transitionTo('menu', true); game.menu(); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
   $('chillStart').addEventListener('click', () => start('chill'));
   $('classicStart').addEventListener('click', () => start('classic'));
   $('zenStart').addEventListener('click', () => start('zen'));
@@ -1718,7 +2055,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
   document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } }));
   for (const key of Object.keys(Settings.value)) $(key).addEventListener('input', () => {
-    Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked : key === 'audioIntensity' ? $(key).value : Number($(key).value) / 100;
+    Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked : ['audioIntensity', 'surpriseFrequency'].includes(key) ? $(key).value : Number($(key).value) / 100;
+    if (key === 'surpriseFrequency') game.setSurpriseFrequency(Settings.value.surpriseFrequency);
     Settings.save(); Settings.apply(); audio.applySettings(); previewKey = ''; drawAttract(); uiDirty = true;
   });
   let unmuteSettings = { musicOn: Settings.value.musicOn, sfxOn: Settings.value.sfxOn };
@@ -1735,7 +2073,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     const ctx = canvas.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     return { ctx, width: rect.width, height: rect.height };
   }
-  function block(ctx, x, y, s, type, ghost = false, bomb = false, mystery = false) {
+  function block(ctx, x, y, s, type, ghost = false, bomb = false, mystery = false, rareMystery = false) {
     const color = COLORS[type] || '#c8f789';
     if (ghost) {
       ctx.globalAlpha = .23; ctx.fillStyle = color; ctx.fillRect(x + 3, y + 3, s - 6, s - 6);
@@ -1772,11 +2110,17 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       ctx.fillStyle = '#fff3c7'; ctx.fillRect(x + size * .66, y + size * .14, Math.max(2, size * .1), Math.max(2, size * .1));
     }
     if (mystery && s >= 14) {
-      ctx.strokeStyle = '#fff2a0'; ctx.lineWidth = Math.max(1, s * .07);
+      if (rareMystery) {
+        ctx.save(); ctx.shadowColor = '#ffe18c'; ctx.shadowBlur = Math.max(4, s * .32);
+        ctx.strokeStyle = '#ffe18c'; ctx.lineWidth = Math.max(2, s * .10);
+        ctx.strokeRect(x + 2, y + 2, size - 4, size - 4); ctx.restore();
+        ctx.fillStyle = '#fff0a5bb'; ctx.fillRect(x + 3, y + 3, size - 6, size - 6);
+      }
+      ctx.strokeStyle = rareMystery ? '#fff6ce' : '#fff2a0'; ctx.lineWidth = Math.max(1, s * .07);
       ctx.strokeRect(x + 2, y + 2, size - 4, size - 4);
       ctx.fillStyle = '#211927'; ctx.font = 'bold ' + Math.max(10, Math.round(s * .56)) + 'px Consolas,monospace';
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('?', x + size / 2, y + size / 2 + 1);
+      ctx.fillText(rareMystery ? '★?' : '?', x + size / 2, y + size / 2 + 1, size - 3);
     }
   }
   function drawPreview(canvas, descriptor) {
@@ -1784,11 +2128,11 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     const { ctx, width, height } = metrics; ctx.clearRect(0, 0, width, height);
     if (!descriptor) { ctx.fillStyle = '#60556f'; ctx.font = '20px Consolas,monospace'; ctx.textAlign = 'center'; ctx.fillText('+', width / 2, height / 2 + 7); return; }
     const type = typeof descriptor === 'string' ? descriptor : descriptor.type;
-    const piece = new Piece(type, descriptor.bomb, descriptor.mystery), cells = piece.cells(0, 0);
+    const piece = new Piece(type, descriptor.bomb, descriptor.mystery, descriptor.rareMystery), cells = piece.cells(0, 0);
     const minX = Math.min(...cells.map(c => c.x)), maxX = Math.max(...cells.map(c => c.x)), minY = Math.min(...cells.map(c => c.y)), maxY = Math.max(...cells.map(c => c.y));
     const size = Math.min(21, (width - 18) / Math.max(4, maxX - minX + 1), (height - 12) / Math.max(2, maxY - minY + 1));
     const ox = (width - (maxX - minX + 1) * size) / 2, oy = (height - (maxY - minY + 1) * size) / 2;
-    for (const c of cells) block(ctx, ox + (c.x - minX) * size, oy + (c.y - minY) * size, size, type, false, descriptor.bomb && c === cells[0], descriptor.mystery);
+    for (const c of cells) block(ctx, ox + (c.x - minX) * size, oy + (c.y - minY) * size, size, type, false, descriptor.bomb && c === cells[0], descriptor.mystery, descriptor.rareMystery);
   }
   function grid(ctx, width, height, cols, rows) {
     ctx.fillStyle = '#10121e'; ctx.fillRect(0, 0, width, height); ctx.strokeStyle = '#b99df00b'; ctx.lineWidth = .7;
@@ -1814,7 +2158,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       const p = game.piece, ghost = game.ghostY();
       for (const c of p.cells(p.x, ghost)) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, true);
       const core = p.bomb ? p.bombCore() : null;
-      for (const c of p.cells()) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, false, core && core.x === c.x && core.y === c.y, p.mystery);
+      for (const c of p.cells()) if (c.y >= 0) block(ctx, c.x * size, c.y * size, size, p.type, false, core && core.x === c.x && core.y === c.y, p.mystery, p.rareMystery);
     }
     particles.draw(ctx, size);
     if (game.state === 'EMERGENCY' && !Settings.value.reducedMotion) { ctx.globalAlpha = .12 * (1 - game.phaseElapsed / game.phaseDuration); ctx.fillStyle = '#c8f789'; ctx.fillRect(0, 0, width, height); ctx.globalAlpha = 1; }
@@ -1830,17 +2174,105 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
     });
   }
-  function drawAttract() {
-    const canvas = $('attractCanvas'); if (!canvas.getBoundingClientRect().width) return;
-    const m = fit(canvas); if (!m) return; const { ctx, width, height } = m, s = width / 10;
-    grid(ctx, width, height, 10, 13);
-    const rows = ['..........','..........','..........','..........','..........','..........','..........','..........','JJ......LL','JZZ.....SL','JIZZOO.SSL','IITTOOSSTT','IITTZZOOTL'];
-    for (let y = 0; y < rows.length; y++) for (let x = 0; x < 10; x++) if (rows[y][x] !== '.') block(ctx, x * s, y * s, s, rows[y][x]);
-    for (const [x, y] of [[4,2],[3,3],[4,3],[5,3]]) block(ctx, x * s, y * s, s, 'T');
-    for (const [x, y] of [[4,8],[3,9],[4,9],[5,9]]) block(ctx, x * s, y * s, s, 'T', true);
-    ctx.fillStyle = '#777081'; ctx.font = Math.max(8, width * .024) + 'px Consolas,monospace'; ctx.textAlign = 'center'; ctx.fillText('A GOOD PLACE TO LAND.', width / 2, s * 6.35);
-    ctx.fillStyle = '#c8f789'; ctx.fillRect(s * 4.5, s * 6.7, s * .12, s * .12); ctx.fillStyle = '#bb8cf5'; ctx.fillRect(s * 4.95, s * 6.7, s * .12, s * .12); ctx.fillStyle = '#f298af'; ctx.fillRect(s * 5.4, s * 6.7, s * .12, s * .12);
+  const systemReducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  class AttractScene {
+    constructor() {
+      this.columns = 10; this.rows = 13; this.elapsed = 0;
+      this.steps = 0; this.locks = 0; this.clears = 0; this.paused = true;
+      this.sequence = [['O', 7], ['T', 3], ['I', 0], ['L', 5], ['S', 2], ['J', 0], ['Z', 6]];
+      this.index = 0; this.seed();
+    }
+    seed() {
+      this.cells = Array.from({ length: this.rows }, () => Array(this.columns).fill(null));
+      this.cells[12] = ['J', 'J', 'Z', 'Z', 'T', 'T', 'L', null, null, 'O'];
+      this.cells[11] = ['J', null, 'Z', null, 'T', null, 'L', null, null, null];
+      this.cells[10] = [null, null, null, null, null, null, 'L', null, null, null];
+      this.index = 0; this.spawn(true);
+    }
+    spawn(first = false) {
+      const [type, x] = this.sequence[this.index++ % this.sequence.length];
+      this.active = { type, x, y: first ? 1 : -SHAPES[type].length, matrix: SHAPES[type] };
+      if (this.collides(this.active.y)) { this.seed(); return; }
+    }
+    collides(nextY) {
+      const { x, matrix } = this.active;
+      for (let row = 0; row < matrix.length; row++) for (let col = 0; col < matrix[row].length; col++) {
+        if (!matrix[row][col]) continue;
+        const px = x + col, py = nextY + row;
+        if (px < 0 || px >= this.columns || py >= this.rows || (py >= 0 && this.cells[py][px])) return true;
+      }
+      return false;
+    }
+    step() {
+      this.steps++;
+      if (!this.collides(this.active.y + 1)) { this.active.y++; return; }
+      let overflow = false;
+      const { type, x, y, matrix } = this.active;
+      for (let row = 0; row < matrix.length; row++) for (let col = 0; col < matrix[row].length; col++) {
+        if (!matrix[row][col]) continue;
+        if (y + row < 0) overflow = true;
+        else this.cells[y + row][x + col] = type;
+      }
+      this.locks++;
+      if (overflow) { this.seed(); return; }
+      const kept = this.cells.filter(row => row.some(cell => !cell));
+      const removed = this.rows - kept.length;
+      if (removed) {
+        this.clears += removed;
+        while (kept.length < this.rows) kept.unshift(Array(this.columns).fill(null));
+        this.cells = kept;
+      }
+      this.spawn();
+    }
+    update(dt) {
+      this.paused = game.state !== 'MENU' || document.hidden || Settings.value.reducedMotion || systemReducedMotion.matches;
+      if (this.paused) return;
+      this.elapsed += dt;
+      if (this.elapsed < 620) return;
+      this.elapsed -= 620;
+      this.step(); this.draw();
+    }
+    drawCabinet() {
+      const canvas = $('attractCanvas'); if (!canvas || !canvas.getBoundingClientRect().width) return;
+      const m = fit(canvas); if (!m) return;
+      const { ctx, width, height } = m, cell = width / this.columns;
+      grid(ctx, width, height, this.columns, this.rows);
+      for (let y = 0; y < this.rows; y++) for (let x = 0; x < this.columns; x++) {
+        const type = this.cells[y][x]; if (type) block(ctx, x * cell, y * cell, cell, type);
+      }
+      this.drawActive(ctx, cell, 0, 0, false);
+      ctx.fillStyle = '#777081'; ctx.font = Math.max(8, width * .024) + 'px Consolas,monospace';
+      ctx.textAlign = 'center'; ctx.fillText('A GOOD PLACE TO LAND.', width / 2, cell * 6.4);
+    }
+    drawActive(ctx, cell, ox, oy, backdrop) {
+      const { type, x, y, matrix } = this.active;
+      for (let row = 0; row < matrix.length; row++) for (let col = 0; col < matrix[row].length; col++) {
+        if (!matrix[row][col] || y + row < 0) continue;
+        if (backdrop) { ctx.fillStyle = COLORS[type]; ctx.fillRect(ox + (x + col) * cell + 2, oy + (y + row) * cell + 2, cell - 4, cell - 4); }
+        else block(ctx, (x + col) * cell, (y + row) * cell, cell, type);
+      }
+    }
+    drawBackdrop() {
+      const canvas = $('menuBackdropCanvas'); if (!canvas) return;
+      const m = fit(canvas); if (!m) return;
+      const { ctx, width, height } = m;
+      ctx.clearRect(0, 0, width, height);
+      const cell = Math.min(width / 19, height / 13), ox = Math.max(0, (width - cell * 10) / 2), oy = Math.max(0, (height - cell * 13) / 2);
+      ctx.strokeStyle = '#bba7ee'; ctx.lineWidth = 1;
+      for (let x = 0; x <= this.columns; x++) { ctx.beginPath(); ctx.moveTo(ox + x * cell, oy); ctx.lineTo(ox + x * cell, oy + this.rows * cell); ctx.stroke(); }
+      for (let y = 0; y <= this.rows; y++) { ctx.beginPath(); ctx.moveTo(ox, oy + y * cell); ctx.lineTo(ox + this.columns * cell, oy + y * cell); ctx.stroke(); }
+      for (let y = 0; y < this.rows; y++) for (let x = 0; x < this.columns; x++) {
+        const type = this.cells[y][x]; if (!type) continue;
+        ctx.fillStyle = COLORS[type]; ctx.fillRect(ox + x * cell + 2, oy + y * cell + 2, cell - 4, cell - 4);
+      }
+      this.drawActive(ctx, cell, ox, oy, true);
+    }
+    draw() { this.drawCabinet(); this.drawBackdrop(); }
+    snapshot() { return { steps: this.steps, locks: this.locks, clears: this.clears, paused: this.paused, activeY: this.active.y }; }
   }
+  const attract = new AttractScene();
+  function drawAttract() { attract.draw(); }
+  systemReducedMotion.addEventListener?.('change', drawAttract);
   function overlay() {
     const state = game.state, key = state + (state === 'COUNTDOWN' ? game.countdownText : '') + (state === 'GAME_OVER' ? game.score : '');
     if (key === overlayKey) return; overlayKey = key;
@@ -1855,6 +2287,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   function syncUI() {
     const zen = game.mode === 'zen';
     $('gamePage').classList.toggle('zen-session', zen);
+    $('gamePage').classList.toggle('chill-session', game.mode === 'chill');
+    $('gamePage').classList.toggle('classic-session', game.mode === 'classic');
     text('classicBest', pad(best.classic)); text('chillBest', pad(best.chill));
     for (const prefix of ['', 'mobile']) {
       const id = name => prefix ? prefix + name[0].toUpperCase() + name.slice(1) : name;
@@ -1862,11 +2296,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     text('levelLabel', zen ? 'PACE' : 'LEVEL'); text('mobileLevelLabel', zen ? 'PACE' : 'LEVEL');
     text('combo', game.combo >= 2 ? '×' + game.combo : '—'); text('modeLabel', game.mode.toUpperCase() + ' MODE');
+    $('modeMeta').hidden = game.mode !== 'chill';
+    if (game.mode === 'chill') text('modeMeta', 'SURPRISE FREQUENCY · ' + game.surpriseFrequency.toUpperCase());
     $('levelProgress').style.width = game.lines % 10 * 10 + '%';
     $('pauseButton').textContent = game.state === 'PAUSED' ? '▶ RESUME' : 'Ⅱ PAUSE';
     $('pauseButton').disabled = ['MENU','GAME_OVER'].includes(game.state);
     $('holdBox').classList.toggle('unavailable', !game.canHold);
     $('reviveBox').hidden = game.mode !== 'chill'; $('itemCaption').hidden = game.mode !== 'chill'; $('classicCaption').hidden = game.mode !== 'classic';
+    $('recentSurprisesPanel').hidden = game.mode !== 'chill' || game.state === 'MENU';
+    $('mobileSurpriseArea').hidden = game.mode !== 'chill' || game.state === 'MENU';
     $('zenNote').hidden = !zen;
     const danger = game.danger && !zen;
     $('dangerBadge').hidden = !danger; $('boardFrame').classList.toggle('danger', danger);
@@ -1881,17 +2319,24 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   function resizeAll() { previewKey = ''; drawTitle(); drawAttract(); if (game.state !== 'MENU') { syncUI(); drawBoard(); } }
   const observer = new ResizeObserver(resizeAll);
   observer.observe($('boardCanvas')); observer.observe($('attractCanvas')); observer.observe($('holdCanvas'));
+  observer.observe($('menuBackdropCanvas'));
   window.addEventListener('resize', resizeAll);
   let previousTime = performance.now(), previousDpr = window.devicePixelRatio;
   function frame(time) {
     const dt = Math.max(0, Math.min(CONFIG.MAX_DELTA, time - previousTime)); previousTime = time;
     input.update(dt); game.update(dt);
     const active = ['PLAYING','CLEARING','COUNTDOWN','EMERGENCY'].includes(game.state);
-    audio.update(dt, active && !document.hidden, game.mode);
+    attract.update(dt);
+    audio.update(dt, (game.state === 'MENU' || active) && !document.hidden, game.state === 'MENU' ? 'menu' : game.mode);
     if (game.state !== lastState) { input.clear(); lastState = game.state; uiDirty = true; }
     if (active) { particles.update(dt); boardFx.update(dt); if (eventTime > 0) { eventTime -= dt; if (eventTime <= 0) eventText('FIND YOUR FLOW.', game.mode === 'chill' ? '慢慢来，也很精彩。' : 'KEEP THE RHYTHM.'); } }
     if (game.state === 'PAUSED') { pausedTime += dt; if (pausedTime >= 20000 && $('pauseMessage')) text('pauseMessage', 'TAKE YOUR TIME. 方块会等你。'); }
     if (toastTime > 0 && game.state !== 'PAUSED') { toastTime -= dt; if (toastTime <= 0) $('toast').hidden = true; }
+    if (eventCardTime > 0 && active) {
+      eventCardTime -= dt;
+      if (eventCardTime <= 0) hideEventCard();
+      else if (eventCardTime <= 280) { $('eventCard').classList.add('leaving'); $('mobileEventCard').classList.add('leaving'); }
+    }
     saveElapsed += dt; if (saveElapsed >= 1000) { saveElapsed = 0; saveBest(); }
     if (uiDirty) syncUI();
     const powers = [];
@@ -1907,7 +2352,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   }
   renderGuide(); drawTitle(); drawAttract(); syncUI(); requestAnimationFrame(frame);
   // The only stateful loop is frame(); this read-only container also enables local verification.
-  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles, boardFx }), writable: false });
+  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles, boardFx, attract,
+    discoveries: Object.freeze({ has: type => discoveries.has(type), list: () => [...discoveries] }), recentSurprises: () => recentSurprises.slice() }), writable: false });
 })();
 
 </script>
