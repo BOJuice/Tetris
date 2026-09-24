@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#171722">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%229%22%20fill%3D%22%23171722%22%2F%3E%3Cpath%20d%3D%22M3%203h58v58H3z%22%20fill%3D%22none%22%20stroke%3D%22%23b69af2%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M24%209h16v16H24zM8%2025h16v16H8zM24%2025h16v16H24zM40%2025h16v16H40z%22%20fill%3D%22%23d3ff83%22%20stroke%3D%22%23f7ffe6%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M12%2038h9M28%2038h9M44%2038h9M28%2022h9%22%20stroke%3D%22%236daa51%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
-<title>RETRO BLOCKS v1.4 · Take a little break</title>
+<title>RETRO BLOCKS v1.5 · Take a little break</title>
 <style>
 :root{color-scheme:dark;--bg:#171722;--surface:#20202e;--line:#41404f;--muted:#aba7b9;--white:#f6f0db;--mint:#c8f789;--purple:#af90eb;--pink:#f298af;--board:#11121e;--font:Consolas,"Lucida Console","Courier New",monospace}
 *{box-sizing:border-box}html{min-width:280px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);font-size:14px;min-height:100vh;background-image:radial-gradient(ellipse at 80% 20%,#35304b45,transparent 56%)}button,input{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}button{border-radius:0}button:hover{filter:brightness(1.12)}button:active{transform:translateY(2px)}[hidden]{display:none!important}canvas{display:block}body::after{content:"";pointer-events:none;position:fixed;inset:0;z-index:30;background:repeating-linear-gradient(0deg,transparent,transparent 3px,#0000000e 3px,#0000000e 4px);opacity:.5}body.no-crt::after{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -42,41 +42,126 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 @media(max-width:600px){.toast.in-game{top:auto;bottom:18px}.right-panel #eventCard,.right-panel #recentSurprisesPanel{display:none!important}.mobile-surprise-area{position:relative;display:block;max-width:410px;height:43px;margin:-4px auto 8px;padding:7px 8px;background:#211e2b;border:1px solid #4b405d}.mobile-recent-surprises{display:flex;align-items:center;flex-wrap:wrap;gap:3px 8px;color:#c1afcf;font-size:9px;line-height:1.35}.mobile-recent-surprises b{color:#d4b8ed;font-size:8px;font-weight:normal;letter-spacing:.3px}.mobile-recent-surprises span{white-space:nowrap}.mobile-surprise-card{position:absolute;inset:0;display:flex;align-items:center;gap:8px;padding:5px 8px;border:1px solid #ad92d7;background:#34283f;box-shadow:0 0 10px #ac82e430}.mobile-surprise-card .mobile-surprise-icon{display:grid;place-items:center;flex:0 0 27px;height:27px;background:#4d3a5d;border:1px solid #ae92d3;color:#e8d1ff;font-size:16px}.mobile-surprise-card strong{display:block;font-size:10px;color:#f2dfff;line-height:1.25}.mobile-surprise-card small{display:block;font-size:8px;color:var(--mint);line-height:1.25}.mobile-surprise-card.rare{border-color:#ecc96f;background:#3c2f2f}.mobile-surprise-card.rare .mobile-surprise-icon{color:#ffe695;border-color:#efce7b}.event-card-title{font-size:9px}.event-card-en{font-size:7px}.recent-surprises li{font-size:8px}}
 .event-card.leaving{animation:none;opacity:0;transform:translateY(-4px);transition:opacity .26s ease,transform .26s ease}.mobile-surprise-card.leaving{opacity:0;transform:translateY(-3px);transition:opacity .26s ease,transform .26s ease}
 @media(max-width:600px){.mobile-surprise-card.new-discovery{border-color:var(--mint);background:#303532}.mobile-surprise-card.new-discovery .mobile-surprise-icon{color:var(--mint);border-color:var(--mint)}.mobile-surprise-card.new-discovery small{color:#eaf8c8}}
+/* The menu demonstration is drawn by the same lightweight loop as the cabinet canvas. */
+#home{position:relative;isolation:isolate}
+.menu-backdrop{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.12;pointer-events:none;image-rendering:pixelated}
+#home>.home-grid,#home>.home-footer{position:relative;z-index:1}
+.mode-button small{font-size:12px;line-height:1.5}
+.mode-meta{color:#cdbbdc;font-size:13px;letter-spacing:.3px;white-space:nowrap}
+.mode-meta::before{content:"/";color:#72657e;margin-right:10px}
+@media(max-width:600px){.menu-backdrop{opacity:.07}.mode-meta{display:none}}
+
+/* Roomier desktop instruments keep the board central at 1280x900 and 1920x1080. */
+@media(min-width:1024px) and (pointer:fine){
+  .game-page{max-width:1160px;padding:25px 32px 20px;--board-w:min(34vw,350px,calc((100dvh - 324px)/2))}
+  .game-toolbar{max-width:874px;min-height:43px;margin-bottom:17px;gap:20px}
+  .game-toolbar>div:first-child{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;min-width:0}
+  .mode-label{font-size:20px;letter-spacing:1.1px;white-space:nowrap}
+  .mode-label::before{font-size:10px;margin-right:9px}
+  .mode-meta{font-size:17px}
+  .game-subtitle{display:none}
+  .danger-badge{font-size:15px;margin-left:0}
+  .small-button{min-height:41px;padding:8px 13px;font-size:15px;white-space:nowrap}
+  .game-layout{grid-template-columns:220px var(--board-w) 240px;gap:32px;height:auto;min-height:calc(var(--board-w)*2 + 18px)}
+  .left-panel,.right-panel{min-width:0}
+  .instrument{padding-top:11px;margin-bottom:15px}
+  .instrument-title{font-size:20px;letter-spacing:1.2px;margin-bottom:9px;line-height:1.25}
+  .score-instrument .instrument-title{font-size:17px}
+  .keycap{font-size:13px;padding:2px 7px}
+  .hold-box canvas{height:112px}
+  .hold-hint{font-size:14px;line-height:1.5;color:#ada2b8;margin-top:10px}
+  .left-bottom{margin-top:29px}
+  .revive-box{font-size:17px;padding:11px 0;line-height:1.5}
+  .revive-box small{font-size:14px;line-height:1.5}
+  .zen-note{font-size:15px;line-height:1.65}
+  .zen-note b{font-size:18px}
+  .zen-note small{font-size:13px}
+  .item-caption{font-size:14px;line-height:1.7;margin-top:15px;color:#b1a4c0}
+  .item-caption b{font-size:15px;margin-bottom:5px}
+  .score-value,.game-page.zen-session .score-value{font-size:30px}
+  .best-value{font-size:25px;align-items:baseline;margin-top:8px;gap:10px}
+  .best-value span:first-child{font-size:16px;padding:0}
+  .right-panel .score-instrument{margin-bottom:14px}
+  .right-panel .metrics{padding:8px 0;margin:10px 0;gap:12px}
+  .metrics .mini-label{font-size:16px;margin-bottom:4px;letter-spacing:.5px}
+  .metrics strong{font-size:26px}
+  .combo-value{font-size:22px}
+  .level-progress{height:4px;margin:8px 0 0}
+  .right-panel .instrument{margin-bottom:13px}
+  .right-panel .next-list canvas{height:clamp(50px,calc(var(--board-w)*.17),60px)}
+  .right-panel .game-event{font-size:18px;line-height:1.3;min-height:43px;margin-top:8px;letter-spacing:.3px}
+  .game-event small{font-size:15px;line-height:1.35;color:#bbafc9}
+  .right-panel .event-status,.right-panel .slow-status{font-size:17px;line-height:1.35;margin-top:5px;min-height:0;height:auto}
+  .event-card{grid-template-columns:35px minmax(0,1fr);gap:9px;margin-top:7px;padding:8px}
+  .event-card-icon{width:33px;height:33px;font-size:20px}
+  .event-card-title{font-size:16px;line-height:1.25}
+  .event-card-en,.event-card-desc{font-size:13px;line-height:1.3}
+  .recent-surprises{margin-top:8px;padding-top:7px}
+  .recent-surprises h2{font-size:17px;line-height:1.2;letter-spacing:0;margin-bottom:6px}
+  .recent-surprises ol{gap:4px}
+  .recent-surprises li{font-size:15px;line-height:1.25;gap:5px}
+  .recent-surprises li>span:first-child{flex-basis:17px}
+  .board-overlay{padding:20px}
+  .overlay-overline{font-size:13px;margin-bottom:12px}
+  .overlay-title{font-size:34px}
+  .overlay-desc{font-size:15px;line-height:1.55;margin:12px 0 17px}
+  .overlay-actions{gap:9px}
+  .primary-button,.secondary-button{font-size:16px;min-height:44px;padding:10px 9px}
+  .result-grid{gap:11px 8px;margin:14px 0 17px}
+  .result-grid dt{font-size:14px}
+  .result-grid dd{font-size:24px;margin-top:3px}
+  .new-best{font-size:15px;margin-top:10px}
+  .control-legend{max-width:874px;gap:9px 16px;font-size:16px;line-height:1.3;margin-top:13px;color:#c3b9ce}
+  .control-legend kbd{color:var(--white)}
+  .game-footnote{font-size:10px;margin-top:13px}
+  .left-panel #itemCaption{display:none}
+  .left-panel .event-card{margin-top:16px}
+  .left-panel .recent-surprises{margin-top:14px}
+  .right-panel .score-instrument{padding-top:8px;margin-bottom:10px}
+  .right-panel .score-instrument .instrument-title{margin-bottom:6px}
+  .right-panel .score-instrument .score-value{line-height:1.05}
+  .right-panel .score-instrument .best-value{margin-top:5px}
+  .right-panel .score-instrument .metrics{padding:6px 0;margin:8px 0}
+  .right-panel .score-instrument .level-progress{margin-top:6px}
+  .toast.in-game{top:18px;bottom:auto}
+}
+@media(max-width:600px){.left-panel #eventCard,.left-panel #recentSurprisesPanel{display:none!important}}
 </style>
 </head>
 <body>
 <header class="topbar">
   <button class="brand" id="brandButton" aria-label="返回主菜单"><span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>RETRO BLOCKS</button>
-  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.4</span><div class="header-actions">
+  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V1.5</span><div class="header-actions">
   <button id="muteButton" class="icon-button" aria-label="静音" title="静音"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="soundWaves" d="M15 8q5 4 0 8M18 5q8 7 0 14"/></svg></button>
   <button class="icon-button" data-dialog="settingsDialog" aria-label="设置" title="设置"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6M16 9v6M10 15v6"/></svg></button>
   </div></div>
 </header>
 <main id="home" class="page">
+  <canvas id="menuBackdropCanvas" class="menu-backdrop" width="1000" height="640" aria-hidden="true"></canvas>
   <div class="home-grid"><section>
   <p class="eyebrow">A LITTLE ARCADE. A LITTLE ESCAPE.</p>
   <h1 class="hero-title"><span class="sr-only">RETRO BLOCKS</span><canvas id="titleCanvas" width="490" height="176" aria-hidden="true"></canvas></h1>
   <p class="hero-copy">TAKE A BREAK.<br><span class="faded">CLEAR YOUR MIND.</span><br>CLEAR SOME LINES.</p>
   <p class="chinese-copy">把杂念放一边，让方块各就各位。</p>
-  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">A LITTLE LUCK</span><small>辅助方块、神秘方块、轮换惊喜与一次续命。</small></span><span class="arrow">↗</span></button>
+  <button id="chillStart" class="mode-button"><span><b>CHILL MODE</b><span class="mini-tag">A LITTLE LUCK</span><small>特殊方块 · 随机惊喜 · 高容错</small></span><span class="arrow">↗</span></button>
   <button id="chillGuideButton" class="guide-link" data-dialog="guideDialog"><span aria-hidden="true">?</span>SPECIAL GUIDE · 查看特殊内容</button>
-  <button id="classicStart" class="mode-button secondary"><span><b>CLASSIC MODE</b><small>熟悉的七种方块，纯粹的消行快乐。</small></span><span class="arrow">→</span></button>
-  <button id="zenStart" class="mode-button zen"><span><b>ZEN MODE</b><span class="mini-tag">NO GAME OVER</span><small>恒定慢速，自动清理。想玩多久，就玩多久。</small></span><span class="arrow">∞</span></button>
+  <button id="classicStart" class="mode-button secondary"><span><b>CLASSIC MODE</b><small>标准规则 · 纯粹挑战</small></span><span class="arrow">→</span></button>
+  <button id="zenStart" class="mode-button zen"><span><b>ZEN MODE</b><span class="mini-tag">NO GAME OVER</span><small>无 Game Over · 无限放松</small></span><span class="arrow">∞</span></button>
   <div class="text-actions"><button class="text-button" data-dialog="helpDialog"><span>?</span>HOW TO PLAY</button><button class="text-button" data-dialog="settingsDialog"><span>+</span>SETTINGS</button></div>
   <div class="best-strip"><div><span class="mini-label">CHILL BEST</span><strong id="chillBest">000000</strong></div><div><span class="mini-label">CLASSIC BEST</span><strong id="classicBest">000000</strong></div></div>
   </section><aside class="attract" aria-label="复古方块街机插画"><div class="cabinet"><div class="cabinet-top"><span>01 / THE BREAK ROOM</span><span class="led"></span></div><div class="attract-screen"><span class="attract-badge">NO COINS NEEDED.</span><canvas id="attractCanvas" width="400" height="520"></canvas></div><div class="attract-caption"><span>STACK. CLEAR. EXHALE.</span><span class="tiny-blocks"><i></i><i></i><i></i></span></div></div><p class="desk-note"><span>✦</span> YOUR NEXT BREAK STARTS HERE.</p></aside></div>
   <footer class="home-footer"><span><span class="footer-blocks">■ ■ ■</span> &nbsp;THREE MODES. YOUR KIND OF BREAK.</span><span>NO ADS · NO RUSH · JUST BLOCKS</span></footer>
 </main>
 <main id="gamePage" class="game-page" hidden>
-  <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="danger-badge" id="dangerBadge" hidden>DANGER</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
+  <div class="game-toolbar"><div><span class="mode-label" id="modeLabel">CHILL MODE</span><span class="mode-meta" id="modeMeta" hidden></span><span class="danger-badge" id="dangerBadge" hidden>DANGER</span><span class="game-subtitle">MAKE ROOM FOR A LITTLE JOY.</span></div><div class="toolbar-actions"><button id="pauseButton" class="small-button">Ⅱ PAUSE</button><button id="restartButton" class="small-button" aria-label="重新开始">↻ RESTART</button></div></div>
   <div class="mobile-stats"><div><span class="mini-label">SCORE</span><strong id="mobileScore">000000</strong></div><div class="mobile-best"><span class="mini-label">BEST</span><strong id="mobileBest">000000</strong></div><div><span class="mini-label" id="mobileLevelLabel">LEVEL</span><strong id="mobileLevel">01</strong></div><div><span class="mini-label">LINES</span><strong id="mobileLines">00</strong></div></div>
   <div class="mobile-feedback" aria-live="polite"><span id="mobileGameEvent">FIND YOUR FLOW.</span><span id="mobileSlowStatus" class="buff-status"></span></div>
   <div id="mobileSurpriseArea" class="mobile-surprise-area" hidden><div id="mobileRecentSurprises" class="mobile-recent-surprises"></div><div id="mobileEventCard" class="mobile-surprise-card" hidden><span id="mobileEventCardIcon" class="mobile-surprise-icon"></span><div><strong id="mobileEventCardChinese"></strong><small id="mobileEventCardEnglish"></small></div></div></div>
   <div class="mobile-event-status" id="mobileEventStatus"></div>
   <div class="game-layout">
-    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p></div></aside>
+    <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">SAVE A LITTLE<br>FOR LATER.</p></section><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p><section id="eventCard" class="event-card" aria-live="polite" hidden><span id="eventCardIcon" class="event-card-icon" aria-hidden="true">✦</span><div class="event-card-copy"><strong id="eventCardChinese" class="event-card-title"></strong><span id="eventCardEnglish" class="event-card-en"></span><small id="eventCardDescription" class="event-card-desc"></small></div></section><section id="recentSurprisesPanel" class="recent-surprises" hidden><h2>最近惊喜 · RECENT SURPRISES</h2><ol id="recentSurprises" aria-label="最近三个惊喜"></ol></section></div></aside>
     <div class="board-frame" id="boardFrame"><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
-    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status buff-status"></div><section id="eventCard" class="event-card" aria-live="polite" hidden><span id="eventCardIcon" class="event-card-icon" aria-hidden="true">✦</span><div class="event-card-copy"><strong id="eventCardChinese" class="event-card-title"></strong><span id="eventCardEnglish" class="event-card-en"></span><small id="eventCardDescription" class="event-card-desc"></small></div></section><section id="recentSurprisesPanel" class="recent-surprises" hidden><h2>最近惊喜 · RECENT SURPRISES</h2><ol id="recentSurprises" aria-label="最近三个惊喜"></ol></section></aside>
+    <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" aria-label="下一个方块"></canvas><canvas class="nextCanvas" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" aria-label="第四个预告方块"></canvas></div></section><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status buff-status"></div></aside>
   </div>
   <div class="rotation-controls" aria-label="旋转按钮"><button class="rotation-button" data-control="reverse" aria-label="逆时针旋转"><span class="symbol">⟲</span><small>CCW</small><kbd>[ / Z</kbd></button><button class="rotation-button" data-control="rotate" aria-label="顺时针旋转"><span class="symbol">⟳</span><small>CW</small><kbd>] / ↑</kbd></button></div>
   <div class="touch-controls" aria-label="触屏操作"><button data-control="left" aria-label="向左移动">←</button><button data-control="right" aria-label="向右移动">→</button><button data-control="down" aria-label="加速下降">↓</button><button class="drop" data-control="drop" aria-label="直接落下">⇓<span class="touch-label">DROP</span></button><button data-control="hold" aria-label="暂存方块">⇄<span class="touch-label">HOLD</span></button><button data-control="reverse" aria-label="逆时针旋转">⟲<span class="touch-label">CCW</span></button><button data-control="rotate" aria-label="顺时针旋转">⟳<span class="touch-label">CW</span></button></div>
@@ -86,8 +171,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
 <p class="setting-heading">01 / AUDIO</p><label class="setting-row"><span>MUSIC<small>轻量合成背景音乐</small></span><input class="switch" type="checkbox" id="musicOn" checked aria-label="背景音乐开关"></label><div class="volume-row"><input type="range" id="musicVolume" min="0" max="100" value="30" aria-label="背景音乐音量"><output id="musicVolumeValue">30%</output></div>
 <label class="setting-row"><span>SOUND EFFECTS<small>移动、消行与小小的胜利</small></span><input class="switch" type="checkbox" id="sfxOn" checked aria-label="音效开关"></label><div class="volume-row"><input type="range" id="sfxVolume" min="0" max="100" value="50" aria-label="音效音量"><output id="sfxVolumeValue">50%</output></div>
 <label class="audio-intensity"><span>AUDIO INTENSITY<small>音效表现强度 · 禅模式始终更柔和</small></span><select id="audioIntensity" aria-label="音效强度"><option value="low">LOW / 轻柔</option><option value="normal" selected>NORMAL / 标准</option><option value="arcade">ARCADE / 街机</option></select></label>
-<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CHILL MODE</p><label class="audio-intensity surprise-frequency"><span>SURPRISE FREQUENCY<small>惊喜频率 · 仅影响 Chill 模式</small></span><select id="surpriseFrequency" aria-label="Chill 模式惊喜频率"><option value="relaxed">RELAXED / 悠闲</option><option value="normal" selected>NORMAL / 标准</option><option value="lively">LIVELY / 热闹</option></select></label><div class="divider"></div><p class="setting-heading">04 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>音乐会在开始游戏后播放。</p></div></dialog>
-<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.4</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。可在设置中选择惊喜频率；特殊内容会逐步解锁至 SPECIAL GUIDE 图鉴。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
+<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>用独立纹理辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><div class="divider"></div><p class="setting-heading">03 / CHILL MODE</p><label class="audio-intensity surprise-frequency"><span>SURPRISE FREQUENCY<small>惊喜频率 · 仅影响 Chill 模式</small></span><select id="surpriseFrequency" aria-label="Chill 模式惊喜频率"><option value="relaxed">RELAXED / 悠闲</option><option value="normal" selected>NORMAL / 标准</option><option value="lively">LIVELY / 热闹</option></select></label><div class="divider"></div><p class="setting-heading">04 / CONTROLS</p><div class="settings-keys">← → 移动 · ↓ 加速<br>[ / 【 / Z 逆时针 · ] / 】 / ↑ 顺时针<br>SPACE 落下 · C 暂存 · P / ESC 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>首次点击游戏或菜单按钮后，背景音乐会开始播放。</p></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">HOW TO PLAY <span class="version-tag">V1.5</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← →</kbd>左右移动</div><div><kbd>↓</kbd>加速下降</div><div><kbd>[ / Z</kbd>⟲ 逆时针</div><div><kbd>] / ↑</kbd>⟳ 顺时针</div><div><kbd>SPACE</kbd>直接落到底部</div><div><kbd>C</kbd>暂存 / 换出</div><div><kbd>P / ESC</kbd>暂停 / 继续</div></div><p class="dialog-note">也支持浏览器能识别的中文括号【 】。</p><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。可在设置中选择惊喜频率；特殊内容会逐步解锁至 SPECIAL GUIDE 图鉴。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
 <dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle"><div class="dialog-header"><h2 id="guideTitle">SPECIAL GUIDE <span class="version-tag">CHILL MODE</span></h2><button class="icon-button" data-close aria-label="关闭特殊内容说明">×</button></div><div id="guideBody" class="guide-body"></div><div class="guide-footer"><button id="guideMenuButton" type="button">⌂ 返回主菜单</button></div></dialog>
 <div id="toast" class="toast" role="status" hidden></div>
 <script>
@@ -1144,21 +1229,25 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     levelUp: 6, bomb: 7, emergency: 7, gameOver: 8, perfectClear: 9 });
   const INTENSITY = Object.freeze({ low: .58, normal: 1, arcade: 1.16 });
   const MAX_VOICES = 72;
+  const MUSIC_FADE_SECONDS = .55;
   const hz = midi => 440 * Math.pow(2, (midi - 69) / 12);
 
   // One audio clock, shared by effects and music. The game owns the only RAF.
   class AudioManager {
     constructor(getSettings) {
       this.getSettings = typeof getSettings === 'function' ? getSettings : () => ({});
-      this.context = this.musicGain = this.sfxGain = this.output = null;
+      this.context = this.musicGain = this.menuGain = this.sfxGain = this.output = null;
       this.settings = this.readSettings();
-      this.mode = 'classic'; this.active = false; this.destroyed = false;
+      this.mode = 'classic'; this.gameMusicMode = 'classic';
+      this.scene = 'classic'; this.active = false; this.destroyed = false;
       this.initializing = null; this.voices = new Set();
       this.lastEffects = Object.create(null); this.lastLockAt = -10;
       this.lastTouchdownAt = -10;
       this.priorityUntil = -1; this.priorityLevel = 0;
       this.duckUntil = -1; this.ducking = false;
-      this.step = 0; this.nextMusicTime = -1; this.session = 0;
+      this.step = 0; this.nextMusicTime = -1;
+      this.menuStep = 0; this.nextMenuTime = -1;
+      this.musicFades = Object.create(null); this.session = 0;
       this.lastPlan = null;
     }
 
@@ -1178,6 +1267,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     async init() {
       if (this.destroyed) return false;
       if (this.initializing) return this.initializing;
+      if (this.context && this.context.state === 'running' &&
+          this.musicGain && this.menuGain && this.sfxGain) return true;
       this.initializing = this.initializeContext();
       try { return await this.initializing; } finally { this.initializing = null; }
     }
@@ -1188,16 +1279,18 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           if (!Constructor) return false;
           const context = new Constructor({ latencyHint: 'interactive' });
           this.context = context;
-          this.musicGain = context.createGain(); this.sfxGain = context.createGain();
+          this.musicGain = context.createGain(); this.menuGain = context.createGain();
+          this.sfxGain = context.createGain();
           this.output = context.createDynamicsCompressor();
           this.output.threshold.value = -18; this.output.knee.value = 14;
           this.output.ratio.value = 4; this.output.attack.value = .006; this.output.release.value = .13;
-          this.musicGain.gain.value = this.sfxGain.gain.value = 0;
-          this.musicGain.connect(this.output); this.sfxGain.connect(this.output);
+          this.musicGain.gain.value = this.menuGain.gain.value = this.sfxGain.gain.value = 0;
+          this.musicGain.connect(this.output); this.menuGain.connect(this.output);
+          this.sfxGain.connect(this.output);
           this.output.connect(context.destination);
         }
         if (this.context.state === 'suspended') await this.context.resume();
-        this.applySettings(); this.nextMusicTime = -1;
+        this.applySettings(); this.nextMusicTime = this.nextMenuTime = -1;
         return this.context.state === 'running';
       } catch (_) { return false; }
     }
@@ -1208,8 +1301,53 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         node.gain.cancelScheduledValues(now); node.gain.setTargetAtTime(target, now, seconds);
       } catch (_) {}
     }
-    musicLevel() {
-      return this.active && this.settings.musicOn ? this.settings.musicVolume * .36 * (this.ducking ? .47 : 1) : 0;
+    musicLevel(scene = this.scene) {
+      if (!this.active || !this.settings.musicOn || this.settings.musicVolume <= 0) return 0;
+      const duck = this.ducking ? .47 : 1;
+      if (scene === 'menu') return this.scene === 'menu'
+        ? this.settings.musicVolume * .23 * (this.settings.audioIntensity === 'low' ? .8 : 1) * duck : 0;
+      return this.scene !== 'menu' ? this.settings.musicVolume * .36 * duck : 0;
+    }
+    // Keep the current position of an interrupted fade before scheduling its replacement.
+    fadeMusic(node, key, target, seconds) {
+      if (!node || !this.context || this.context.state === 'closed') return;
+      const now = this.context.currentTime;
+      const previous = this.musicFades[key];
+      const value = previous && now < previous.end
+        ? previous.from + (previous.to - previous.from) * Math.max(0, (now - previous.start) / (previous.end - previous.start))
+        : previous ? previous.to : node.gain.value;
+      if (Math.abs(value - target) < .000001) {
+        node.gain.cancelScheduledValues(now); node.gain.setValueAtTime(target, now);
+        this.musicFades[key] = { from: target, to: target, start: now, end: now };
+        return;
+      }
+      node.gain.cancelScheduledValues(now);
+      node.gain.setValueAtTime(value, now);
+      node.gain.linearRampToValueAtTime(target, now + seconds);
+      this.musicFades[key] = { from: value, to: target, start: now, end: now + seconds };
+    }
+    syncMusicGains(seconds = MUSIC_FADE_SECONDS) {
+      this.fadeMusic(this.menuGain, 'menu', this.musicLevel('menu'), seconds);
+      this.fadeMusic(this.musicGain, 'game', this.musicLevel('game'), seconds);
+    }
+    transitionTo(scene, active = true) {
+      if (this.destroyed) return;
+      const nextScene = String(scene).toLowerCase() === 'menu' ? 'menu' : 'game';
+      const nextMode = nextScene === 'game' ? this.modeName(scene) : this.mode;
+      const changed = this.scene !== nextScene;
+      const modeChanged = nextScene === 'game' && this.gameMusicMode !== nextMode;
+      const activeChanged = this.active !== Boolean(active);
+      if (!changed && !modeChanged && !activeChanged) return;
+      this.scene = nextScene; this.active = Boolean(active);
+      if (nextScene === 'game') {
+        this.mode = nextMode;
+        if (modeChanged) {
+          this.gameMusicMode = nextMode;
+          this.step = 0; this.nextMusicTime = -1;
+        }
+      }
+      this.syncMusicGains(changed ? MUSIC_FADE_SECONDS : activeChanged ? .12 : .2);
+      if (modeChanged) this.smoothGain(this.sfxGain, this.sfxLevel());
     }
     sfxLevel() {
       if (!this.settings.sfxOn) return 0;
@@ -1219,52 +1357,99 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     applySettings() {
       const previous = this.settings;
       this.settings = this.readSettings();
-      this.smoothGain(this.musicGain, this.musicLevel()); this.smoothGain(this.sfxGain, this.sfxLevel());
-      if (!this.settings.musicOn) { this.stopVoices('music'); this.nextMusicTime = -1; }
-      else if (previous && !previous.musicOn) this.nextMusicTime = -1;
+      const musicChanged = !previous || previous.musicOn !== this.settings.musicOn ||
+        previous.musicVolume !== this.settings.musicVolume ||
+        previous.audioIntensity !== this.settings.audioIntensity;
+      const gainsNotInitialized = !this.musicFades.menu || !this.musicFades.game;
+      if (musicChanged || gainsNotInitialized) {
+        const now = this.context ? this.context.currentTime : 0;
+        const remaining = Math.max(0,
+          (this.musicFades.menu?.end || 0) - now,
+          (this.musicFades.game?.end || 0) - now);
+        const seconds = gainsNotInitialized ? MUSIC_FADE_SECONDS
+          : previous && previous.musicOn !== this.settings.musicOn ? .12
+            : Math.max(.04, remaining);
+        this.syncMusicGains(seconds);
+      }
+      this.smoothGain(this.sfxGain, this.sfxLevel());
+      if (!this.settings.musicOn) {
+        this.stopVoices('music'); this.stopVoices('menu');
+        this.nextMusicTime = this.nextMenuTime = -1;
+      } else if (previous && !previous.musicOn) this.nextMusicTime = this.nextMenuTime = -1;
       if (!this.settings.sfxOn) this.stopVoices('sfx');
     }
     setActive(active) {
       const next = Boolean(active);
       if (this.active === next) return;
-      this.active = next; this.nextMusicTime = -1;
-      if (!next) this.stopVoices('music');
-      this.smoothGain(this.musicGain, this.musicLevel());
+      this.active = next;
+      this.syncMusicGains(.12);
     }
     resetSession(mode) {
-      this.session++; this.stopVoices(); this.voices.clear();
-      this.mode = this.modeName(mode); this.active = false; this.step = 0; this.nextMusicTime = -1;
+      this.session++; this.stopVoices('sfx');
+      this.mode = this.modeName(mode); this.active = false;
+      if (String(mode).toLowerCase() !== 'menu') {
+        this.step = 0; this.nextMusicTime = -1;
+      }
       this.lastEffects = Object.create(null); this.lastLockAt = -10;
       this.lastTouchdownAt = -10;
       this.priorityUntil = -1; this.priorityLevel = 0; this.duckUntil = -1;
       this.ducking = false; this.lastPlan = null;
-      this.smoothGain(this.musicGain, 0); this.smoothGain(this.sfxGain, this.sfxLevel());
+      this.smoothGain(this.sfxGain, this.sfxLevel());
     }
     update(dt, active, mode) {
-      this.setActive(active);
-      const nextMode = this.modeName(mode);
-      if (nextMode !== this.mode) {
-        this.mode = nextMode; this.step = 0; this.nextMusicTime = -1;
-        this.stopVoices('music'); this.smoothGain(this.sfxGain, this.sfxLevel());
-      }
+      this.transitionTo(mode, active);
       const context = this.context;
       if (!context || context.state !== 'running') return;
       const now = context.currentTime;
       if (this.ducking && now >= this.duckUntil) {
-        this.ducking = false; this.smoothGain(this.musicGain, this.musicLevel(), .09);
+        this.ducking = false; this.syncMusicGains(.09);
       }
-      if (!this.active || !this.settings.musicOn) return;
+      if (!this.settings.musicOn || this.settings.musicVolume <= 0) return;
+      const menuFade = this.musicFades.menu;
+      const gameFade = this.musicFades.game;
+      if ((this.active && this.scene === 'menu') || (menuFade && menuFade.to === 0 && now < menuFade.end && menuFade.from > 0))
+        this.scheduleMenu(now);
+      if ((this.active && this.scene === 'game') || (gameFade && gameFade.to === 0 && now < gameFade.end && gameFade.from > 0))
+        this.scheduleGame(now);
+    }
+    scheduleGame(now) {
       if (this.nextMusicTime < now - .15) this.nextMusicTime = now + .025;
-      const eighth = 60 / (this.mode === 'zen' ? 84 : 105) / 2;
+      const eighth = 60 / (this.gameMusicMode === 'zen' ? 84 : 105) / 2;
       let budget = 4;
       while (this.nextMusicTime < now + .09 && budget-- > 0) {
         this.scheduleMusicStep(this.step, this.nextMusicTime, eighth);
         this.step = (this.step + 1) % 64; this.nextMusicTime += eighth;
       }
     }
+    scheduleMenu(now) {
+      if (this.nextMenuTime < now - .15) this.nextMenuTime = now + .025;
+      const eighth = 60 / 76 / 2;
+      let budget = 4;
+      while (this.nextMenuTime < now + .09 && budget-- > 0) {
+        this.scheduleMenuStep(this.menuStep, this.nextMenuTime, eighth);
+        this.menuStep = (this.menuStep + 1) % 64; this.nextMenuTime += eighth;
+      }
+    }
+    scheduleMenuStep(step, at, eighth) {
+      const bar = Math.floor(step / 8), beat = step % 8;
+      const roots = [48,45,53,43,48,45,50,43];
+      const melody = [[72,null,null,76,null,74,null,null],
+        [69,null,72,null,null,67,null,null],
+        [72,null,null,74,null,76,null,null],
+        [67,null,71,null,null,69,null,null],
+        [72,null,null,76,null,79,null,null],
+        [69,null,72,null,null,74,null,null],
+        [74,null,null,72,null,69,null,null],
+        [67,null,71,null,null,72,null,null]][bar][beat];
+      if (beat === 0) this.tone(roots[bar], at, eighth * 3.1, 'sine', .12, 'menu', null, .035);
+      if (beat === 2 || beat === 6) this.tone(roots[bar] + (beat === 2 ? 19 : 16),
+        at, eighth * 1.35, 'triangle', .052, 'menu', null, .025);
+      if (melody !== null) this.tone(melody, at, eighth * 1.55,
+        'sine', .073, 'menu', null, .03);
+    }
     scheduleMusicStep(step, at, eighth) {
       const bar = Math.floor(step / 8), beat = step % 8;
-      const zen = this.mode === 'zen', relaxed = this.mode !== 'classic';
+      const zen = this.gameMusicMode === 'zen', relaxed = this.gameMusicMode !== 'classic';
       const chords = [[45,60,64,69],[41,60,65,69],[48,60,64,67],[43,59,62,67],
         [45,60,64,69],[41,60,65,69],[48,60,64,67],[43,59,62,67]];
       const melodies = [[76,null,72,null,69,72,74,null],[77,null,76,72,69,null,72,null],
@@ -1298,7 +1483,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
         envelope.gain.exponentialRampToValueAtTime(Math.max(.001, volume), start + attack);
         envelope.gain.exponentialRampToValueAtTime(Math.max(.0002, volume * .48), start + duration * .32);
         envelope.gain.exponentialRampToValueAtTime(.0001, end);
-        oscillator.connect(envelope); envelope.connect(bus === 'music' ? this.musicGain : this.sfxGain);
+        oscillator.connect(envelope); envelope.connect(bus === 'music' ? this.musicGain : bus === 'menu' ? this.menuGain : this.sfxGain);
         const voice = { oscillator, envelope, bus, start, end, priority, midi, session: this.session };
         this.voices.add(voice);
         oscillator.onended = () => {
@@ -1423,7 +1608,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
           note(48, .17, .38, 'triangle', .075); note(72, .47, .36, 'triangle', .09);
           this.priorityUntil = now + 1.05; this.priorityLevel = 9;
           this.duckUntil = now + 1.05; this.ducking = true;
-          this.smoothGain(this.musicGain, this.musicLevel(), .04);
+          this.syncMusicGains(.04);
           break;
         }
         case 'pause':
@@ -1466,6 +1651,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     destroy() {
       this.destroyed = true; this.active = false; this.stopVoices(); this.voices.clear();
       try { if (this.musicGain) this.musicGain.disconnect(); } catch (_) {}
+      try { if (this.menuGain) this.menuGain.disconnect(); } catch (_) {}
       try { if (this.sfxGain) this.sfxGain.disconnect(); } catch (_) {}
       try { if (this.output) this.output.disconnect(); } catch (_) {}
       if (this.context && this.context.state !== 'closed') {
@@ -1515,6 +1701,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   const storedBest = mode => { const value = Storage.get('best:' + mode, 0); return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0; };
   const best = { classic: storedBest('classic'), chill: storedBest('chill'), zen: storedBest('zen') };
   const audio = new RetroAudio(() => Settings.value);
+  audio.transitionTo('menu', true);
   let bestAtStart = 0, saveDirty = false, saveElapsed = 0, toastTime = 0, eventTime = 0, pausedTime = 0, startGeneration = 0;
   let uiDirty = true, overlayKey = '', previewKey = '', lastState = 'MENU';
   const pad = (n, len = 6) => String(n).padStart(len, '0');
@@ -1836,18 +2023,22 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     button.addEventListener('click', e => { if (e.detail === 0 && game.state === 'PLAYING') input.perform(button.dataset.control); });
   });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { input.clear(); game.pause(); audio.setActive(false); saveBest(); } });
-  window.addEventListener('blur', () => { input.clear(); game.pause(); });
+  window.addEventListener('blur', () => { input.clear(); game.pause(); audio.setActive(false); });
   window.addEventListener('pagehide', saveBest);
+  // Browser audio remains locked until a deliberate menu control is activated.
+  document.addEventListener('click', e => {
+    if (game.state === 'MENU' && e.target.closest('button')) audio.init();
+  }, { capture: true });
   function start(mode) {
     document.querySelectorAll('dialog[open]').forEach(d => d.close());
     saveBest(); bestAtStart = best[mode]; input.clear(); boardFx.clear(); previewKey = ''; overlayKey = '';
-    audio.resetSession(mode); const generation = ++startGeneration;
+    audio.resetSession(mode); audio.transitionTo(mode, true); const generation = ++startGeneration;
     game.start(mode); audio.init().then(() => { if (generation === startGeneration && game.state === 'COUNTDOWN') audio.play('start'); });
     $('home').hidden = true; $('gamePage').hidden = false;
     if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     window.scrollTo({ top: 0, behavior: 'auto' }); resizeAll(); syncUI();
   }
-  function mainMenu() { saveBest(); input.clear(); particles.clear(); boardFx.clear(); recentSurprises.length = 0; renderRecentSurprises(); hideEventCard(); ++startGeneration; audio.resetSession('menu'); game.menu(); audio.setActive(false); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
+  function mainMenu() { saveBest(); input.clear(); particles.clear(); boardFx.clear(); recentSurprises.length = 0; renderRecentSurprises(); hideEventCard(); ++startGeneration; audio.resetSession('menu'); audio.transitionTo('menu', true); game.menu(); $('home').hidden = false; $('gamePage').hidden = true; $('toast').hidden = true; toastTime = 0; drawTitle(); drawAttract(); syncUI(); }
   $('chillStart').addEventListener('click', () => start('chill'));
   $('classicStart').addEventListener('click', () => start('classic'));
   $('zenStart').addEventListener('click', () => start('zen'));
@@ -1983,17 +2174,105 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
       }
     });
   }
-  function drawAttract() {
-    const canvas = $('attractCanvas'); if (!canvas.getBoundingClientRect().width) return;
-    const m = fit(canvas); if (!m) return; const { ctx, width, height } = m, s = width / 10;
-    grid(ctx, width, height, 10, 13);
-    const rows = ['..........','..........','..........','..........','..........','..........','..........','..........','JJ......LL','JZZ.....SL','JIZZOO.SSL','IITTOOSSTT','IITTZZOOTL'];
-    for (let y = 0; y < rows.length; y++) for (let x = 0; x < 10; x++) if (rows[y][x] !== '.') block(ctx, x * s, y * s, s, rows[y][x]);
-    for (const [x, y] of [[4,2],[3,3],[4,3],[5,3]]) block(ctx, x * s, y * s, s, 'T');
-    for (const [x, y] of [[4,8],[3,9],[4,9],[5,9]]) block(ctx, x * s, y * s, s, 'T', true);
-    ctx.fillStyle = '#777081'; ctx.font = Math.max(8, width * .024) + 'px Consolas,monospace'; ctx.textAlign = 'center'; ctx.fillText('A GOOD PLACE TO LAND.', width / 2, s * 6.35);
-    ctx.fillStyle = '#c8f789'; ctx.fillRect(s * 4.5, s * 6.7, s * .12, s * .12); ctx.fillStyle = '#bb8cf5'; ctx.fillRect(s * 4.95, s * 6.7, s * .12, s * .12); ctx.fillStyle = '#f298af'; ctx.fillRect(s * 5.4, s * 6.7, s * .12, s * .12);
+  const systemReducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  class AttractScene {
+    constructor() {
+      this.columns = 10; this.rows = 13; this.elapsed = 0;
+      this.steps = 0; this.locks = 0; this.clears = 0; this.paused = true;
+      this.sequence = [['O', 7], ['T', 3], ['I', 0], ['L', 5], ['S', 2], ['J', 0], ['Z', 6]];
+      this.index = 0; this.seed();
+    }
+    seed() {
+      this.cells = Array.from({ length: this.rows }, () => Array(this.columns).fill(null));
+      this.cells[12] = ['J', 'J', 'Z', 'Z', 'T', 'T', 'L', null, null, 'O'];
+      this.cells[11] = ['J', null, 'Z', null, 'T', null, 'L', null, null, null];
+      this.cells[10] = [null, null, null, null, null, null, 'L', null, null, null];
+      this.index = 0; this.spawn(true);
+    }
+    spawn(first = false) {
+      const [type, x] = this.sequence[this.index++ % this.sequence.length];
+      this.active = { type, x, y: first ? 1 : -SHAPES[type].length, matrix: SHAPES[type] };
+      if (this.collides(this.active.y)) { this.seed(); return; }
+    }
+    collides(nextY) {
+      const { x, matrix } = this.active;
+      for (let row = 0; row < matrix.length; row++) for (let col = 0; col < matrix[row].length; col++) {
+        if (!matrix[row][col]) continue;
+        const px = x + col, py = nextY + row;
+        if (px < 0 || px >= this.columns || py >= this.rows || (py >= 0 && this.cells[py][px])) return true;
+      }
+      return false;
+    }
+    step() {
+      this.steps++;
+      if (!this.collides(this.active.y + 1)) { this.active.y++; return; }
+      let overflow = false;
+      const { type, x, y, matrix } = this.active;
+      for (let row = 0; row < matrix.length; row++) for (let col = 0; col < matrix[row].length; col++) {
+        if (!matrix[row][col]) continue;
+        if (y + row < 0) overflow = true;
+        else this.cells[y + row][x + col] = type;
+      }
+      this.locks++;
+      if (overflow) { this.seed(); return; }
+      const kept = this.cells.filter(row => row.some(cell => !cell));
+      const removed = this.rows - kept.length;
+      if (removed) {
+        this.clears += removed;
+        while (kept.length < this.rows) kept.unshift(Array(this.columns).fill(null));
+        this.cells = kept;
+      }
+      this.spawn();
+    }
+    update(dt) {
+      this.paused = game.state !== 'MENU' || document.hidden || Settings.value.reducedMotion || systemReducedMotion.matches;
+      if (this.paused) return;
+      this.elapsed += dt;
+      if (this.elapsed < 620) return;
+      this.elapsed -= 620;
+      this.step(); this.draw();
+    }
+    drawCabinet() {
+      const canvas = $('attractCanvas'); if (!canvas || !canvas.getBoundingClientRect().width) return;
+      const m = fit(canvas); if (!m) return;
+      const { ctx, width, height } = m, cell = width / this.columns;
+      grid(ctx, width, height, this.columns, this.rows);
+      for (let y = 0; y < this.rows; y++) for (let x = 0; x < this.columns; x++) {
+        const type = this.cells[y][x]; if (type) block(ctx, x * cell, y * cell, cell, type);
+      }
+      this.drawActive(ctx, cell, 0, 0, false);
+      ctx.fillStyle = '#777081'; ctx.font = Math.max(8, width * .024) + 'px Consolas,monospace';
+      ctx.textAlign = 'center'; ctx.fillText('A GOOD PLACE TO LAND.', width / 2, cell * 6.4);
+    }
+    drawActive(ctx, cell, ox, oy, backdrop) {
+      const { type, x, y, matrix } = this.active;
+      for (let row = 0; row < matrix.length; row++) for (let col = 0; col < matrix[row].length; col++) {
+        if (!matrix[row][col] || y + row < 0) continue;
+        if (backdrop) { ctx.fillStyle = COLORS[type]; ctx.fillRect(ox + (x + col) * cell + 2, oy + (y + row) * cell + 2, cell - 4, cell - 4); }
+        else block(ctx, (x + col) * cell, (y + row) * cell, cell, type);
+      }
+    }
+    drawBackdrop() {
+      const canvas = $('menuBackdropCanvas'); if (!canvas) return;
+      const m = fit(canvas); if (!m) return;
+      const { ctx, width, height } = m;
+      ctx.clearRect(0, 0, width, height);
+      const cell = Math.min(width / 19, height / 13), ox = Math.max(0, (width - cell * 10) / 2), oy = Math.max(0, (height - cell * 13) / 2);
+      ctx.strokeStyle = '#bba7ee'; ctx.lineWidth = 1;
+      for (let x = 0; x <= this.columns; x++) { ctx.beginPath(); ctx.moveTo(ox + x * cell, oy); ctx.lineTo(ox + x * cell, oy + this.rows * cell); ctx.stroke(); }
+      for (let y = 0; y <= this.rows; y++) { ctx.beginPath(); ctx.moveTo(ox, oy + y * cell); ctx.lineTo(ox + this.columns * cell, oy + y * cell); ctx.stroke(); }
+      for (let y = 0; y < this.rows; y++) for (let x = 0; x < this.columns; x++) {
+        const type = this.cells[y][x]; if (!type) continue;
+        ctx.fillStyle = COLORS[type]; ctx.fillRect(ox + x * cell + 2, oy + y * cell + 2, cell - 4, cell - 4);
+      }
+      this.drawActive(ctx, cell, ox, oy, true);
+    }
+    draw() { this.drawCabinet(); this.drawBackdrop(); }
+    snapshot() { return { steps: this.steps, locks: this.locks, clears: this.clears, paused: this.paused, activeY: this.active.y }; }
   }
+  const attract = new AttractScene();
+  function drawAttract() { attract.draw(); }
+  systemReducedMotion.addEventListener?.('change', drawAttract);
   function overlay() {
     const state = game.state, key = state + (state === 'COUNTDOWN' ? game.countdownText : '') + (state === 'GAME_OVER' ? game.score : '');
     if (key === overlayKey) return; overlayKey = key;
@@ -2008,6 +2287,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   function syncUI() {
     const zen = game.mode === 'zen';
     $('gamePage').classList.toggle('zen-session', zen);
+    $('gamePage').classList.toggle('chill-session', game.mode === 'chill');
+    $('gamePage').classList.toggle('classic-session', game.mode === 'classic');
     text('classicBest', pad(best.classic)); text('chillBest', pad(best.chill));
     for (const prefix of ['', 'mobile']) {
       const id = name => prefix ? prefix + name[0].toUpperCase() + name.slice(1) : name;
@@ -2015,6 +2296,8 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
     }
     text('levelLabel', zen ? 'PACE' : 'LEVEL'); text('mobileLevelLabel', zen ? 'PACE' : 'LEVEL');
     text('combo', game.combo >= 2 ? '×' + game.combo : '—'); text('modeLabel', game.mode.toUpperCase() + ' MODE');
+    $('modeMeta').hidden = game.mode !== 'chill';
+    if (game.mode === 'chill') text('modeMeta', 'SURPRISE FREQUENCY · ' + game.surpriseFrequency.toUpperCase());
     $('levelProgress').style.width = game.lines % 10 * 10 + '%';
     $('pauseButton').textContent = game.state === 'PAUSED' ? '▶ RESUME' : 'Ⅱ PAUSE';
     $('pauseButton').disabled = ['MENU','GAME_OVER'].includes(game.state);
@@ -2036,13 +2319,15 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   function resizeAll() { previewKey = ''; drawTitle(); drawAttract(); if (game.state !== 'MENU') { syncUI(); drawBoard(); } }
   const observer = new ResizeObserver(resizeAll);
   observer.observe($('boardCanvas')); observer.observe($('attractCanvas')); observer.observe($('holdCanvas'));
+  observer.observe($('menuBackdropCanvas'));
   window.addEventListener('resize', resizeAll);
   let previousTime = performance.now(), previousDpr = window.devicePixelRatio;
   function frame(time) {
     const dt = Math.max(0, Math.min(CONFIG.MAX_DELTA, time - previousTime)); previousTime = time;
     input.update(dt); game.update(dt);
     const active = ['PLAYING','CLEARING','COUNTDOWN','EMERGENCY'].includes(game.state);
-    audio.update(dt, active && !document.hidden, game.mode);
+    attract.update(dt);
+    audio.update(dt, (game.state === 'MENU' || active) && !document.hidden, game.state === 'MENU' ? 'menu' : game.mode);
     if (game.state !== lastState) { input.clear(); lastState = game.state; uiDirty = true; }
     if (active) { particles.update(dt); boardFx.update(dt); if (eventTime > 0) { eventTime -= dt; if (eventTime <= 0) eventText('FIND YOUR FLOW.', game.mode === 'chill' ? '慢慢来，也很精彩。' : 'KEEP THE RHYTHM.'); } }
     if (game.state === 'PAUSED') { pausedTime += dt; if (pausedTime >= 20000 && $('pauseMessage')) text('pauseMessage', 'TAKE YOUR TIME. 方块会等你。'); }
@@ -2067,7 +2352,7 @@ dialog{background:#23202e;color:var(--white);border:1px solid #73687f;padding:0;
   }
   renderGuide(); drawTitle(); drawAttract(); syncUI(); requestAnimationFrame(frame);
   // The only stateful loop is frame(); this read-only container also enables local verification.
-  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles, boardFx,
+  Object.defineProperty(window, 'RetroBlocks', { value: Object.freeze({ game, settings: Settings, audio, input, storage: Storage, particles, boardFx, attract,
     discoveries: Object.freeze({ has: type => discoveries.has(type), list: () => [...discoveries] }), recentSurprises: () => recentSurprises.slice() }), writable: false });
 })();
 
