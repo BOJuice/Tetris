@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#171722">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%229%22%20fill%3D%22%23171722%22%2F%3E%3Cpath%20d%3D%22M3%203h58v58H3z%22%20fill%3D%22none%22%20stroke%3D%22%23b69af2%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M24%209h16v16H24zM8%2025h16v16H8zM24%2025h16v16H24zM40%2025h16v16H40z%22%20fill%3D%22%23d3ff83%22%20stroke%3D%22%23f7ffe6%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M12%2038h9M28%2038h9M44%2038h9M28%2022h9%22%20stroke%3D%22%236daa51%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
-<title>RETRO BLOCKS v2.2 · Take a little break</title>
+<title>RETRO BLOCKS v2.1 · Take a little break</title>
 <style>
 :root{color-scheme:dark;--bg:#171722;--surface:#20202e;--line:#41404f;--muted:#aba7b9;--white:#f6f0db;--mint:#c8f789;--purple:#af90eb;--pink:#f298af;--board:#11121e;--font:Consolas,"Lucida Console","Courier New",monospace}
 *{box-sizing:border-box}html{min-width:280px}body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);font-size:14px;min-height:100vh;background-image:radial-gradient(ellipse at 80% 20%,#35304b45,transparent 56%)}button,input{font:inherit}button{cursor:pointer;color:inherit;touch-action:manipulation}button:disabled{cursor:default;opacity:.45}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}button{border-radius:0}button:hover{filter:brightness(1.12)}button:active{transform:translateY(2px)}[hidden]{display:none!important}canvas{display:block}body::after{content:"";pointer-events:none;position:fixed;inset:0;z-index:30;background:repeating-linear-gradient(0deg,transparent,transparent 3px,#0000000e 3px,#0000000e 4px);opacity:.5}body.no-crt::after{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -525,7 +525,6 @@ body.reduced-motion .gesture-tutorial{animation:none;opacity:.86}
 #gamePage.gesture-enabled #gameLayout button{touch-action:manipulation}
 .gesture-tutorial-icon svg{display:block;width:min(31vw,124px);height:auto;max-height:64px;color:#a9e8ff;opacity:.7;filter:drop-shadow(0 0 6px #6acfff99);animation:gesture-arrow-left 2.5s ease-in-out infinite}
 .gesture-tutorial[data-step="right"] .gesture-tutorial-icon svg{animation-name:gesture-arrow-right}
-.gesture-tutorial[data-step="rotate"] .gesture-tutorial-icon svg,.gesture-tutorial[data-step="drop"] .gesture-tutorial-icon svg{width:min(27vw,110px);max-height:58px;opacity:.84;animation:none}
 @keyframes gesture-arrow-left{0%,100%{opacity:.36;transform:translateX(8px) scale(.985)}50%{opacity:.78;transform:translateX(0) scale(1)}75%{opacity:.6;transform:translateX(-5px) scale(.995)}}
 @keyframes gesture-arrow-right{0%,100%{opacity:.36;transform:translateX(-8px) scale(.985)}50%{opacity:.78;transform:translateX(0) scale(1)}75%{opacity:.6;transform:translateX(5px) scale(.995)}}
 @media(max-width:600px) and (orientation:portrait){
@@ -572,7 +571,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
 <body>
 <header class="topbar">
   <button class="brand" id="brandButton" aria-label="返回主菜单"><span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>RETRO BLOCKS</button>
-  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V2.2</span><div class="header-actions">
+  <div class="top-right"><span class="top-note"><i class="status-dot"></i>OFFLINE ARCADE / V2.1</span><div class="header-actions">
   <button id="muteButton" class="icon-button" aria-label="静音" title="静音"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4Z"/><path id="soundWaves" d="M15 8q5 4 0 8M18 5q8 7 0 14"/></svg></button>
   <button class="icon-button" data-dialog="settingsDialog" aria-label="设置" title="设置"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6M16 9v6M10 15v6"/></svg></button>
   </div></div>
@@ -602,7 +601,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
   <div class="play-area"><div id="gameLayout" class="game-layout">
     <aside class="left-panel"><section class="instrument"><h2 class="instrument-title">HOLD <span class="keycap">C</span></h2><div class="hold-box" id="holdBox"><canvas id="holdCanvas" aria-label="暂存方块"></canvas></div><p class="hold-hint">存一块，随用随取。</p></section><button id="oopsButton" class="oops-button" type="button" aria-label="撤回上一个落下的方块" hidden><span>↶ OOPS ×<span id="oopsCount">1</span></span><kbd>U</kbd></button><div class="left-bottom"><div id="reviveBox" class="revive-box">♡ ONE MORE CHANCE · FIND YOUR FLOW<small>触顶时自动清理一次</small></div><div id="zenNote" class="zen-note" hidden><b>∞ FREE PLAY</b>恒定慢速 · 自动清理<small>NO GAME OVER</small></div><p class="item-caption" id="itemCaption"><b>A LITTLE VARIETY</b>✹ BOMB BLOCK<br>? MYSTERY BLOCK<br>✦ SURPRISE EVENTS<br><br>暂停时可打开 SPECIAL GUIDE。</p><p class="item-caption" id="classicCaption" hidden><b>KEEP THE RHYTHM.</b>标准 7-BAG。<br>每 10 行提升一个等级。</p><section id="recentSurprisesPanel" class="recent-surprises" hidden><h2>最近惊喜 · RECENT</h2><div class="recent-surprise-current"><span id="recentSurpriseLatest">—</span><button id="recentSurpriseView" type="button" data-dialog="surpriseHistoryDialog">查看</button></div><ol id="recentSurprises" aria-label="最近三个惊喜" hidden></ol></section></div><div class="rotation-controls" aria-label="旋转按钮"><button class="rotation-button" data-control="rotate" aria-label="顺时针旋转"><span class="symbol">↻</span><small>旋转</small><kbd>↑</kbd></button></div>
   <div class="controls-panel"><button id="controlsToggle" class="controls-toggle" type="button" aria-controls="controlLegend" aria-expanded="true">操作说明 <span aria-hidden="true">▾</span></button><div id="controlLegend" class="control-legend"><span><kbd>← / →</kbd>左右移动</span><span><kbd>↓</kbd>加速下落</span><span><kbd>↑</kbd>顺时针旋转</span><span><kbd>空格</kbd>直接落下</span><span><kbd>C</kbd>暂存方块</span><span class="chill-only"><kbd>U</kbd>撤回一次</span><span><kbd>P / Esc</kbd>暂停</span></div></div></aside>
-    <div class="board-frame" id="boardFrame"><section id="eventCard" class="event-card" aria-live="polite" hidden><span id="eventCardIcon" class="event-card-icon" aria-hidden="true">✦</span><div class="event-card-copy"><strong id="eventCardChinese" class="event-card-title"></strong><span id="eventCardEnglish" class="event-card-en"></span><small id="eventCardDescription" class="event-card-desc"></small></div></section><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div id="gestureTutorial" class="gesture-tutorial" data-step="left" role="status" aria-live="polite" hidden><span id="gestureTutorialIcon" class="gesture-tutorial-icon" aria-hidden="true"><svg viewBox="0 0 140 68" focusable="false"><path d="M57 7 8 34l49 27V47h73V21H57Z" fill="currentColor" stroke="#dcf8ff" stroke-width="3" stroke-linejoin="round"/></svg></span><strong id="gestureTutorialText">左滑移动</strong><small id="gestureTutorialDetail">在游戏区域向左拖动 · 游戏继续</small></div><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
+    <div class="board-frame" id="boardFrame"><section id="eventCard" class="event-card" aria-live="polite" hidden><span id="eventCardIcon" class="event-card-icon" aria-hidden="true">✦</span><div class="event-card-copy"><strong id="eventCardChinese" class="event-card-title"></strong><span id="eventCardEnglish" class="event-card-en"></span><small id="eventCardDescription" class="event-card-desc"></small></div></section><div class="board-screen"><canvas id="boardCanvas" aria-label="俄罗斯方块棋盘，10列20行"></canvas><div id="gestureTutorial" class="gesture-tutorial" data-step="left" role="status" aria-live="polite" hidden><span id="gestureTutorialIcon" class="gesture-tutorial-icon" aria-hidden="true"><svg viewBox="0 0 140 68" focusable="false"><path d="M57 7 8 34l49 27V47h73V21H57Z" fill="currentColor" stroke="#dcf8ff" stroke-width="3" stroke-linejoin="round"/></svg></span><strong id="gestureTutorialText">左滑移动</strong><small>在棋盘上操作 · 游戏继续</small></div><div class="board-overlay" id="overlay" role="region" aria-label="游戏状态"></div></div></div>
     <aside class="right-panel"><section class="instrument score-instrument"><h2 class="instrument-title">SCORE <span>01</span></h2><div class="score-value" id="score">000000</div><div class="best-value"><span>BEST</span><span id="best">000000</span></div><div class="metrics"><div><span class="mini-label" id="levelLabel">LEVEL</span><strong id="level">01</strong></div><div><span class="mini-label">LINES</span><strong id="lines">00</strong></div></div><div class="instrument-title">COMBO <span class="combo-value" id="combo">—</span></div><div class="level-progress"><span id="levelProgress"></span></div></section><section class="instrument"><h2 class="instrument-title">NEXT <span>↓</span></h2><div class="next-list"><canvas class="nextCanvas" data-next-index="0" aria-label="下一个方块"></canvas><canvas class="nextCanvas" data-next-index="1" aria-label="第二个预告方块"></canvas><canvas class="nextCanvas" data-next-index="2" aria-label="第三个预告方块"></canvas><canvas class="nextCanvas" data-next-index="3" aria-label="第四个预告方块"></canvas><canvas class="nextCanvas" data-next-index="4" aria-label="第五个预告方块"></canvas></div></section><div id="milestoneBadge" class="milestone-badge" role="status" aria-live="polite" hidden></div><div id="gameEvent" class="game-event" aria-live="polite">FIND YOUR FLOW.<small>每一块，都有它的位置。</small></div><div id="eventStatus" class="event-status"></div><div id="slowStatus" class="slow-status buff-status"></div><div id="themeStatus" class="theme-status" hidden></div></aside>
   </div>
   <div class="touch-controls" aria-label="触屏操作"><button data-control="left" aria-label="向左移动">←<span class="touch-label">左移</span></button><button data-control="right" aria-label="向右移动">→<span class="touch-label">右移</span></button><button data-control="down" aria-label="加速下降">↓<span class="touch-label">加速</span></button><button data-control="rotate" aria-label="顺时针旋转">↻<span class="touch-label">旋转</span></button><button class="drop" data-control="drop" aria-label="直接落下">⇓<span class="touch-label">落下</span></button><button data-control="hold" aria-label="暂存方块">⇄<span class="touch-label">暂存</span></button></div>
@@ -613,8 +612,8 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
 <p class="setting-heading">01 / AUDIO</p><label class="setting-row"><span>MUSIC<small>轻量合成背景音乐</small></span><input class="switch" type="checkbox" id="musicOn" checked aria-label="背景音乐开关"></label><div class="volume-row"><input type="range" id="musicVolume" min="0" max="100" value="30" aria-label="背景音乐音量"><output id="musicVolumeValue">30%</output></div>
 <label class="setting-row"><span>SOUND EFFECTS<small>移动、消行与小小的胜利</small></span><input class="switch" type="checkbox" id="sfxOn" checked aria-label="音效开关"></label><div class="volume-row"><input type="range" id="sfxVolume" min="0" max="100" value="50" aria-label="音效音量"><output id="sfxVolumeValue">50%</output></div>
 <label class="audio-intensity"><span>AUDIO INTENSITY<small>音效表现强度 · 禅模式始终更柔和</small></span><select id="audioIntensity" aria-label="音效强度"><option value="low">LOW / 轻柔</option><option value="normal" selected>NORMAL / 标准</option><option value="arcade">ARCADE / 街机</option></select></label>
-<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>高对比符号辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><label class="setting-row"><span>FOCUS MODE<small>放大棋盘，收起次要信息</small></span><input class="switch" type="checkbox" id="focusMode"></label><label class="setting-row"><span>BLOCK PATTERN<small>轻微像素纹理辅助识别方块</small></span><input class="switch" type="checkbox" id="blockPattern" checked></label><label class="audio-intensity next-preview"><span>NEXT PREVIEW<small>显示 1、3 或 5 个下一块</small></span><select id="nextPreview" aria-label="下一块预览数量"><option value="1">1 / 简洁</option><option value="3" selected>3 / 标准</option><option value="5">5 / 策略</option></select></label><div class="divider"></div><p class="setting-heading">03 / CHILL MODE</p><label class="audio-intensity surprise-frequency"><span>SURPRISE FREQUENCY<small>惊喜频率 · 仅影响 Chill 模式</small></span><select id="surpriseFrequency" aria-label="Chill 模式惊喜频率"><option value="relaxed">RELAXED / 悠闲</option><option value="normal" selected>NORMAL / 标准</option><option value="lively">LIVELY / 热闹</option></select></label><div class="divider"></div><p class="setting-heading">04 / CONTROLS</p><label class="audio-intensity control-feel"><span>CONTROL FEEL<small>左右长按与加速下降的手感</small></span><select id="controlFeel" aria-label="操作手感"><option value="soft">SOFT / 柔和</option><option value="normal" selected>NORMAL / 标准</option><option value="fast">FAST / 迅捷</option></select></label><label class="setting-row"><span>GESTURE CONTROL<small>鼠标与触屏：拖动左右移动，单击旋转，双击落下</small></span><input class="switch" type="checkbox" id="gestureControl" aria-label="手势控制开关"></label><label class="audio-intensity"><span>手势教学<small>每局显示四步提示；关闭后不影响手势操作</small></span><select id="gestureTutorialSetting" aria-label="手势教学"><option value="ALWAYS" selected>始终显示</option><option value="OFF">关闭</option></select></label><label class="audio-intensity"><span>触控按钮显示<small>自动保留 3 个主要按钮，教学期间布局不变</small></span><select id="touchButtonDisplay" aria-label="触控按钮显示"><option value="ALWAYS">始终显示</option><option value="AUTO" selected>自动</option><option value="HIDE">隐藏</option></select></label><button id="gestureTutorialReplay" class="tutorial-replay-button" type="button">☝ 重新查看手势教学</button><div class="settings-keys">← / → 左右移动 · ↓ 加速下落<br>↑ 顺时针旋转 · 空格直接落下<br>C 暂存 · U 撤回一次（仅 Chill）<br>P / Esc 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>首次点击游戏或菜单按钮后，背景音乐会开始播放。</p></div></dialog>
-<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">操作指南 <span class="version-tag">HOW TO PLAY · V2.2</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← / →</kbd>左右移动</div><div><kbd>↓</kbd>加速下落</div><div><kbd>↑</kbd>顺时针旋转</div><div><kbd>空格</kbd>直接落下</div><div><kbd>C</kbd>暂存方块</div><div><kbd>U</kbd>撤回一次（仅 Chill）</div><div><kbd>P / Esc</kbd>暂停 / 继续</div></div><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变，可在设置中显示 1、3 或 5 块。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。新方块出现前短暂按住↑或暂存键，操作会在生成时生效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。可在设置中选择惊喜频率；特殊内容会逐步解锁至 SPECIAL GUIDE 图鉴。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="help-point"><b>07 / A SECOND CHANCE</b><span>Chill 每局有一次 OOPS，可撤回最后锁定的方块；部分复杂惊喜完成后暂不可用。结算时按空格可立即重开当前模式。</span></p><p class="dialog-note">鼠标或触屏在游戏区域拖动左右移动，单击旋转，双击直接落下。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
+<div class="divider"></div><p class="setting-heading">02 / DISPLAY</p><label class="setting-row"><span>CRT EFFECT<small>一点复古扫描线</small></span><input class="switch" type="checkbox" id="crt" checked></label><label class="setting-row"><span>REDUCED MOTION<small>减少粒子与动态效果</small></span><input class="switch" type="checkbox" id="reducedMotion"></label><label class="setting-row"><span>COLOR ASSIST<small>高对比符号辅助区分方块</small></span><input class="switch" type="checkbox" id="colorAssist"></label><label class="setting-row"><span>FOCUS MODE<small>放大棋盘，收起次要信息</small></span><input class="switch" type="checkbox" id="focusMode"></label><label class="setting-row"><span>BLOCK PATTERN<small>轻微像素纹理辅助识别方块</small></span><input class="switch" type="checkbox" id="blockPattern" checked></label><label class="audio-intensity next-preview"><span>NEXT PREVIEW<small>显示 1、3 或 5 个下一块</small></span><select id="nextPreview" aria-label="下一块预览数量"><option value="1">1 / 简洁</option><option value="3" selected>3 / 标准</option><option value="5">5 / 策略</option></select></label><div class="divider"></div><p class="setting-heading">03 / CHILL MODE</p><label class="audio-intensity surprise-frequency"><span>SURPRISE FREQUENCY<small>惊喜频率 · 仅影响 Chill 模式</small></span><select id="surpriseFrequency" aria-label="Chill 模式惊喜频率"><option value="relaxed">RELAXED / 悠闲</option><option value="normal" selected>NORMAL / 标准</option><option value="lively">LIVELY / 热闹</option></select></label><div class="divider"></div><p class="setting-heading">04 / CONTROLS</p><label class="audio-intensity control-feel"><span>CONTROL FEEL<small>左右长按与加速下降的手感</small></span><select id="controlFeel" aria-label="操作手感"><option value="soft">SOFT / 柔和</option><option value="normal" selected>NORMAL / 标准</option><option value="fast">FAST / 迅捷</option></select></label><label class="setting-row"><span>GESTURE CONTROL<small>棋盘左滑 / 右滑移动，双击顺时针旋转</small></span><input class="switch" type="checkbox" id="gestureControl" aria-label="手势控制开关"></label><label class="audio-intensity"><span>触控按钮显示<small>手势开启后，可收起移动和旋转按钮</small></span><select id="touchButtonDisplay" aria-label="触控按钮显示"><option value="ALWAYS">始终显示</option><option value="AUTO" selected>自动</option><option value="HIDE">隐藏</option></select></label><button id="gestureTutorialReplay" class="tutorial-replay-button" type="button">☝ 重新查看手势教学</button><div class="settings-keys">← / → 左右移动 · ↓ 加速下落<br>↑ 顺时针旋转 · 空格直接落下<br>C 暂存 · U 撤回一次（仅 Chill）<br>P / Esc 暂停</div><p class="dialog-note">设置与最高分保存在本地浏览器。<br>首次点击游戏或菜单按钮后，背景音乐会开始播放。</p></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-header"><h2 id="helpTitle">操作指南 <span class="version-tag">HOW TO PLAY · V2.1</span></h2><button class="icon-button" data-close aria-label="关闭帮助">×</button></div><div class="dialog-body"><p class="help-point"><b>01 / MAKE SOME SPACE</b><span>填满一整行就能消除。一次四行是 TETRIS；清空整个棋盘可获得 PERFECT CLEAR 额外奖励。</span></p><div class="help-grid"><div><kbd>← / →</kbd>左右移动</div><div><kbd>↓</kbd>加速下落</div><div><kbd>↑</kbd>顺时针旋转</div><div><kbd>空格</kbd>直接落下</div><div><kbd>C</kbd>暂存方块</div><div><kbd>U</kbd>撤回一次（仅 Chill）</div><div><kbd>P / Esc</kbd>暂停 / 继续</div></div><div class="divider"></div><p class="help-point"><b>02 / A LITTLE FORESIGHT</b><span>虚线方块是最终落点；NEXT 顺序不会中途改变，可在设置中显示 1、3 或 5 块。HOLD 每块落地前只能交换一次。辅助方块也可以旋转、暂存和直接落下。</span></p><p class="help-point"><b>03 / FIND YOUR RHYTHM</b><span>触底与正式锁定有不同音效。新方块出现前短暂按住↑或暂存键，操作会在生成时生效。连续消行累积 COMBO；连续 TETRIS 或 T-SPIN 可获 BACK TO BACK 加分。</span></p><p class="help-point"><b>04 / CLASSIC · THE ORIGINAL SEVEN</b><span>标准七种方块，严格 7-BAG，每 10 行升级；不含辅助方块、道具或随机事件。</span></p><p class="help-point"><b>05 / CHILL · A LITTLE VARIETY</b><span>辅助方块、特殊道具与轮换惊喜让棋局更有变化。可在设置中选择惊喜频率；特殊内容会逐步解锁至 SPECIAL GUIDE 图鉴。</span></p><p class="help-point"><b>06 / ZEN · NO GAME OVER</b><span>标准七种方块，以恒定慢速下落。堆高后自动清理，可反复触发，持续游玩；分数仅供参考。</span></p><p class="help-point"><b>07 / A SECOND CHANCE</b><span>Chill 每局有一次 OOPS，可撤回最后锁定的方块；部分复杂惊喜完成后暂不可用。结算时按空格可立即重开当前模式。</span></p><p class="dialog-note">可在设置中切换 LOW、NORMAL、ARCADE 三档音效强度。<br>切换标签页会自动暂停，回来后手动继续。</p></div></dialog>
 <dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle"><div class="dialog-header"><h2 id="guideTitle">SPECIAL GUIDE <span class="version-tag">CHILL MODE</span></h2><button class="icon-button" data-close aria-label="关闭特殊内容说明">×</button></div><div id="guideBody" class="guide-body"></div><div class="guide-footer"><button id="guideMenuButton" type="button">⌂ 返回主菜单</button></div></dialog>
 <dialog id="surpriseHistoryDialog" class="history-dialog" aria-labelledby="surpriseHistoryTitle"><div class="dialog-header"><h2 id="surpriseHistoryTitle">最近惊喜详情 <span class="version-tag">SURPRISE HISTORY</span></h2><button id="surpriseHistoryClose" class="icon-button" data-close aria-label="关闭最近惊喜详情">×</button></div><div class="history-body"><p id="surpriseHistoryEmpty" class="history-empty" hidden>本局尚未触发惊喜。</p><ol id="surpriseHistoryList" class="surprise-history-list"></ol></div></dialog>
 <div id="toast" class="toast" role="status" hidden></div>
@@ -2544,8 +2543,9 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
   let gestureTutorialCompleted = Storage.get('gestureTutorialCompleted', false) === true;
   let gestureReplayPending = false;
   const gestureTutorial = { active: false, step: 0, steps: [], remaining: 0 };
+  const touchPreferred = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
   const Settings = {
-    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, audioIntensity: 'normal', surpriseFrequency: 'normal', controlFeel: 'normal', nextPreview: 3, crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false, blockPattern: true, focusMode: false, gestureControl: true, gestureTutorialSetting: 'ALWAYS', touchButtonDisplay: 'AUTO' },
+    value: { musicOn: true, sfxOn: true, musicVolume: CONFIG.DEFAULT_MUSIC_VOLUME, sfxVolume: CONFIG.DEFAULT_SFX_VOLUME, audioIntensity: 'normal', surpriseFrequency: 'normal', controlFeel: 'normal', nextPreview: 3, crt: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, colorAssist: false, blockPattern: true, focusMode: false, gestureControl: true, touchButtonDisplay: 'AUTO' },
     load() {
       const saved = Storage.get('settings', {});
       if (!saved || typeof saved !== 'object') return;
@@ -2556,7 +2556,6 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
         if (key === 'audioIntensity' && ['low', 'normal', 'arcade'].includes(saved[key])) this.value[key] = saved[key];
         if (key === 'surpriseFrequency' && ['relaxed', 'normal', 'lively'].includes(saved[key])) this.value[key] = saved[key];
         if (key === 'controlFeel' && ['soft', 'normal', 'fast'].includes(saved[key])) this.value[key] = saved[key];
-        if (key === 'gestureTutorialSetting' && ['ALWAYS', 'OFF'].includes(saved[key])) this.value[key] = saved[key];
         if (key === 'touchButtonDisplay' && ['ALWAYS', 'AUTO', 'HIDE'].includes(saved[key])) this.value[key] = saved[key];
       }
     },
@@ -2566,7 +2565,6 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
       document.body.classList.toggle('reduced-motion', this.value.reducedMotion);
       $('gamePage').classList.toggle('focus-mode', this.value.focusMode);
       for (const key of ['musicOn', 'sfxOn', 'crt', 'reducedMotion', 'colorAssist', 'blockPattern', 'focusMode', 'gestureControl']) if ($(key)) $(key).checked = this.value[key];
-      if ($('gestureTutorialSetting')) $('gestureTutorialSetting').value = this.value.gestureTutorialSetting;
       if ($('touchButtonDisplay')) $('touchButtonDisplay').value = this.value.touchButtonDisplay;
       if ($('gestureTutorialReplay')) $('gestureTutorialReplay').disabled = !this.value.gestureControl;
       syncTouchButtons();
@@ -3002,7 +3000,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
       if (!repeatedOnMobile) notice(data.text, data.subtext);
     }
     if (name === 'emergency') { input.clear(); eventText(data.zen ? 'CLEAR SKY' : 'EMERGENCY CLEAR!', data.zen ? '∞ FREE PLAY' : 'ONE MORE CHANCE.'); }
-    if (name === 'pause' || name === 'gameOver') { resetBoardGesture(); input.clear(true); audio.setActive(false); restoreHud(); saveBest(); }
+    if (name === 'pause' || name === 'gameOver') { input.clear(true); audio.setActive(false); restoreHud(); saveBest(); }
     if (name === 'pause') pausedTime = 0;
     if (name === 'gameOver') { particles.clear(); hideEventCard(); milestoneQueue.length = 0; milestoneTime = 0; $('milestoneBadge').hidden = $('mobileMilestoneBadge').hidden = true; }
   });
@@ -3066,25 +3064,23 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
   }
   const input = new Input();
   const TUTORIAL_STEPS = Object.freeze([
-    { id: 'left', label: '左滑移动', detail: '在游戏区域向左拖动 · 游戏继续' },
-    { id: 'right', label: '右滑移动', detail: '在游戏区域向右拖动 · 游戏继续' },
-    { id: 'rotate', label: '单击旋转', detail: '轻点一次 · 顺时针旋转' },
-    { id: 'drop', label: '双击落下', detail: '连续轻点两次 · 直接落下' }
+    { id: 'left', setting: 'gestureLeft', label: '左滑移动', detail: '在游戏区域向左滑动' },
+    { id: 'right', setting: 'gestureRight', label: '右滑移动', detail: '在游戏区域向右滑动' },
+    { id: 'rotate', setting: 'gestureRotate', label: '双击旋转', detail: '快速双击游戏区域' }
   ]);
-  const TUTORIAL_ART = Object.freeze({
+  const TUTORIAL_ARROWS = Object.freeze({
     left: '<svg viewBox="0 0 120 64" role="presentation" focusable="false"><path d="M42 4 4 32 42 60 42 44 116 44 116 20 42 20Z"/></svg>',
-    right: '<svg viewBox="0 0 120 64" role="presentation" focusable="false"><path d="M78 4 116 32 78 60 78 44 4 44 4 20 78 20Z"/></svg>',
-    rotate: '<svg viewBox="0 0 120 64" role="presentation" focusable="false"><circle cx="26" cy="32" r="11" fill="currentColor" opacity=".85"/><path d="M83 12a23 23 0 1 1-21 39" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="M53 37 56 57 74 47Z" fill="currentColor"/></svg>',
-    drop: '<svg viewBox="0 0 120 64" role="presentation" focusable="false"><circle cx="22" cy="31" r="10" fill="currentColor" opacity=".8"/><circle cx="49" cy="31" r="10" fill="currentColor" opacity=".8"/><path d="M87 6v37" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="M65 36 87 60l22-24Z" fill="currentColor"/></svg>'
+    right: '<svg viewBox="0 0 120 64" role="presentation" focusable="false"><path d="M78 4 116 32 78 60 78 44 4 44 4 20 78 20Z"/></svg>'
   });
   const enabledTutorialSteps = () => Settings.value.gestureControl
-    ? TUTORIAL_STEPS : [];
+    ? TUTORIAL_STEPS.filter(step => Settings.value[step.setting] !== false) : [];
   let gestureTutorialEligibleRun = false;
   function syncTouchButtons() {
     const enabled = Settings.value.gestureControl;
     const policy = Settings.value.touchButtonDisplay;
     $('gamePage').classList.toggle('gesture-enabled', enabled);
-    $('gamePage').classList.toggle('touch-move-hidden', enabled && (policy === 'HIDE' || policy === 'AUTO'));
+    $('gamePage').classList.toggle('touch-move-hidden', enabled &&
+      (policy === 'HIDE' || (policy === 'AUTO' && gestureTutorialCompleted && !gestureTutorial.active && !gestureReplayPending)));
     requestAnimationFrame(resizeAll);
   }
   function renderGestureTutorial() {
@@ -3101,7 +3097,8 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     const icon = $('gestureTutorialIcon');
     if (icon && icon.dataset.step !== step.id) {
       icon.dataset.step = step.id;
-      icon.innerHTML = TUTORIAL_ART[step.id];
+      if (TUTORIAL_ARROWS[step.id]) icon.innerHTML = TUTORIAL_ARROWS[step.id];
+      else icon.textContent = '☝ ↻';
     }
     text('gestureTutorialText', step.label);
     if ($('gestureTutorialDetail')) text('gestureTutorialDetail', step.detail);
@@ -3110,6 +3107,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     gestureTutorial.active = false;
     gestureTutorial.remaining = 0;
     renderGestureTutorial();
+    syncTouchButtons();
   }
   function finishGestureTutorial() {
     gestureTutorialCompleted = true;
@@ -3134,6 +3132,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     gestureTutorialEligibleRun = false;
     gestureReplayPending = false;
     renderGestureTutorial();
+    syncTouchButtons();
   }
   function updateGestureTutorial(dt) {
     if (!Settings.value.gestureControl || ['MENU', 'GAME_OVER'].includes(game.state)) {
@@ -3157,49 +3156,10 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
   const gestureZone = $('gameLayout') || boardScreen;
   const gestureInteractive = 'button,input,select,textarea,a,label,[role="button"],[contenteditable],.touch-controls,dialog';
   const boardPointers = new Set();
-  const pendingBoardTaps = new Set();
-  const BOARD_TAP_DELAY = 200;
-  const BOARD_TAP_RADIUS = 26;
-  let boardPointer = null;
+  let boardPointer = null, lastBoardTap = null;
   const canUseBoardGesture = () => Settings.value.gestureControl && game.state === 'PLAYING' && getInputContext() === 'GAME';
   const safeGestureTarget = target => target instanceof Element && gestureZone.contains(target) &&
     !target.closest(gestureInteractive);
-  function resolveBoardTap(tap) {
-    if (!tap) return;
-    clearTimeout(tap.timer);
-    pendingBoardTaps.delete(tap);
-    if (canUseBoardGesture() && game.piece === tap.piece && game.rotate(1)) noteEffectiveGesture('rotate');
-  }
-  function cancelBoardTap(tap) {
-    if (!tap) return;
-    clearTimeout(tap.timer);
-    pendingBoardTaps.delete(tap);
-  }
-  function resetBoardGesture() {
-    const capturedIds = [...boardPointers];
-    boardPointers.clear();
-    boardPointer = null;
-    for (const tap of pendingBoardTaps) clearTimeout(tap.timer);
-    pendingBoardTaps.clear();
-    for (const id of capturedIds) {
-      try { if (gestureZone.hasPointerCapture(id)) gestureZone.releasePointerCapture(id); }
-      catch (_) { /* A pointer can end while a reset is in progress. */ }
-    }
-  }
-  function matchingBoardTap(type, x, y, piece, now) {
-    let match = null;
-    for (const tap of pendingBoardTaps) {
-      if (tap.type === type && tap.piece === piece && now - tap.time <= BOARD_TAP_DELAY &&
-          Math.hypot(x - tap.x, y - tap.y) <= BOARD_TAP_RADIUS &&
-          (!match || tap.time > match.time)) match = tap;
-    }
-    return match;
-  }
-  function scheduleBoardTap(type, x, y, piece, now) {
-    const tap = { type, x, y, piece, time: now, timer: null };
-    pendingBoardTaps.add(tap);
-    tap.timer = setTimeout(() => resolveBoardTap(tap), BOARD_TAP_DELAY);
-  }
   function moveWithGesture(pointer, clientX) {
     const deadZone = 8;
     if (!pointer.dragged) {
@@ -3207,7 +3167,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
       if (Math.abs(dx) <= deadZone) return;
       const direction = Math.sign(dx);
       pointer.dragged = true;
-      if (pointer.firstTap) { resolveBoardTap(pointer.firstTap); pointer.firstTap = null; }
+      lastBoardTap = null;
       pointer.referenceX = pointer.x + direction * deadZone;
       pointer.lastDirection = direction;
       if (game.move(direction)) noteEffectiveGesture(direction < 0 ? 'left' : 'right');
@@ -3234,50 +3194,45 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     if (!canUseBoardGesture() || !safeGestureTarget(e.target) ||
         !['touch', 'mouse', 'pen'].includes(e.pointerType) || (e.pointerType === 'mouse' && e.button !== 0)) return;
     e.preventDefault();
-    if (boardPointers.size) { resetBoardGesture(); return; }
-    const now = performance.now();
-    const firstTap = matchingBoardTap(e.pointerType, e.clientX, e.clientY, game.piece, now);
-    if (firstTap) cancelBoardTap(firstTap);
     boardPointers.add(e.pointerId);
-    boardPointer = { id: e.pointerId, type: e.pointerType, x: e.clientX, y: e.clientY,
-      referenceX: e.clientX, lastDirection: 0, dragged: false, time: now, piece: game.piece,
-      firstTap, cellWidth: Math.max(8, boardScreen.getBoundingClientRect().width / 10) };
-    try { gestureZone.setPointerCapture(e.pointerId); } catch (_) { resetBoardGesture(); }
+    if (boardPointers.size === 1) {
+      boardPointer = { id: e.pointerId, type: e.pointerType, x: e.clientX, y: e.clientY,
+        referenceX: e.clientX, lastDirection: 0, dragged: false, time: performance.now(),
+        cellWidth: Math.max(8, boardScreen.getBoundingClientRect().width / 10) };
+    } else { boardPointer = null; lastBoardTap = null; }
+    gestureZone.setPointerCapture(e.pointerId);
   });
   gestureZone.addEventListener('pointermove', e => {
-    if (!boardPointer || boardPointer.id !== e.pointerId || boardPointers.size !== 1) return;
-    if (!canUseBoardGesture() || game.piece !== boardPointer.piece) { resetBoardGesture(); return; }
+    if (!boardPointer || boardPointer.id !== e.pointerId || boardPointers.size !== 1 || !canUseBoardGesture()) return;
     moveWithGesture(boardPointer, e.clientX);
     if (boardPointer.dragged) e.preventDefault();
   });
   gestureZone.addEventListener('pointerup', e => {
-    if (!boardPointers.has(e.pointerId)) return;
+    const wasOnlyPointer = boardPointers.size === 1;
     boardPointers.delete(e.pointerId);
     if (!boardPointer || e.pointerId !== boardPointer.id) return;
     const pointer = boardPointer;
     boardPointer = null;
-    if (!canUseBoardGesture() || game.piece !== pointer.piece) return;
+    if (!wasOnlyPointer || !canUseBoardGesture()) { lastBoardTap = null; return; }
     const now = performance.now();
     if (pointer.dragged || Math.abs(e.clientX - pointer.x) > 10 || Math.abs(e.clientY - pointer.y) > 10 ||
-        now - pointer.time > 280) {
-      if (pointer.firstTap) resolveBoardTap(pointer.firstTap);
-      return;
-    }
-    if (pointer.firstTap) {
-      if (Math.hypot(e.clientX - pointer.firstTap.x, e.clientY - pointer.firstTap.y) <= BOARD_TAP_RADIUS) {
-        if (game.hardDrop()) noteEffectiveGesture('drop');
-        e.preventDefault();
-      } else {
-        resolveBoardTap(pointer.firstTap);
-        if (game.piece === pointer.piece) scheduleBoardTap(pointer.type, e.clientX, e.clientY, pointer.piece, now);
-      }
-    } else scheduleBoardTap(pointer.type, e.clientX, e.clientY, pointer.piece, now);
+        now - pointer.time > 280) { lastBoardTap = null; return; }
+    if (lastBoardTap && lastBoardTap.type === pointer.type && now - lastBoardTap.time <= 340 &&
+        Math.hypot(e.clientX - lastBoardTap.x, e.clientY - lastBoardTap.y) <= 26) {
+      lastBoardTap = null;
+      if (pointer.type === 'mouse') game.hardDrop();
+      else if (game.rotate(1)) noteEffectiveGesture('rotate');
+      e.preventDefault();
+    } else lastBoardTap = { type: pointer.type, x: e.clientX, y: e.clientY, time: now };
   });
   gestureZone.addEventListener('pointercancel', e => {
-    if (boardPointers.has(e.pointerId)) resetBoardGesture();
+    boardPointers.delete(e.pointerId);
+    if (boardPointer?.id === e.pointerId) boardPointer = null;
+    lastBoardTap = null;
   });
   gestureZone.addEventListener('lostpointercapture', e => {
-    if (boardPointers.has(e.pointerId)) resetBoardGesture();
+    boardPointers.delete(e.pointerId);
+    if (boardPointer?.id === e.pointerId) boardPointer = null;
   });
   gestureZone.addEventListener('contextmenu', e => { if (canUseBoardGesture() && safeGestureTarget(e.target)) e.preventDefault(); });
   gestureZone.addEventListener('dblclick', e => { if (canUseBoardGesture() && safeGestureTarget(e.target)) e.preventDefault(); });
@@ -3330,7 +3285,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
   const editingControl = target => target instanceof HTMLElement && Boolean(target.closest('input,select,textarea,[contenteditable="true"],[role="textbox"],[role="slider"]'));
   function togglePause() {
     if (hasDialog()) return;
-    resetBoardGesture();
+    boardPointer = null; boardPointers.clear(); lastBoardTap = null;
     input.clear(true);
     restoreHud();
     if (game.state === 'PAUSED') { audio.init(); game.resume(); focusGameRoot(); }
@@ -3394,8 +3349,8 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     // Pointer activation is handled above; detail=0 is a keyboard/assistive click.
     button.addEventListener('click', e => { if (e.detail === 0 && game.state === 'PLAYING') input.perform(button.dataset.control); });
   });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) { resetBoardGesture(); input.clear(true); game.pause(); audio.setActive(false); saveBest(); } });
-  window.addEventListener('blur', () => { resetBoardGesture(); input.clear(true); game.pause(); audio.setActive(false); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { input.clear(true); game.pause(); audio.setActive(false); saveBest(); } });
+  window.addEventListener('blur', () => { input.clear(true); game.pause(); audio.setActive(false); });
   window.addEventListener('pagehide', saveBest);
   // Browser audio remains locked until a deliberate menu control is activated.
   document.addEventListener('click', e => {
@@ -3407,9 +3362,9 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
   function start(mode) {
     document.querySelectorAll('dialog[open]').forEach(d => d.close());
     stopGestureTutorial();
-    resetBoardGesture();
+    boardPointer = null; boardPointers.clear(); lastBoardTap = null;
     gestureTutorialEligibleRun = Settings.value.gestureControl &&
-      (Settings.value.gestureTutorialSetting === 'ALWAYS' || gestureReplayPending);
+      ((touchPreferred && !gestureTutorialCompleted) || gestureReplayPending);
     saveBest(); bestAtStart = best[mode]; input.clear(true); boardFx.clear(); landingFx.clear(); previewKey = ''; overlayKey = '';
     restoreHud(); landPulseTime = 0; oopsFlashTime = 0; $('boardFrame').classList.remove('land-pulse', 'hard-pulse', 'oops-flash');
     audio.resetSession(mode); audio.transitionTo(mode, true); const generation = ++startGeneration;
@@ -3418,7 +3373,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     resetLegendForRun(); lastMouseMove = performance.now();
     window.scrollTo({ top: 0, behavior: 'auto' }); syncInputContext(); resizeAll(); syncUI(); focusGameRoot();
   }
-  function mainMenu() { saveBest(); stopGestureTutorial(); gestureTutorialEligibleRun = false; resetBoardGesture(); input.clear(true); particles.clear(); boardFx.clear(); landingFx.clear(); resetMilestones(); oopsFlashTime = 0; $('boardFrame').classList.remove('oops-flash'); recentSurprises.length = 0; surpriseHistory.length = 0; renderRecentSurprises(); hideEventCard(); ++startGeneration; audio.resetSession('menu'); audio.transitionTo('menu', true); game.menu(); $('home').hidden = false; $('gamePage').hidden = true; $('gamePage').classList.remove('cursor-hidden'); $('toast').hidden = true; restoreHud(); syncInputContext(); drawTitle(); drawAttract(); syncUI(); }
+  function mainMenu() { saveBest(); stopGestureTutorial(); gestureTutorialEligibleRun = false; boardPointer = null; boardPointers.clear(); lastBoardTap = null; input.clear(true); particles.clear(); boardFx.clear(); landingFx.clear(); resetMilestones(); oopsFlashTime = 0; $('boardFrame').classList.remove('oops-flash'); recentSurprises.length = 0; surpriseHistory.length = 0; renderRecentSurprises(); hideEventCard(); ++startGeneration; audio.resetSession('menu'); audio.transitionTo('menu', true); game.menu(); $('home').hidden = false; $('gamePage').hidden = true; $('gamePage').classList.remove('cursor-hidden'); $('toast').hidden = true; restoreHud(); syncInputContext(); drawTitle(); drawAttract(); syncUI(); }
   $('chillStart').addEventListener('click', () => start('chill'));
   $('classicStart').addEventListener('click', () => start('classic'));
   $('zenStart').addEventListener('click', () => start('zen'));
@@ -3443,7 +3398,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     const dialog = $(id);
     // Reading this run's history is an intentional pause; closing it never resumes play.
     resumeAfterDialog.set(dialog, id !== 'surpriseHistoryDialog' && activeGameState());
-    resetBoardGesture();
+    boardPointer = null; boardPointers.clear(); lastBoardTap = null;
     input.clear(true); game.pause(); restoreHud(); dialog.showModal();
     syncInputContext(); $('gamePage').classList.remove('cursor-hidden');
     if (id === 'guideDialog') drawGuidePreviews();
@@ -3465,19 +3420,15 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
   });
   for (const key of Object.keys(Settings.value)) $(key).addEventListener('input', () => {
     Settings.value[key] = typeof Settings.value[key] === 'boolean' ? $(key).checked :
-      ['audioIntensity', 'surpriseFrequency', 'controlFeel', 'touchButtonDisplay', 'gestureTutorialSetting'].includes(key) ? $(key).value :
+      ['audioIntensity', 'surpriseFrequency', 'controlFeel', 'touchButtonDisplay'].includes(key) ? $(key).value :
         key === 'nextPreview' ? Number($(key).value) : Number($(key).value) / 100;
     if (key === 'surpriseFrequency') game.setSurpriseFrequency(Settings.value.surpriseFrequency);
     if (key === 'controlFeel') input.clear(true);
-    if (key === 'gestureControl' || key === 'gestureTutorialSetting') resetBoardGesture();
     if (key === 'gestureControl' && !Settings.value.gestureControl) {
       stopGestureTutorial(); gestureTutorialEligibleRun = false; gestureReplayPending = false;
+      boardPointer = null; boardPointers.clear(); lastBoardTap = null;
     }
-    if (key === 'gestureTutorialSetting' && Settings.value.gestureTutorialSetting === 'OFF') {
-      stopGestureTutorial(); gestureTutorialEligibleRun = false; gestureReplayPending = false;
-    }
-    if ((key === 'gestureControl' || key === 'gestureTutorialSetting') &&
-        Settings.value.gestureControl && Settings.value.gestureTutorialSetting === 'ALWAYS' && activeGameState())
+    if (key === 'gestureControl' && Settings.value.gestureControl && touchPreferred && !gestureTutorialCompleted)
       gestureTutorialEligibleRun = true;
     Settings.save(); Settings.apply(); audio.applySettings(); previewKey = ''; drawAttract(); uiDirty = true;
     if (key === 'focusMode') { restoreHud(); resizeAll(); }
@@ -3487,6 +3438,7 @@ body.reduced-motion .gesture-tutorial-icon svg{animation:none;opacity:.72}
     stopGestureTutorial();
     gestureReplayPending = true;
     gestureTutorialEligibleRun = true;
+    syncTouchButtons();
   });
   let unmuteSettings = { musicOn: Settings.value.musicOn, sfxOn: Settings.value.sfxOn };
   $('muteButton').addEventListener('click', () => {
